@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <meta name="author" content="José A. Valderrama" />
+  <title>Introducción al análisis de datos con el software Stata</title>
+  <style>
+    html {
+      line-height: 1.5;
+      font-family: Georgia, serif;
+      font-size: 20px;
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      word-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 1em;
+      }
+    }
+    @media print {
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, 'Lucida Console', Consolas, monospace;
+      font-size: 85%;
+      margin: 0;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      background-color: #1a1a1a;
+      border: none;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    span.underline{text-decoration: underline;}
+    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+<style>
+/* CSS for Markstat 2.0 using Pandoc 2.0 */
+body{padding:14px 28px;}
+body, table {font-family: Helvetica, Arial, Sans-serif; font-size: 14px; width: 95%; max-width: unset;}
+h1, h2, h3, h4 {font-weight: normal; color: #3366cc}
+h1 {font-size: 200%;}
+h2 {font-size: 150%;}
+h3 {font-size: 120%;}
+h4 {font-size: 100%; font-weight:bold}
+img.center {display:block; margin-left:auto; margin-right:auto}
+.small{font-size:8pt;}
+a {color: black;}
+a:visited {color: #808080;}
+a.plain {text-decoration:none;}
+a.plain:hover {text-decoration:underline;}
+.em {font-weight:bold;}
+pre, code {font-family: "lucida console", monospace;}
+pre.stata {font-size:13px; line-height:13px;}
+pre {padding:8px; border:1px solid #c0c0c0; border-radius:8px; background-color:#fdfdfd;}
+code {color:#3366cc; background-color:#fafafa;}
+pre code { color:black; background-color:white}
+/* Added for Pandoc */
+figure > img, div.figure > img {display:block; margin:auto}
+figcaption, p.caption {text-align:center; font-weight:bold; color:#3366cc;}
+h1.title {text-align:center; margin-bottom:0}
+p.author, h2.author {font-style:italic; text-align:center;margin-top:12px;margin-bottom:-25px}
+p.date, h3.date {text-align:center;margin-top:4px; margin-bottom:0}
+/* Tables*/
+table { margin:auto; border-collapse:collapse; }
+table caption { margin-bottom:1ex;}
+th, td { padding:4px 6px;}
+thead tr:first-child th {border-top:1px solid black; padding-top:6px}
+thead tr:last-child  th {padding-bottom:6px}
+tbody tr:first-child td {border-top:1px solid black; padding-top:6px}
+tbody tr:last-child  td {padding-bottom:6px;}
+table tbody:last-child tr:last-child td {border-bottom:1px solid black;}
+</style>
+</head>
+<body>
+<header id="title-block-header">
+<h1 class="title">Introducción al análisis de datos con el software <code>Stata</code></h1>
+<p class="author">José A. Valderrama</p>
+</header>
+<hr />
+<p style="text-align: center;">
+<a href="https://jtvalderrama.github.io/curso_stata.html"><span style="color:red"><font size="4">Inicio</font></span></a>      <a href="https://drive.google.com/file/d/1536VMz9AQnRFAuy69GxXg0KfzE3655Qb/view?usp=sharing"><span style="color:red"><font size="4">Programa</font></span></a>      <a href="https://jtvalderrama.github.io/stata1.html"><span style="color:red"><font size="4">Sesión 1</font></span></a>      <a href="https://jtvalderrama.github.io/stata2.html"><span style="color:red"><font size="4">Sesión 2</font></span></a>      <a href="https://jtvalderrama.github.io/stata3.html"><span style="color:red"><font size="4">Sesión 3</font></span></a>      <a href="https://jtvalderrama.github.io/stata4.html"><span style="color:red"><font size="4">Sesión 4</font></span></a>      <a href="https://jtvalderrama.github.io/stata5.html"><span style="color:red"><font size="4">Sesión 5</font></span></a>      <a href="https://drive.google.com/file/d/1tsgvLeIRF3yPGc7pcpT4aZkgi4xUemO2/view?usp=sharing"><span style="color:red"><font size="4">Ejercicios</font></span></a>
+</p>
+<hr />
+<h2 id="profesor">Profesor</h2>
+<div class="columns">
+<div class="column" style="width:20%;">
+<p><img src="photojia.jpg" style="width:50.0%" /></p>
+</div><div class="column" style="width:80%;">
+<p><strong>José A. Valderrama</strong></p>
+<p>Profesor en el Departamento de Economía Aplicada de la Universidad de Salamanca (España).</p>
+<p><em>Áreas de investigación</em>: Economía Laboral, Economía de la Salud, Economía Pública y Microeconometría Aplicada.</p>
+<p><em>Página web</em>: <a href="https://jtvalderrama.github.io">jtvalderrama.github.io</a></p>
+<p><em>Correo electrónico</em>: <a href="jvalder@ulima.edu.pe">jvalder@ulima.edu.pe</a></p>
+<p><em>Dirección postal</em>: Departamento de Economía Aplicada, Facultad de Derecho, Campus Miguel de Unamuno, s/n, 37007, Salamanca (España).</p>
+</div>
+</div>
+<h2 id="organización-del-curso">Organización del curso</h2>
+<div class="columns">
+<div class="column" style="width:20%;">
+<p><img src="stata17fair.jpg" style="width:90.0%" /></p>
+</div><div class="column" style="width:80%;">
+<p>El objetivo de este curso es proporcionar al estudiante una introducción al software de análisis estadístico <code>Stata</code>. En particular, se emplea la versión 17 del programa, aunque la inmensa mayoría de los códigos deben funcionar en versiones anteriores.</p>
+<p>El curso cuenta con una duración de 10 horas. Su finalidad es poner a disposición de los asistentes las herramientas para que cualquier persona interesada pueda comenzar a trabajar con este programa (por ejemplo, realizando una transición desde otro software). No se pretende profundizar en conceptos estadísticos o cubrir exhaustivamente cada uno de los elementos que se abordan en el curso, sino que, por la duración del curso, se persigue mostrar las potencialidades del programa y orientar a los estudiantes sobre los recursos que pueden emplear para convertirse en usuarios del programa en su actividad académica o profesional. El hilo conductor del curso es que la mejor forma de aprender a emplear <code>Stata</code> es, precisamente, practicando su empleo en nuestro trabajo.</p>
+<p>El curso se divide en cinco sesiones con los siguientes contenidos:</p>
+<p><strong><span style="color:red">Sesión 1:</span></strong> <a href="https://jtvalderrama.github.io/stata1.html">Introducción a <code>Stata</code></a></p>
+<p><strong><span style="color:red">1.</span></strong> ¿Qué es <code>Stata</code>?</p>
+<p><strong><span style="color:red">2.</span></strong> Objetivos del curso</p>
+<p><strong><span style="color:red">3.</span></strong> Conceptos básicos</p>
+<p><strong><span style="color:red">4.</span></strong> Primeros pasos en <code>Stata</code></p>
+<p><strong><span style="color:red">5.</span></strong> La comunidad de usuarios</p>
+<p><strong><span style="color:red">Sesión 2:</span></strong> <a href="https://jtvalderrama.github.io/stata2.html">Manipulación de datos y archivos</a></p>
+<p><strong><span style="color:red">1.</span></strong> Operaciones de fusión horizontal de archivos</p>
+<p><strong><span style="color:red">2.</span></strong> Operaciones de fusión vertical de archivos</p>
+<p><strong><span style="color:red">3.</span></strong> Crear una base de datos con estadísticos descriptivos</p>
+<p><strong><span style="color:red">4.</span></strong> Cambiar la disposición de los datos</p>
+<p><strong><span style="color:red">5.</span></strong> Nociones básicas de programación: <code>preserve</code>, <code>restore</code> y el uso de macros y bucles</p>
+<p><strong><span style="color:red">Sesión 3:</span></strong> <a href="https://jtvalderrama.github.io/stata3.html">Tablas de contingencia y análisis multivariante</a></p>
+<p><strong><span style="color:red">1</span></strong>. Tablas de contingencia</p>
+<p><strong><span style="color:red">2.</span></strong> Tablas con estadísticos descriptivos</p>
+<p><strong><span style="color:red">3.</span></strong> Análisis de varianza</p>
+<p><strong><span style="color:red">4.</span></strong> Análisis de regresión</p>
+<p><strong><span style="color:red">5.</span></strong> Otros modelos econométricos de uso común</p>
+<p><strong><span style="color:red">6.</span></strong> Otras técnicas de análisis multivariante</p>
+<p><strong><span style="color:red">Sesión 4:</span></strong> <a href="https://jtvalderrama.github.io/stata4.html">Análisis gráfico</a></p>
+<p><strong><span style="color:red">1.</span></strong> Consejos preliminares</p>
+<p><strong><span style="color:red">2.</span></strong> Gráficos más frecuentes y potencialidades de los gráficos de <code>Stata</code></p>
+<p><strong><span style="color:red">3.</span></strong> Elaboración de mapas</p>
+<p><strong><span style="color:red">Sesión 5:</span></strong> <a href="https://jtvalderrama.github.io/stata5.html">Reproducibilidad, flujos de trabajo e integración con otro software</a></p>
+<p><strong><span style="color:red">1</span></strong>. Reproducibilidad</p>
+<p><strong><span style="color:red">2.</span></strong> <code>Stata</code> + Microsof Excel + Microsoft Word</p>
+<p><strong><span style="color:red">3.</span></strong> <code>Stata</code> + LaTeX</p>
+<p><strong><span style="color:red">4.</span></strong> Documentos dinámicos y otras posibilidades</p>
+<p>Los materiales del curso pueden descargarse en este <a href="https://drive.google.com/file/d/16bukxS8OwOsmH51R0O_hw3ggXhfdZh6O/view?usp=sharing">enlace</a>. Se incluyen todos los archivos que empleamos (y generamos) durante las sesiones y, además, dentro de la subcarpeta <code>extra</code>, se adjuntan los archivos de sintaxis utilizados por el profesor para generar estos materiales desde los datos en bruto descargados de la web.</p>
+<p>Para superar el curso, los estudiantes deberán entregar la solución a la hoja de problemas que puede descargarse en este <a href="https://drive.google.com/file/d/1tsgvLeIRF3yPGc7pcpT4aZkgi4xUemO2/view?usp=sharing">enlace</a>. Los ejercicios pueden entregarse proporcionando al profesor un archivo <code>.do</code> o un archivo log (e.g., <code>smcl</code>), aunque otras opciones son admisibles (por ejemplo, los usuarios más avanzados pueden preferir archivos <code>.html</code> o <code>.pdf</code> generados con Markdown o TeX).</p>
+</div>
+</div>
+
+</body>
+</html>

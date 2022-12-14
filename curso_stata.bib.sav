@@ -1,0 +1,298 @@
+% Encoding: UTF-8
+
+@Book{Long2009,
+  author    = {Long, J. Scott},
+  publisher = {Stata Press},
+  title     = {The workflow of data analysis using Stata},
+  year      = {2009},
+  location  = {College Station, Texas},
+}
+
+@Book{Acock2018,
+  author    = {Acock, Alan C.},
+  publisher = {Stata Press},
+  title     = {A gentle introduction to Stata},
+  year      = {2018},
+  edition   = {6},
+  location  = {College Station, Texas},
+}
+
+@Book{Kohler2012,
+  author    = {Kohler, Ulrich and Kreuter, Frauke},
+  publisher = {Stata Press},
+  title     = {Data analysis using {S}tata},
+  year      = {2012},
+  edition   = {3},
+  location  = {College Station, Texas},
+}
+
+@Book{Escobar2012,
+  author    = {Escobar, Modesto and Fern{\'a}ndez-Mac{\'i}as, Enrique and Bernardi, Fabrizio},
+  publisher = {Centro de Investigaciones Soci{\'o}logicas},
+  title     = {An{\'a}lisis de datos con Stata},
+  year      = {2012},
+  address   = {Madrid},
+  edition   = {2},
+}
+
+@Book{Baum2006,
+  author    = {Baum, Christopher F.},
+  publisher = {Stata Press},
+  title     = {An introduction to modern Econometrics using Stata},
+  year      = {2006},
+  address   = {College Station, Texas},
+}
+
+@Book{Cameron2010,
+  author    = {Cameron, A. Colin and Trivedi, Pravin K.},
+  publisher = {Stata Press},
+  title     = {Microeconometrics using Stata},
+  year      = {2010},
+  address   = {College Station, Texas},
+  edition   = {2},
+}
+
+@Book{Adkins2010,
+  author    = {Adkins, Lee C. and Hill, R. Carter},
+  publisher = {John Wiley \& Sons, Inc},
+  title     = {Using {S}tata for {P}rinciples of {E}conometrics, Fourth Edition},
+  year      = {2010},
+  address   = {Nueva York},
+}
+
+@Book{Long2014,
+  author    = {Long, J. Scott and Freese, Jeremy},
+  publisher = {Stata Press},
+  title     = {Regression models for categorical dependent variables using Stata},
+  year      = {2014},
+  address   = {College Station, Texas},
+  edition   = {3},
+}
+
+@Book{Stockemer2019,
+  author    = {Stockemer, Daniel},
+  publisher = {Springer},
+  title     = {Quantitative methods for the Social Sciences. A practical introduction with examples in SPSS and Stata},
+  year      = {2019},
+  address   = {Londres},
+}
+
+@Book{Wooldridge2019,
+  author    = {Wooldridge, Jeffrey M.},
+  publisher = {Cengage Learning},
+  title     = {Introductory Econometrics: A modern approach},
+  year      = {2019},
+  address   = {Boston},
+  edition   = {7},
+}
+
+@Article{Mincer1958,
+  author  = {Mincer, Jacob},
+  journal = {Journal of Political Economy},
+  title   = {Investment in human capital and personal income distribution},
+  year    = {1958},
+  number  = {4},
+  pages   = {281--302},
+  volume  = {66},
+}
+
+@Book{Skrondal2012b,
+  author    = {Skrondal, Anders and Rabe-Heskerth, Sophia},
+  publisher = {Stata Press},
+  title     = {Multilevel and longitudinal modeling using Stata. Volume II: Categorical responses, counts, and survival},
+  year      = {2012},
+  address   = {College Station, Texas},
+  edition   = {3},
+}
+
+@Book{Skrondal2012a,
+  author    = {Skrondal, Anders and Rabe-Heskerth, Sophia},
+  publisher = {Stata Press},
+  title     = {Multilevel and longitudinal modeling using Stata. Volume I: Continuous responses},
+  year      = {2012},
+  address   = {College Station, Texas},
+  edition   = {3},
+}
+
+@Book{Cleves2016,
+  author    = {Cleves, Mario and Gould, William W. and Marchenko, Yulia V.},
+  publisher = {Stata Press},
+  title     = {An introduction to survival analysis using Stata},
+  year      = {2016},
+  address   = {College Station, Texas},
+}
+
+@Article{Jann2018b,
+  author  = {Jann, Ben},
+  journal = {Stata Journal},
+  title   = {Customizing {S}tata graphs made easy (part 2)},
+  year    = {2018},
+  number  = {19},
+  pages   = {786--802},
+  volume  = {4},
+}
+
+@Book{Mitchell2012,
+  author    = {Mitchell, Michael N.},
+  publisher = {Stata Press},
+  title     = {A visual guide to {S}tata graphics},
+  year      = {2012},
+  address   = {College Station, Texas},
+  edition   = {3},
+}
+
+@Article{Schwabish2014,
+  author  = {Schwabish, Jonathan A.},
+  journal = {Journal of Economic Perspectives},
+  title   = {An economist{\textquotesingle}s guide to visualizing data},
+  year    = {2014},
+  number  = {1},
+  pages   = {209--234},
+  volume  = {28},
+}
+
+@Book{Cox2014,
+  author    = {Cox, Nicholas J.},
+  publisher = {Stata Press},
+  title     = {Speaking Stata graphics},
+  year      = {2014},
+  address   = {College Station, Texas},
+}
+
+@Article{Jann2008,
+  author  = {Jann, Ben},
+  journal = {Stata Journal},
+  title   = {A {S}tata implementation of the {B}linder-{O}axaca decomposition},
+  year    = {2008},
+  number  = {4},
+  pages   = {456--479},
+  volume  = {8},
+}
+
+@Article{Jann2018a,
+  author  = {Jann, Ben},
+  journal = {Stata Journal},
+  title   = {Customizing {S}tata graphs made easy (part 1)},
+  year    = {2018},
+  number  = {18},
+  pages   = {491--502},
+  volume  = {3},
+}
+
+@TechReport{Wiedemann2020,
+  author      = {Wiedemann, Verena},
+  institution = {{C}entre for the {S}tudy of {A}frican {E}conomy},
+  title       = {Creating maps in {S}tata},
+  year        = {2020},
+  type        = {Coder's corner},
+  url         = {https://www.csae.ox.ac.uk/materials/coderscorner/1037/coderscornerht20week2fm.pdf},
+}
+
+@Book{Baum2016,
+  author    = {Baum, Christopher F.},
+  publisher = {{S}tata {P}ress},
+  title     = {An introduction to {S}tata programming},
+  year      = {2016},
+  address   = {College Station, Texas},
+  edition   = {2},
+}
+
+@TechReport{Orozco2018,
+  author      = {Orozco, Valerie and Bontemps, Christophe and Maign{\'e}, Elise and Piguet, Virginie and Hofstetter, Annie and Lacroix, Anne and Levert, Fabrice and Rousselle, Jean-Marc},
+  institution = {{T}ouluse {S}chool of {E}conomics},
+  title       = {How to make a pie: Reproducible research for empirical {E}conomics \& {E}conometrics},
+  year        = {2018},
+  number      = {933},
+  type        = {{T}oulouse {S}chool of {E}conomics {W}orking {P}aper},
+  publisher   = {TSE Working Paper},
+}
+
+@Article{Christensen2018,
+  author  = {Christensen, Garret and Miguel, Edward},
+  journal = {Journal of Economic Literature},
+  title   = {Transparency, reproducibility, and the credibility of {E}conomics research},
+  year    = {2018},
+  month   = {September},
+  number  = {3},
+  pages   = {920-80},
+  volume  = {56},
+  doi     = {10.1257/jel.20171350},
+  url     = {https://www.aeaweb.org/articles?id=10.1257/jel.20171350},
+}
+
+@Article{Rodriguez2017,
+  author  = {Rodr{\'i}guez, Germ{\'a}n},
+  journal = {Stata Journal},
+  title   = {Literate data analysis with {S}tata and {M}arkdown},
+  year    = {2017},
+  number  = {17},
+  pages   = {600--618},
+  volume  = {3},
+}
+
+@Article{Jann2005,
+  author  = {Jann, Ben},
+  journal = {Stata Journal},
+  title   = {Making regression tables from stored estimates},
+  year    = {2005},
+  number  = {5},
+  pages   = {288--308},
+  volume  = {3},
+}
+
+@Article{Jann2007,
+  author  = {Jann, Ben},
+  journal = {Stata Journal},
+  title   = {Making regression tables simplified},
+  year    = {2007},
+  number  = {7},
+  pages   = {227--244},
+  volume  = {2},
+}
+
+@Article{Jann2016,
+  author  = {Jann, Ben},
+  journal = {Stata Journal},
+  title   = {Creating {L}a{T}e{X} documents from within {S}tata using texdoc},
+  year    = {2016},
+  number  = {16},
+  pages   = {245--266},
+  volume  = {2},
+}
+
+@Book{Gandrud2020,
+  author    = {Gandrud, Christopher},
+  publisher = {{CRC} {P}ress},
+  title     = {Reproducible research with {R} and {RS}tudio},
+  year      = {2020},
+  address   = {Londres},
+  edition   = {3},
+}
+
+@Book{Xie2015,
+  author    = {Xie, Yihui},
+  publisher = {{CRC} {P}ress},
+  title     = {Dynamic documents with {R} and knitr},
+  year      = {2015},
+  address   = {Londres},
+  edition   = {2},
+}
+
+@Misc{Pellegrina2018,
+  author = {Pellegrina, Heitor S. and Fajardo, Andr{\'e}s F},
+  title  = {A brief Introduction to {G}it{H}ub for {S}ocial {S}cientists using {S}tata and {D}ropbox},
+  year   = {2018},
+  url    = {https://github.com/hpellegrina/hello-world-econ/blob/master/documentation/github-manual.pdf},
+}
+
+@TechReport{Frain2014,
+  author      = {Frain, John C.},
+  institution = {{T}rinity {C}ollege {D}ublin, {D}epartment of {E}conomics},
+  title       = {{A}pplied {L}a{T}e{X} for {E}conomists, {S}ocial {S}cientists and others},
+  year        = {2014},
+  number      = {214},
+  type        = {{T}rinity {E}conomics {P}aper},
+  url         = {https://www.tcd.ie/Economics/TEP/2014/TEP0214.pdf},
+}
+
+@Comment{jabref-meta: databaseType:bibtex;}
