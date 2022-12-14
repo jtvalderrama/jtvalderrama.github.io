@@ -1,0 +1,19 @@
+{smcl}
+{com}{sf}{ul off}{txt}{.-}
+      name:  {res}<unnamed>
+       {txt}log:  {res}D:\Dropbox\curso_stata\jtvalderrama.github.io\stata_ejercicios.smcl
+  {txt}log type:  {res}smcl
+ {txt}opened on:  {res} 1 Aug 2019, 08:02:30
+{txt}
+{com}. //_1q
+. quietly: cd "D:\Dropbox\curso_stata\jtvalderrama.github.io"
+{txt}
+{com}. //_^
+. log close
+      {txt}name:  {res}<unnamed>
+       {txt}log:  {res}D:\Dropbox\curso_stata\jtvalderrama.github.io\stata_ejercicios.smcl
+  {txt}log type:  {res}smcl
+ {txt}closed on:  {res} 1 Aug 2019, 08:02:30
+{txt}{.-}
+{smcl}
+{txt}{sf}{ul off}

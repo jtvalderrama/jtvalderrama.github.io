@@ -1,0 +1,486 @@
+{smcl}
+{com}{sf}{ul off}{txt}{.-}
+      name:  {res}<unnamed>
+       {txt}log:  {res}D:\Dropbox\curso_stata\jtvalderrama.github.io\stata2.smcl
+  {txt}log type:  {res}smcl
+ {txt}opened on:  {res} 1 Aug 2019, 08:02:30
+{txt}
+{com}. //_1
+. cd "D:\Dropbox\curso_stata\sesión2"
+{res}D:\Dropbox\curso_stata\sesión2
+{txt}
+{com}. //_2
+. //  Abrimos la base de datos
+. 
+. use "ecv18d.dta", clear
+{txt}(ECV 2018-archivo D)
+
+{com}. 
+. //  Realizamos la fusión
+. 
+. merge 1:1 hid using "ecv18h.dta"
+{res}
+{txt}{col 5}Result{col 38}# of obs.
+{col 5}{hline 41}
+{col 5}not matched{col 30}{res}               0
+{txt}{col 5}matched{col 30}{res}          13.368{txt}  (_merge==3)
+{col 5}{hline 41}
+
+{com}. 
+. //  Comprobamos que se ha realizado correctamente
+. 
+. tabulate _merge
+
+                 {txt}_merge {c |}      Freq.     Percent        Cum.
+{hline 24}{c +}{hline 35}
+            matched (3) {c |}{res}      13368      100,00      100,00
+{txt}{hline 24}{c +}{hline 35}
+                  Total {c |}{res}      13368      100,00
+{txt}
+{com}. //_3
+. //  Abrimos la base de datos
+. 
+. use "ecv18r.dta", clear
+{txt}(ECV 2018-archivo R)
+
+{com}. 
+. //  Realizamos la fusión
+. 
+. merge 1:1 pid using "ecv18p.dta"
+{res}{txt}(label anonac_lab already defined)
+(label sexo_lab already defined)
+
+{col 5}Result{col 38}# of obs.
+{col 5}{hline 41}
+{col 5}not matched{col 30}{res}           5.362
+{txt}{col 9}from master{col 30}{res}           5.362{txt}  (_merge==1)
+{col 9}from using{col 30}{res}               0{txt}  (_merge==2)
+
+{col 5}matched{col 30}{res}          28.372{txt}  (_merge==3)
+{col 5}{hline 41}
+
+{com}. 
+. //  Comprobamos que se ha realizado correctamente
+. 
+. tabulate _merge
+
+                 {txt}_merge {c |}      Freq.     Percent        Cum.
+{hline 24}{c +}{hline 35}
+        master only (1) {c |}{res}       5362       15,89       15,89
+{txt}            matched (3) {c |}{res}      28372       84,11      100,00
+{txt}{hline 24}{c +}{hline 35}
+                  Total {c |}{res}      33734      100,00
+{txt}
+{com}. //_4
+. //  Abrimos la base de datos
+. 
+. use "ecv18r.dta", clear
+{txt}(ECV 2018-archivo R)
+
+{com}. 
+. //  Realizamos la fusión
+. 
+. merge m:1 hid using "ecv18d.dta"
+{res}
+{txt}{col 5}Result{col 38}# of obs.
+{col 5}{hline 41}
+{col 5}not matched{col 30}{res}               0
+{txt}{col 5}matched{col 30}{res}          33.734{txt}  (_merge==3)
+{col 5}{hline 41}
+
+{com}. 
+. //  Comprobamos que se ha realizado correctamente
+. 
+. tabulate _merge
+
+                 {txt}_merge {c |}      Freq.     Percent        Cum.
+{hline 24}{c +}{hline 35}
+            matched (3) {c |}{res}      33734      100,00      100,00
+{txt}{hline 24}{c +}{hline 35}
+                  Total {c |}{res}      33734      100,00
+{txt}
+{com}. //_5
+. //  Fusionamos los archivos de personas
+. 
+. use "ecv18r.dta", clear
+{txt}(ECV 2018-archivo R)
+
+{com}. merge 1:1 pid using "ecv18p.dta", nogenerate
+{res}{txt}(label anonac_lab already defined)
+(label sexo_lab already defined)
+
+{col 5}Result{col 38}# of obs.
+{col 5}{hline 41}
+{col 5}not matched{col 30}{res}           5.362
+{txt}{col 9}from master{col 30}{res}           5.362{txt}  
+{col 9}from using{col 30}{res}               0{txt}  
+
+{col 5}matched{col 30}{res}          28.372{txt}  
+{col 5}{hline 41}
+
+{com}. 
+. //  Fusionamos con los archivos de hogares
+. 
+. merge m:1 hid using "ecv18d.dta", nogenerate
+{res}
+{txt}{col 5}Result{col 38}# of obs.
+{col 5}{hline 41}
+{col 5}not matched{col 30}{res}               0
+{txt}{col 5}matched{col 30}{res}          33.734{txt}  
+{col 5}{hline 41}
+
+{com}. merge m:1 hid using "ecv18h.dta", nogenerate
+{res}
+{txt}{col 5}Result{col 38}# of obs.
+{col 5}{hline 41}
+{col 5}not matched{col 30}{res}               0
+{txt}{col 5}matched{col 30}{res}          33.734{txt}  
+{col 5}{hline 41}
+
+{com}. //_6
+. //  Abrimos el archivo de la ECV de 2016
+. 
+. use "ecv16.dta", clear
+{txt}(ECV 2016-2018)
+
+{com}. 
+. //  Agregamos los años 2017 y 2018
+. 
+. append using "ecv17.dta" "ecv18.dta"
+{txt}(label anonac_lab already defined)
+(label sexo_lab already defined)
+(label sithogar_lab already defined)
+(label sitact_lab already defined)
+(label hbajosalario_lab already defined)
+(label ecivil_lab already defined)
+(label phecho_lab already defined)
+(label paisnac_lab already defined)
+(label nacionalidad_lab already defined)
+(label cursaeduc already defined)
+(label nivelcursa_lab already defined)
+(label educ_lab already defined)
+(label htrabajo_lab already defined)
+(label busctrabajo_lab already defined)
+(label disptrabajo_lab already defined)
+(label sitprof_lab already defined)
+(label menos30h_lab already defined)
+(label ntrabajadores_lab already defined)
+(label contrato_lab already defined)
+(label supervisor_lab already defined)
+(label cambiotrabajo_lab already defined)
+(label motivocambio_lab already defined)
+(label cambioact_lab already defined)
+(label act_lab already defined)
+(label salud_lab already defined)
+(label cronico_lab already defined)
+(label limitacion_lab already defined)
+(label consulta_lab already defined)
+(label motconsulta_lab already defined)
+(label consultadentista_lab already defined)
+(label motdentista_lab already defined)
+(label ayulimit_lab already defined)
+(label privacion_lab already defined)
+(label region_lab already defined)
+(label urb_lab already defined)
+(label hrethip_lab already defined)
+(label hretfact_lab already defined)
+(label hvaca_lab already defined)
+(label hcomida already defined)
+(label hgastos_lab already defined)
+(label htelef_lab already defined)
+(label hpc_lab already defined)
+(label hlavadora_lab already defined)
+(label hcoche_lab already defined)
+(label hcapacidad_lab already defined)
+(label hcargagastos_lab already defined)
+(label hcargaprest_lab already defined)
+(label hluz_lab already defined)
+(label hruidos_lab already defined)
+(label hcontam_lab already defined)
+(label hdelin_lab already defined)
+(label hvivienda_lab already defined)
+(label htenencia_lab already defined)
+(label hnhabit_lab already defined)
+(label hprobl_lab already defined)
+(label htemp_lab already defined)
+(label hducha_lab already defined)
+(label hinodoro_lab already defined)
+(label hayuamigos_lab already defined)
+(label hayuorg_lab already defined)
+(label htipohogar_lab already defined)
+(label hpobreza_lab already defined)
+(label hmuebles_lab already defined)
+(label hmuebles_lab already defined)
+(label hpobreza_lab already defined)
+(label htipohogar_lab already defined)
+(label hayuorg_lab already defined)
+(label hayuamigos_lab already defined)
+(label hinodoro_lab already defined)
+(label hducha_lab already defined)
+(label htemp_lab already defined)
+(label hprobl_lab already defined)
+(label hnhabit_lab already defined)
+(label htenencia_lab already defined)
+(label hvivienda_lab already defined)
+(label hdelin_lab already defined)
+(label hcontam_lab already defined)
+(label hruidos_lab already defined)
+(label hluz_lab already defined)
+(label hcargaprest_lab already defined)
+(label hcargagastos_lab already defined)
+(label hcapacidad_lab already defined)
+(label hcoche_lab already defined)
+(label hlavadora_lab already defined)
+(label hpc_lab already defined)
+(label htelef_lab already defined)
+(label hgastos_lab already defined)
+(label hcomida already defined)
+(label hvaca_lab already defined)
+(label hretfact_lab already defined)
+(label hrethip_lab already defined)
+(label urb_lab already defined)
+(label region_lab already defined)
+(label privacion_lab already defined)
+(label ayulimit_lab already defined)
+(label motdentista_lab already defined)
+(label consultadentista_lab already defined)
+(label motconsulta_lab already defined)
+(label consulta_lab already defined)
+(label limitacion_lab already defined)
+(label cronico_lab already defined)
+(label salud_lab already defined)
+(label act_lab already defined)
+(label cambioact_lab already defined)
+(label motivocambio_lab already defined)
+(label cambiotrabajo_lab already defined)
+(label supervisor_lab already defined)
+(label contrato_lab already defined)
+(label ntrabajadores_lab already defined)
+(label menos30h_lab already defined)
+(label sitprof_lab already defined)
+(label disptrabajo_lab already defined)
+(label busctrabajo_lab already defined)
+(label htrabajo_lab already defined)
+(label educ_lab already defined)
+(label nivelcursa_lab already defined)
+(label cursaeduc already defined)
+(label nacionalidad_lab already defined)
+(label paisnac_lab already defined)
+(label phecho_lab already defined)
+(label ecivil_lab already defined)
+(label hbajosalario_lab already defined)
+(label sitact_lab already defined)
+(label sithogar_lab already defined)
+(label sexo_lab already defined)
+(label anonac_lab already defined)
+
+{com}. 
+. //  Podemos comprobar cómo tenemos información de los tres años
+. 
+. tabulate ano
+
+  {txt}Año de la {c |}
+   encuesta {c |}      Freq.     Percent        Cum.
+{hline 12}{c +}{hline 35}
+       2016 {c |}{res}      36380       34,64       34,64
+{txt}       2017 {c |}{res}      34911       33,24       67,88
+{txt}       2018 {c |}{res}      33734       32,12      100,00
+{txt}{hline 12}{c +}{hline 35}
+      Total {c |}{res}     105025      100,00
+{txt}
+{com}. //_7
+. //  Seleccionamos los trabajadores asalariados únicamente
+. 
+. generate rentaasa = rentamonasag + rentanomonasag
+{txt}(16.671 missing values generated)
+
+{com}. generate nmesesasa = nmesesasatc + 0.5*nmesesasatp
+{txt}(17.397 missing values generated)
+
+{com}. keep if rentaasa > 0 & rentaasa < .
+{txt}(61.114 observations deleted)
+
+{com}. keep if nmesesasa > 0 & nmesesasa < .
+{txt}(8.361 observations deleted)
+
+{com}. 
+. //  Creamos el salario bruto mensual de los trabajadores
+. 
+. generate salario = rentaasa/nmesesasa
+{txt}
+{com}. label variable salario "Salario bruto mensual"
+{txt}
+{com}. 
+. //  Generamos una base de datos con el salario medio por Comunidad Autónoma y año
+. 
+. collapse (mean) salariomed = salario, by(ano sexo)
+{txt}
+{com}. //_8
+. sort sexo ano
+{txt}
+{com}. list sexo ano salariomed
+{txt}
+     {c TLC}{hline 8}{c -}{hline 6}{c -}{hline 10}{c TRC}
+     {c |} {res}  sexo    ano   salari~d {txt}{c |}
+     {c LT}{hline 8}{c -}{hline 6}{c -}{hline 10}{c RT}
+  1. {c |} {res}Hombre   2016    2285,98 {txt}{c |}
+  2. {c |} {res}Hombre   2017   2200,433 {txt}{c |}
+  3. {c |} {res}Hombre   2018   2198,547 {txt}{c |}
+  4. {c |} {res} Mujer   2016   1877,008 {txt}{c |}
+  5. {c |} {res} Mujer   2017   1833,733 {txt}{c |}
+     {c LT}{hline 8}{c -}{hline 6}{c -}{hline 10}{c RT}
+  6. {c |} {res} Mujer   2018   1854,421 {txt}{c |}
+     {c BLC}{hline 8}{c -}{hline 6}{c -}{hline 10}{c BRC}
+
+{com}. //_9
+. //  Cambiamos la disposición de long a wide
+. 
+. reshape wide salariomed, i(sexo) j(ano)
+{txt}(note: j = 2016 2017 2018)
+
+Data{col 36}long{col 43}->{col 48}wide
+{hline 77}
+Number of obs.                 {res}       6   {txt}->{res}       2
+{txt}Number of variables            {res}       3   {txt}->{res}       4
+{txt}j variable (3 values)               {res}ano   {txt}->   (dropped)
+xij variables:
+                             {res}salariomed   {txt}->   {res}salariomed2016 salariomed2017 salariomed2018
+{txt}{hline 77}
+
+{com}. 
+. //  Calculamos el crecimiento del salario de 2016 a 2018
+. 
+. generate cambio1618 = 100*(salariomed2018 - salariomed2016)/salariomed2016
+{txt}
+{com}. label var cambio1618 "Cambio porcentual del salario (2016-2018)"
+{txt}
+{com}. 
+. //  Podemos ver cómo se ha creado la nueva variable
+. 
+. list sexo salariomed2016 salariomed2018 cambio1618
+{txt}
+     {c TLC}{hline 8}{c -}{hline 10}{c -}{hline 10}{c -}{hline 11}{c TRC}
+     {c |} {res}  sexo   sal~2016   sal~2018   camb~1618 {txt}{c |}
+     {c LT}{hline 8}{c -}{hline 10}{c -}{hline 10}{c -}{hline 11}{c RT}
+  1. {c |} {res}Hombre    2285,98   2198,547   -3,824764 {txt}{c |}
+  2. {c |} {res} Mujer   1877,008   1854,421   -1,203314 {txt}{c |}
+     {c BLC}{hline 8}{c -}{hline 10}{c -}{hline 10}{c -}{hline 11}{c BRC}
+
+{com}. //_10
+. //  Cambiamos la disposición de long a wide
+. 
+. reshape long salariomed, i(sexo) j(ano)
+{txt}(note: j = 2016 2017 2018)
+
+Data{col 36}wide{col 43}->{col 48}long
+{hline 77}
+Number of obs.                 {res}       2   {txt}->{res}       6
+{txt}Number of variables            {res}       5   {txt}->{res}       4
+{txt}j variable (3 values)                     ->   {res}ano
+{txt}xij variables:
+{res}salariomed2016 salariomed2017 salariomed2018{txt}-> {res}salariomed
+{txt}{hline 77}
+
+{com}. //_11
+. describe
+
+{txt}Contains data
+  obs:{res}             6                          ECV 2016-2018
+{txt} vars:{res}             4                          
+{txt}{hline}
+              storage   display    value
+variable name   type    format     label      variable label
+{hline}
+{p 0 48}{res}{bind:sexo           }{txt}{bind: byte    }{bind:{txt}%8.0g     }{space 1}{bind:sexo_lab }{bind:  }{res}{res}Sexo{p_end}
+{p 0 48}{bind:ano            }{txt}{bind: int     }{bind:{txt}%10.0g    }{space 1}{bind:         }{bind:  }{res}{res}Año de la encuesta{p_end}
+{p 0 48}{bind:salariomed     }{txt}{bind: float   }{bind:{txt}%9.0g     }{space 1}{bind:         }{bind:  }{res}{res}(mean) salario{p_end}
+{p 0 48}{bind:cambio1618     }{txt}{bind: float   }{bind:{txt}%9.0g     }{space 1}{bind:         }{bind:  }{res}{res}Cambio porcentual del salario (2016-2018){p_end}
+{txt}{hline}
+Sorted by: {res}sexo  ano
+     Note: Dataset has changed since last saved.
+{txt}
+{com}. 
+. preserve
+{txt}
+{com}. 
+. //  Eliminamos la variable sexo
+. 
+. drop sexo
+{txt}
+{com}. 
+. describe
+
+{txt}Contains data
+  obs:{res}             6                          ECV 2016-2018
+{txt} vars:{res}             3                          
+{txt}{hline}
+              storage   display    value
+variable name   type    format     label      variable label
+{hline}
+{p 0 48}{res}{bind:ano            }{txt}{bind: int     }{bind:{txt}%10.0g    }{space 1}{bind:         }{bind:  }{res}{res}Año de la encuesta{p_end}
+{p 0 48}{bind:salariomed     }{txt}{bind: float   }{bind:{txt}%9.0g     }{space 1}{bind:         }{bind:  }{res}{res}(mean) salario{p_end}
+{p 0 48}{bind:cambio1618     }{txt}{bind: float   }{bind:{txt}%9.0g     }{space 1}{bind:         }{bind:  }{res}{res}Cambio porcentual del salario (2016-2018){p_end}
+{txt}{hline}
+Sorted by: 
+{res}     Note: Dataset has changed since last saved.
+{txt}
+{com}. 
+. restore
+{txt}
+{com}. 
+. describe
+
+{txt}Contains data
+  obs:{res}             6                          ECV 2016-2018
+{txt} vars:{res}             4                          
+{txt}{hline}
+              storage   display    value
+variable name   type    format     label      variable label
+{hline}
+{p 0 48}{res}{bind:sexo           }{txt}{bind: byte    }{bind:{txt}%8.0g     }{space 1}{bind:sexo_lab }{bind:  }{res}{res}Sexo{p_end}
+{p 0 48}{bind:ano            }{txt}{bind: int     }{bind:{txt}%10.0g    }{space 1}{bind:         }{bind:  }{res}{res}Año de la encuesta{p_end}
+{p 0 48}{bind:salariomed     }{txt}{bind: float   }{bind:{txt}%9.0g     }{space 1}{bind:         }{bind:  }{res}{res}(mean) salario{p_end}
+{p 0 48}{bind:cambio1618     }{txt}{bind: float   }{bind:{txt}%9.0g     }{space 1}{bind:         }{bind:  }{res}{res}Cambio porcentual del salario (2016-2018){p_end}
+{txt}{hline}
+Sorted by: {res}sexo  ano
+     Note: Dataset has changed since last saved.
+{txt}
+{com}. //_12
+. global var1 "sexo"
+{txt}
+{com}. 
+. summarize $var1
+
+{txt}    Variable {c |}        Obs        Mean    Std. Dev.       Min        Max
+{hline 13}{c +}{hline 57}
+{space 8}sexo {c |}{res}          6         1,5    ,5477226          1          2
+{txt}
+{com}. //_13
+. forvalues i=2016(1)2018{c -(}
+{txt}  2{com}.   summarize salariomed if ano == `i'
+{txt}  3{com}. {c )-}
+
+{txt}    Variable {c |}        Obs        Mean    Std. Dev.       Min        Max
+{hline 13}{c +}{hline 57}
+{space 2}salariomed {c |}{res}          2    2081,494    289,1874   1877,008    2285,98
+
+{txt}    Variable {c |}        Obs        Mean    Std. Dev.       Min        Max
+{hline 13}{c +}{hline 57}
+{space 2}salariomed {c |}{res}          2    2017,083     259,296   1833,733   2200,433
+
+{txt}    Variable {c |}        Obs        Mean    Std. Dev.       Min        Max
+{hline 13}{c +}{hline 57}
+{space 2}salariomed {c |}{res}          2    2026,484    243,3336   1854,421   2198,547
+{txt}
+{com}. //_14q
+. quietly: cd "D:\Dropbox\curso_stata\jtvalderrama.github.io"
+{txt}
+{com}. //_^
+. log close
+      {txt}name:  {res}<unnamed>
+       {txt}log:  {res}D:\Dropbox\curso_stata\jtvalderrama.github.io\stata2.smcl
+  {txt}log type:  {res}smcl
+ {txt}closed on:  {res} 1 Aug 2019, 08:02:30
+{txt}{.-}
+{smcl}
+{txt}{sf}{ul off}

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>José A. Valderrama | Microeconometría Aplicada</title>
+    <link>https://jtvalderrama.github.io/</link>
+      <atom:link href="https://jtvalderrama.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <description>José A. Valderrama | Microeconometría Aplicada</description>
+    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>es-419</language>
+    <image>
+      <url>https://jtvalderrama.github.io/images/icon_hu83426120324ae0ba26ae9f6a53ddb01c_205146_512x512_fill_lanczos_center_2.png</url>
+      <title>José A. Valderrama | Microeconometría Aplicada</title>
+      <link>https://jtvalderrama.github.io/</link>
+    </image>
+    
+    <item>
+      <title></title>
+      <link>https://jtvalderrama.github.io/home/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://jtvalderrama.github.io/home/</guid>
+      <description></description>
+    </item>
+    
+  </channel>
+</rss>

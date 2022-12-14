@@ -1,0 +1,794 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <meta name="author" content="José A. Valderrama" />
+  <title>Sesión 2. Manipulación de datos y archivos</title>
+  <style>
+    html {
+      line-height: 1.5;
+      font-family: Georgia, serif;
+      font-size: 20px;
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      word-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 1em;
+      }
+    }
+    @media print {
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, 'Lucida Console', Consolas, monospace;
+      font-size: 85%;
+      margin: 0;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      background-color: #1a1a1a;
+      border: none;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    span.underline{text-decoration: underline;}
+    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    div.csl-bib-body { }
+    div.csl-entry {
+      clear: both;
+    }
+    .hanging div.csl-entry {
+      margin-left:2em;
+      text-indent:-2em;
+    }
+    div.csl-left-margin {
+      min-width:2em;
+      float:left;
+    }
+    div.csl-right-inline {
+      margin-left:2em;
+      padding-left:1em;
+    }
+    div.csl-indent {
+      margin-left: 2em;
+    }
+  </style>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+<style>
+/* CSS for Markstat 2.0 using Pandoc 2.0 */
+body{padding:14px 28px;}
+body, table {font-family: Helvetica, Arial, Sans-serif; font-size: 14px; width: 95%; max-width: unset;}
+h1, h2, h3, h4 {font-weight: normal; color: #3366cc}
+h1 {font-size: 200%;}
+h2 {font-size: 150%;}
+h3 {font-size: 120%;}
+h4 {font-size: 100%; font-weight:bold}
+img.center {display:block; margin-left:auto; margin-right:auto}
+.small{font-size:8pt;}
+a {color: black;}
+a:visited {color: #808080;}
+a.plain {text-decoration:none;}
+a.plain:hover {text-decoration:underline;}
+.em {font-weight:bold;}
+pre, code {font-family: "lucida console", monospace;}
+pre.stata {font-size:13px; line-height:13px;}
+pre {padding:8px; border:1px solid #c0c0c0; border-radius:8px; background-color:#fdfdfd;}
+code {color:#3366cc; background-color:#fafafa;}
+pre code { color:black; background-color:white}
+/* Added for Pandoc */
+figure > img, div.figure > img {display:block; margin:auto}
+figcaption, p.caption {text-align:center; font-weight:bold; color:#3366cc;}
+h1.title {text-align:center; margin-bottom:0}
+p.author, h2.author {font-style:italic; text-align:center;margin-top:12px;margin-bottom:-25px}
+p.date, h3.date {text-align:center;margin-top:4px; margin-bottom:0}
+/* Tables*/
+table { margin:auto; border-collapse:collapse; }
+table caption { margin-bottom:1ex;}
+th, td { padding:4px 6px;}
+thead tr:first-child th {border-top:1px solid black; padding-top:6px}
+thead tr:last-child  th {padding-bottom:6px}
+tbody tr:first-child td {border-top:1px solid black; padding-top:6px}
+tbody tr:last-child  td {padding-bottom:6px;}
+table tbody:last-child tr:last-child td {border-bottom:1px solid black;}
+</style>
+</head>
+<body>
+<header id="title-block-header">
+<h1 class="title">Sesión 2. Manipulación de datos y archivos</h1>
+<p class="author">José A. Valderrama</p>
+</header>
+<hr />
+<p style="text-align: center;">
+<a href="https://jtvalderrama.github.io/stata_index.html"><span style="color:red"><font size="4">Inicio</font></span></a>      <a href="https://jtvalderrama.github.io/stata1.html"><span style="color:red"><font size="4">Sesión 1</font></span></a>      <a href="https://jtvalderrama.github.io/curso_stata.html"><span style="color:red"><font size="4">Sesión 2</font></span></a>      <a href="https://jtvalderrama.github.io/stata3.html"><span style="color:red"><font size="4">Sesión 3</font></span></a>      <a href="https://jtvalderrama.github.io/stata4.html"><span style="color:red"><font size="4">Sesión 4</font></span></a>      <a href="https://jtvalderrama.github.io/stata5.html"><span style="color:red"><font size="4">Sesión 5</font></span></a>      <a href="https://jtvalderrama.github.io/stata_ejercicios.html"><span style="color:red"><font size="4">Ejercicios</font></span></a>
+</p>
+<hr />
+<h1 id="operaciones-de-fusión-horizontal-de-archivos">1. Operaciones de fusión horizontal de archivos</h1>
+<p>Una de las operaciones más utilizadas en <code>Stata</code> para manipular archivos es la instrucción <code>merge</code>, que permite fusionar dos archivos a partir de ciertas variables comunes. Ejemplos típicos son la fusión de distintas bases de datos con características de los inviduos o una base de datos con características de los invidividuos que queremos fusionar con una bases de datos con características de los hogares.</p>
+<p>Para ilustrar estos comandos, vamos a emplear los archivos de la ECV 2018, en concreto, el archivo básico de personas (<code>ecv18r.dta</code>), el archivo básico de hogares (<code>ecv18d.dta</code>), el archivo detallado de personas (<code>ecv18p.dta</code>) y el archivo detallado de hogares (<code>ecv18h.dta</code>), que se encuentran en la carpeta <code>sesión2</code>. Lo primer de todo, por lo tanto, es seleccionar el directorio de trabajo</p>
+<pre class='stata'>. cd "D:\Dropbox\curso_stata\sesión2"
+D:\Dropbox\curso_stata\sesión2
+</pre>
+<p>Dos posibles referencias que cubren el contenido de esta sesión son <span class="citation" data-cites="Escobar2012">Escobar et al. (2012)</span> y <span class="citation" data-cites="Kohler2012">Kohler &amp; Kreuter (2012)</span>.</p>
+<h2 id="fusiones-de-bases-de-datos-de-una-observación-a-otra-observación">1.1. Fusiones de bases de datos de una observación a otra observación</h2>
+<p>Antes de nada, debemos tener en cuenta que en las bases de datos hay variables que actúan como identificadores y que nos permiten relacionar los diferentes archivos. En ocasiones, la identificación de una unidad (hogar, persona, empresa, muestra, etc.) viene dada por una variable y, en otras, por la combinación de varias variables.</p>
+<p>En primer lugar, vamos a fusionar el archivo básico de hogares (<code>ecv18d.dta</code>) con el archivo detallado de hogares (<code>ecv18h.dta</code>). El primero contiene variables muy básicas del hogar (e.g., localización), mientras que el segundo incluye las respuestas al cuestionario detallado de la ECV a los hogares sobre distintas dimensiones (renta, condiciones de la vivienda, etc.). La variable de enlace en este caso es el identificador del hogar (<code>hid</code>). Esta variable aparece como <code>db030</code> en el primer archivo y como <code>hb030</code>, en el segundo. En ambos casos, las hemos renombrado empleando un nombre común, <code>hid</code>.</p>
+<p>Procedemos en tres pasos:</p>
+<p><strong>Paso 1.</strong> Abrimos una de las bases de datos (<code>master file</code>)</p>
+<p><strong>Paso 2.</strong> Ejecutamos la instrucción <code>merge</code> para fusionar la primera base con la segunda (<code>using file</code>)</p>
+<p><code>merge 1:1 <i>varlist</i> using <i>filename</i> [, <i>options</i>]</code></p>
+<p><strong>Paso 3.</strong> Comprobamos que la operación se ha realizado correctamente (recurriendo a la variable creada, automáticamente, <code>_merge</code>). Esta variable puede tomar tres valores: el valor 3 indica que la observación se encuentra en las dos bases de datos (<code>match</code>); el valor 1, que solo se encuentra en la base de datos <code>master</code> y el valor 2, que únicamente la encontramos en la base de datos <code>using</code>. Dependiendo de nuestros objetivos, podemos quedarnos solo con las observaciones que se encuentran en ambos archivos y borrar el resto de observaciones.</p>
+<p>Así, en nuestro ejemplo, abrimos la base de datos</p>
+<pre class='stata'>. //  Abrimos la base de datos
+. 
+. use "ecv18d.dta", clear
+(ECV 2018-archivo D)
+
+. 
+. //  Realizamos la fusión
+. 
+. merge 1:1 hid using "ecv18h.dta"
+
+    Result                      Number of obs
+    ─────────────────────────────────────────
+    Not matched                             0
+    Matched                            13,368  (_merge==3)
+    ─────────────────────────────────────────
+
+. 
+. //  Comprobamos que se ha realizado correctamente
+. 
+. tabulate _merge
+
+   Matching result from │
+                  merge │      Freq.     Percent        Cum.
+────────────────────────┼───────────────────────────────────
+            Matched (3) │     13,368      100.00      100.00
+────────────────────────┼───────────────────────────────────
+                  Total │     13,368      100.00
+</pre>
+<p>Observamos que las observaciones se encuentran en ambas bases de datos simultáneamente.</p>
+<p>A continuación, fusionamos la base de datos con información básica de personas (<code>ecv18r.dta</code>) con la base de datos con información detallada (<code>ecv18p.dta</code>). De acuerdo a la documentación de la encuestas y nuestro etiquetado, la variable de enlace es el identificador personal (<code>pid</code>), que corresponde a las variables de identificador del hogar en cada archivo (<code>rb030</code> y <code>pb030</code>, respectivamente). Esta variable, según la documentación está formada porque</p>
+<p><span class="math display">\[ \text{pid} = 100 \cdot \text{hid} + \text{nº de 0 a 10 indicando el número de la persona en el hogar}\]</span></p>
+<p>Procedemos como sigue:</p>
+<pre class='stata'>. //  Abrimos la base de datos
+. 
+. use "ecv18r.dta", clear
+(ECV 2018-archivo R)
+
+. 
+. //  Realizamos la fusión
+. 
+. merge 1:1 pid using "ecv18p.dta"
+(label anonac_lab already defined)
+(label sexo_lab already defined)
+
+    Result                      Number of obs
+    ─────────────────────────────────────────
+    Not matched                         5,362
+        from master                     5,362  (_merge==1)
+        from using                          0  (_merge==2)
+
+    Matched                            28,372  (_merge==3)
+    ─────────────────────────────────────────
+
+. 
+. //  Comprobamos que se ha realizado correctamente
+. 
+. tabulate _merge
+
+   Matching result from │
+                  merge │      Freq.     Percent        Cum.
+────────────────────────┼───────────────────────────────────
+        Master only (1) │      5,362       15.89       15.89
+            Matched (3) │     28,372       84.11      100.00
+────────────────────────┼───────────────────────────────────
+                  Total │     33,734      100.00
+</pre>
+<p>En este caso, observamos que hay observaciones que solo aparecen en la base <code>master</code>. ¿Existe un error? No, lo que ocurre es que la base de datos con información básica incluye a todas las personas, mientras que la que comprende información detallada, solo a los mayores de 16 años. No obstante, la variable <code>_merge</code> nos permite distinguir errores de otras circunstancias.</p>
+<h1 id="fusiones-de-bases-de-datos-de-varias-observaciones-a-una-observación-o-viceversa">1.2. Fusiones de bases de datos de varias observaciones a una observación (o viceversa)</h1>
+<p>En ocasiones, precisamos fusionar una base de datos a un cierto nivel (e.g., personas) con otra base de datos con información a nivel superior (e.g., hogares o regiones). Para realizar este tipo de operación empleamos</p>
+<p><code>merge m:1 <i>varlist</i> using <i>filename</i> [, <i>options</i>]</code></p>
+<p>En nuestro caso, vamos a fusionar la base de datos de personas con información básica (<code>ecv18r.dta</code>) con la base de datos de los hogares con información básica (<code>ecv18d.dta</code>). La variable de enlace, común en ambas bases, es el identificador del hogar (<code>hid</code>). Según la documentación, el identificador personal está compuesto del identificador laboral más el número de orden de la persona dentro del hogar. En los ficheros de personas, hemos creado un identificador del hogar empleando <code>generate int hid = pid/100</code>, por lo que tenemos dicha variable. La fusión, en este caso, es perfecta, pero, en muchas ocasiones, hay problemas de no respuesta, errores de codificación, etc. y es habitual que nos tengamos que quedar solo con aquellos datos que enlazan perfectamente (<code>_merge == 3</code>).</p>
+<pre class='stata'>. //  Abrimos la base de datos
+. 
+. use "ecv18r.dta", clear
+(ECV 2018-archivo R)
+
+. 
+. //  Realizamos la fusión
+. 
+. merge m:1 hid using "ecv18d.dta"
+
+    Result                      Number of obs
+    ─────────────────────────────────────────
+    Not matched                             0
+    Matched                            33,734  (_merge==3)
+    ─────────────────────────────────────────
+
+. 
+. //  Comprobamos que se ha realizado correctamente
+. 
+. tabulate _merge
+
+   Matching result from │
+                  merge │      Freq.     Percent        Cum.
+────────────────────────┼───────────────────────────────────
+            Matched (3) │     33,734      100.00      100.00
+────────────────────────┼───────────────────────────────────
+                  Total │     33,734      100.00
+</pre>
+<p>Podemos, fácilmente, fusionar todas las bases de datos en un único fichero (y, si queremos, ordenar la base de datos posteriormente). Debemos eliminar antes de cada fusión la variable <code>_merge</code> (o no crearla al realizar la fusión).</p>
+<pre class='stata'>. //  Fusionamos los archivos de personas
+. 
+. use "ecv18r.dta", clear
+(ECV 2018-archivo R)
+
+. merge 1:1 pid using "ecv18p.dta", nogenerate
+(label anonac_lab already defined)
+(label sexo_lab already defined)
+
+    Result                      Number of obs
+    ─────────────────────────────────────────
+    Not matched                         5,362
+        from master                     5,362  
+        from using                          0  
+
+    Matched                            28,372  
+    ─────────────────────────────────────────
+
+. 
+. //  Fusionamos con los archivos de hogares
+. 
+. merge m:1 hid using "ecv18d.dta", nogenerate
+
+    Result                      Number of obs
+    ─────────────────────────────────────────
+    Not matched                             0
+    Matched                            33,734  
+    ─────────────────────────────────────────
+
+. merge m:1 hid using "ecv18h.dta", nogenerate
+
+    Result                      Number of obs
+    ─────────────────────────────────────────
+    Not matched                             0
+    Matched                            33,734  
+    ─────────────────────────────────────────
+</pre>
+<p><strong>Importante:</strong> Nunca debe emplearse la fusión <code>merge m:m</code>. Es preferible emplear la función <code>joinby</code> (<code>help joinby</code>).</p>
+<h1 id="operaciones-de-fusión-vertical-de-archivos">2. Operaciones de fusión vertical de archivos</h1>
+<p>El comando <code>append</code> nos permite unir archivos que contienen las mismas variables pero referidas a distintas unidades de análisis. Por ejemplo, podemos fusionar la base de datos de la ECV del año 2018 (<code>ecv18</code>) con otras de años anteriores, como la base de datos del año 2017 (<code>ecv17</code>) y 2016 (<code>ecv16</code>). El procedimiento es el siguiente:</p>
+<p><strong>Paso 1.</strong> Abrimos uno de los archivos.</p>
+<p><strong>Paso 2.</strong> Con el comando, <code>append</code> agregamos el resto de archivos.</p>
+<p><code><u>ap</u>pend using <i>filename</i> [<i>filename</i> <i>…</i>] [, <i>options</i>]</code></p>
+<p>En nuestro caso, podemos proceder Así</p>
+<pre class='stata'>. //  Abrimos el archivo de la ECV de 2016
+. 
+. use "ecv16.dta", clear
+(ECV 2016)
+
+. 
+. //  Agregamos los años 2017 y 2018
+. 
+. append using "ecv17.dta" "ecv18.dta"
+(label anonac_lab already defined)
+(label sexo_lab already defined)
+(label sithogar_lab already defined)
+(label sitact_lab already defined)
+(label hbajosalario_lab already defined)
+(label ecivil_lab already defined)
+(label phecho_lab already defined)
+(label paisnac_lab already defined)
+(label nacionalidad_lab already defined)
+(label cursaeduc already defined)
+(label nivelcursa_lab already defined)
+(label educ_lab already defined)
+(label htrabajo_lab already defined)
+(label busctrabajo_lab already defined)
+(label disptrabajo_lab already defined)
+(label sitprof_lab already defined)
+(label menos30h_lab already defined)
+(label ntrabajadores_lab already defined)
+(label contrato_lab already defined)
+(label supervisor_lab already defined)
+(label cambiotrabajo_lab already defined)
+(label motivocambio_lab already defined)
+(label cambioact_lab already defined)
+(label act_lab already defined)
+(label salud_lab already defined)
+(label cronico_lab already defined)
+(label limitacion_lab already defined)
+(label consulta_lab already defined)
+(label motconsulta_lab already defined)
+(label consultadentista_lab already defined)
+(label motdentista_lab already defined)
+(label ayulimit_lab already defined)
+(label privacion_lab already defined)
+(label region_lab already defined)
+(label urb_lab already defined)
+(label hrethip_lab already defined)
+(label hretfact_lab already defined)
+(label hvaca_lab already defined)
+(label hcomida already defined)
+(label hgastos_lab already defined)
+(label htelef_lab already defined)
+(label hpc_lab already defined)
+(label hlavadora_lab already defined)
+(label hcoche_lab already defined)
+(label hcapacidad_lab already defined)
+(label hcargagastos_lab already defined)
+(label hcargaprest_lab already defined)
+(label hluz_lab already defined)
+(label hruidos_lab already defined)
+(label hcontam_lab already defined)
+(label hdelin_lab already defined)
+(label hvivienda_lab already defined)
+(label htenencia_lab already defined)
+(label hnhabit_lab already defined)
+(label hprobl_lab already defined)
+(label htemp_lab already defined)
+(label hducha_lab already defined)
+(label hinodoro_lab already defined)
+(label hayuamigos_lab already defined)
+(label hayuorg_lab already defined)
+(label htipohogar_lab already defined)
+(label hpobreza_lab already defined)
+(label hmuebles_lab already defined)
+(label hmuebles_lab already defined)
+(label hpobreza_lab already defined)
+(label htipohogar_lab already defined)
+(label hayuorg_lab already defined)
+(label hayuamigos_lab already defined)
+(label hinodoro_lab already defined)
+(label hducha_lab already defined)
+(label htemp_lab already defined)
+(label hprobl_lab already defined)
+(label hnhabit_lab already defined)
+(label htenencia_lab already defined)
+(label hvivienda_lab already defined)
+(label hdelin_lab already defined)
+(label hcontam_lab already defined)
+(label hruidos_lab already defined)
+(label hluz_lab already defined)
+(label hcargaprest_lab already defined)
+(label hcargagastos_lab already defined)
+(label hcapacidad_lab already defined)
+(label hcoche_lab already defined)
+(label hlavadora_lab already defined)
+(label hpc_lab already defined)
+(label htelef_lab already defined)
+(label hgastos_lab already defined)
+(label hcomida already defined)
+(label hvaca_lab already defined)
+(label hretfact_lab already defined)
+(label hrethip_lab already defined)
+(label urb_lab already defined)
+(label region_lab already defined)
+(label privacion_lab already defined)
+(label ayulimit_lab already defined)
+(label motdentista_lab already defined)
+(label consultadentista_lab already defined)
+(label motconsulta_lab already defined)
+(label consulta_lab already defined)
+(label limitacion_lab already defined)
+(label cronico_lab already defined)
+(label salud_lab already defined)
+(label act_lab already defined)
+(label cambioact_lab already defined)
+(label motivocambio_lab already defined)
+(label cambiotrabajo_lab already defined)
+(label supervisor_lab already defined)
+(label contrato_lab already defined)
+(label ntrabajadores_lab already defined)
+(label menos30h_lab already defined)
+(label sitprof_lab already defined)
+(label disptrabajo_lab already defined)
+(label busctrabajo_lab already defined)
+(label htrabajo_lab already defined)
+(label educ_lab already defined)
+(label nivelcursa_lab already defined)
+(label cursaeduc already defined)
+(label nacionalidad_lab already defined)
+(label paisnac_lab already defined)
+(label phecho_lab already defined)
+(label ecivil_lab already defined)
+(label hbajosalario_lab already defined)
+(label sitact_lab already defined)
+(label sithogar_lab already defined)
+(label sexo_lab already defined)
+(label anonac_lab already defined)
+
+. 
+. //  Podemos comprobar cómo tenemos información de los tres años
+. 
+. tabulate ano
+
+  Año de la │
+   encuesta │      Freq.     Percent        Cum.
+────────────┼───────────────────────────────────
+       2016 │     36,380       34.64       34.64
+       2017 │     34,911       33.24       67.88
+       2018 │     33,734       32.12      100.00
+────────────┼───────────────────────────────────
+      Total │    105,025      100.00
+</pre>
+<h1 id="crear-una-base-de-datos-con-estadísticos-descriptivos">3. Crear una base de datos con estadísticos descriptivos</h1>
+<p>Esta tarea, si bien se puede realizar combinando otros comandos (<code>egen</code>, <code>merge</code> y <code>append</code>) es mucho más sencilla a través de la potente instrucción <code>collapse</code>:</p>
+<p><code>collapse <i>clist</i> [<i>if</i>] [<i>in</i>] [<i>weight</i>] [, <i>options</i>]</code></p>
+<p>donde <i><code>clist</code></i> viene dado por</p>
+<p><code>[(<i>stat</i>)] <i>varlist</i> [ [(<i>stat</i>)] … ]</code></p>
+<p><code>[(<i>stat</i>)] <i>target_var</i>=<i>varname</i> [<i>target_var</i>=<i>varname</i> <i>…</i>] [ [(<i>stat</i>)] <i>…</i>]</code></p>
+<p>El comando admite el cálculo de un amplio conjunto de estadísticos descriptivos (<code>stat</code>) y permite usar ponderaciones:</p>
+<pre><code>mean         means (default)
+median       medians
+p1           1st percentile
+p2           2nd percentile
+...          3rd-49th percentiles
+p50          50th percentile (same as median)
+...          51st-97th percentiles
+p98          98th percentile
+p99          99th percentile
+sd           standard deviations
+semean       standard error of the mean (sd/sqrt(n))
+sebinomial   standard error of the mean, binomial (sqrt(p(1-p)/n))
+sepoisson    standard error of the mean, Poisson (sqrt(mean/n))
+sum          sums
+rawsum       sums, ignoring optionally specified weight except observations with a weight of zero are excluded
+count        number of nonmissing observations
+percent      percentage of nonmissing observations
+max          maximums
+min          minimums
+iqr          interquartile range
+first        first value
+last         last value
+firstnm      first nonmissing value
+lastnm       last nonmissing value</code></pre>
+<p>Por ejemplo, vamos a crear un archivo que contenga el salario medio por sexo y año.</p>
+<pre class='stata'>. //  Seleccionamos los trabajadores asalariados únicamente
+. 
+. generate rentaasa = rentamonasag + rentanomonasag
+(16,671 missing values generated)
+
+. generate nmesesasa = nmesesasatc + 0.5*nmesesasatp
+(17,397 missing values generated)
+
+. keep if rentaasa > 0 &amp; rentaasa &lt; .
+(61,114 observations deleted)
+
+. keep if nmesesasa > 0 &amp; nmesesasa &lt; .
+(8,361 observations deleted)
+
+. 
+. //  Creamos el salario bruto mensual de los trabajadores
+. 
+. generate salario = rentaasa/nmesesasa
+
+. label variable salario "Salario bruto mensual"
+
+. 
+. //  Generamos una base de datos con el salario medio por Comunidad Autónoma y año
+. 
+. collapse (mean) salariomed = salario, by(ano sexo)
+</pre>
+<h1 id="cambiar-la-disposición-de-los-datos">4. Cambiar la disposición de los datos</h1>
+<p>En muchas ocasiones, especialmente cuando trabajamos con datos de panel, resulta tremendamente útil cambiar la disposición de los datos que tenemos. Por ejemplo, en nuestra base de datos tenemos el salario medio por sexo y año. El formato (llamado <code>long</code>) es el siguiente:</p>
+<pre class='stata'>. sort sexo ano
+
+. list sexo ano salariomed
+
+     ┌──────────────────────────┐
+     │   sexo    ano   salari~d │
+     ├──────────────────────────┤
+  1. │ Hombre   2016    2285.98 │
+  2. │ Hombre   2017   2200.433 │
+  3. │ Hombre   2018   2198.547 │
+  4. │  Mujer   2016   1877.008 │
+  5. │  Mujer   2017   1833.733 │
+     ├──────────────────────────┤
+  6. │  Mujer   2018   1854.421 │
+     └──────────────────────────┘
+</pre>
+<p>Para calcular cuál es la evolución del salario medio por sexo, para ello, sería más fácil disponer de tres variables que recojan el salario, una para cada año (formato <code>wide</code>). El comando <code>reshape</code> funciona de la siguiente forma:</p>
+<p><code>reshape wide <i>stub</i>, i(<i>i</i>) j(<j>j</j>)</code></p>
+<p>En nuestro caso,</p>
+<pre class='stata'>. //  Cambiamos la disposición de long a wide
+. 
+. reshape wide salariomed, i(sexo) j(ano)
+(j = 2016 2017 2018)
+
+Data                               Long   ->   Wide
+─────────────────────────────────────────────────────────────────────────────
+Number of observations                6   ->   2           
+Number of variables                   3   ->   4           
+j variable (3 values)               ano   ->   (dropped)
+xij variables:
+                             salariomed   ->   salariomed2016 salariomed2017 salariomed2018
+─────────────────────────────────────────────────────────────────────────────
+
+. 
+. //  Calculamos el crecimiento del salario de 2016 a 2018
+. 
+. generate cambio1618 = 100*(salariomed2018 - salariomed2016)/salariomed2016
+
+. label var cambio1618 "Cambio porcentual del salario (2016-2018)"
+
+. 
+. //  Podemos ver cómo se ha creado la nueva variable
+. 
+. list sexo salariomed2016 salariomed2018 cambio1618
+
+     ┌──────────────────────────────────────────┐
+     │   sexo   sal~2016   sal~2018   camb~1618 │
+     ├──────────────────────────────────────────┤
+  1. │ Hombre    2285.98   2198.547   -3.824764 │
+  2. │  Mujer   1877.008   1854.421   -1.203314 │
+     └──────────────────────────────────────────┘
+</pre>
+<p>Podemos volver al formato <code>long</code> de forma análoga:</p>
+<p><code>reshape long <i>stub</i>, i(<i>i</i>) j(<j>j</j>)</code></p>
+<p>Así,</p>
+<pre class='stata'>. //  Cambiamos la disposición de long a wide
+. 
+. reshape long salariomed, i(sexo) j(ano)
+(j = 2016 2017 2018)
+
+Data                               Wide   ->   Long
+─────────────────────────────────────────────────────────────────────────────
+Number of observations                2   ->   6           
+Number of variables                   5   ->   4           
+j variable (3 values)                     ->   ano
+xij variables:
+salariomed2016 salariomed2017 salariomed2018-> salariomed
+─────────────────────────────────────────────────────────────────────────────
+</pre>
+<h1 id="nociones-básicas-de-programación-preserve-restore-y-el-uso-de-macros-y-bucles">5. Nociones básicas de programación: <code>preserve</code>, <code>restore</code> y el uso de macros y bucles</h1>
+<p>En esta sección, vamos a revisar una serie de instrucciones que se utilizan fundamentalmente en programación (e.g., en la elaboración de archivos <code>.do</code>). Aunque algunos también pueden emplearse de forma interactiva, en otros, esta estrategia carece de sentido, ya que las macros creadas desaparecen cuando se termina de ejecutar el programa. Aquí únicamente haremos una primera aproximación. Para más detalles, puede consultarse, por ejemplo, <span class="citation" data-cites="Baum2016">Baum (2016)</span>.</p>
+<h2 id="el-uso-de-preserve-y-restore">5.1. El uso de <code>preserve</code> y <code>restore</code></h2>
+<p>En ocasiones, es necesario volver a una versión previa de los datos después de realizar operaciones. Para ello podemos valernos de dos comandos muy útiles, <code>preserve</code> y <code>restore</code>. Al introducir <code>preserve</code> indicamos a <code>Stata</code> que, cuando introduzcamos el comando <code>restore</code>, debe volver a los datos justo antes de la introducción de este comando. Estas instrucciones son particularmente de interés cuando tenemos que realizar operaciones en las que eliminemos observaciones o variables. Así, por ejemplo, con la base de datos anterior, podemos eliminar una de las variables y, posteriormente, volver a la base de datos original.</p>
+<pre class='stata'>. describe
+
+Contains data
+ Observations:             6                  ECV 2016
+    Variables:             4                  
+────────────────────────────────────────────────────────────────────────────────────────────
+Variable      Storage   Display    Value
+    name         type    format    label      Variable label
+────────────────────────────────────────────────────────────────────────────────────────────
+sexo            byte    %8.0g      sexo_lab   Sexo
+ano             int     %10.0g                Año de la encuesta
+salariomed      float   %9.0g                 (mean) salario
+cambio1618      float   %9.0g                 Cambio porcentual del salario (2016-2018)
+────────────────────────────────────────────────────────────────────────────────────────────
+Sorted by: sexo  ano
+     Note: Dataset has changed since last saved.
+
+. 
+. preserve
+
+. 
+. //  Eliminamos la variable sexo
+. 
+. drop sexo
+
+. 
+. describe
+
+Contains data
+ Observations:             6                  ECV 2016
+    Variables:             3                  
+─────────────────────────────────────────────────────────────────────────────────────────────
+Variable      Storage   Display    Value
+    name         type    format    label      Variable label
+─────────────────────────────────────────────────────────────────────────────────────────────
+ano             int     %10.0g                Año de la encuesta
+salariomed      float   %9.0g                 (mean) salario
+cambio1618      float   %9.0g                 Cambio porcentual del salario (2016-2018)
+─────────────────────────────────────────────────────────────────────────────────────────────
+Sorted by: 
+     Note: Dataset has changed since last saved.
+
+. 
+. restore
+
+. 
+. describe
+
+Contains data
+ Observations:             6                  ECV 2016
+    Variables:             4                  
+───────────────────────────────────────────────────────────────────────────────────────────
+Variable      Storage   Display    Value
+    name         type    format    label      Variable label
+───────────────────────────────────────────────────────────────────────────────────────────
+sexo            byte    %8.0g      sexo_lab   Sexo
+ano             int     %10.0g                Año de la encuesta
+salariomed      float   %9.0g                 (mean) salario
+cambio1618      float   %9.0g                 Cambio porcentual del salario (2016-2018)
+───────────────────────────────────────────────────────────────────────────────────────────
+Sorted by: sexo  ano
+     Note: Dataset has changed since last saved.
+</pre>
+<h2 id="el-uso-de-macros-local-global-tempname-tempvar-y-tempfile">5.2. El uso de macros: <code>local</code>, <code>global</code>, <code>tempname</code>, <code>tempvar</code> y <code>tempfile</code></h2>
+<p><code>global</code> asigna a una macro global (se conserva hasta que se cierre <code>Stata</code>) cadenas de caracteres. Se emplea habitualmente para crear listas de variables (e.g., regresores como variables independientes a introducir en una regresión). Para referirnos a estas macros, debemos utilizar <code>$</code>.</p>
+<p><code>local</code> asigna a una macro local (se conserva hasta que se ejecuta el archivo <code>.do</code>) cadenas de caracteres y tiene un funcionamiento similar a <code>global</code>. Para invocar una macro creada, debemos hacerlo entre los caracteres <code>`</code> y <code>'</code>.</p>
+<p><code>tempvar</code> crea varaibles temporales en una base de datos que desaparecen al concluir el programa o el archivo <code>.do</code>.</p>
+<p><code>tempname</code> cumple la misma función, pero con matrices o escalares.</p>
+<p><code>tempfile</code> funciona de forma análoga para nombres de archivos.</p>
+<p>Así, por ejemplo, podemos crear una macro global que incluya la variable <code>salariomed</code>, podemos llamarla <code>var1</code> y calcular los estadísticos descriptivos de <code>var1</code>.</p>
+<pre class='stata'>. global var1 "salariomed"
+
+. 
+. summarize $var1
+
+    Variable │        Obs        Mean    Std. dev.       Min        Max
+─────────────┼─────────────────────────────────────────────────────────
+  salariomed │          6    2041.687    207.3245   1833.733    2285.98
+</pre>
+<h2 id="el-uso-de-bucles">5.3 El uso de bucles</h2>
+<p>El tercer elemento clave en términos de programación son los bucles, que, a través de macros locales, nos permiten realizar operaciones de forma repetida y, de esa forma, programar de forma eficiente. Los principales bucles que podemos emplear son los siguientes:</p>
+<p><code>foreach <i>lname</i> in <i>any_list</i> {</code></p>
+<p><code> <i>commands referring to `lname’</i></code></p>
+<p><code>}</code></p>
+<p><code>foreach <i>lname</i> of <u>loc</u>al <i>lmacname</i> {</code></p>
+<p><code> <i>commands referring to `lname’</i></code></p>
+<p><code>}</code></p>
+<p><code>foreach <i>lname</i> of <u>glo</u>bal <i>gmacname</i> {</code></p>
+<p><code> <i>commands referring to `lname’</i></code></p>
+<p><code>}</code></p>
+<p><code>foreach <i>lname</i> of <u>var</u>list <i>varlist</i> {</code></p>
+<p><code> <i>commands referring to `lname’</i></code></p>
+<p><code>}</code></p>
+<p><code>foreach <i>lname</i> of <u>new</u>list <i>newvarlist</i> {</code></p>
+<p><code> <i>commands referring to `lname’</i></code></p>
+<p><code>}</code></p>
+<p><code>foreach <i>lname</i> of <u>num</u>list <i>numlist</i> {</code></p>
+<p><code> <i>commands referring to `lname’</i></code></p>
+<p><code>}</code></p>
+<p><code>forvalues <i>lname</i> = <i>range</i> {</code></p>
+<p><code> <i>commands referring to `lname’</i></code></p>
+<p><code>}</code></p>
+<p>Podemos calcular a modo de ejemplo la media del salario para cada uno de los 3 años en la muestra:</p>
+<pre class='stata'>. forvalues i=2016(1)2018{
+  2.   summarize salariomed if ano == `i'
+  3. }
+
+    Variable │        Obs        Mean    Std. dev.       Min        Max
+─────────────┼─────────────────────────────────────────────────────────
+  salariomed │          2    2081.494    289.1874   1877.008    2285.98
+
+    Variable │        Obs        Mean    Std. dev.       Min        Max
+─────────────┼─────────────────────────────────────────────────────────
+  salariomed │          2    2017.083     259.296   1833.733   2200.433
+
+    Variable │        Obs        Mean    Std. dev.       Min        Max
+─────────────┼─────────────────────────────────────────────────────────
+  salariomed │          2    2026.484    243.3336   1854.421   2198.547
+</pre>
+<h2 id="referencias">Referencias</h2>
+
+<div id="refs" class="references csl-bib-body hanging-indent" data-line-spacing="2" role="doc-bibliography">
+<div id="ref-Baum2016" class="csl-entry" role="doc-biblioentry">
+Baum, C. F. (2016). <em>An introduction to <span>S</span>tata programming</em> (2nd ed.). <span>S</span>tata <span>P</span>ress.
+</div>
+<div id="ref-Escobar2012" class="csl-entry" role="doc-biblioentry">
+Escobar, M., Fernández-Macías, E., &amp; Bernardi, F. (2012). <em>An<span>á</span>lisis de datos con <span>S</span>tata</em> (2nd ed.). Centro de Investigaciones Soci<span>ó</span>logicas.
+</div>
+<div id="ref-Kohler2012" class="csl-entry" role="doc-biblioentry">
+Kohler, U., &amp; Kreuter, F. (2012). <em>Data analysis using <span>S</span>tata</em> (3rd ed.). Stata Press.
+</div>
+</div>
+</body>
+</html>

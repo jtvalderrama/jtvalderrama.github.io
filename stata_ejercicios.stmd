@@ -1,0 +1,79 @@
+---
+title: Ejercicios
+author: José A. Valderrama
+bibliography: curso_stata.bib
+csl: apa.csl
+---
+_ _ _
+
+<p style="text-align: center;">[<span style="color:red"><font size="4">Inicio</font></span>](https://jtvalderrama.github.io/curso_stata.html) &nbsp;&nbsp;&nbsp;&nbsp; [<span style="color:red"><font size="4">Sesión 1</font></span>](https://jtvalderrama.github.io/stata1.html)    &nbsp;&nbsp;&nbsp;&nbsp;   [<span style="color:red"><font size="4">Sesión 2</font></span>](https://jtvalderrama.github.io/stata2.html)    &nbsp;&nbsp;&nbsp;&nbsp;   [<span style="color:red"><font size="4">Sesión 3</font></span>](https://jtvalderrama.github.io/stata3.html)    &nbsp;&nbsp;&nbsp;&nbsp;   [<span style="color:red"><font size="4">Sesión 4</font></span>](https://jtvalderrama.github.io/stata4.html)    &nbsp;&nbsp;&nbsp;&nbsp;   [<span style="color:red"><font size="4">Sesión 5</font></span>](https://jtvalderrama.github.io/stata5.html) &nbsp;&nbsp;&nbsp;&nbsp;   [<span style="color:red"><font size="4">Ejercicios</font></span>](https://jtvalderrama.github.io/stata_ejercicios.html) </p>
+
+_ _ _
+
+**Evaluación:** Para superar el curso, los estudiantes deberán entregar la solución a la hoja de problemas que puede descargarse en este enlace. Los ejercicios pueden entregarse proporcionando al profesor un archivo `.do` o un log (e.g., un archivo `.smcl`), aunque otras opciones son admisibles (por ejemplo, los usuarios más avanzados pueden preferir archivos `.html` o `.pdf` generados con Markdown o TeX).
+
+<hr style="border-top: dotted 1px;" />
+
+**<span style="color:blue"><font size="3">Ejercicio 1</font></span>**
+
+El Latinobarómetro es una encuesta anual que se realiza en la mayor parte de los países de América Latina y el Caribe y que recoge información sobre la percepción de los ciudadanos de la democracia, la economía y la sociedad. Visita la [página web de la encuesta](https://www.latinobarometro.org/latContents.jsp) y realiza las siguientes tareas:
+
+**<span style="color:red">a)</span>** Descarga la base de datos del año 2018 en el formato que prefieras (el archivo `.dta` contiene algunos errores, por lo que puede ser preferible importar los archivos descargados en otro formato).
+
+**<span style="color:red">b)</span>** Crea una variable que recoja la edad del entrevistado en 3 intervalos (menores 30, entre 30 y 64 años y 65 y más años). Renombra las variable empleando algún término que te permita identificar mejor la variable (e.g., la variable que recoge el sexo puedes denominarla `sexo`) Etiqueta la variable y sus valores.
+
+**<span style="color:red">c)</span>** Explora la variable *Escala izquierda-derecha* y recodifica aquellas respuestas distintas a la escala 0-10 (Ninguno, no sabe, no contesta) como valores perdidos.
+
+**<span style="color:red">d)</span>** Guarda un archivo con nombre `latbar2018.dta` con variables que contengan el país de la entrevista, año de la entrevista, sexo, edad, educación en tres grupos y escala izquierda-derecha (solo las personas con valores 0-10). Excluye de la muestra a España, la población de 65 y más años y todas las personas con valores perdidos en cualquiera de las seis variables.
+
+<br/><br/>
+
+**<span style="color:blue"><font size="3">Ejercicio 2</font></span>**
+
+**<span style="color:red">a)</span>** Descarga de la misma página los datos del Latinobarómetro correspondientes a 1998 y 2008, con similares valores y filtros que la base de datos de 2018.
+
+**<span style="color:red">b)</span>** Une los tres archivos empleando la instrucción `append` y guarda el archivo resultante como `latbar19982018.dta`.
+
+**<span style="color:red">c)</span>** Visita la web del Fondo Monetario Internacional y descarga del [World Economic Outlook Database April 2020](https://www.imf.org/external/pubs/ft/weo/2020/01/weodata/weoselco.aspx?g=205&sg=All+countries+%2f+Emerging+market+and+developing+economies+%2f+Latin+America+and+the+Caribbean) un archivo que contenga la tasa de desempleo de 1998 a 2018 de todos los países del continente. Obtendrás un archivo `.xls`. Investiga cómo crear un archivo en formato `.dta` a partir del mismo. Guarda el archivo con el nombre `weo.dta`.
+
+**<span style="color:red">d)</span>** Con la instrucción `merge`, fusiona el archivo `latbar19982018.dta` con el archivo `weo.dta` usando como variables enlace el país y el año. Comprueba qué países aparecen en ambas bases de datos y cuáles no y quédate únicamente con los primeros. Con el comando `collapse`, crea una base de datos resumida que contenga la posición ideológica media por año y país. Reorganiza la base de datos con el comando `reshape` de forma que contenga una columna con la posición ideológica media para cada año y genera una nueva variable que incluya el cambio porcentual de la posición ideológica media entre 1998 y 2018.
+
+<br/><br/>
+
+**<span style="color:blue"><font size="3">Ejercicio 3</font></span>**
+
+**<span style="color:red">a)</span>** A partir de la base de datos `latbar19982018.dta`, elabora una tabla que nos indique la distribución porcentual de la educación por sexo (qué porcentaje de hombres y mujeres, respectivamente, tienen niveles educativos bajo, medio y superior) y la distribución porcentual del sexo por nivel educativo (qué porcentajes de personas con estudios bajos, medios o superiores son hombres y mujeres).
+
+**<span style="color:red">b</span>** Elabora una tabla donde muestres la posición ideológica media por sexo y nivel educativo.
+
+**<span style="color:red">c)</span>** Realiza un análisis de varianza de la posición ideológica por año, para determinar si la posición ideológica es diferente en cada uno de los tres años de la muestra.
+
+**<span style="color:red">d)</span>** Realiza un análisis de regresión en el que explores la relación entre la posición ideológica (variable dependiente) y el sexo, edad, edad al cuadrado y nivel educativo.
+
+<br/><br/>
+
+**<span style="color:blue"><font size="3">Ejercicio 4</font></span>**
+
+**<span style="color:red">a)</span>** A partir de la base de datos `latbar19982018.dta`, elabora un histograma de la posición ideológica de los encuestados.
+
+**<span style="color:red">b)</span>** Elabora un gráfico de barras horizontales en el que muestres la posición ideológica media por nivel educativo.
+
+**<span style="color:red">c)</span>** Crea un gráfico de líneas en el que muestres la evolución por sexo de la posición ideológica media desde 1998 a 2018.
+
+**<span style="color:red">d)</span>** Realiza un gráfico de dispersión en el que explores si existe relación entre el porcentaje de personas del país con un nivel educativo alto y el porcentaje de personas con posiciones ideológicas de izquierda (definida como un valor en la escala ideológica de 0 a 3) en un año determinado.
+
+<br/><br/>
+
+**<span style="color:blue"><font size="3">Ejercicio 5</font></span>**
+
+Realiza las cuatro regresiones de la posición ideológica sobre los siguientes grupos de variables:\
+(1) sexo,\
+(2) sexo, edad y edad al cuadrado,\
+(3) sexo, edad, edad al cuadrado y educación,\
+(4) sexo, edad, edad al cuadrado, educación y año de la encuesta,\
+
+Con ayuda de `esttab` o `putexcel`, crea una tabla en Microsoft Word (o un procesador de textos similar) con la tabla de regresión.
+
+```{s/}
+quietly: cd "D:\Dropbox\curso_stata\jtvalderrama.github.io"
+```

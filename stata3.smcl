@@ -1,0 +1,962 @@
+{smcl}
+{com}{sf}{ul off}{txt}{.-}
+      name:  {res}<unnamed>
+       {txt}log:  {res}D:\Dropbox\curso_stata\jtvalderrama.github.io\stata3.smcl
+  {txt}log type:  {res}smcl
+ {txt}opened on:  {res} 1 Aug 2019, 08:02:30
+{txt}
+{com}. //_1
+. //  Fijamos el directorio de trabajo
+. 
+. cd "D:\Dropbox\curso_stata\sesión3"
+{res}D:\Dropbox\curso_stata\sesión3
+{txt}
+{com}. 
+. //  Abrimos el archivo
+. 
+. use "ecv18t.dta", clear
+{txt}(ECV 2018 (mercado de trabajo))
+
+{com}. 
+. //  Tabla de frecuencias absolutas
+. 
+. tabulate educg
+
+ {txt}Educación (agrupada) {c |}      Freq.     Percent        Cum.
+{hline 22}{c +}{hline 35}
+ Nivel educativo bajo {c |}{res}       7841       38,64       38,64
+{txt}Nivel educativo medio {c |}{res}       5429       26,75       65,40
+{txt} Nivel educativo alto {c |}{res}       7022       34,60      100,00
+{txt}{hline 22}{c +}{hline 35}
+                Total {c |}{res}      20292      100,00
+{txt}
+{com}. //_2
+. //  Tabla de frecuencias absolutas
+. 
+. tabulate educg sexo
+
+                      {txt}{c |}         Sexo
+ Educación (agrupada) {c |}    Hombre      Mujer {c |}     Total
+{hline 22}{c +}{hline 22}{c +}{hline 10}
+ Nivel educativo bajo {c |}{res}      4109       3732 {txt}{c |}{res}      7841 
+{txt}Nivel educativo medio {c |}{res}      2710       2719 {txt}{c |}{res}      5429 
+{txt} Nivel educativo alto {c |}{res}      3162       3860 {txt}{c |}{res}      7022 
+{txt}{hline 22}{c +}{hline 22}{c +}{hline 10}
+                Total {c |}{res}      9981      10311 {txt}{c |}{res}     20292 
+{txt}
+{com}. 
+. //  Distribución por sexo por nivel educativo (porcentaje por filas).
+. 
+. tabulate educg sexo, row nofreq
+
+                      {txt}{c |}         Sexo
+ Educación (agrupada) {c |}    Hombre      Mujer {c |}     Total
+{hline 22}{c +}{hline 22}{c +}{hline 10}
+ Nivel educativo bajo {c |}{res}     52,40      47,60 {txt}{c |}{res}    100,00 
+{txt}Nivel educativo medio {c |}{res}     49,92      50,08 {txt}{c |}{res}    100,00 
+{txt} Nivel educativo alto {c |}{res}     45,03      54,97 {txt}{c |}{res}    100,00 
+{txt}{hline 22}{c +}{hline 22}{c +}{hline 10}
+                Total {c |}{res}     49,19      50,81 {txt}{c |}{res}    100,00 
+{txt}
+{com}. 
+. //  Distribución del nivel educativo por sexo (porcentaje por columnas).
+. 
+. tabulate educg sexo, col nofreq
+
+                      {txt}{c |}         Sexo
+ Educación (agrupada) {c |}    Hombre      Mujer {c |}     Total
+{hline 22}{c +}{hline 22}{c +}{hline 10}
+ Nivel educativo bajo {c |}{res}     41,17      36,19 {txt}{c |}{res}     38,64 
+{txt}Nivel educativo medio {c |}{res}     27,15      26,37 {txt}{c |}{res}     26,75 
+{txt} Nivel educativo alto {c |}{res}     31,68      37,44 {txt}{c |}{res}     34,60 
+{txt}{hline 22}{c +}{hline 22}{c +}{hline 10}
+                Total {c |}{res}    100,00     100,00 {txt}{c |}{res}    100,00 
+{txt}
+{com}. 
+. //  Porcentaje de observaciones en cada celda.
+. 
+. tabulate educg sexo, cell nofreq
+
+                      {txt}{c |}         Sexo
+ Educación (agrupada) {c |}    Hombre      Mujer {c |}     Total
+{hline 22}{c +}{hline 22}{c +}{hline 10}
+ Nivel educativo bajo {c |}{res}     20,25      18,39 {txt}{c |}{res}     38,64 
+{txt}Nivel educativo medio {c |}{res}     13,36      13,40 {txt}{c |}{res}     26,75 
+{txt} Nivel educativo alto {c |}{res}     15,58      19,02 {txt}{c |}{res}     34,60 
+{txt}{hline 22}{c +}{hline 22}{c +}{hline 10}
+                Total {c |}{res}     49,19      50,81 {txt}{c |}{res}    100,00 
+{txt}
+{com}. //_3
+. //  Tabla con estadísticos descriptivos para valores de una o más variables
+. 
+. tabulate educg, summarize(salario)
+
+  {txt}Educación {c |}  Summary of Salario bruto mensual
+ (agrupada) {c |}        Mean   Std. Dev.       Freq.
+{hline 12}{c +}{hline 36}
+  Nivel edu {c |}  {res} 1429,6244   954,13983        3751
+  {txt}Nivel edu {c |}  {res}  1770,063     1851,12        2911
+  {txt}Nivel edu {c |}  {res} 2556,1645   2084,1949        5082
+{txt}{hline 12}{c +}{hline 36}
+      Total {c |}  {res} 2001,4988   1808,3896       11744
+{txt}
+{com}. 
+. tabulate educg sexo, summarize(salario)
+
+    {txt}Means, Standard Deviations and Frequencies of Salario bruto mensual
+
+ Educación {c |}        Sexo
+(agrupada) {c |}    Hombre      Mujer {c |}     Total
+{hline 11}{c +}{hline 22}{c +}{hline 10}
+ Nivel edu {c |}{res} 1555,3305  1246,9435 {txt}{c |}{res} 1429,6244
+           {txt}{c |}{res} 983,26205  878,97375 {txt}{c |}{res} 954,13983
+           {txt}{c |}{res}      2222       1529 {txt}{c |}{res}      3751
+{txt}{hline 11}{c +}{hline 22}{c +}{hline 10}
+ Nivel edu {c |}{res} 1979,7629   1544,048 {txt}{c |}{res}  1770,063
+           {txt}{c |}{res} 1528,6274  2122,5805 {txt}{c |}{res}   1851,12
+           {txt}{c |}{res}      1510       1401 {txt}{c |}{res}      2911
+{txt}{hline 11}{c +}{hline 22}{c +}{hline 10}
+ Nivel edu {c |}{res} 2869,5636  2296,2395 {txt}{c |}{res} 2556,1645
+           {txt}{c |}{res} 2527,3422  1581,6394 {txt}{c |}{res} 2084,1949
+           {txt}{c |}{res}      2304       2778 {txt}{c |}{res}      5082
+{txt}{hline 11}{c +}{hline 22}{c +}{hline 10}
+     Total {c |}{res} 2163,1645  1830,5433 {txt}{c |}{res} 2001,4988
+           {txt}{c |}{res}  1926,792  1657,1965 {txt}{c |}{res} 1808,3896
+           {txt}{c |}{res}      6036       5708 {txt}{c |}{res}     11744
+{txt}
+{com}. //_4
+. table educg sexo contrato, contents(mean salario)
+
+{txt}{hline 22}{c TT}{hline 41}
+                      {c |}        Tipo de contrato and Sexo        
+                      {c |} {hline 1} Contrato fijo  {hline 1}    {hline 1} Contrato tempo {hline 1}
+ Educación (agrupada) {c |}   Hombre     Mujer      Hombre     Mujer
+{hline 22}{c +}{hline 41}
+ Nivel educativo bajo {c |} {res}1791,071  1403,295    1145,353  1039,947
+{txt}Nivel educativo medio {c |} {res}2259,453  1716,245    1258,596  1157,733
+ {txt}Nivel educativo alto {c |} {res}3187,971  2517,448    1594,592  1644,344
+{txt}{hline 22}{c BT}{hline 41}
+
+{com}. //_5
+. anova salario educg
+
+                         {txt}Number of obs = {res}    11.744    {txt}R-squared     ={res}  0,0767
+                         {txt}Root MSE      =   {res} 1737,79    {txt}Adj R-squared ={res}  0,0766
+
+                  {txt}Source {c |} Partial SS         df         MS        F    Prob>F
+              {hline 11}{c +}{hline 52}
+                   Model {c |} {res} 2,946e+09          2   1,473e+09    487,79  0,0000
+                         {txt}{c |}
+                   educg {c |} {res} 2,946e+09          2   1,473e+09    487,79  0,0000
+                         {txt}{c |}
+                Residual {c |} {res} 3,546e+10     11.741   3019901,9  
+              {txt}{hline 11}{c +}{hline 52}
+                   Total {c |} {res} 3,840e+10     11.743     3270273  
+{txt}
+{com}. //_6
+. generate edad2 = edad^2
+{txt}
+{com}. label variable edad2 "Edad al cuadrado"
+{txt}
+{com}. //_7
+. regress logsalario edad edad2
+
+{txt}      Source {c |}       SS           df       MS      Number of obs   ={res}    11.599
+{txt}{hline 13}{c +}{hline 34}   F(2, 11596)     = {res}   561,47
+{txt}       Model {c |} {res} 708,930894         2  354,465447   {txt}Prob > F        ={res}    0,0000
+{txt}    Residual {c |} {res}  7320,7821    11.596  ,631319602   {txt}R-squared       ={res}    0,0883
+{txt}{hline 13}{c +}{hline 34}   Adj R-squared   ={res}    0,0881
+{txt}       Total {c |} {res}   8029,713    11.598  ,692336006   {txt}Root MSE        =   {res} ,79456
+
+{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 1}  logsalario{col 14}{c |}      Coef.{col 26}   Std. Err.{col 38}      t{col 46}   P>|t|{col 54}     [95% Con{col 67}f. Interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{space 8}edad {c |}{col 14}{res}{space 2} ,0855968{col 26}{space 2} ,0049066{col 37}{space 1}   17,45{col 46}{space 3}0,000{col 54}{space 4}  ,075979{col 67}{space 3} ,0952147
+{txt}{space 7}edad2 {c |}{col 14}{res}{space 2}-,0007608{col 26}{space 2} ,0000568{col 37}{space 1}  -13,41{col 46}{space 3}0,000{col 54}{space 4}-,0008721{col 67}{space 3}-,0006496
+{txt}{space 7}_cons {c |}{col 14}{res}{space 2} 5,137219{col 26}{space 2} ,1016253{col 37}{space 1}   50,55{col 46}{space 3}0,000{col 54}{space 4} 4,938016{col 67}{space 3} 5,336422
+{txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{res}{txt}
+{com}. //_8
+. //  Con la categoría por defecto (hombre)
+. 
+. regress logsalario edad edad2 i.sexo
+
+{txt}      Source {c |}       SS           df       MS      Number of obs   ={res}    11.599
+{txt}{hline 13}{c +}{hline 34}   F(3, 11595)     = {res}   425,49
+{txt}       Model {c |} {res} 796,314217         3  265,438072   {txt}Prob > F        ={res}    0,0000
+{txt}    Residual {c |} {res} 7233,39878    11.595  ,623837756   {txt}R-squared       ={res}    0,0992
+{txt}{hline 13}{c +}{hline 34}   Adj R-squared   ={res}    0,0989
+{txt}       Total {c |} {res}   8029,713    11.598  ,692336006   {txt}Root MSE        =   {res} ,78983
+
+{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 1}  logsalario{col 14}{c |}      Coef.{col 26}   Std. Err.{col 38}      t{col 46}   P>|t|{col 54}     [95% Con{col 67}f. Interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{space 8}edad {c |}{col 14}{res}{space 2} ,0870787{col 26}{space 2} ,0048791{col 37}{space 1}   17,85{col 46}{space 3}0,000{col 54}{space 4} ,0775149{col 67}{space 3} ,0966426
+{txt}{space 7}edad2 {c |}{col 14}{res}{space 2}-,0007772{col 26}{space 2} ,0000564{col 37}{space 1}  -13,77{col 46}{space 3}0,000{col 54}{space 4}-,0008878{col 67}{space 3}-,0006666
+{txt}{space 12} {c |}
+{space 8}sexo {c |}
+{space 6}Mujer  {c |}{col 14}{res}{space 2}-,1737265{col 26}{space 2} ,0146787{col 37}{space 1}  -11,84{col 46}{space 3}0,000{col 54}{space 4}-,2024992{col 67}{space 3}-,1449538
+{txt}{space 7}_cons {c |}{col 14}{res}{space 2} 5,190086{col 26}{space 2}   ,10112{col 37}{space 1}   51,33{col 46}{space 3}0,000{col 54}{space 4} 4,991874{col 67}{space 3} 5,388299
+{txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{res}{txt}
+{com}. 
+. //  Modificando la categoría por defecto (mujer)
+. 
+. regress logsalario edad edad2 ib2.sexo
+
+{txt}      Source {c |}       SS           df       MS      Number of obs   ={res}    11.599
+{txt}{hline 13}{c +}{hline 34}   F(3, 11595)     = {res}   425,49
+{txt}       Model {c |} {res} 796,314217         3  265,438072   {txt}Prob > F        ={res}    0,0000
+{txt}    Residual {c |} {res} 7233,39878    11.595  ,623837756   {txt}R-squared       ={res}    0,0992
+{txt}{hline 13}{c +}{hline 34}   Adj R-squared   ={res}    0,0989
+{txt}       Total {c |} {res}   8029,713    11.598  ,692336006   {txt}Root MSE        =   {res} ,78983
+
+{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 1}  logsalario{col 14}{c |}      Coef.{col 26}   Std. Err.{col 38}      t{col 46}   P>|t|{col 54}     [95% Con{col 67}f. Interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{space 8}edad {c |}{col 14}{res}{space 2} ,0870787{col 26}{space 2} ,0048791{col 37}{space 1}   17,85{col 46}{space 3}0,000{col 54}{space 4} ,0775149{col 67}{space 3} ,0966426
+{txt}{space 7}edad2 {c |}{col 14}{res}{space 2}-,0007772{col 26}{space 2} ,0000564{col 37}{space 1}  -13,77{col 46}{space 3}0,000{col 54}{space 4}-,0008878{col 67}{space 3}-,0006666
+{txt}{space 12} {c |}
+{space 8}sexo {c |}
+{space 5}Hombre  {c |}{col 14}{res}{space 2} ,1737265{col 26}{space 2} ,0146787{col 37}{space 1}   11,84{col 46}{space 3}0,000{col 54}{space 4} ,1449538{col 67}{space 3} ,2024992
+{txt}{space 12} {c |}
+{space 7}_cons {c |}{col 14}{res}{space 2}  5,01636{col 26}{space 2} ,1015361{col 37}{space 1}   49,40{col 46}{space 3}0,000{col 54}{space 4} 4,817332{col 67}{space 3} 5,215388
+{txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{res}{txt}
+{com}. 
+. //  Modificando la categoría de referencia (la más frecuente)
+. 
+. regress logsalario edad edad2 ib(freq).sexo
+
+{txt}      Source {c |}       SS           df       MS      Number of obs   ={res}    11.599
+{txt}{hline 13}{c +}{hline 34}   F(3, 11595)     = {res}   425,49
+{txt}       Model {c |} {res} 796,314217         3  265,438072   {txt}Prob > F        ={res}    0,0000
+{txt}    Residual {c |} {res} 7233,39878    11.595  ,623837756   {txt}R-squared       ={res}    0,0992
+{txt}{hline 13}{c +}{hline 34}   Adj R-squared   ={res}    0,0989
+{txt}       Total {c |} {res}   8029,713    11.598  ,692336006   {txt}Root MSE        =   {res} ,78983
+
+{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 1}  logsalario{col 14}{c |}      Coef.{col 26}   Std. Err.{col 38}      t{col 46}   P>|t|{col 54}     [95% Con{col 67}f. Interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{space 8}edad {c |}{col 14}{res}{space 2} ,0870787{col 26}{space 2} ,0048791{col 37}{space 1}   17,85{col 46}{space 3}0,000{col 54}{space 4} ,0775149{col 67}{space 3} ,0966426
+{txt}{space 7}edad2 {c |}{col 14}{res}{space 2}-,0007772{col 26}{space 2} ,0000564{col 37}{space 1}  -13,77{col 46}{space 3}0,000{col 54}{space 4}-,0008878{col 67}{space 3}-,0006666
+{txt}{space 12} {c |}
+{space 8}sexo {c |}
+{space 6}Mujer  {c |}{col 14}{res}{space 2}-,1737265{col 26}{space 2} ,0146787{col 37}{space 1}  -11,84{col 46}{space 3}0,000{col 54}{space 4}-,2024992{col 67}{space 3}-,1449538
+{txt}{space 7}_cons {c |}{col 14}{res}{space 2} 5,190086{col 26}{space 2}   ,10112{col 37}{space 1}   51,33{col 46}{space 3}0,000{col 54}{space 4} 4,991874{col 67}{space 3} 5,388299
+{txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{res}{txt}
+{com}. //_9
+. tabulate educg, generate(educdummy)
+
+ {txt}Educación (agrupada) {c |}      Freq.     Percent        Cum.
+{hline 22}{c +}{hline 35}
+ Nivel educativo bajo {c |}{res}       7841       38,64       38,64
+{txt}Nivel educativo medio {c |}{res}       5429       26,75       65,40
+{txt} Nivel educativo alto {c |}{res}       7022       34,60      100,00
+{txt}{hline 22}{c +}{hline 35}
+                Total {c |}{res}      20292      100,00
+{txt}
+{com}. 
+. regress logsalario i.sexo edad edad2 educdummy2 educdummy3
+
+{txt}      Source {c |}       SS           df       MS      Number of obs   ={res}    11.599
+{txt}{hline 13}{c +}{hline 34}   F(5, 11593)     = {res}   577,13
+{txt}       Model {c |} {res} 1600,34458         5  320,068916   {txt}Prob > F        ={res}    0,0000
+{txt}    Residual {c |} {res} 6429,36841    11.593  ,554590565   {txt}R-squared       ={res}    0,1993
+{txt}{hline 13}{c +}{hline 34}   Adj R-squared   ={res}    0,1990
+{txt}       Total {c |} {res}   8029,713    11.598  ,692336006   {txt}Root MSE        =   {res} ,74471
+
+{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 1}  logsalario{col 14}{c |}      Coef.{col 26}   Std. Err.{col 38}      t{col 46}   P>|t|{col 54}     [95% Con{col 67}f. Interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{space 8}sexo {c |}
+{space 6}Mujer  {c |}{col 14}{res}{space 2}-,2365705{col 26}{space 2}   ,01394{col 37}{space 1}  -16,97{col 46}{space 3}0,000{col 54}{space 4}-,2638953{col 67}{space 3}-,2092458
+{txt}{space 8}edad {c |}{col 14}{res}{space 2} ,0721823{col 26}{space 2} ,0046198{col 37}{space 1}   15,62{col 46}{space 3}0,000{col 54}{space 4} ,0631268{col 67}{space 3} ,0812378
+{txt}{space 7}edad2 {c |}{col 14}{res}{space 2}-,0005808{col 26}{space 2} ,0000535{col 37}{space 1}  -10,86{col 46}{space 3}0,000{col 54}{space 4}-,0006856{col 67}{space 3}-,0004759
+{txt}{space 2}educdummy2 {c |}{col 14}{res}{space 2}  ,240602{col 26}{space 2} ,0185962{col 37}{space 1}   12,94{col 46}{space 3}0,000{col 54}{space 4} ,2041503{col 67}{space 3} ,2770537
+{txt}{space 2}educdummy3 {c |}{col 14}{res}{space 2}  ,613554{col 26}{space 2} ,0163944{col 37}{space 1}   37,42{col 46}{space 3}0,000{col 54}{space 4} ,5814181{col 67}{space 3} ,6456898
+{txt}{space 7}_cons {c |}{col 14}{res}{space 2} 5,145524{col 26}{space 2} ,0958254{col 37}{space 1}   53,70{col 46}{space 3}0,000{col 54}{space 4}  4,95769{col 67}{space 3} 5,333357
+{txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{res}{txt}
+{com}. 
+. regress logsalario i.sexo edad edad2 ib1.educg
+
+{txt}      Source {c |}       SS           df       MS      Number of obs   ={res}    11.599
+{txt}{hline 13}{c +}{hline 34}   F(5, 11593)     = {res}   577,13
+{txt}       Model {c |} {res} 1600,34458         5  320,068916   {txt}Prob > F        ={res}    0,0000
+{txt}    Residual {c |} {res} 6429,36841    11.593  ,554590565   {txt}R-squared       ={res}    0,1993
+{txt}{hline 13}{c +}{hline 34}   Adj R-squared   ={res}    0,1990
+{txt}       Total {c |} {res}   8029,713    11.598  ,692336006   {txt}Root MSE        =   {res} ,74471
+
+{txt}{hline 23}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 1}            logsalario{col 24}{c |}      Coef.{col 36}   Std. Err.{col 48}      t{col 56}   P>|t|{col 64}     [95% Con{col 77}f. Interval]
+{hline 23}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{space 18}sexo {c |}
+{space 16}Mujer  {c |}{col 24}{res}{space 2}-,2365705{col 36}{space 2}   ,01394{col 47}{space 1}  -16,97{col 56}{space 3}0,000{col 64}{space 4}-,2638953{col 77}{space 3}-,2092458
+{txt}{space 18}edad {c |}{col 24}{res}{space 2} ,0721823{col 36}{space 2} ,0046198{col 47}{space 1}   15,62{col 56}{space 3}0,000{col 64}{space 4} ,0631268{col 77}{space 3} ,0812378
+{txt}{space 17}edad2 {c |}{col 24}{res}{space 2}-,0005808{col 36}{space 2} ,0000535{col 47}{space 1}  -10,86{col 56}{space 3}0,000{col 64}{space 4}-,0006856{col 77}{space 3}-,0004759
+{txt}{space 22} {c |}
+{space 17}educg {c |}
+Nivel educativo medio  {c |}{col 24}{res}{space 2}  ,240602{col 36}{space 2} ,0185962{col 47}{space 1}   12,94{col 56}{space 3}0,000{col 64}{space 4} ,2041503{col 77}{space 3} ,2770537
+{txt}{space 1}Nivel educativo alto  {c |}{col 24}{res}{space 2}  ,613554{col 36}{space 2} ,0163944{col 47}{space 1}   37,42{col 56}{space 3}0,000{col 64}{space 4} ,5814181{col 77}{space 3} ,6456898
+{txt}{space 22} {c |}
+{space 17}_cons {c |}{col 24}{res}{space 2} 5,145524{col 36}{space 2} ,0958254{col 47}{space 1}   53,70{col 56}{space 3}0,000{col 64}{space 4}  4,95769{col 77}{space 3} 5,333357
+{txt}{hline 23}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{res}{txt}
+{com}. 
+. //_10
+. regress logsalario i.sexo c.edad c.edad#c.edad i.educg i.sexo#c.edad i.sexo#educg
+
+{txt}      Source {c |}       SS           df       MS      Number of obs   ={res}    11.599
+{txt}{hline 13}{c +}{hline 34}   F(8, 11590)     = {res}   364,72
+{txt}       Model {c |} {res} 1614,92975         8  201,866218   {txt}Prob > F        ={res}    0,0000
+{txt}    Residual {c |} {res} 6414,78325    11.590   ,55347569   {txt}R-squared       ={res}    0,2011
+{txt}{hline 13}{c +}{hline 34}   Adj R-squared   ={res}    0,2006
+{txt}       Total {c |} {res}   8029,713    11.598  ,692336006   {txt}Root MSE        =   {res} ,74396
+
+{txt}{hline 29}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 1}                  logsalario{col 30}{c |}      Coef.{col 42}   Std. Err.{col 54}      t{col 62}   P>|t|{col 70}     [95% Con{col 83}f. Interval]
+{hline 29}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{space 24}sexo {c |}
+{space 22}Mujer  {c |}{col 30}{res}{space 2}-,0864934{col 42}{space 2}  ,062616{col 53}{space 1}   -1,38{col 62}{space 3}0,167{col 70}{space 4}-,2092312{col 83}{space 3} ,0362445
+{txt}{space 24}edad {c |}{col 30}{res}{space 2} ,0735382{col 42}{space 2} ,0046441{col 53}{space 1}   15,83{col 62}{space 3}0,000{col 70}{space 4}  ,064435{col 83}{space 3} ,0826414
+{txt}{space 28} {c |}
+{space 15}c.edad#c.edad {c |}{col 30}{res}{space 2}-,0005724{col 42}{space 2} ,0000535{col 53}{space 1}  -10,71{col 62}{space 3}0,000{col 70}{space 4}-,0006772{col 83}{space 3}-,0004676
+{txt}{space 28} {c |}
+{space 23}educg {c |}
+{space 6}Nivel educativo medio  {c |}{col 30}{res}{space 2} ,2543874{col 42}{space 2} ,0250038{col 53}{space 1}   10,17{col 62}{space 3}0,000{col 70}{space 4} ,2053758{col 83}{space 3} ,3033991
+{txt}{space 7}Nivel educativo alto  {c |}{col 30}{res}{space 2} ,5659028{col 42}{space 2} ,0223213{col 53}{space 1}   25,35{col 62}{space 3}0,000{col 70}{space 4} ,5221494{col 83}{space 3} ,6096563
+{txt}{space 28} {c |}
+{space 17}sexo#c.edad {c |}
+{space 22}Mujer  {c |}{col 30}{res}{space 2}-,0041906{col 42}{space 2} ,0012553{col 53}{space 1}   -3,34{col 62}{space 3}0,001{col 70}{space 4}-,0066513{col 83}{space 3}  -,00173
+{txt}{space 28} {c |}
+{space 18}sexo#educg {c |}
+Mujer#Nivel educativo medio  {c |}{col 30}{res}{space 2}-,0232393{col 42}{space 2}  ,037422{col 53}{space 1}   -0,62{col 62}{space 3}0,535{col 70}{space 4}-,0965927{col 83}{space 3} ,0501142
+{txt}{space 1}Mujer#Nivel educativo alto  {c |}{col 30}{res}{space 2} ,0929502{col 42}{space 2} ,0328386{col 53}{space 1}    2,83{col 62}{space 3}0,005{col 70}{space 4}  ,028581{col 83}{space 3} ,1573195
+{txt}{space 28} {c |}
+{space 23}_cons {c |}{col 30}{res}{space 2} 5,083543{col 42}{space 2}  ,099395{col 53}{space 1}   51,14{col 62}{space 3}0,000{col 70}{space 4} 4,888712{col 83}{space 3} 5,278374
+{txt}{hline 29}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{res}{txt}
+{com}. //_11
+. regress logsalario c.edad##c.edad i.sexo#c.edad i.sexo##educg
+
+{txt}      Source {c |}       SS           df       MS      Number of obs   ={res}    11.599
+{txt}{hline 13}{c +}{hline 34}   F(8, 11590)     = {res}   364,72
+{txt}       Model {c |} {res} 1614,92975         8  201,866218   {txt}Prob > F        ={res}    0,0000
+{txt}    Residual {c |} {res} 6414,78325    11.590   ,55347569   {txt}R-squared       ={res}    0,2011
+{txt}{hline 13}{c +}{hline 34}   Adj R-squared   ={res}    0,2006
+{txt}       Total {c |} {res}   8029,713    11.598  ,692336006   {txt}Root MSE        =   {res} ,74396
+
+{txt}{hline 29}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 1}                  logsalario{col 30}{c |}      Coef.{col 42}   Std. Err.{col 54}      t{col 62}   P>|t|{col 70}     [95% Con{col 83}f. Interval]
+{hline 29}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{space 24}edad {c |}{col 30}{res}{space 2} ,0735382{col 42}{space 2} ,0046441{col 53}{space 1}   15,83{col 62}{space 3}0,000{col 70}{space 4}  ,064435{col 83}{space 3} ,0826414
+{txt}{space 28} {c |}
+{space 15}c.edad#c.edad {c |}{col 30}{res}{space 2}-,0005724{col 42}{space 2} ,0000535{col 53}{space 1}  -10,71{col 62}{space 3}0,000{col 70}{space 4}-,0006772{col 83}{space 3}-,0004676
+{txt}{space 28} {c |}
+{space 17}sexo#c.edad {c |}
+{space 22}Mujer  {c |}{col 30}{res}{space 2}-,0041906{col 42}{space 2} ,0012553{col 53}{space 1}   -3,34{col 62}{space 3}0,001{col 70}{space 4}-,0066513{col 83}{space 3}  -,00173
+{txt}{space 28} {c |}
+{space 24}sexo {c |}
+{space 22}Mujer  {c |}{col 30}{res}{space 2}-,0864934{col 42}{space 2}  ,062616{col 53}{space 1}   -1,38{col 62}{space 3}0,167{col 70}{space 4}-,2092312{col 83}{space 3} ,0362445
+{txt}{space 28} {c |}
+{space 23}educg {c |}
+{space 6}Nivel educativo medio  {c |}{col 30}{res}{space 2} ,2543874{col 42}{space 2} ,0250038{col 53}{space 1}   10,17{col 62}{space 3}0,000{col 70}{space 4} ,2053758{col 83}{space 3} ,3033991
+{txt}{space 7}Nivel educativo alto  {c |}{col 30}{res}{space 2} ,5659028{col 42}{space 2} ,0223213{col 53}{space 1}   25,35{col 62}{space 3}0,000{col 70}{space 4} ,5221494{col 83}{space 3} ,6096563
+{txt}{space 28} {c |}
+{space 18}sexo#educg {c |}
+Mujer#Nivel educativo medio  {c |}{col 30}{res}{space 2}-,0232393{col 42}{space 2}  ,037422{col 53}{space 1}   -0,62{col 62}{space 3}0,535{col 70}{space 4}-,0965927{col 83}{space 3} ,0501142
+{txt}{space 1}Mujer#Nivel educativo alto  {c |}{col 30}{res}{space 2} ,0929502{col 42}{space 2} ,0328386{col 53}{space 1}    2,83{col 62}{space 3}0,005{col 70}{space 4}  ,028581{col 83}{space 3} ,1573195
+{txt}{space 28} {c |}
+{space 23}_cons {c |}{col 30}{res}{space 2} 5,083543{col 42}{space 2}  ,099395{col 53}{space 1}   51,14{col 62}{space 3}0,000{col 70}{space 4} 4,888712{col 83}{space 3} 5,278374
+{txt}{hline 29}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{res}{txt}
+{com}. //_12
+. //  Estimación del modelo logit
+. 
+. logit empleo i.sexo c.edad c.edad#c.edad
+
+{res}{txt}Iteration 0:{space 3}log likelihood = {res:  -13385,8}  
+Iteration 1:{space 3}log likelihood = {res:-11536,258}  
+Iteration 2:{space 3}log likelihood = {res: -11525,64}  
+Iteration 3:{space 3}log likelihood = {res:-11525,637}  
+Iteration 4:{space 3}log likelihood = {res:-11525,637}  
+{res}
+{txt}Logistic regression{col 49}Number of obs{col 67}= {res}    20.292
+{txt}{col 49}LR chi2({res}3{txt}){col 67}= {res}   3720,33
+{txt}{col 49}Prob > chi2{col 67}= {res}    0,0000
+{txt}Log likelihood = {res}-11525,637{txt}{col 49}Pseudo R2{col 67}= {res}    0,1390
+
+{txt}{hline 14}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 1}       empleo{col 15}{c |}      Coef.{col 27}   Std. Err.{col 39}      z{col 47}   P>|z|{col 55}     [95% Con{col 68}f. Interval]
+{hline 14}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{space 9}sexo {c |}
+{space 7}Mujer  {c |}{col 15}{res}{space 2}-,6262264{col 27}{space 2} ,0324629{col 38}{space 1}  -19,29{col 47}{space 3}0,000{col 55}{space 4}-,6898526{col 68}{space 3}-,5626003
+{txt}{space 9}edad {c |}{col 15}{res}{space 2}  ,470378{col 27}{space 2}   ,00884{col 38}{space 1}   53,21{col 47}{space 3}0,000{col 55}{space 4} ,4530519{col 68}{space 3} ,4877041
+{txt}{space 13} {c |}
+c.edad#c.edad {c |}{col 15}{res}{space 2}-,0054409{col 27}{space 2} ,0001038{col 38}{space 1}  -52,41{col 47}{space 3}0,000{col 55}{space 4}-,0056443{col 68}{space 3}-,0052374
+{txt}{space 13} {c |}
+{space 8}_cons {c |}{col 15}{res}{space 2}-8,332817{col 27}{space 2} ,1732183{col 38}{space 1}  -48,11{col 47}{space 3}0,000{col 55}{space 4}-8,672319{col 68}{space 3}-7,993316
+{txt}{hline 14}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+
+{com}. 
+. //  Estimación del modelo probit
+. 
+. probit empleo i.sexo c.edad c.edad#c.edad
+
+{res}{txt}Iteration 0:{space 3}log likelihood = {res:  -13385,8}  
+Iteration 1:{space 3}log likelihood = {res:-11523,923}  
+Iteration 2:{space 3}log likelihood = {res:-11522,197}  
+Iteration 3:{space 3}log likelihood = {res:-11522,197}  
+{res}
+{txt}Probit regression{col 49}Number of obs{col 67}= {res}    20.292
+{txt}{col 49}LR chi2({res}3{txt}){col 67}= {res}   3727,21
+{txt}{col 49}Prob > chi2{col 67}= {res}    0,0000
+{txt}Log likelihood = {res}-11522,197{txt}{col 49}Pseudo R2{col 67}= {res}    0,1392
+
+{txt}{hline 14}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 1}       empleo{col 15}{c |}      Coef.{col 27}   Std. Err.{col 39}      z{col 47}   P>|z|{col 55}     [95% Con{col 68}f. Interval]
+{hline 14}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{space 9}sexo {c |}
+{space 7}Mujer  {c |}{col 15}{res}{space 2}-,3754802{col 27}{space 2} ,0192187{col 38}{space 1}  -19,54{col 47}{space 3}0,000{col 55}{space 4}-,4131482{col 68}{space 3}-,3378121
+{txt}{space 9}edad {c |}{col 15}{res}{space 2} ,2868713{col 27}{space 2}  ,005185{col 38}{space 1}   55,33{col 47}{space 3}0,000{col 55}{space 4} ,2767088{col 68}{space 3} ,2970338
+{txt}{space 13} {c |}
+c.edad#c.edad {c |}{col 15}{res}{space 2}-,0033169{col 27}{space 2}  ,000061{col 38}{space 1}  -54,35{col 47}{space 3}0,000{col 55}{space 4}-,0034366{col 68}{space 3}-,0031973
+{txt}{space 13} {c |}
+{space 8}_cons {c |}{col 15}{res}{space 2}-5,091976{col 27}{space 2} ,1023362{col 38}{space 1}  -49,76{col 47}{space 3}0,000{col 55}{space 4}-5,292551{col 68}{space 3}-4,891401
+{txt}{hline 14}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+
+{com}. //_13
+. //  Estimación del modelo logit
+. 
+. logit empleo i.sexo c.edad c.edad#c.edad
+
+{res}{txt}Iteration 0:{space 3}log likelihood = {res:  -13385,8}  
+Iteration 1:{space 3}log likelihood = {res:-11536,258}  
+Iteration 2:{space 3}log likelihood = {res: -11525,64}  
+Iteration 3:{space 3}log likelihood = {res:-11525,637}  
+Iteration 4:{space 3}log likelihood = {res:-11525,637}  
+{res}
+{txt}Logistic regression{col 49}Number of obs{col 67}= {res}    20.292
+{txt}{col 49}LR chi2({res}3{txt}){col 67}= {res}   3720,33
+{txt}{col 49}Prob > chi2{col 67}= {res}    0,0000
+{txt}Log likelihood = {res}-11525,637{txt}{col 49}Pseudo R2{col 67}= {res}    0,1390
+
+{txt}{hline 14}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 1}       empleo{col 15}{c |}      Coef.{col 27}   Std. Err.{col 39}      z{col 47}   P>|z|{col 55}     [95% Con{col 68}f. Interval]
+{hline 14}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{space 9}sexo {c |}
+{space 7}Mujer  {c |}{col 15}{res}{space 2}-,6262264{col 27}{space 2} ,0324629{col 38}{space 1}  -19,29{col 47}{space 3}0,000{col 55}{space 4}-,6898526{col 68}{space 3}-,5626003
+{txt}{space 9}edad {c |}{col 15}{res}{space 2}  ,470378{col 27}{space 2}   ,00884{col 38}{space 1}   53,21{col 47}{space 3}0,000{col 55}{space 4} ,4530519{col 68}{space 3} ,4877041
+{txt}{space 13} {c |}
+c.edad#c.edad {c |}{col 15}{res}{space 2}-,0054409{col 27}{space 2} ,0001038{col 38}{space 1}  -52,41{col 47}{space 3}0,000{col 55}{space 4}-,0056443{col 68}{space 3}-,0052374
+{txt}{space 13} {c |}
+{space 8}_cons {c |}{col 15}{res}{space 2}-8,332817{col 27}{space 2} ,1732183{col 38}{space 1}  -48,11{col 47}{space 3}0,000{col 55}{space 4}-8,672319{col 68}{space 3}-7,993316
+{txt}{hline 14}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+
+{com}. 
+. //  Efectos marginales
+. 
+. margins, dydx(edad sexo) atmeans
+{res}
+{txt}Conditional marginal effects{col 49}Number of obs{col 67}= {res}    20.292
+{txt}{col 1}Model VCE{col 14}: {res}OIM
+
+{txt}{p2colset 1 14 16 2}{...}
+{p2col:Expression}:{space 1}{res:Pr(empleo), predict()}{p_end}
+{p2colreset}{...}
+{txt}{p2colset 1 14 16 2}{...}
+{p2col:dy/dx w.r.t.}:{space 1}{res:2.sexo edad}{p_end}
+{p2colreset}{...}
+{txt}{p2colset 1 14 16 2}{...}
+{p2col:at}:{space 1}{res:{txt:1.sexo}{space 10}{txt:=} {space 3},4918687 {txt:(mean)}}{p_end}
+{p2colreset}{...}
+{txt}{p2colset 1 14 16 2}{...}
+{p2col: }{space 2}{res:{txt:2.sexo}{space 10}{txt:=} {space 3},5081313 {txt:(mean)}}{p_end}
+{p2colreset}{...}
+{txt}{p2colset 1 14 16 2}{...}
+{p2col: }{space 2}{res:{txt:edad}{space 12}{txt:=} {space 3}43,66652 {txt:(mean)}}{p_end}
+{p2colreset}{...}
+
+{res}{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 14}{c |}{col 26} Delta-method
+{col 14}{c |}      dy/dx{col 26}   Std. Err.{col 38}      z{col 46}   P>|z|{col 54}     [95% Con{col 67}f. Interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{space 8}sexo {c |}
+{space 6}Mujer  {c |}{col 14}{res}{space 2}-,0924193{col 26}{space 2} ,0048088{col 37}{space 1}  -19,22{col 46}{space 3}0,000{col 54}{space 4}-,1018444{col 67}{space 3}-,0829942
+{txt}{space 8}edad {c |}{col 14}{res}{space 2}-,0007077{col 26}{space 2} ,0001803{col 37}{space 1}   -3,92{col 46}{space 3}0,000{col 54}{space 4}-,0010611{col 67}{space 3}-,0003543
+{txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{p 0 6 0 78}Note: dy/dx for factor levels is the discrete change from the base level.{txt}{p_end}
+{res}{txt}
+{com}. //_14
+. //  Estimación del modelo probit
+. 
+. probit empleo i.sexo c.edad c.edad#c.edad
+
+{res}{txt}Iteration 0:{space 3}log likelihood = {res:  -13385,8}  
+Iteration 1:{space 3}log likelihood = {res:-11523,923}  
+Iteration 2:{space 3}log likelihood = {res:-11522,197}  
+Iteration 3:{space 3}log likelihood = {res:-11522,197}  
+{res}
+{txt}Probit regression{col 49}Number of obs{col 67}= {res}    20.292
+{txt}{col 49}LR chi2({res}3{txt}){col 67}= {res}   3727,21
+{txt}{col 49}Prob > chi2{col 67}= {res}    0,0000
+{txt}Log likelihood = {res}-11522,197{txt}{col 49}Pseudo R2{col 67}= {res}    0,1392
+
+{txt}{hline 14}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 1}       empleo{col 15}{c |}      Coef.{col 27}   Std. Err.{col 39}      z{col 47}   P>|z|{col 55}     [95% Con{col 68}f. Interval]
+{hline 14}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{space 9}sexo {c |}
+{space 7}Mujer  {c |}{col 15}{res}{space 2}-,3754802{col 27}{space 2} ,0192187{col 38}{space 1}  -19,54{col 47}{space 3}0,000{col 55}{space 4}-,4131482{col 68}{space 3}-,3378121
+{txt}{space 9}edad {c |}{col 15}{res}{space 2} ,2868713{col 27}{space 2}  ,005185{col 38}{space 1}   55,33{col 47}{space 3}0,000{col 55}{space 4} ,2767088{col 68}{space 3} ,2970338
+{txt}{space 13} {c |}
+c.edad#c.edad {c |}{col 15}{res}{space 2}-,0033169{col 27}{space 2}  ,000061{col 38}{space 1}  -54,35{col 47}{space 3}0,000{col 55}{space 4}-,0034366{col 68}{space 3}-,0031973
+{txt}{space 13} {c |}
+{space 8}_cons {c |}{col 15}{res}{space 2}-5,091976{col 27}{space 2} ,1023362{col 38}{space 1}  -49,76{col 47}{space 3}0,000{col 55}{space 4}-5,292551{col 68}{space 3}-4,891401
+{txt}{hline 14}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+
+{com}. 
+. //  Efectos marginales
+. 
+. margins, dydx(edad sexo)
+{res}
+{txt}Average marginal effects{col 49}Number of obs{col 67}= {res}    20.292
+{txt}{col 1}Model VCE{col 14}: {res}OIM
+
+{txt}{p2colset 1 14 16 2}{...}
+{p2col:Expression}:{space 1}{res:Pr(empleo), predict()}{p_end}
+{p2colreset}{...}
+{txt}{p2colset 1 14 16 2}{...}
+{p2col:dy/dx w.r.t.}:{space 1}{res:2.sexo edad}{p_end}
+{p2colreset}{...}
+
+{res}{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 14}{c |}{col 26} Delta-method
+{col 14}{c |}      dy/dx{col 26}   Std. Err.{col 38}      z{col 46}   P>|z|{col 54}     [95% Con{col 67}f. Interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{space 8}sexo {c |}
+{space 6}Mujer  {c |}{col 14}{res}{space 2} -,121321{col 26}{space 2} ,0061259{col 37}{space 1}  -19,80{col 46}{space 3}0,000{col 54}{space 4}-,1333275{col 67}{space 3}-,1093145
+{txt}{space 8}edad {c |}{col 14}{res}{space 2}-,0022312{col 26}{space 2} ,0002354{col 37}{space 1}   -9,48{col 46}{space 3}0,000{col 54}{space 4}-,0026926{col 67}{space 3}-,0017697
+{txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{p 0 6 0 78}Note: dy/dx for factor levels is the discrete change from the base level.{txt}{p_end}
+{res}{txt}
+{com}. //_15
+. codebook aportacionesg
+
+{txt}{hline}
+{res}aportacionesg{right:Aportaciones a planes privados de pensiones individuales (brutas)}
+{txt}{hline}
+
+{col 19}type:  numeric ({res}float{txt})
+
+{col 18}range:  [{res}0{txt},{res}24000{txt}]{col 55}units:  {res},01
+{col 10}{txt}unique values:  {res}220{col 51}{txt}missing .:  {res}0{txt}/{res}20.292
+
+{txt}{col 19}mean:{res}{col 26} 118,997
+{txt}{col 15}std. dev:{res}{col 26} 673,086
+
+{txt}{col 12}percentiles:{col 32}10%{col 42}25%{col 52}50%{col 62}75%{col 72}90%
+{res}{col 27}       0{col 37}       0{col 47}       0{col 57}       0{col 67}       0
+{txt}
+{com}. //_16
+. //  Estimación del modelo tobit
+. 
+. tobit aportacionesg i.sexo c.edad c.edad#c.edad i.educg, ll(0)
+{res}
+{txt}Tobit regression{col 49}Number of obs{col 67}= {res}    20.292
+{txt}{col 49}   Uncensored{col 67}= {res}     1.555
+{txt}{col 1}Limits: lower = {res:0}{col 49}   Left-censored{col 67}= {res}    18.737
+{txt}{col 1}        upper = {res:+inf}{col 49}   Right-censored{col 67}= {res}         0
+
+{txt}{col 49}LR chi2({res}5{txt}){col 67}= {res}   1395,55
+{txt}{col 49}Prob > chi2{col 67}= {res}    0,0000
+{txt}Log likelihood = {res}-17863,536{txt}{col 49}Pseudo R2{col 67}= {res}    0,0376
+
+{txt}{hline 23}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 1}         aportacionesg{col 24}{c |}      Coef.{col 36}   Std. Err.{col 48}      t{col 56}   P>|t|{col 64}     [95% Con{col 77}f. Interval]
+{hline 23}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{space 18}sexo {c |}
+{space 16}Mujer  {c |}{col 24}{res}{space 2}-498,8578{col 36}{space 2}  94,7571{col 47}{space 1}   -5,26{col 56}{space 3}0,000{col 64}{space 4}-684,5894{col 77}{space 3}-313,1263
+{txt}{space 18}edad {c |}{col 24}{res}{space 2} 544,6668{col 36}{space 2} 48,05013{col 47}{space 1}   11,34{col 56}{space 3}0,000{col 64}{space 4} 450,4846{col 77}{space 3} 638,8489
+{txt}{space 22} {c |}
+{space 9}c.edad#c.edad {c |}{col 24}{res}{space 2}-4,479357{col 36}{space 2} ,4949234{col 47}{space 1}   -9,05{col 56}{space 3}0,000{col 64}{space 4}-5,449447{col 77}{space 3}-3,509267
+{txt}{space 22} {c |}
+{space 17}educg {c |}
+Nivel educativo medio  {c |}{col 24}{res}{space 2} 984,3967{col 36}{space 2} 135,6877{col 47}{space 1}    7,25{col 56}{space 3}0,000{col 64}{space 4} 718,4379{col 77}{space 3} 1250,356
+{txt}{space 1}Nivel educativo alto  {c |}{col 24}{res}{space 2} 2495,094{col 36}{space 2} 121,1938{col 47}{space 1}   20,59{col 56}{space 3}0,000{col 64}{space 4} 2257,544{col 77}{space 3} 2732,643
+{txt}{space 22} {c |}
+{space 17}_cons {c |}{col 24}{res}{space 2}-21310,24{col 36}{space 2} 1189,214{col 47}{space 1}  -17,92{col 56}{space 3}0,000{col 64}{space 4} -23641,2{col 77}{space 3}-18979,29
+{txt}{hline 23}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+                /sigma {c |}{col 24}{res}{space 2}  3431,72{col 36}{space 2} 72,54803{col 64}{space 4} 3289,519{col 77}{space 3}  3573,92
+{txt}{hline 23}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+
+{com}. 
+. //  Efectos marginales
+. 
+. margins, dydx(sexo edad educg)
+{res}
+{txt}Average marginal effects{col 49}Number of obs{col 67}= {res}    20.292
+{txt}{col 1}Model VCE{col 14}: {res}OIM
+
+{txt}{p2colset 1 14 16 2}{...}
+{p2col:Expression}:{space 1}{res:Linear prediction, predict()}{p_end}
+{p2colreset}{...}
+{txt}{p2colset 1 14 16 2}{...}
+{p2col:dy/dx w.r.t.}:{space 1}{res:2.sexo edad 2.educg 3.educg}{p_end}
+{p2colreset}{...}
+
+{res}{txt}{hline 23}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 24}{c |}{col 36} Delta-method
+{col 24}{c |}      dy/dx{col 36}   Std. Err.{col 48}      t{col 56}   P>|t|{col 64}     [95% Con{col 77}f. Interval]
+{hline 23}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{space 18}sexo {c |}
+{space 16}Mujer  {c |}{col 24}{res}{space 2}-498,8578{col 36}{space 2}  94,7571{col 47}{space 1}   -5,26{col 56}{space 3}0,000{col 64}{space 4}-684,5894{col 77}{space 3}-313,1263
+{txt}{space 18}edad {c |}{col 24}{res}{space 2} 153,4709{col 36}{space 2} 7,290909{col 47}{space 1}   21,05{col 56}{space 3}0,000{col 64}{space 4} 139,1801{col 77}{space 3} 167,7616
+{txt}{space 22} {c |}
+{space 17}educg {c |}
+Nivel educativo medio  {c |}{col 24}{res}{space 2} 984,3967{col 36}{space 2} 135,6877{col 47}{space 1}    7,25{col 56}{space 3}0,000{col 64}{space 4} 718,4379{col 77}{space 3} 1250,356
+{txt}{space 1}Nivel educativo alto  {c |}{col 24}{res}{space 2} 2495,094{col 36}{space 2} 121,1938{col 47}{space 1}   20,59{col 56}{space 3}0,000{col 64}{space 4} 2257,544{col 77}{space 3} 2732,643
+{txt}{hline 23}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{p 0 6 0 88}Note: dy/dx for factor levels is the discrete change from the base level.{txt}{p_end}
+{res}{txt}
+{com}. //_17
+. //  Exploramos la variable salud
+. 
+. tab salud
+
+     {txt}Estado {c |}
+ general de {c |}
+      salud {c |}      Freq.     Percent        Cum.
+{hline 12}{c +}{hline 35}
+  Muy bueno {c |}{res}       5177       25,51       25,51
+{txt}      Bueno {c |}{res}      11426       56,31       81,82
+{txt}    Regular {c |}{res}       2885       14,22       96,04
+{txt}       Malo {c |}{res}        643        3,17       99,21
+{txt}   Muy malo {c |}{res}        161        0,79      100,00
+{txt}{hline 12}{c +}{hline 35}
+      Total {c |}{res}      20292      100,00
+{txt}
+{com}. tab salud, nolabel
+
+     {txt}Estado {c |}
+ general de {c |}
+      salud {c |}      Freq.     Percent        Cum.
+{hline 12}{c +}{hline 35}
+          1 {c |}{res}       5177       25,51       25,51
+{txt}          2 {c |}{res}      11426       56,31       81,82
+{txt}          3 {c |}{res}       2885       14,22       96,04
+{txt}          4 {c |}{res}        643        3,17       99,21
+{txt}          5 {c |}{res}        161        0,79      100,00
+{txt}{hline 12}{c +}{hline 35}
+      Total {c |}{res}      20292      100,00
+{txt}
+{com}. 
+. //  Estimación del modelo logit ordenado
+. 
+. ologit salud i.sexo c.edad c.edad#c.edad i.educg
+
+{res}{txt}Iteration 0:{space 3}log likelihood = {res:-22260,137}  
+Iteration 1:{space 3}log likelihood = {res:-20489,407}  
+Iteration 2:{space 3}log likelihood = {res:-20436,713}  
+Iteration 3:{space 3}log likelihood = {res:-20436,618}  
+Iteration 4:{space 3}log likelihood = {res:-20436,618}  
+{res}
+{txt}Ordered logistic regression{col 49}Number of obs{col 67}= {res}    20.292
+{txt}{col 49}LR chi2({res}5{txt}){col 67}= {res}   3647,04
+{txt}{col 49}Prob > chi2{col 67}= {res}    0,0000
+{txt}Log likelihood = {res}-20436,618{txt}{col 49}Pseudo R2{col 67}= {res}    0,0819
+
+{txt}{hline 23}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 1}                 salud{col 24}{c |}      Coef.{col 36}   Std. Err.{col 48}      z{col 56}   P>|z|{col 64}     [95% Con{col 77}f. Interval]
+{hline 23}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{space 18}sexo {c |}
+{space 16}Mujer  {c |}{col 24}{res}{space 2} ,1641013{col 36}{space 2} ,0278271{col 47}{space 1}    5,90{col 56}{space 3}0,000{col 64}{space 4} ,1095612{col 77}{space 3} ,2186414
+{txt}{space 18}edad {c |}{col 24}{res}{space 2} ,0761111{col 36}{space 2} ,0073223{col 47}{space 1}   10,39{col 56}{space 3}0,000{col 64}{space 4} ,0617597{col 77}{space 3} ,0904624
+{txt}{space 22} {c |}
+{space 9}c.edad#c.edad {c |}{col 24}{res}{space 2}-,0002204{col 36}{space 2}  ,000087{col 47}{space 1}   -2,53{col 56}{space 3}0,011{col 64}{space 4}-,0003909{col 77}{space 3}-,0000498
+{txt}{space 22} {c |}
+{space 17}educg {c |}
+Nivel educativo medio  {c |}{col 24}{res}{space 2}-,4981022{col 36}{space 2}  ,035834{col 47}{space 1}  -13,90{col 56}{space 3}0,000{col 64}{space 4}-,5683356{col 77}{space 3}-,4278688
+{txt}{space 1}Nivel educativo alto  {c |}{col 24}{res}{space 2}-,8882005{col 36}{space 2} ,0339326{col 47}{space 1}  -26,18{col 56}{space 3}0,000{col 64}{space 4}-,9547071{col 77}{space 3}-,8216938
+{txt}{hline 23}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+                 /cut1 {c |}{col 24}{res}{space 2} 1,253581{col 36}{space 2} ,1448187{col 64}{space 4}  ,969742{col 77}{space 3} 1,537421
+{txt}                 /cut2 {c |}{col 24}{res}{space 2} 4,234112{col 36}{space 2} ,1474867{col 64}{space 4} 3,945043{col 77}{space 3} 4,523181
+{txt}                 /cut3 {c |}{col 24}{res}{space 2}  6,02135{col 36}{space 2} ,1502783{col 64}{space 4}  5,72681{col 77}{space 3}  6,31589
+{txt}                 /cut4 {c |}{col 24}{res}{space 2} 7,686682{col 36}{space 2}   ,16584{col 64}{space 4} 7,361642{col 77}{space 3} 8,011723
+{txt}{hline 23}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+
+{com}. 
+. //  Efectos marginales
+. 
+. margins, dydx(sexo edad educg)
+{res}
+{txt}Average marginal effects{col 49}Number of obs{col 67}= {res}    20.292
+{txt}{col 1}Model VCE{col 14}: {res}OIM
+
+{txt}{p2colset 1 14 16 2}{...}
+{p2col:dy/dx w.r.t.}:{space 1}{res:2.sexo edad 2.educg 3.educg}{p_end}
+{p2colreset}{...}
+{txt}{p2colset 1 14 16 2}{...}
+{p2col:1._predict}:{space 1}{res:Pr(salud==1), predict(pr outcome(1))}{p_end}
+{p2colreset}{...}
+{txt}{p2colset 1 14 16 2}{...}
+{p2col:2._predict}:{space 1}{res:Pr(salud==2), predict(pr outcome(2))}{p_end}
+{p2colreset}{...}
+{txt}{p2colset 1 14 16 2}{...}
+{p2col:3._predict}:{space 1}{res:Pr(salud==3), predict(pr outcome(3))}{p_end}
+{p2colreset}{...}
+{txt}{p2colset 1 14 16 2}{...}
+{p2col:4._predict}:{space 1}{res:Pr(salud==4), predict(pr outcome(4))}{p_end}
+{p2colreset}{...}
+{txt}{p2colset 1 14 16 2}{...}
+{p2col:5._predict}:{space 1}{res:Pr(salud==5), predict(pr outcome(5))}{p_end}
+{p2colreset}{...}
+
+{res}{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 14}{c |}{col 26} Delta-method
+{col 14}{c |}      dy/dx{col 26}   Std. Err.{col 38}      z{col 46}   P>|z|{col 54}     [95% Con{col 67}f. Interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 1}{res}1.sexo      {col 14}{txt}{c |}  (base outcome)
+{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{res}2.sexo       {txt}{c |}
+{space 4}_predict {c |}
+{space 10}1  {c |}{col 14}{res}{space 2}-,0271248{col 26}{space 2}    ,0046{col 37}{space 1}   -5,90{col 46}{space 3}0,000{col 54}{space 4}-,0361406{col 67}{space 3} -,018109
+{txt}{space 10}2  {c |}{col 14}{res}{space 2} ,0048701{col 26}{space 2} ,0008921{col 37}{space 1}    5,46{col 46}{space 3}0,000{col 54}{space 4} ,0031215{col 67}{space 3} ,0066186
+{txt}{space 10}3  {c |}{col 14}{res}{space 2} ,0161653{col 26}{space 2} ,0027451{col 37}{space 1}    5,89{col 46}{space 3}0,000{col 54}{space 4}  ,010785{col 67}{space 3} ,0215456
+{txt}{space 10}4  {c |}{col 14}{res}{space 2} ,0048092{col 26}{space 2}  ,000832{col 37}{space 1}    5,78{col 46}{space 3}0,000{col 54}{space 4} ,0031786{col 67}{space 3} ,0064398
+{txt}{space 10}5  {c |}{col 14}{res}{space 2} ,0012803{col 26}{space 2}  ,000238{col 37}{space 1}    5,38{col 46}{space 3}0,000{col 54}{space 4} ,0008138{col 67}{space 3} ,0017468
+{txt}{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{res}edad         {txt}{c |}
+{space 4}_predict {c |}
+{space 10}1  {c |}{col 14}{res}{space 2}-,0097156{col 26}{space 2} ,0001787{col 37}{space 1}  -54,37{col 46}{space 3}0,000{col 54}{space 4}-,0100658{col 67}{space 3}-,0093653
+{txt}{space 10}2  {c |}{col 14}{res}{space 2} ,0023436{col 26}{space 2} ,0002435{col 37}{space 1}    9,62{col 46}{space 3}0,000{col 54}{space 4} ,0018662{col 67}{space 3} ,0028209
+{txt}{space 10}3  {c |}{col 14}{res}{space 2} ,0053864{col 26}{space 2}  ,000166{col 37}{space 1}   32,44{col 46}{space 3}0,000{col 54}{space 4}  ,005061{col 67}{space 3} ,0057118
+{txt}{space 10}4  {c |}{col 14}{res}{space 2} ,0015694{col 26}{space 2} ,0000829{col 37}{space 1}   18,93{col 46}{space 3}0,000{col 54}{space 4} ,0014069{col 67}{space 3}  ,001732
+{txt}{space 10}5  {c |}{col 14}{res}{space 2} ,0004162{col 26}{space 2} ,0000364{col 37}{space 1}   11,43{col 46}{space 3}0,000{col 54}{space 4} ,0003449{col 67}{space 3} ,0004876
+{txt}{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 1}{res}1.educg     {col 14}{txt}{c |}  (base outcome)
+{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{res}2.educg      {txt}{c |}
+{space 4}_predict {c |}
+{space 10}1  {c |}{col 14}{res}{space 2} ,0757867{col 26}{space 2} ,0055962{col 37}{space 1}   13,54{col 46}{space 3}0,000{col 54}{space 4} ,0648183{col 67}{space 3} ,0867552
+{txt}{space 10}2  {c |}{col 14}{res}{space 2}-,0008902{col 26}{space 2} ,0013859{col 37}{space 1}   -0,64{col 46}{space 3}0,521{col 54}{space 4}-,0036065{col 67}{space 3} ,0018261
+{txt}{space 10}3  {c |}{col 14}{res}{space 2}-,0543804{col 26}{space 2} ,0039026{col 37}{space 1}  -13,93{col 46}{space 3}0,000{col 54}{space 4}-,0620293{col 67}{space 3}-,0467315
+{txt}{space 10}4  {c |}{col 14}{res}{space 2}-,0162191{col 26}{space 2}  ,001246{col 37}{space 1}  -13,02{col 46}{space 3}0,000{col 54}{space 4}-,0186612{col 67}{space 3} -,013777
+{txt}{space 10}5  {c |}{col 14}{res}{space 2} -,004297{col 26}{space 2} ,0004393{col 37}{space 1}   -9,78{col 46}{space 3}0,000{col 54}{space 4} -,005158{col 67}{space 3}-,0034361
+{txt}{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{res}3.educg      {txt}{c |}
+{space 4}_predict {c |}
+{space 10}1  {c |}{col 14}{res}{space 2} ,1468749{col 26}{space 2} ,0055928{col 37}{space 1}   26,26{col 46}{space 3}0,000{col 54}{space 4} ,1359131{col 67}{space 3} ,1578366
+{txt}{space 10}2  {c |}{col 14}{res}{space 2}-,0265237{col 26}{space 2} ,0023665{col 37}{space 1}  -11,21{col 46}{space 3}0,000{col 54}{space 4}-,0311619{col 67}{space 3}-,0218855
+{txt}{space 10}3  {c |}{col 14}{res}{space 2}-,0890979{col 26}{space 2}  ,003535{col 37}{space 1}  -25,20{col 46}{space 3}0,000{col 54}{space 4}-,0960264{col 67}{space 3}-,0821694
+{txt}{space 10}4  {c |}{col 14}{res}{space 2}-,0247866{col 26}{space 2} ,0012741{col 37}{space 1}  -19,45{col 46}{space 3}0,000{col 54}{space 4}-,0272838{col 67}{space 3}-,0222895
+{txt}{space 10}5  {c |}{col 14}{res}{space 2}-,0064666{col 26}{space 2} ,0005513{col 37}{space 1}  -11,73{col 46}{space 3}0,000{col 54}{space 4}-,0075471{col 67}{space 3}-,0053862
+{txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{p 0 6 0 78}Note: dy/dx for factor levels is the discrete change from the base level.{txt}{p_end}
+{res}{txt}
+{com}. //_18
+. svyset psu [pweight=peso], strata(region) vce(linearized) singleunit(missing)
+
+      {txt}pweight:{col 16}{res}peso
+          {txt}VCE:{col 16}{res}linearized
+  {txt}Single unit:{col 16}{res}missing
+     {txt}Strata 1:{col 16}{res}region
+         {txt}SU 1:{col 16}{res}psu
+        {txt}FPC 1:{col 16}<zero>
+{p2colreset}{...}
+
+{com}. //_19
+. svy: regress logsalario c.edad c.edad#c.edad i.sexo#c.edad i.sexo##educg
+{res}{txt}(running {bf:regress} on estimation sample)
+{res}
+{txt}Survey: Linear regression
+
+{col 1}Number of strata{col 20}= {res}       19{txt}{col 48}Number of obs{col 66}= {res}     11.599
+{txt}{col 1}Number of PSUs{col 20}= {res}    2.133{txt}{col 48}Population size{col 66}={res}  17.156.324
+{txt}{col 48}Design df{col 66}= {res}      2.114
+{txt}{col 48}F({res}   8{txt},{res}   2107{txt}){col 66}= {res}     147,65
+{txt}{col 48}Prob > F{col 66}= {res}     0,0000
+{txt}{col 48}R-squared{col 66}= {res}     0,2038
+
+{txt}{hline 29}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 30}{c |}{col 42}  Linearized
+{col 1}                  logsalario{col 30}{c |}      Coef.{col 42}   Std. Err.{col 54}      t{col 62}   P>|t|{col 70}     [95% Con{col 83}f. Interval]
+{hline 29}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{space 24}edad {c |}{col 30}{res}{space 2}  ,071094{col 42}{space 2} ,0068759{col 53}{space 1}   10,34{col 62}{space 3}0,000{col 70}{space 4} ,0576099{col 83}{space 3} ,0845782
+{txt}{space 28} {c |}
+{space 15}c.edad#c.edad {c |}{col 30}{res}{space 2}-,0005521{col 42}{space 2} ,0000774{col 53}{space 1}   -7,14{col 62}{space 3}0,000{col 70}{space 4}-,0007038{col 83}{space 3}-,0004004
+{txt}{space 28} {c |}
+{space 17}sexo#c.edad {c |}
+{space 22}Mujer  {c |}{col 30}{res}{space 2}-,0035596{col 42}{space 2} ,0016238{col 53}{space 1}   -2,19{col 62}{space 3}0,028{col 70}{space 4} -,006744{col 83}{space 3}-,0003752
+{txt}{space 28} {c |}
+{space 24}sexo {c |}
+{space 22}Mujer  {c |}{col 30}{res}{space 2}-,0951359{col 42}{space 2} ,0826891{col 53}{space 1}   -1,15{col 62}{space 3}0,250{col 70}{space 4}-,2572964{col 83}{space 3} ,0670247
+{txt}{space 28} {c |}
+{space 23}educg {c |}
+{space 6}Nivel educativo medio  {c |}{col 30}{res}{space 2} ,2449096{col 42}{space 2} ,0334514{col 53}{space 1}    7,32{col 62}{space 3}0,000{col 70}{space 4} ,1793085{col 83}{space 3} ,3105106
+{txt}{space 7}Nivel educativo alto  {c |}{col 30}{res}{space 2} ,5647163{col 42}{space 2} ,0316199{col 53}{space 1}   17,86{col 62}{space 3}0,000{col 70}{space 4}  ,502707{col 83}{space 3} ,6267256
+{txt}{space 28} {c |}
+{space 18}sexo#educg {c |}
+Mujer#Nivel educativo medio  {c |}{col 30}{res}{space 2} -,068334{col 42}{space 2} ,0537433{col 53}{space 1}   -1,27{col 62}{space 3}0,204{col 70}{space 4}-,1737293{col 83}{space 3} ,0370613
+{txt}{space 1}Mujer#Nivel educativo alto  {c |}{col 30}{res}{space 2} ,1002394{col 42}{space 2} ,0428483{col 53}{space 1}    2,34{col 62}{space 3}0,019{col 70}{space 4} ,0162103{col 83}{space 3} ,1842686
+{txt}{space 28} {c |}
+{space 23}_cons {c |}{col 30}{res}{space 2} 5,140099{col 42}{space 2} ,1488365{col 53}{space 1}   34,54{col 62}{space 3}0,000{col 70}{space 4} 4,848217{col 83}{space 3}  5,43198
+{txt}{hline 29}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+
+{com}. //_20
+. //  Abrimos el archivo
+. 
+. use "ecv18w.dta", clear
+{txt}(ECV 2018 (índice de bienestar))
+
+{com}. 
+. //  Análisis de componentes principales
+. 
+. pca htelef htv hpc hlavadora hcoche
+
+{txt}Principal components/correlation{col 50}Number of obs    = {res}    33.710
+{col 50}{txt}Number of comp.  = {res}         5
+{col 50}{txt}Trace            {col 67}=  {res}        5
+{col 5}{txt}Rotation: (unrotated = principal){col 50}Rho              = {res}    1,0000
+
+{txt}{col 5}{hline 13}{c TT}{hline 60}
+{col 5}   Component {c |}   Eigenvalue   Difference         Proportion   Cumulative
+{col 5}{hline 13}{c +}{hline 60}
+{col 5}{ralign 12:Comp1} {c |}{res}      1,47187      ,414747             0,2944       0,2944
+{txt}{col 5}{ralign 12:Comp2} {c |}{res}      1,05712      ,103425             0,2114       0,5058
+{txt}{col 5}{ralign 12:Comp3} {c |}{res}      ,953694      ,053114             0,1907       0,6965
+{txt}{col 5}{ralign 12:Comp4} {c |}{res}       ,90058      ,283837             0,1801       0,8767
+{txt}{col 5}{ralign 12:Comp5} {c |}{res}      ,616743            .             0,1233       1,0000
+{txt}{col 5}{hline 13}{c BT}{hline 60}
+
+Principal components (eigenvectors) 
+
+{space 4}{hline 13}{c  TT}{hline 10}{hline 10}{hline 10}{hline 10}{hline 10}{c  TT}{hline 13}
+{space 4}{space 0}{ralign 12:Variable}{space 1}{c |}{space 1}{ralign 8:Comp1}{space 1}{space 1}{ralign 8:Comp2}{space 1}{space 1}{ralign 8:Comp3}{space 1}{space 1}{ralign 8:Comp4}{space 1}{space 1}{ralign 8:Comp5}{space 1}{c |}{space 1}{ralign 11:Unexplained}{space 1}
+{space 4}{hline 13}{c   +}{hline 10}{hline 10}{hline 10}{hline 10}{hline 10}{c   +}{hline 13}
+{space 4}{space 0}{ralign 12:htelef}{space 1}{c |}{space 1}{ralign 8:{res:{sf:  0,3090}}}{space 1}{space 1}{ralign 8:{res:{sf:  0,1566}}}{space 1}{space 1}{ralign 8:{res:{sf:  0,8789}}}{space 1}{space 1}{ralign 8:{res:{sf:  0,3280}}}{space 1}{space 1}{ralign 8:{res:{sf: -0,0017}}}{space 1}{c |}{space 1}{center 11:{res:{sf:          0}}}{space 1}
+{space 4}{space 0}{ralign 12:htv}{space 1}{c |}{space 1}{ralign 8:{res:{sf:  0,1488}}}{space 1}{space 1}{ralign 8:{res:{sf:  0,7171}}}{space 1}{space 1}{ralign 8:{res:{sf: -0,3870}}}{space 1}{space 1}{ralign 8:{res:{sf:  0,5548}}}{space 1}{space 1}{ralign 8:{res:{sf:  0,0770}}}{space 1}{c |}{space 1}{center 11:{res:{sf:          0}}}{space 1}
+{space 4}{space 0}{ralign 12:hpc}{space 1}{c |}{space 1}{ralign 8:{res:{sf:  0,6264}}}{space 1}{space 1}{ralign 8:{res:{sf: -0,2952}}}{space 1}{space 1}{ralign 8:{res:{sf: -0,1663}}}{space 1}{space 1}{ralign 8:{res:{sf:  0,0001}}}{space 1}{space 1}{ralign 8:{res:{sf:  0,7020}}}{space 1}{c |}{space 1}{center 11:{res:{sf:          0}}}{space 1}
+{space 4}{space 0}{ralign 12:hlavadora}{space 1}{c |}{space 1}{ralign 8:{res:{sf:  0,2887}}}{space 1}{space 1}{ralign 8:{res:{sf:  0,5734}}}{space 1}{space 1}{ralign 8:{res:{sf:  0,0809}}}{space 1}{space 1}{ralign 8:{res:{sf: -0,7625}}}{space 1}{space 1}{ralign 8:{res:{sf:  0,0029}}}{space 1}{c |}{space 1}{center 11:{res:{sf:          0}}}{space 1}
+{space 4}{space 0}{ralign 12:hcoche}{space 1}{c |}{space 1}{ralign 8:{res:{sf:  0,6377}}}{space 1}{space 1}{ralign 8:{res:{sf: -0,2128}}}{space 1}{space 1}{ralign 8:{res:{sf: -0,2088}}}{space 1}{space 1}{ralign 8:{res:{sf:  0,0566}}}{space 1}{space 1}{ralign 8:{res:{sf: -0,7080}}}{space 1}{c |}{space 1}{center 11:{res:{sf:          0}}}{space 1}
+{space 4}{hline 13}{c  BT}{hline 10}{hline 10}{hline 10}{hline 10}{hline 10}{c  BT}{hline 13}
+
+{com}. 
+. //  Calculamos las 2 primeras componentes principales
+. 
+. predict pc1 pc2
+{txt}({bf:score} assumed)
+(3 components skipped)
+
+Scoring coefficients 
+{col 5}sum of squares(column-loading) = 1
+
+{space 4}{hline 13}{c  TT}{hline 10}{hline 10}{hline 10}{hline 10}{hline 10}
+{space 4}{space 0}{ralign 12:Variable}{space 1}{c |}{space 1}{ralign 8:Comp1}{space 1}{space 1}{ralign 8:Comp2}{space 1}{space 1}{ralign 8:Comp3}{space 1}{space 1}{ralign 8:Comp4}{space 1}{space 1}{ralign 8:Comp5}{space 1}
+{space 4}{hline 13}{c   +}{hline 10}{hline 10}{hline 10}{hline 10}{hline 10}
+{space 4}{space 0}{ralign 12:htelef}{space 1}{c |}{space 1}{ralign 8:{res:{sf:  0,3090}}}{space 1}{space 1}{ralign 8:{res:{sf:  0,1566}}}{space 1}{space 1}{ralign 8:{res:{sf:  0,8789}}}{space 1}{space 1}{ralign 8:{res:{sf:  0,3280}}}{space 1}{space 1}{ralign 8:{res:{sf: -0,0017}}}{space 1}
+{space 4}{space 0}{ralign 12:htv}{space 1}{c |}{space 1}{ralign 8:{res:{sf:  0,1488}}}{space 1}{space 1}{ralign 8:{res:{sf:  0,7171}}}{space 1}{space 1}{ralign 8:{res:{sf: -0,3870}}}{space 1}{space 1}{ralign 8:{res:{sf:  0,5548}}}{space 1}{space 1}{ralign 8:{res:{sf:  0,0770}}}{space 1}
+{space 4}{space 0}{ralign 12:hpc}{space 1}{c |}{space 1}{ralign 8:{res:{sf:  0,6264}}}{space 1}{space 1}{ralign 8:{res:{sf: -0,2952}}}{space 1}{space 1}{ralign 8:{res:{sf: -0,1663}}}{space 1}{space 1}{ralign 8:{res:{sf:  0,0001}}}{space 1}{space 1}{ralign 8:{res:{sf:  0,7020}}}{space 1}
+{space 4}{space 0}{ralign 12:hlavadora}{space 1}{c |}{space 1}{ralign 8:{res:{sf:  0,2887}}}{space 1}{space 1}{ralign 8:{res:{sf:  0,5734}}}{space 1}{space 1}{ralign 8:{res:{sf:  0,0809}}}{space 1}{space 1}{ralign 8:{res:{sf: -0,7625}}}{space 1}{space 1}{ralign 8:{res:{sf:  0,0029}}}{space 1}
+{space 4}{space 0}{ralign 12:hcoche}{space 1}{c |}{space 1}{ralign 8:{res:{sf:  0,6377}}}{space 1}{space 1}{ralign 8:{res:{sf: -0,2128}}}{space 1}{space 1}{ralign 8:{res:{sf: -0,2088}}}{space 1}{space 1}{ralign 8:{res:{sf:  0,0566}}}{space 1}{space 1}{ralign 8:{res:{sf: -0,7080}}}{space 1}
+{space 4}{hline 13}{c  BT}{hline 10}{hline 10}{hline 10}{hline 10}{hline 10}
+
+{com}. 
+. //  Análisis de correspondencias múltiple
+. 
+. mca htelef htv hpc hlavadora hcoche
+{res}
+{txt}Multiple/Joint correspondence analysis{col 48}Number of obs     = {res}    33.710
+{col 48}{txt}Total inertia     = {res} ,01924168
+{col 5}{txt}Method: {res}Burt/adjusted inertias{col 48}{txt}Number of axes    = {res}         2
+
+{txt}{col 7}          {c |}   principal               cumul 
+{col 7}Dimension {c |}    inertia     percent   percent
+{col 5}{hline 12}{c +}{hline 34}
+{col 4}{ralign 12:dim 1} {c |}{res}{col 21}  ,013916{col 33}  72,32{col 44}  72,32
+{txt}{col 4}{ralign 12:dim 2} {c |}{res}{col 21} ,0002039{col 33}   1,06{col 44}  73,38
+{txt}{col 5}{hline 12}{c +}{hline 34}
+{col 5}{ralign 11:Total} {c |}{res}{col 21} ,0192417{col 33} 100,00
+
+{txt}{help ca_statistics##|_new:Statistics} for column categories in standard normalization
+
+{space 4}{space 13}{c |}{space 1}{rcenter 25:overall}{space 1}{c |}{space 1}{rcenter 25:dimension_1}{space 1}{c |}{space 1}{rcenter 25:dimension_2}{space 1}
+{space 4}{space 0}{ralign 12:Categories}{space 1}{c |}{space 1}{ralign 7:mass}{space 1}{space 1}{ralign 7:quality}{space 1}{space 1}{ralign 7:%inert}{space 1}{c |}{space 1}{ralign 7:coord}{space 1}{space 1}{ralign 7:sqcorr}{space 1}{space 1}{ralign 7:contrib}{space 1}{c |}{space 1}{ralign 7:coord}{space 1}{space 1}{ralign 7:sqcorr}{space 1}{space 1}{ralign 7:contrib}{space 1}
+{space 4}{hline 13}{c   +}{hline 9}{hline 9}{hline 9}{c   +}{hline 9}{hline 9}{hline 9}{c   +}{hline 9}{hline 9}{hline 9}
+{space 4}{res:{lalign 13:htelef}}{c |}{space 9}{space 9}{space 9}{c |}{space 9}{space 9}{space 9}{c |}{space 9}{space 9}{space 9}
+{space 4}{space 0}{ralign 12:No}{space 1}{c |}{space 1}{ralign 7:{res:{sf:  0,001}}}{space 1}{space 1}{ralign 7:{res:{sf:  1,109}}}{space 1}{space 1}{ralign 7:{res:{sf:  0,062}}}{space 1}{c |}{space 1}{ralign 7:{res:{sf:  8,878}}}{space 1}{space 1}{ralign 7:{res:{sf:  1,105}}}{space 1}{space 1}{ralign 7:{res:{sf:  0,095}}}{space 1}{c |}{space 1}{ralign 7:{res:{sf:  4,499}}}{space 1}{space 1}{ralign 7:{res:{sf:  0,004}}}{space 1}{space 1}{ralign 7:{res:{sf:  0,024}}}{space 1}
+{space 4}{space 0}{ralign 12:Sí}{space 1}{c |}{space 1}{ralign 7:{res:{sf:  0,199}}}{space 1}{space 1}{ralign 7:{res:{sf:  1,109}}}{space 1}{space 1}{ralign 7:{res:{sf:  0,000}}}{space 1}{c |}{space 1}{ralign 7:{res:{sf: -0,054}}}{space 1}{space 1}{ralign 7:{res:{sf:  1,105}}}{space 1}{space 1}{ralign 7:{res:{sf:  0,001}}}{space 1}{c |}{space 1}{ralign 7:{res:{sf: -0,027}}}{space 1}{space 1}{ralign 7:{res:{sf:  0,004}}}{space 1}{space 1}{ralign 7:{res:{sf:  0,000}}}{space 1}
+{space 4}{hline 13}{c   +}{hline 9}{hline 9}{hline 9}{c   +}{hline 9}{hline 9}{hline 9}{c   +}{hline 9}{hline 9}{hline 9}
+{space 4}{res:{lalign 13:htv}}{c |}{space 9}{space 9}{space 9}{c |}{space 9}{space 9}{space 9}{c |}{space 9}{space 9}{space 9}
+{space 4}{space 0}{ralign 12:No}{space 1}{c |}{space 1}{ralign 7:{res:{sf:  0,001}}}{space 1}{space 1}{ralign 7:{res:{sf:  0,762}}}{space 1}{space 1}{ralign 7:{res:{sf:  0,028}}}{space 1}{c |}{space 1}{ralign 7:{res:{sf:  5,306}}}{space 1}{space 1}{ralign 7:{res:{sf:  0,568}}}{space 1}{space 1}{ralign 7:{res:{sf:  0,022}}}{space 1}{c |}{space 1}{ralign 7:{res:{sf: 25,576}}}{space 1}{space 1}{ralign 7:{res:{sf:  0,193}}}{space 1}{space 1}{ralign 7:{res:{sf:  0,512}}}{space 1}
+{space 4}{space 0}{ralign 12:Sí}{space 1}{c |}{space 1}{ralign 7:{res:{sf:  0,199}}}{space 1}{space 1}{ralign 7:{res:{sf:  0,762}}}{space 1}{space 1}{ralign 7:{res:{sf:  0,000}}}{space 1}{c |}{space 1}{ralign 7:{res:{sf: -0,021}}}{space 1}{space 1}{ralign 7:{res:{sf:  0,568}}}{space 1}{space 1}{ralign 7:{res:{sf:  0,000}}}{space 1}{c |}{space 1}{ralign 7:{res:{sf: -0,101}}}{space 1}{space 1}{ralign 7:{res:{sf:  0,193}}}{space 1}{space 1}{ralign 7:{res:{sf:  0,002}}}{space 1}
+{space 4}{hline 13}{c   +}{hline 9}{hline 9}{hline 9}{c   +}{hline 9}{hline 9}{hline 9}{c   +}{hline 9}{hline 9}{hline 9}
+{space 4}{res:{lalign 13:hpc}}{c |}{space 9}{space 9}{space 9}{c |}{space 9}{space 9}{space 9}{c |}{space 9}{space 9}{space 9}
+{space 4}{space 0}{ralign 12:No}{space 1}{c |}{space 1}{ralign 7:{res:{sf:  0,047}}}{space 1}{space 1}{ralign 7:{res:{sf:  0,684}}}{space 1}{space 1}{ralign 7:{res:{sf:  0,319}}}{space 1}{c |}{space 1}{ralign 7:{res:{sf:  2,543}}}{space 1}{space 1}{ralign 7:{res:{sf:  0,682}}}{space 1}{space 1}{ralign 7:{res:{sf:  0,301}}}{space 1}{c |}{space 1}{ralign 7:{res:{sf: -1,198}}}{space 1}{space 1}{ralign 7:{res:{sf:  0,002}}}{space 1}{space 1}{ralign 7:{res:{sf:  0,067}}}{space 1}
+{space 4}{space 0}{ralign 12:Sí}{space 1}{c |}{space 1}{ralign 7:{res:{sf:  0,153}}}{space 1}{space 1}{ralign 7:{res:{sf:  0,684}}}{space 1}{space 1}{ralign 7:{res:{sf:  0,097}}}{space 1}{c |}{space 1}{ralign 7:{res:{sf: -0,772}}}{space 1}{space 1}{ralign 7:{res:{sf:  0,682}}}{space 1}{space 1}{ralign 7:{res:{sf:  0,091}}}{space 1}{c |}{space 1}{ralign 7:{res:{sf:  0,364}}}{space 1}{space 1}{ralign 7:{res:{sf:  0,002}}}{space 1}{space 1}{ralign 7:{res:{sf:  0,020}}}{space 1}
+{space 4}{hline 13}{c   +}{hline 9}{hline 9}{hline 9}{c   +}{hline 9}{hline 9}{hline 9}{c   +}{hline 9}{hline 9}{hline 9}
+{space 4}{res:{lalign 13:hlavadora}}{c |}{space 9}{space 9}{space 9}{c |}{space 9}{space 9}{space 9}{c |}{space 9}{space 9}{space 9}
+{space 4}{space 0}{ralign 12:No}{space 1}{c |}{space 1}{ralign 7:{res:{sf:  0,001}}}{space 1}{space 1}{ralign 7:{res:{sf:  0,966}}}{space 1}{space 1}{ralign 7:{res:{sf:  0,066}}}{space 1}{c |}{space 1}{ralign 7:{res:{sf: 11,181}}}{space 1}{space 1}{ralign 7:{res:{sf:  0,914}}}{space 1}{space 1}{ralign 7:{res:{sf:  0,083}}}{space 1}{c |}{space 1}{ralign 7:{res:{sf: 22,206}}}{space 1}{space 1}{ralign 7:{res:{sf:  0,053}}}{space 1}{space 1}{ralign 7:{res:{sf:  0,328}}}{space 1}
+{space 4}{space 0}{ralign 12:Sí}{space 1}{c |}{space 1}{ralign 7:{res:{sf:  0,199}}}{space 1}{space 1}{ralign 7:{res:{sf:  0,966}}}{space 1}{space 1}{ralign 7:{res:{sf:  0,000}}}{space 1}{c |}{space 1}{ralign 7:{res:{sf: -0,037}}}{space 1}{space 1}{ralign 7:{res:{sf:  0,914}}}{space 1}{space 1}{ralign 7:{res:{sf:  0,000}}}{space 1}{c |}{space 1}{ralign 7:{res:{sf: -0,074}}}{space 1}{space 1}{ralign 7:{res:{sf:  0,053}}}{space 1}{space 1}{ralign 7:{res:{sf:  0,001}}}{space 1}
+{space 4}{hline 13}{c   +}{hline 9}{hline 9}{hline 9}{c   +}{hline 9}{hline 9}{hline 9}{c   +}{hline 9}{hline 9}{hline 9}
+{space 4}{res:{lalign 13:hcoche}}{c |}{space 9}{space 9}{space 9}{c |}{space 9}{space 9}{space 9}{c |}{space 9}{space 9}{space 9}
+{space 4}{space 0}{ralign 12:No}{space 1}{c |}{space 1}{ralign 7:{res:{sf:  0,031}}}{space 1}{space 1}{ralign 7:{res:{sf:  0,689}}}{space 1}{space 1}{ralign 7:{res:{sf:  0,360}}}{space 1}{c |}{space 1}{ralign 7:{res:{sf:  3,309}}}{space 1}{space 1}{ralign 7:{res:{sf:  0,688}}}{space 1}{space 1}{ralign 7:{res:{sf:  0,343}}}{space 1}{c |}{space 1}{ralign 7:{res:{sf: -1,104}}}{space 1}{space 1}{ralign 7:{res:{sf:  0,001}}}{space 1}{space 1}{ralign 7:{res:{sf:  0,038}}}{space 1}
+{space 4}{space 0}{ralign 12:Sí}{space 1}{c |}{space 1}{ralign 7:{res:{sf:  0,169}}}{space 1}{space 1}{ralign 7:{res:{sf:  0,689}}}{space 1}{space 1}{ralign 7:{res:{sf:  0,067}}}{space 1}{c |}{space 1}{ralign 7:{res:{sf: -0,614}}}{space 1}{space 1}{ralign 7:{res:{sf:  0,688}}}{space 1}{space 1}{ralign 7:{res:{sf:  0,064}}}{space 1}{c |}{space 1}{ralign 7:{res:{sf:  0,205}}}{space 1}{space 1}{ralign 7:{res:{sf:  0,001}}}{space 1}{space 1}{ralign 7:{res:{sf:  0,007}}}{space 1}
+{space 4}{hline 13}{c  BT}{hline 9}{hline 9}{hline 9}{c  BT}{hline 9}{hline 9}{hline 9}{c  BT}{hline 9}{hline 9}{hline 9}
+
+
+{com}. 
+. //  Calculamos las 2 primeras componentes principales
+. 
+. predict mc1 mc2
+{txt}(option {bf:rowscores} assumed)
+{res}{txt}
+{com}. 
+. //  Podemos calcular la correlación con la renta del hogar
+. 
+. correlate hrenta1 pc1
+{txt}(obs=33.710)
+
+             {c |}  hrenta1      pc1
+{hline 13}{c +}{hline 18}
+     hrenta1 {c |}{res}   1,0000
+         {txt}pc1 {c |}{res}   0,3369   1,0000
+
+{txt}
+{com}. correlate hrenta1 mc1
+{txt}(obs=33.734)
+
+             {c |}  hrenta1      mc1
+{hline 13}{c +}{hline 18}
+     hrenta1 {c |}{res}   1,0000
+         {txt}mc1 {c |}{res}  -0,3368   1,0000
+
+{txt}
+{com}. 
+. //  Podemos cambiar el signo de la componente (solo indica una dirección)
+. 
+. replace mc1 = -mc1
+{txt}(33.734 real changes made)
+
+{com}. correlate hrenta1 mc1
+{txt}(obs=33.734)
+
+             {c |}  hrenta1      mc1
+{hline 13}{c +}{hline 18}
+     hrenta1 {c |}{res}   1,0000
+         {txt}mc1 {c |}{res}   0,3368   1,0000
+
+{txt}
+{com}. //_21q
+. quietly: cd "D:\Dropbox\curso_stata\jtvalderrama.github.io"
+{txt}
+{com}. //_^
+. log close
+      {txt}name:  {res}<unnamed>
+       {txt}log:  {res}D:\Dropbox\curso_stata\jtvalderrama.github.io\stata3.smcl
+  {txt}log type:  {res}smcl
+ {txt}closed on:  {res} 1 Aug 2019, 08:02:30
+{txt}{.-}
+{smcl}
+{txt}{sf}{ul off}

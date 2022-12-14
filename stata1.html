@@ -1,0 +1,1137 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <meta name="author" content="José A. Valderrama" />
+  <title>Sesión 1. Introducción a Stata</title>
+  <style>
+    html {
+      line-height: 1.5;
+      font-family: Georgia, serif;
+      font-size: 20px;
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      word-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 1em;
+      }
+    }
+    @media print {
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, 'Lucida Console', Consolas, monospace;
+      font-size: 85%;
+      margin: 0;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      background-color: #1a1a1a;
+      border: none;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    span.underline{text-decoration: underline;}
+    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    div.csl-bib-body { }
+    div.csl-entry {
+      clear: both;
+    }
+    .hanging div.csl-entry {
+      margin-left:2em;
+      text-indent:-2em;
+    }
+    div.csl-left-margin {
+      min-width:2em;
+      float:left;
+    }
+    div.csl-right-inline {
+      margin-left:2em;
+      padding-left:1em;
+    }
+    div.csl-indent {
+      margin-left: 2em;
+    }
+  </style>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+<style>
+/* CSS for Markstat 2.0 using Pandoc 2.0 */
+body{padding:14px 28px;}
+body, table {font-family: Helvetica, Arial, Sans-serif; font-size: 14px; width: 95%; max-width: unset;}
+h1, h2, h3, h4 {font-weight: normal; color: #3366cc}
+h1 {font-size: 200%;}
+h2 {font-size: 150%;}
+h3 {font-size: 120%;}
+h4 {font-size: 100%; font-weight:bold}
+img.center {display:block; margin-left:auto; margin-right:auto}
+.small{font-size:8pt;}
+a {color: black;}
+a:visited {color: #808080;}
+a.plain {text-decoration:none;}
+a.plain:hover {text-decoration:underline;}
+.em {font-weight:bold;}
+pre, code {font-family: "lucida console", monospace;}
+pre.stata {font-size:13px; line-height:13px;}
+pre {padding:8px; border:1px solid #c0c0c0; border-radius:8px; background-color:#fdfdfd;}
+code {color:#3366cc; background-color:#fafafa;}
+pre code { color:black; background-color:white}
+/* Added for Pandoc */
+figure > img, div.figure > img {display:block; margin:auto}
+figcaption, p.caption {text-align:center; font-weight:bold; color:#3366cc;}
+h1.title {text-align:center; margin-bottom:0}
+p.author, h2.author {font-style:italic; text-align:center;margin-top:12px;margin-bottom:-25px}
+p.date, h3.date {text-align:center;margin-top:4px; margin-bottom:0}
+/* Tables*/
+table { margin:auto; border-collapse:collapse; }
+table caption { margin-bottom:1ex;}
+th, td { padding:4px 6px;}
+thead tr:first-child th {border-top:1px solid black; padding-top:6px}
+thead tr:last-child  th {padding-bottom:6px}
+tbody tr:first-child td {border-top:1px solid black; padding-top:6px}
+tbody tr:last-child  td {padding-bottom:6px;}
+table tbody:last-child tr:last-child td {border-bottom:1px solid black;}
+</style>
+</head>
+<body>
+<header id="title-block-header">
+<h1 class="title">Sesión 1. Introducción a <code>Stata</code></h1>
+<p class="author">José A. Valderrama</p>
+</header>
+<hr />
+<p style="text-align: center;">
+<a href="https://jtvalderrama.github.io/curso_stata.html"><span style="color:red"><font size="4">Inicio</font></span></a>      <a href="https://jtvalderrama.github.io/stata1.html"><span style="color:red"><font size="4">Sesión 1</font></span></a>      <a href="https://jtvalderrama.github.io/stata2.html"><span style="color:red"><font size="4">Sesión 2</font></span></a>      <a href="https://jtvalderrama.github.io/stata3.html"><span style="color:red"><font size="4">Sesión 3</font></span></a>      <a href="https://jtvalderrama.github.io/stata4.html"><span style="color:red"><font size="4">Sesión 4</font></span></a>      <a href="https://jtvalderrama.github.io/stata5.html"><span style="color:red"><font size="4">Sesión 5</font></span></a>      <a href="https://jtvalderrama.github.io/stata_ejercicios.html"><span style="color:red"><font size="4">Ejercicios</font></span></a>
+</p>
+<hr />
+<h1 id="qué-es-stata">1. ¿Qué es Stata?</h1>
+<ul>
+<li>Stata es un programa de análisis estadístico que permite manejar bases de datos de gran tamaño. Resulta especialmente apropiado para tareas relacionadas con la Microeconometría aplicada. Es especialmente bueno con datos de encuestas.</li>
+<li>Procede de Bioestadística, pero es de amplio empleo en Ciencias Sociales (especialmente, en Economía y Ciencia Política) y Psicología.</li>
+<li>La curva de aprendizaje es poco pronunciada. El sistema de ventanas no es demasiado bueno, pero, salvo algunos casos, es preferible usar comandos.</li>
+<li>Programación aceptable y bastante flexible.</li>
+<li>Reproducibilidad.</li>
+<li><a href="https://www.stata.com/order/dl/">Licencia</a> razonablemente asequible (<em>versus</em> SPSS o SAS).</li>
+<li>Muchísimos recursos de aprendizaje y extensión (paquetes, <em>Stata Journal</em>) y, si no existe, puedes preguntar (<a href="https://www.statalist.org/">Statalist</a> o <a href="https://stackoverflow.com/">Stack Overflow</a>).</li>
+<li>Una parte importante de los libros de estadística proporcionan la sintaxis de <code>Stata</code> para ilustrar ejemplos y resolver ejercicios.</li>
+<li>Buena integración con otros programas y lenguajes (Word, Excel, Markdown, Python, PDF, GitHub o LaTeX). Esta página, por ejemplo, esta elaborada con el paquete <code>markstat</code>.</li>
+</ul>
+<p>Una alternativa muy razonable es <code>R</code>: potente, flexible, gratuito, con una comunidad de usuarios impresionante, un lenguaje de programación muy potente y muchas cosas más… pero con una curva de aprendizaje muchísimo más pronunciada.</p>
+<figure>
+<img src="software.png" style="width:40.0%" alt="Porcentaje de uso de distintos softwares en los materiales suplementarios de revistas de la AEA" /><figcaption aria-hidden="true">Porcentaje de uso de distintos softwares en los materiales suplementarios de revistas de la AEA</figcaption>
+</figure>
+<h1 id="objetivos-del-curso">2. Objetivos del curso</h1>
+<p>El curso consta de 10 horas, por lo que la finalidad es proporcionar a los asistentes un panorama de lo que <code>Stata</code> puede hacer y orientarles en la búsqueda de recursos apropiados para que puedan aprender de forma autónoma de acuerdo con sus intereses. Todos los materiales del curso pueden descargarse en el siguiente <a href="https://drive.google.com/drive/folders/1EE9fOnmFQfY-7pImpfMrsgYFo_7MaD6_?usp=sharing">enlace</a>.</p>
+<h1 id="conceptos-básicos">3. Conceptos básicos</h1>
+<h2 id="formas-de-trabajo">3.1. Formas de trabajo</h2>
+<p>Existen varias formas de trabajar con <code>Stata</code>:</p>
+<ul>
+<li>Emplear comandos de forma interactiva (e.g., como en Excel) <span class="math inline">\(\rightarrow\)</span> <strong>Nada recomendado</strong></li>
+<li>Escribir archivos de comandos <span class="math inline">\(\rightarrow\)</span> <strong>Muy recomendable</strong></li>
+<li>Generar un flujo de trabajo con otros programas, los que podemos exportar los resultados. Nunca copiar y pegar resultados (tedioso y lleva a incurrir en muchos errores) <span class="math inline">\(\rightarrow\)</span> <strong>Extremadamente recomendable</strong></li>
+</ul>
+<p>Existe un importante número de libros de introducción a Stata, entre los que se pueden destacar los de <span class="citation" data-cites="Acock2018">Acock (2018)</span> y, en español, <span class="citation" data-cites="Escobar2012">Escobar et al. (2012)</span>.</p>
+<h2 id="tipos-de-archivos-en-stata">3.2. Tipos de archivos en Stata</h2>
+<h3 id="archivos-.dta">Archivos <em>.dta</em></h3>
+<p>Son los archivos de datos de <code>Stata</code>, equivalentes a los archivos <code>.xlsx</code> en Excel o <code>.sav</code> en SPSS. Es el formato al que debemos convertir los datos con los que queramos trabajar.</p>
+<h3 id="archivos-.do">Archivos <em>.do</em></h3>
+<p>Archivos de sintaxis de comandos, equivalentes a los <code>.sps</code> en SPSS. Resultan absolutamente básicos, para ahorrar tiempo (<code>Stata</code> no cuenta con la función <em>deshacer</em>) y garantizar la reproducibilidad. En realidad, son archivos de texto plano, idénticos a los <code>.txt</code>.</p>
+<h3 id="archivos-.smcl-o-.log">Archivos <em>.smcl</em> o <em>.log</em></h3>
+<p>Son archivos de registro, que recogen las operaciones y resultados en nuestro espacio de trabajo, similares a los archivos <code>.log</code> en SPSS. Representan una forma razonable de presentar resultados preliminares a co-autores o una forma de entrega de ejercicios de los estudiantes. Actualmente, gracias a la integración de <code>Stata</code> con otros lenguajes y softwares (pdf o html), existen mejores alternativas.</p>
+<h3 id="archivos-.gph">Archivos <em>.gph</em></h3>
+<p>Son los archivos nativos para las figuras en <code>Stata</code>. En las últimas versiones, se pueden editar y la flexibilidad se ha incrementado mucho. Además, es posible generar los gráficos directamente en formatos de imagen o pdf.</p>
+<h3 id="archivos-.ado">Archivos <em>.ado</em></h3>
+<p>Son macros de Stata, algo más sofisticados que los archivos <em>.do</em> que contienen comandos programados, rutinas. Hay un impresionante arsenal de estos archivos creados por usuarios.</p>
+<h3 id="archivos-.sthlp">Archivos <em>.sthlp</em></h3>
+<p>Los archivos de ayuda de Stata.</p>
+<h3 id="archivos-.stsem">Archivos <em>.stsem</em></h3>
+<p>Diagramas de ecuaciones estructurales.</p>
+<h3 id="archivos-.stpr">Archivos <em>.stpr</em></h3>
+<p>Archivos de proyectos de <code>Stata</code>. Agrupan jerárquicamente los archivos anteriores.</p>
+<h3 id="archivos-.stmd">Archivos <em>.stmd</em></h3>
+<p>Archivos Markdown de <code>Stata</code>, similares a los archivos <em>.do</em>, que se emplean por comandos como <code>markstat</code> para la creación de documentos dinámicos reproducibles.</p>
+<p>En la práctica, los archivos que más vamos a utilizar son los archivos <code>.do</code> y <code>.dta</code>.</p>
+<h2 id="el-entorno-de-stata">3.2. El entorno de <code>Stata</code></h2>
+<p>El entorno de <code>Stata</code> nos muestra:</p>
+<ul>
+<li>Ventana de resultados.</li>
+<li>Línea de comandos.</li>
+<li>Ventana de variables.</li>
+<li>Ventana de propiedades de las variables.</li>
+<li>Menús</li>
+<li>Barra de tareas <span class="math inline">\(\rightarrow\)</span> <strong>importantes</strong>: explorador y editor de archivos <code>.do</code></li>
+</ul>
+<figure>
+<img src="interface.png" style="width:75.0%" alt="Entorno de trabajo de Stata" /><figcaption aria-hidden="true">Entorno de trabajo de <code>Stata</code></figcaption>
+</figure>
+<p>Conviene operar, preferentemente, con el editor de archivos <code>.do</code>.</p>
+<figure>
+<img src="editor.png" style="width:75.0%" alt="Editor de archivos .do de Stata" /><figcaption aria-hidden="true">Editor de archivos <code>.do</code> de <code>Stata</code></figcaption>
+</figure>
+<h2 id="recursos-de-ayuda">3.3. Recursos de ayuda</h2>
+<p>La ayuda de <code>Stata</code> es bastante buena y, además, nos permite acceder directamente a los manuales en formato <code>.pdf</code> del programa, que contienen breves explicaciones estadísticas, ejemplos e incluso referencias. Es muy sencillo acudir a la ayuda.</p>
+<p><code><u>h</u>elp [<i>command_or_topic_name</i>] [, <u>non</u>ew name(viewername) <u>mark</u>er(<i>markername</i>)]</code></p>
+<p>De forma más genérica, podemos emplear</p>
+<p><code>search <i>word</i> [<i>word</i> …] [, <i>search_options</i>]</code></p>
+<p>En segundo término, las <a href="https://www.stata.com/bookstore/statacheatsheets.pdf"><em>cheatsheets</em></a> de <code>Stata</code> son un magnífico recurso a considerar.</p>
+<p>En tercer lugar, tenemos un sinnúmero de manuales, más o menos especializados. Existen algunos especialmente recomendables, como el de J. Scott Long:</p>
+<figure>
+<img src="book_long.jpg" style="width:15.0%" alt="The workflow of data analysis using Stata" /><figcaption aria-hidden="true"><em>The workflow of data analysis using Stata</em></figcaption>
+</figure>
+<p>En el área de Economía, por ejemplo, tenemos una fantástica cantidad de recursos especializados</p>
+<figure>
+<img src="books.png" style="width:75.0%" alt="Algunos libros de Econometría con Stata" /><figcaption aria-hidden="true">Algunos libros de Econometría con <code>Stata</code></figcaption>
+</figure>
+<p>Algunas opciones de manuales introductorios son <span class="citation" data-cites="Acock2018">Acock (2018)</span> y <span class="citation" data-cites="Kohler2012">Kohler &amp; Kreuter (2012)</span>. En español, hay bastantes menos recursos, entre los que destaca <span class="citation" data-cites="Escobar2012">Escobar et al. (2012)</span>.</p>
+<p>El tercer tipo de recursos son los tutoriales <em>online</em>. Hay tres de especial interés:</p>
+<ul>
+<li>La web de <a href="https://data.princeton.edu/stata">Germán Rodríguez</a> en la Universidad de Princeton.</li>
+<li>La web del <a href="https://stats.idre.ucla.edu/stata/">Institute for Digital Research and Education de la UCLA</a>. Especialmente útiles es la replicación de los ejemplos de muchos libros (aunque, en la actualidad, los propios manuales ya suelen proporcionar la sintaxis y datos empleados en los ejemplos).</li>
+<li>El curso para manejo de datos de encuestas de hogares de la <a href="https://www.saldru.uct.ac.za/training/online-stata-course-the-analysis-of-south-african-household-survey-data/">Southern Africa Labour and Development Research Unit</a>.</li>
+</ul>
+<p>Además, los diferentes tipos de cursos que ofrece <a href="https://www.stata.com/learn/">StataCorp</a> son una opción interesante, en particular, los <a href="https://www.stata.com/netcourse/">NetCourses</a>. Posiblemente, en estos días, podemos encontrar muchos MOOCs interesantes con <code>Stata</code>.</p>
+<h1 id="primeros-pasos-en-stata">4. Primeros pasos en <code>Stata</code></h1>
+<h2 id="introducción-de-datos-en-stata">4.1. Introducción de datos en <code>Stata</code></h2>
+<p>Cada vez es más habitual que muchas instituciones y organismos proporcionen la información en el formato nativo de <code>Stata</code>, los archivos <code>.dta</code>, pero, con todo, no es lo habitual. En muchas ocasiones nos encontramos formatos como <code>.csv</code>, <code>.txt</code>, <code>.raw</code>, etc. Por ello, es necesario saber cómo leer diferentes tipos de archivos en <code>Stata</code>.</p>
+<p>Antes de nada, vamos a crear un nuevo archivo <code>.do</code> donde iremos escribiendo la sintaxis y que podemos llamar <code>curso1.do</code>. Es extremadamente importante y útil documentar los archivos <code>.do</code>. En este sentido, el libro de <span class="citation" data-cites="Long2009">Long (2009)</span> o la guía de <a href="https://medium.com/the-stata-guide/the-stata-workflow-guide-52418ce35006">Asjad Naqvi</a> ofrece excelentes consejos para sistematizar el trabajo. Algunos comandos de utilidad son los siguientes:</p>
+<ul>
+<li>Podemos incluir comentarios en los archivos <code>.do</code> empleando <code>*</code> o <code>//</code> (el último, también en la misma línea).</li>
+<li>Asimismo, podemos indicar a <code>Stata</code> a no tener en cuenta los saltos de línea empleando <code>///</code> al final de la línea.</li>
+<li>Podemos ordenar a <code>Stata</code> omitir la lectura de todo el contenido incluido entre <code>/*</code> y <code>*/</code>.</li>
+</ul>
+<p>En primer lugar, podemos liberar el especio de trabajo con la instrucción</p>
+<pre class='stata'>. clear all
+</pre>
+<p>Si queremos incluir comentarios podríamos escribir</p>
+<pre class='stata'>. clear all // Liberar el espacio de trabajo
+
+. 
+. // Liberar el espacio de trabajo
+. 
+. clear all
+
+. 
+. * Liberar el espacio de trabajo
+. 
+. clear all
+</pre>
+<p>En segundo lugar, habitualmente, indicamos cuál es el directorio de trabajo.</p>
+<p><code>cd ["]<i>directory_name</i>["]</code></p>
+<p>En mi caso,</p>
+<pre class='stata'>. cd "D:\Dropbox\curso_stata\sesión1"
+D:\Dropbox\curso_stata\sesión1
+
+. pwd
+D:\Dropbox\curso_stata\sesión1
+</pre>
+<p>Vamos a utilizar los datos de la <em>Encuesta de Condiciones de Vida</em> que lleva a cabo el Instituto Nacional de Estadística. La base de datos y la documentación de la encuesta puede encontrarse <a href="https://www.ine.es/dyngs/INEbase/es/operacion.htm?c=Estadistica_C&amp;cid=1254736176807&amp;menu=resultados&amp;secc=1254736195153&amp;idp=1254735976608#!tabs-1254736195153">aquí</a>.</p>
+<p>Los archivos se encuentran en formato <code>.csv</code>. Son archivos de texto delimitados por un separador, en este caso, una coma (“,”). Vamos a comenzar por un archivo de personas con algunas características básicas (<code>esudb18r.csv</code>).</p>
+<p><code>import <u>delim</u>ited [using] <i>filename</i> [, <i>import_delimited_options</i>]</code></p>
+<p>En mi caso,</p>
+<pre class='stata'>. import delimited using "esudb18r.csv", clear delimiter(",")
+(encoding automatically selected: ISO-8859-1)
+(37 vars, 33,734 obs)
+</pre>
+<p>Existen otros muchos formatos, y podemos conocer cómo acceder a ellos simplemente a través de la ayuda <code>help import</code>.</p>
+<p>Podemos explorar la base de datos importada con el comando <code>browse</code>.</p>
+<pre class='stata'>. browse
+</pre>
+<p>Veremos que algunas variables se encuentran en formato numérico y otras, como cadenas de caracteres, pese a ser números.</p>
+<figure>
+<img src="browse.png" style="width:75.0%" alt="Variables importadas de la ECV 2018" /><figcaption aria-hidden="true">Variables importadas de la ECV 2018</figcaption>
+</figure>
+<p>Podemos solventar eso con el comando <code>destring</code> que convierte todas las variables en formato texto a formato numérico sin perder información (si hay pérdida de información, no lo hace). Existe, asimismo, un comando para realizar la operación contraria (<code>help tostring</code>).</p>
+<p><code>destring [<i>varlist</i>] , {generate(<i>newvarlist</i>)|replace} [<i>destring_options</i>]</code></p>
+<p>En nuestro caso, aplicamos el comando como sigue</p>
+<pre><code>destring _all, replace</code></pre>
+
+<p>Podemos guardarlo mediante la instrucción <code>save</code>:</p>
+<p><code><u>sa</u>ve [<i>filename</i>] [, <i>save_options</i>]</code></p>
+<p>En mi caso, procedería como sigue para crear mi primer archivo <code>.dta</code>.</p>
+<pre class='stata'>. save "ecv18r.dta", replace
+file ecv18r.dta saved
+</pre>
+<p>Para abrir un archivo <code>.dta</code>, la instrucción es muy sencilla.</p>
+<p><code><u>u</u>se <i>filename</i> [, clear <u>nol</u>abel]</code></p>
+<p>En mi caso,</p>
+<pre class='stata'>. use "ecv18r.dta", clear
+</pre>
+<p>Por último, vamos a crear archivos logs. Son apropiados para documentar de manera muy informal los resultados (e.g., para enviarlos a un co-autor o echar un primer vistazo a los análisis estadísticos). Al comienzo de la parte que queremos “grabar,” añadimos</p>
+<p><code>log using <i>filename</i> [, append replace [<u>t</u>ext|<u>s</u>mcl] name(<i>logname</i>) nomsg]</code></p>
+<p>Al final de la parte que deseamos reportar, empleamos</p>
+<p><code>log close [<i>logname</i> | _all]</code></p>
+<p>En nuestro caso, podríamos añadir al principio</p>
+<pre><code>capture log close // Para cerrar logs abiertos
+log using curso1, replace</code></pre>
+<p>Al final,</p>
+<pre><code>log close</code></pre>
+<p>Podemos abrir el archivo y observar que es similar a un archivo de texto enriquecido.</p>
+<h2 id="exploración-de-la-base-de-datos">4.2. Exploración de la base de datos</h2>
+<p>Tenemos varios comandos que nos permiten hacernos una idea de cuál es el contenido de la base de datos, como <code>describe</code>, <code>codebook</code>, <code>browse</code>, <code>list</code>, <code>tabulate</code>, <code>summarize</code> o <code>correlate</code>, entre otros. Además, podemos emplearlos en todo momento con condicionales (<code>if</code>) o limitándonos a ciertas observaciones (<code>in</code>). Para aplicarlos, conviene conocer antes cuáles son los operadores. En este ámbito, el comando <code>sort</code>, que permite ordenar la base de datos en función de una o varias variables, resulta también muy utilizado.</p>
+<table>
+<colgroup>
+<col style="width: 21%" />
+<col style="width: 22%" />
+<col style="width: 55%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Operadores aritméticos</th>
+<th style="text-align: left;">Operadores lógicos</th>
+<th style="text-align: left;">Operadores relacionales<br>(variables numéricas y alfanuméricas)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">+ suma</td>
+<td style="text-align: left;">&amp; y</td>
+<td style="text-align: left;">&gt; mayor que</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">- resta</td>
+<td style="text-align: left;">| o</td>
+<td style="text-align: left;">&lt; menor que</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">* producto</td>
+<td style="text-align: left;">! no</td>
+<td style="text-align: left;">&gt;= mayor o igual</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">/ cociente</td>
+<td style="text-align: left;">~ no</td>
+<td style="text-align: left;">&lt;= menor o igual</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">^ potencia</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">== igual</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">- negación</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">!= distinto de</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">+ concatenación de texto</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">~= distinto de</td>
+</tr>
+</tbody>
+</table>
+<p>Estos comandos se escriben como se expresa a continuación:</p>
+<p>Descripción de los datos en la memoria</p>
+<p><code><u>d</u>escribe [<i>varlist</i>] [, <i>memory_options</i>]</code></p>
+<p>Descripción del contenido de los datos</p>
+<p><code>codebook [<i>varlist</i>] [<i>if</i>] [<i>in</i>] [, <i>options</i>]</code></p>
+<p>Explorar los datos en la memoria</p>
+<p><code><u>br</u>owse [<i>varlist</i>] [<i>if</i>] [<i>in</i>] [, <u>nol</u>abel]</code></p>
+<p>Mostrar valores de las variables</p>
+<p><code><u>l</u>ist [<i>varlist</i>] [<i>if</i>] [<i>in</i>] [, <i>options</i>]</code></p>
+<p>Estadísticos descriptivos</p>
+<p><code><u>su</u>mmarize [<i>varlist</i>] [<i>if</i>] [<i>in</i>] [<i>weight</i>] [, <i>options</i>]</code></p>
+<p>Correlación entre variables</p>
+<p><code><u>cor</u>relate [<i>varlist</i>] [<i>if</i>] [<i>in</i>] [<i>weight</i>] [, <i>correlate_options</i>]</code></p>
+<p>Ordenar la base de datos por una o varias variables</p>
+<p><code><u>so</u>rt <i>varlist</i> [<i>in</i>] [, stable]</code></p>
+<p>Así, por ejemplo, podemos explorar la variable que recoge la situación laboral de los españoles (<code>rb210</code>).</p>
+<pre class='stata'>. codebook rb210
+
+───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+rb210                                                                                                                                                                                                                                                     RB210
+───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+
+                  Type: Numeric (byte)
+
+                 Range: [1,4]                         Units: 1
+         Unique values: 4                         Missing .: 1/33,734
+
+            Tabulation: Freq.  Value
+                       13,021  1
+                        2,990  2
+                        6,183  3
+                       11,539  4
+                            1  .
+</pre>
+<p>Fácilmente, podemos ver la distribución de la misma.</p>
+<pre class='stata'>. tabulate rb210
+
+      RB210 │      Freq.     Percent        Cum.
+────────────┼───────────────────────────────────
+          1 │     13,021       38.60       38.60
+          2 │      2,990        8.86       47.46
+          3 │      6,183       18.33       65.79
+          4 │     11,539       34.21      100.00
+────────────┼───────────────────────────────────
+      Total │     33,733      100.00
+</pre>
+<p>Además, podemos ver dicha distribución para un grupo concreto. Por ejemplo, estudiar cuál es la situación laboral de las mujeres (la variable sexo es <code>rb090</code>).</p>
+<pre class='stata'>. tabulate rb210 if rb090 == 2
+
+      RB210 │      Freq.     Percent        Cum.
+────────────┼───────────────────────────────────
+          1 │      6,023       34.48       34.48
+          2 │      1,550        8.87       43.35
+          3 │      2,562       14.67       58.02
+          4 │      7,333       41.98      100.00
+────────────┼───────────────────────────────────
+      Total │     17,468      100.00
+</pre>
+<p>Un comando para inspeccionar directamente los datos es <code>list</code>. Por ejemplo, podemos inspeccionar los 10 primeros valores de la variable sexo (<code>rb090</code>):</p>
+<pre class='stata'>. list rb090 in 1/10
+
+     ┌───────┐
+     │ rb090 │
+     ├───────┤
+  1. │     1 │
+  2. │     2 │
+  3. │     2 │
+  4. │     2 │
+  5. │     2 │
+     ├───────┤
+  6. │     2 │
+  7. │     2 │
+  8. │     1 │
+  9. │     2 │
+ 10. │     2 │
+     └───────┘
+</pre>
+<h2 id="eliminar-variables-y-observaciones">4.3. Eliminar variables y observaciones</h2>
+<p>Para eliminar variables y observaciones de la base de datos podemos emplear tanto <code>drop</code> como <code>keep</code>.</p>
+<p><code>drop <i>varlist</i></code></p>
+<p><code>drop if <i>exp</i></code></p>
+<p><code>drop in <i>range</i> [if <i>exp</i>]</code></p>
+<p><code>keep <i>varlist</i></code></p>
+<p><code>keep if <i>exp</i></code></p>
+<p><code>keep in <i>range</i> [if <i>exp</i>]</code></p>
+<p>Así, por ejemplo, podemos eliminar el mes de nacimiento de la persona</p>
+<pre class='stata'>. drop rb070
+</pre>
+<p>O quedarnos únicamente con las mujeres</p>
+<pre class='stata'>. keep if rb090 == 2
+(16,266 observations deleted)
+</pre>
+<p>Volvemos a la base de datos original.</p>
+<pre class='stata'>. use "ecv18r.dta", clear
+</pre>
+<h2 id="etiquetado-de-datos-variables-y-valores">4.4. Etiquetado de datos, variables y valores</h2>
+<p>Obviamente, resulta muy tedioso operar con estos nombres, por lo que lo habitual es etiquetar las variables y sus valores. También es posible etiquetar la base de datos.</p>
+<p>Para etiquetar la base de datos empleamos</p>
+<p><code><u>la</u>bel <u>da</u>ta [“<i>label</i>”]</code></p>
+<p>Por ejemplo, podemos llamar a nuestra base de datos “ECV-Datos básicos de la persona”</p>
+<pre class='stata'>. label data "ECV-Datos básicos de la persona"
+</pre>
+<p>El etiquetado de variables se realiza a través de la instrucción</p>
+<p><code><u>la</u>bel <u>var</u>iable <i>varname</i> [“<i>label</i>”]</code></p>
+<p>En nuestro caso, por ejemplo,</p>
+<pre class='stata'>. label var rb090 "Sexo"
+</pre>
+<p>El etiqueda de las variables requiere, primero, definir una etiqueta para los valores y, posteriormente, asignarla a una variable. Así,</p>
+<p>Definición de etiqueta</p>
+<p><code><u>la</u>bel <u>de</u>fine <i>lblname</i> <i>#</i> “<i>label</i>” [<i>#</i> “<i>label</i>” …] [, <u>a</u>dd modify replace nofix]</code></p>
+<p>Asignación de etiqueta</p>
+<p><code><u>la</u>bel <u>val</u>ues <i>varlist</i> <i>lblname</i> [, nofix]</code></p>
+<p>En nuestro caso, por ejemplo,</p>
+<pre class='stata'>. label define sexo_lab 1 "Hombre" 2 "Mujer"
+
+. label values rb090 sexo_lab
+</pre>
+<p>Además, existen algunas otras instrucciones para, por ejemplo, eliminar etiquetas o comprobar qué etiquetas se han definido.</p>
+<h2 id="creación-y-modificación-de-variables">4.5. Creación y modificación de variables</h2>
+<h3 id="generación-y-modificación-de-variables">Generación y modificación de variables</h3>
+<p>En primer lugar, podemos cambiar el nombre de las variables con la instrucción <code>rename</code>.</p>
+<p><code><u>ren</u>ame <i>old_varname</i> <i>new_varname</i></code></p>
+<p>En nuestro caso,</p>
+<pre class='stata'>. rename rb090 sexo
+</pre>
+<p>Para estas tareas empleamos los comandos <code>generate</code> y <code>replace</code>. El segundo de ellos es para variables ya existentes.</p>
+<p><code><u>gen</u>erate [<i>type</i>] <i>newvar</i>[:<i>lblname</i>] =<i>exp</i> [<i>if</i>] [<i>in</i>] [, <u>b</u>efore(<i>varname</i>) | <u>a</u>fter(<i>varname</i>)]</code></p>
+<p><code>replace <i>oldvar</i> =<i>exp</i> [<i>if</i>] [<i>in</i>] [, <u>nop</u>romote]</code></p>
+<p>A partir del año de nacimiento, <code>rb080</code>, vamos a generar una nueva variable que recoja la edad.</p>
+<pre class='stata'>. generate edad = 2018 - rb080
+
+. 
+. // Etiquetamos la variable
+. 
+. label var edad "Edad"
+
+. 
+. //  Observamos los estadísticos descriptivos de la nueva variable
+. 
+. summarize edad
+
+    Variable │        Obs        Mean    Std. dev.       Min        Max
+─────────────┼─────────────────────────────────────────────────────────
+        edad │     33,734     44.8642    23.21889          0         86
+</pre>
+<p>Podemos generar una variable que recoja los grupos de edades:</p>
+<pre class='stata'>. generate gedad = 1 if edad &lt;= 29
+(24,224 missing values generated)
+
+. replace gedad = 2 if edad >= 30 &amp; edad &lt;= 49
+(8,779 real changes made)
+
+. replace gedad = 3 if edad >= 50 &amp; edad &lt;= 64
+(7,886 real changes made)
+
+. replace gedad = 4 if edad >= 65
+(7,559 real changes made)
+
+. 
+. // Etiqueamos la variable y sus valores
+. 
+. label var gedad "Grupo de edad"
+
+. label define gedad_lab 1 "Menor que 30 años" 2 "De 30 a 49 años" 3 "De 50 a 64 años" 4 "65 y más años"
+
+. label values gedad gedad_lab
+
+. 
+. tabulate gedad
+
+    Grupo de edad │      Freq.     Percent        Cum.
+──────────────────┼───────────────────────────────────
+Menor que 30 años │      9,510       28.19       28.19
+  De 30 a 49 años │      8,779       26.02       54.22
+  De 50 a 64 años │      7,886       23.38       77.59
+    65 y más años │      7,559       22.41      100.00
+──────────────────┼───────────────────────────────────
+            Total │     33,734      100.00
+</pre>
+<h3 id="recodificación-de-variables">Recodificación de variables</h3>
+<p>A través del comando <code>recode</code> podemos recodificar variables.</p>
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Regla</th>
+<th style="text-align: left;">Ejemplo</th>
+<th style="text-align: left;">Significado</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"># = #</td>
+<td style="text-align: left;">3 = 1</td>
+<td style="text-align: left;">3 recodificado a 1</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"># # = #</td>
+<td style="text-align: left;">2 . = 9</td>
+<td style="text-align: left;">2 y . recodificados a 9</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">#/# = #</td>
+<td style="text-align: left;">1/5 = 4</td>
+<td style="text-align: left;">1 a 5 recodificados a 4</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">nonmissing = #</td>
+<td style="text-align: left;">nonmissing = 8</td>
+<td style="text-align: left;">Valores distintos de . recodificados a 8</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">missing = #</td>
+<td style="text-align: left;">missing = 9</td>
+<td style="text-align: left;">Valores . recodificados a 9</td>
+</tr>
+</tbody>
+</table>
+<p>En términos generales,</p>
+<p><code>recode <i>varlist</i> (<i>rule</i>) [(<i>rule</i>) …] [, generate(<i>newvar</i>)]</code></p>
+<p>En nuestro caso, podemos recodificar la variable <code>gedad</code> en un menor número de categorías.</p>
+<pre class='stata'>. recode gedad (1 2 = 1) (3 4 = 2)
+(24224 changes made to gedad)
+
+. 
+. // Etiquetamos la nueva variable y sus valores
+. 
+. label drop gedad_lab
+
+. label define gedad_lab 1 "Menor de 50 años" 2 "50 y más años"
+
+. label values gedad gedad_lab
+
+. 
+. tabulate gedad
+
+   Grupo de edad │      Freq.     Percent        Cum.
+─────────────────┼───────────────────────────────────
+Menor de 50 años │     18,289       54.22       54.22
+   50 y más años │     15,445       45.78      100.00
+─────────────────┼───────────────────────────────────
+           Total │     33,734      100.00
+</pre>
+<h3 id="generación-extendida-de-variables">Generación extendida de variables</h3>
+<p>El comando <code>egen</code> nos permite realizar muchas operaciones a partir de una o varias variables (conteo, medias, etc.)</p>
+<p><code>egen [<i>type</i>] <i>newvar</i> = <i>fcn</i>(<i>arguments</i>) [<i>if</i>] [<i>in</i>] [, <i>options</i>]</code></p>
+<p>Por ejemplo, podemos calcular la edad promedio y almacenarla como una nueva variable.</p>
+<pre class='stata'>. egen edadm = mean(edad)
+</pre>
+<h3 id="los-valores-perdidos">Los valores perdidos</h3>
+<p>Una particularidad de los microdatos es la existencia frecuente de valores perdidos, debido a no respuesta, error de codificación o, simplemente, no disponibilidad de la variable para ciertas personas (e.g., salario para una persona que no está ocupada). <code>Stata</code> tiene dos formas de codificar estos valores. La primera de ellas son valores perdidos genéricos (<code>.</code>). La segunda consiste en valores perdidos específicos, que se etiquetan con letras (<code>.a</code>&lt;<code>.b</code>&lt;…&lt;<code>.z</code>). Matemáticamente, <code>Stata</code> considera los valores perdidos como valores más elevados que el resto, es decir,</p>
+<p><span class="math display">\[
+    . &lt; .a &lt; .b &lt; \dots &lt; .z
+\]</span></p>
+<p>En ocasiones, nosotros mismos tenemos que manejar los problemas asociados a los valores perdidos. Para ello, vamos recurrir a otro archivo de la ECV 2018, el fichero detallado de información sobre los individuos (<code>esudb18p.csv</code>) y procedemos de la misma forma que más arriba.</p>
+<pre><code>import delimited using &quot;esudb18p.csv&quot;, clear delimiter(&quot;,&quot;)
+destring _all, replace</code></pre>
+
+<p>Nos fijamos en la variable <code>p78a_u</code>, que, de acuerdo con la documentación, recoge información sobre la ayuda que recibe el adulto entrevistado si afronta limitaciones en su vida diaria.</p>
+<figure>
+<img src="p78a_u.png" alt="Pregunta p78a_u en la documentación de la ECV" /><figcaption aria-hidden="true">Pregunta p78a_u en la documentación de la ECV</figcaption>
+</figure>
+<p>Podemos ver que, en puridad, los valores -2 y -1 son valores perdidos. Se refieren a que la pregunta no es aplicable (porque el entrevistado no tenía limitaciones) o bien no contestó. Si queremos saber el tipo ayuda que recibe una persona con limitaciones diarias, los porcentajes ofrecidos por la tabulación de esta variable no son muy útiles.</p>
+<pre class='stata'>. browse p78a_u
+
+. tabulate p78a_u
+
+     P78a_U │      Freq.     Percent        Cum.
+────────────┼───────────────────────────────────
+         -2 │     22,051       78.31       78.31
+         -1 │          2        0.01       78.31
+          1 │      1,388        4.93       83.24
+          2 │      2,248        7.98       91.23
+          3 │      1,968        6.99       98.21
+          4 │         44        0.16       98.37
+          5 │        252        0.89       99.26
+          6 │        176        0.63       99.89
+          7 │          3        0.01       99.90
+          8 │         25        0.09       99.99
+          9 │          3        0.01      100.00
+────────────┼───────────────────────────────────
+      Total │     28,160      100.00
+</pre>
+<p>Una buena opción es, antes de nada, recodificar estos valores como perdidos, por ejemplo,</p>
+<pre class='stata'>. recode p78a_u (-2 -1 = .)
+(22053 changes made to p78a_u)
+</pre>
+<p>Otra opción posible podía haber sido codificar -2 como <code>.a</code> y -1 como <code>.b</code>.</p>
+<p>En algunos casos, esto puede ser mucho más relevante y no corregirlo es problemático. Por ejemplo, algunas bases de datos emplean valores extremos o sin sentido para los casos de no respuesta (e.g., -2, -999, 999999, etc.) en variables numéricas. En estos casos, conviene, antes de nada, recodificar estos valores como perdidos, por ejemplo, pueden codificar la no respuesta en la variable renta con el valor -9999. Si calculamos, por ejemplo, una media sin corregir esto, el valor numérico obtenido es completamente erróneo.</p>
+<h1 id="la-comunidad-de-usuarios">5. La comunidad de usuarios</h1>
+<p>Una de las ventajas fundamentales del uso de <code>Stata</code>, quizás solo compartida (y superada) por el programa R, es la gran comunidad de usuarios con los que cuenta. Esto se plasma en varias herramientas:</p>
+<p><strong>Los paquetes creados por los usuarios</strong>. Existen una gran cantidad de paquetes que han sido creados por los usuarios de <code>Stata</code>. Normalmente, están adecuadamente documentados. En términos generales, podemos buscar paquetes de <code>Stata</code> con la siguiente instrucción:</p>
+<p><code>net search <i>word</i> [<i>word</i> …] [, options]</code></p>
+<p>Si sabemos el nombre del paquete, podemos emplearse</p>
+<p><code>ssc install <i>pkgname</i> [, all replace]</code></p>
+<p>Así, por ejemplo, podemos buscar paquetes que permitan realizar mediciones de pobreza con la siguiente instrucción</p>
+<pre class='stata'>. net search poverty
+(contacting http://www.stata.com)
+
+50 packages found (Stata Journal and STB listed first)
+──────────────────────────────────────────────────────
+
+st0492 from http://www.stata-journal.com/software/sj17-3
+    SJ17-3 st0492. Estimate the entire parametric class of Alkire-Foster
+    multidimensional poverty measures / Estimate the entire parametric class
+    of Alkire- / Foster multidimensional poverty measures / by Daniele
+    Pacifico, OECD, Paris, France / Felix Poege, Max Planck Institute for /
+
+st0424 from http://www.stata-journal.com/software/sj16-1
+    SJ16-1 st0424. Difference-in-differences estimation /
+    Difference-in-differences estimation / by Juan M. villa, Brooks World
+    Poverty / Institute, University of Manchester, / Manchester, UK / Support:
+    juan.villalora@manchester.ac.uk / After installation, type help diff
+
+sg117 from http://www.stata.com/stb/stb51
+    STB-51 sg115.  Robust std errs for Foster-Greer-Thorbecke poverty ind. /
+    STB insert by / Dean Jolliffe, Center for Economic Research and Graduate
+    Education, / Czech Republic; / Anastassia Semykina, Center for Economic
+    Research and Graduate Education, / Czech Republic. / Support:
+
+sg108 from http://www.stata.com/stb/stb48
+    STB-48 sg108.  Computing poverty indices. / STB insert by Philippe Van
+    Kerm, GREBE, University of Namur, Belgium. / Support:
+    philippe.vankerm@fundp.ac.be / After installation, see help poverty.
+
+shapley from http://staskolenikov.net/stata
+    shapley -- module to perform Shapley decomposition / Author: Stas
+    Kolenikov, skolenik@yahoo.com / This program performs, in some rather
+    general form, Shapley value / decomposition. The goal is to analyze
+    indices that do not possess / natural decomposition properties. The early
+
+adecomp from http://fmwww.bc.edu/RePEc/bocode/a
+    'ADECOMP': module to estimate Shapley Decomposition by Components of a
+    Welfare Measure / adecomp implements the Shapley decomposition of changes
+    in a / welfare indicator as proposed by Azevedo, Sanfelice and Nguyen /
+    (2012). Following Barros et al. (2006), this method takes / advantage of
+
+apoverty from http://fmwww.bc.edu/RePEc/bocode/a
+    'APOVERTY': module to compute poverty measures / apoverty computes a
+    series of poverty measures based on the / (income) distribution described
+    by varname. It is a revised and / upgraded version of poverty published by
+    Philippe Van Kerm.  / KW: poverty / KW: headcount / KW: Sen index / KW:
+
+bcstats from http://fmwww.bc.edu/RePEc/bocode/b
+    'BCSTATS': module to analyze back check (field audit) data and compare it
+    to the original survey data / bcstats compares back check (i.e., field
+    audit, reinterview) / data and original survey data, producing a data set
+    of / comparisons. It completes enumerator checks for type 1 and type / 2
+
+bmp2dta from http://fmwww.bc.edu/RePEc/bocode/b
+    'BMP2DTA': module to convert bitmap files to Stata datasets / Since the
+    advent of satellite imagery, researchers have turned / images into data
+    and processed it. This program makes the first / step easier in Stata, by
+    turning a Windows 24-bit bitmap file / into a Stata dataset with variables
+
+cfby from http://fmwww.bc.edu/RePEc/bocode/c
+    'CFBY': module to compare datasets and produce discrepancy rates / cfby
+    compares the variables in varlist from the dataset in / memory to the
+    variables in varlist from the using dataset and / displays the discrepancy
+    rates by a common variable.  It is / useful if you are doing data entry
+
+cfout from http://fmwww.bc.edu/RePEc/bocode/c
+    'CFOUT': module to compare two datasets, saving a list of differences /
+    cfout compares the dataset in memory (the master dataset) to a / using
+    dataset. It uses unique ID variables to match observations. / cfout
+    optionally saves the list of differences to file.  / KW: data management /
+
+changemean from http://fmwww.bc.edu/RePEc/bocode/c
+    'CHANGEMEAN': module to compute Income and Inequality Contribution on
+    Poverty Variation / changemean decompose the poverty gap among two or more
+    subgroups / by income and inequality.  / KW: poverty gap / KW: inequality
+    / KW: income distribution / Requires: Stata version 8.0 /
+
+diff from http://fmwww.bc.edu/RePEc/bocode/d
+    'DIFF': module to perform Differences in Differences estimation / diff
+    performs several differences in differences (diff-in-diff) / estimations
+    of the treatment effect of a given outcome variable / from a pooled base
+    line and follow up dataset: Single / Diff-in-Diff, Diff-in-Diff
+
+drdecomp from http://fmwww.bc.edu/RePEc/bocode/d
+    'DRDECOMP': module to estimate Shapley value of growth and distribution
+    components of changes in poverty indicators / drdecomp implements the
+    shapley value of the Datt and Ravallion / (1992) decomposition of changes
+    in a welfare indicator into / growth and distribution, however, following
+
+dstat from http://fmwww.bc.edu/RePEc/bocode/d
+    'DSTAT': module to compute summary statistics and distribution functions
+    including standard errors and optional covariate balancing / dstat unites
+    a variety of methods to describe (univariate) / statistical distributions.
+    Covered are density estimation, / histograms, cumulative distribution
+
+egen_inequal from http://fmwww.bc.edu/RePEc/bocode/e
+    'EGEN_INEQUAL': module providing extensions to generate inequality and
+    poverty measures / The set of programs in this package uses egen to create
+    newvar of / the optionally specified storage type equal to one of the /
+    standard inequality and Foster-Greer-Thorbecke (FGT) poverty / measures.
+
+fgt_ci from http://fmwww.bc.edu/RePEc/bocode/f
+    'FGT_CI': module to calculate and decompose Foster–Greer–Thorbecke
+    (and standard) concentration indices / This command combines two of the
+    most widely used measures in / the inequality and poverty literatures: the
+    concentration / index (CI) and the Foster–Greer–Thorbecke (FGT)
+
+fpro from http://fmwww.bc.edu/RePEc/bocode/f
+    'FPRO': module to compute Financial Protection Indicators for Health
+    Expenditures / The package contains two commands (fpcata and fpimpov) to /
+    compute indicators of financial protection for health / expenditures.
+    fpcata computes the incidence of 'catastrophic' / health spending (the %
+
+getcensus from http://fmwww.bc.edu/RePEc/bocode/g
+    'GETCENSUS': module to load American Community Survey data from the U.S.
+    Census Bureau API into Stata / getcensus is a Stata package for loading
+    American Community / Survey (ACS) data from the U.S. Census Bureau API
+    into Stata. It / also allows users to search the API data dictionaries for
+
+glcurve from http://fmwww.bc.edu/RePEc/bocode/g
+    'GLCURVE': module to derive generalised Lorenz curve ordinates / Given
+    variable varname, call it x with c.d.f. F(x), glcurve / either draws its
+    Generalised Lorenz curve or generates two new / variables containing the
+    Generalised Lorenz ordinates for x, i.e. / GL(p) at each p = F(x) (or
+
+glcurve5 from http://fmwww.bc.edu/RePEc/bocode/g
+    'GLCURVE5': module to derive generalised Lorenz curve ordinates with unit
+    record data (Stata 5 or 6) / Given a variable varname, call it x with
+    c.d.f. F(x), glcurve7 / draws its Generalised Lorenz curve and/or
+    generates two new / variables containing the Generalised Lorenz ordinates
+
+glcurve7 from http://fmwww.bc.edu/RePEc/bocode/g
+    'GLCURVE7': module to derive generalised Lorenz curve ordinates with unit
+    record data (version 7) / Given a variable varname, call it x with c.d.f.
+    F(x), glcurve7 / draws its Generalised Lorenz curve and/or generates two
+    new / variables containing the Generalised Lorenz ordinates for x, i.e. /
+
+hoishapely from http://fmwww.bc.edu/RePEc/bocode/h
+    'HOISHAPELY': module to perform Shapley Decomposition of the Human
+    Opportunity Index / hoishapley computes the Shapley decomposition of the
+    Human / Opportunity Index (HOI), it includes the estimation of the basic /
+    statistics like Coverage of Basic Opportunities (C), the / Dissimilarity
+
+hoishapley from http://fmwww.bc.edu/RePEc/bocode/h
+    'HOISHAPLEY': module to perform Shapley Decomposition of the Human
+    Opportunity Index / hoishapley computes the Shapley decomposition of the
+    Human / Opportunity Index (HOI), it includes the estimation of the basic /
+    statistics like Coverage of Basic Opportunities (C), the / Dissimilarity
+
+ipabcstats from http://fmwww.bc.edu/RePEc/bocode/i
+    'IPABCSTATS': module to compare survey and back check data, producing an
+    Excel output of comparisons and error rates / ipabcstats compares back
+    check data and survey data, producing / a data set of comparisons.  It
+    completes enumerator checks for / type 1 and type 2 variables and
+
+isopoverty from http://fmwww.bc.edu/RePEc/bocode/i
+    'ISOPOVERTY': module to generate data for Inequality-Poverty and
+    Iso-Poverty curves / isopoverty generates data that can be used to plot
+    the / Inequality-Poverty, Growth-Poverty and the Iso-Poverty curves. /
+    stepgrw or stepinq have to be stated otherwise the programme does / not
+
+kanom from http://fmwww.bc.edu/RePEc/bocode/k
+    'KANOM': module to estimate Krippendorff's alpha for nominal variables /
+    kanom computes points estimates and 95 percent confidence / intervals for
+    Krippendorff's reliability coefficient alpha, for / nominal variables and
+    two measurements. It also tests the null / hypotheses that alpha is not
+
+mergeall from http://fmwww.bc.edu/RePEc/bocode/m
+    'MERGEALL': module to merge multiple files / mergeall merges all of the
+    files in a folder without loss of / data due to variable storage types or
+    duplicate unique / identifiers.  / KW: data management / KW: merge /
+    Requires: Stata version 10.1 / Distribution-Date: 20110708 / Author: Ryan
+
+mpi from http://fmwww.bc.edu/RePEc/bocode/m
+    'MPI': module to compute the Alkire-Foster multidimensional poverty
+    measures and their decomposition by deprivation indicators and population
+    sub-groups / MPI estimates the Adjusted Multidimensional Headcount Ratio /
+    developed by Alkire and Foster (2011), also known as the /
+
+mpovline from http://fmwww.bc.edu/RePEc/bocode/m
+    'MPOVLINE': module to calculate FGT0, FGT1 and FGT2 by intervals of
+    multiple thresholds / mpovline calculates FGT0, FGT1 and FGT2 by intervals
+    of multiple / lines. This ado can be used to calculate headcount for the
+    poor, / vulnerable and middle class lines as proposed by Ferreira et al /
+
+orth_out from http://fmwww.bc.edu/RePEc/bocode/o
+    'ORTH_OUT': module to automate and export summary stats/orthogonality
+    tables / orth_out produces summary stats tables and orthogonality tables.
+    / orth_out is useful in testing balance of means across variables / in
+    multiple groups, particularly the balance of baseline / characteristics
+
+outdetect from http://fmwww.bc.edu/RePEc/bocode/o
+    'OUTDETECT': module to perform outlier detection and diagnostics for
+    welfare analysts / outdetect identifies outliers (extreme values) in the /
+    distribution of a variable, and assesses their impact on a / selection of
+    popular inequality and poverty measures. The / procedure by which outliers
+
+pobrezaecu from http://fmwww.bc.edu/RePEc/bocode/p
+    'POBREZAECU': module to predict poverty in Ecuador / pobrezaECU predicts
+    income poverty in Ecuador, a year ahead, / from the quarterly household
+    survey called ENEMDU.  / KW: poverty / KW: Ecuador / KW: prediction /
+    Requires: Stata version 12 / Distribution-Date: 20180512 / Author:  Daniel
+
+povcalnet from http://fmwww.bc.edu/RePEc/bocode/p
+    'POVCALNET': module to access World Bank Global Poverty and Inequality
+    measures / The povcalnet commands allows Stata users to compute poverty /
+    and inequality indicators for more than 160 countries and / regions in the
+    World Bank's database of household surveys. It has / the same
+
+povdeco from http://fmwww.bc.edu/RePEc/bocode/p
+    'POVDECO': module to calculate poverty indices with decomposition by
+    subgroup / povdeco estimates three poverty indices from the Foster, /
+    Greer and Thorbecke (1984) class, FGT(a), plus related / statistics (such
+    as mean income amongst the poor). FGT(0) is / the headcount ratio (the
+
+poverty from http://fmwww.bc.edu/RePEc/bocode/p
+    'POVERTY': module to calculate poverty measures / poverty computes a
+    series of poverty measures based on the / (income) distribution described
+    by varname. The poverty measures / that can be computed by poverty are:
+    headcount ratio, / aggregate poverty gap, poverty gap ratio, income gap
+
+povguide from http://fmwww.bc.edu/RePEc/bocode/p
+    'POVGUIDE': module to generate the U.S. Poverty Guideline value for a
+    given family size and year / This generates the official Poverty Guideline
+    value as / established by the United States Department of Health and Human
+    / Services. This is one of two official poverty levels, the other / being
+
+povimp from http://fmwww.bc.edu/RePEc/bocode/p
+    'POVIMP': module to provide poverty estimates in the absence of actual
+    consumption data / povimp provides poverty estimates in the absence of
+    actual / consumption data.  / KW: poverty / KW: imputation / KW:
+    consumption / KW: inequality / Requires: Stata version 12 /
+
+povtime from http://fmwww.bc.edu/RePEc/bocode/p
+    'POVTIME': module to compute aggregate intertemporal poverty measures
+    (poverty in a panel accounting for time) / povtime computes aggregate
+    intertemporal poverty measures / (poverty accounting for time) in a
+    balanced panel of individuals. / The program computes the family of
+
+prosperity from http://fmwww.bc.edu/RePEc/bocode/p
+    'PROSPERITY': module to compute Shared Prosperity Convergence Index / The
+    command prosperity calculates the Shared Prosperity / Convergence Index
+    -SPCI-. This is the new indicator that the / World Bank uses to measure
+    the progress in the growth and / inequality reduction.  The base indicator
+
+quantiles from http://fmwww.bc.edu/RePEc/bocode/q
+    'QUANTILES': module to categorize by quantiles / quantiles creates a new
+    variable (newvar) that categorizes / varname by its quantiles. It differs
+    from xtile because the / categories are defined by the ideal size of the
+    quantile rather / than by the cutpoints, therefore yielding less unequaly
+
+rddsga from http://fmwww.bc.edu/RePEc/bocode/r
+    'RDDSGA': module to conduct subgroup analysis for regression discontinuity
+    designs / rddsga allows to conduct a binary subgroup analysis in RDD /
+    settings based on inverse propensity score weights (IPSW).  / Observations
+    in each subgroup are weighted by the inverse of / their conditional
+
+readreplace from http://fmwww.bc.edu/RePEc/bocode/r
+    'READREPLACE': module to make replacements that are specified in an
+    external dataset / eadreplace modifies the dataset currently in memory by
+    making / replacements that are specified in an external dataset, the /
+    replacements file.  / KW: data management / KW: data entry / KW: replace /
+
+sae from http://fmwww.bc.edu/RePEc/bocode/s
+    'SAE': module to provide commands and mata functions devoted to unit level
+    small area estimation / sae is a Stata family of functions for small area
+    estimation, / using the methodology from Elbers, Lanjouw, and Lanjouw
+    (2003). / The package introduces new mata functions and a plugin used to /
+
+skdecomp from http://fmwww.bc.edu/RePEc/bocode/s
+    'SKDECOMP': module to estimate Shapley value of growth, price, and
+    distribution components on changes in poverty indicators / skdecomp
+    implements the shapley value of Kolenikov and / Shorrocks (2003)
+    decomposition of changes in a welfare indicator / into growth,
+
+specialexp from http://fmwww.bc.edu/RePEc/bocode/s
+    'SPECIALEXP': module to obtain expression that evaluates to specified
+    string / specialexp returns an expression that evaluates to a specified /
+    string, including strings that cannot be enclosed in double / quotes.  /
+    KW: expressions / KW: quotes / KW: Mata / Requires: Stata version 9 /
+
+tex3pt from http://fmwww.bc.edu/RePEc/bocode/t
+    'TEX3PT': module to produce LaTeX documents from estout with
+    threeparttable / tex3pt takes .tex output from esttab and writes it into a
+    LaTeX / file using threeparttable. This greatly improves the level of /
+    compatibility between LaTeX and esttab.  Since this program uses / the
+
+veracrypt from http://fmwww.bc.edu/RePEc/bocode/v
+    'VERACRYPT': module to mount or dismount a VeraCrypt volume / veracrypt
+    mounts or dismounts a VeraCrypt volume.  / KW: veracrypt / KW: data
+    management / Requires: Stata version 9 / Distribution-Date: 20160926 /
+    Author:  Patrick McNeal, Abdul Latif Jameel Poverty Action Lab, MIT /
+
+st0543 from http://www.stata-journal.com/software/sj18-4
+    SJ18-4 st0543. Fit dynamic random-effects probit... / Fit dynamic
+    random-effects probit models with / unobserved heterogeneity / by Raffaele
+    Grotti, / Department of Political and Social Sciences / European
+    University Institute / San Domenico di Fiesole, Italy / Giorgio Cutuli,
+
+xtpdyn from http://fmwww.bc.edu/RePEc/bocode/x
+    'XTPDYN': module to estimate dynamic random effects probit model with
+    unobserved heterogeneity / xtpdyn fits dynamic random-effects probit
+    models (meprobit and / xtprobit) with unobserved heterogeneity. It
+    implements Wooldridge / simple solution to the initial condition problem
+
+
+11 references found in tables of contents
+─────────────────────────────────────────
+
+http://www.stata-journal.com/software/sj17-3/
+    Stata Journal volume 17, issue 3 / Update: A set of utilities for managing
+    / missing values / Update: Design plots for graphical summary / of a
+    response given factors / Update: One-, two-, and three-way bar charts /
+    for tables / Provide graph schemes sensitive to color / vision deficiency
+
+http://www.stata.com/stb/stb51/
+    STB-51 September 1999 / Update to defv / Update to labedit / Update to
+    varxplor / Update of cut to Stata 6 / Calculating the product of
+    observations / Alternative ranking procedures / 3D surface plots / A
+    simple contour plot / Distribution function plots / Quantile plots,
+
+http://www.stata.com/stb/stb48/
+    STB-48 March 1999 / Drawing Venn diagrams / Diagnostic plots for
+    Singh-Maddala and Dagum distrib / Analysis of income distributions /
+    Creation of bivariate random lognormal variables / Fitting Singh-Maddala
+    and Dagum distrib. by max. like. / Generalized Lorenz curves and related
+
+http://fmwww.bc.edu/RePEc/bocode/a/
+    module to estimate models with two fixed effects / module to compute
+    unbiased IV regression / module for scatter plot with linear and/or
+    quadratic fit, automatically annotated / module to perform Arellano-Bond
+    test for autocorrelation / module to implement the Alpha-Beta-Gamma Method
+
+http://fmwww.bc.edu/RePEc/bocode/c/
+    module to implement machine learning classification in Stata / module to
+    implement machine learning classification in Stata / module to generate
+    calendar / module to estimate proportions and means after survey data have
+    been calibrated to population totals / module for inverse regression and
+
+http://fmwww.bc.edu/RePEc/bocode/d/
+    module to create network visualizations using D3.js to view in browser /
+    module to produce terrible dad jokes / module to provide utilities for
+    directed acyclic graphs / module to fit a Generalized Beta (Type 2)
+    distribution to grouped data via ML / module to fit a Dagum distribution
+
+http://fmwww.bc.edu/RePEc/bocode/e/
+    module to estimate endogenous attribute attendance models / module to
+    perform extreme bound analysis / module to perform Entropy reweighting to
+    create balanced samples / module to perform entropy balancing / module to
+    perform entropy reweighting to create balanced samples for continuous
+
+http://fmwww.bc.edu/RePEc/bocode/i/
+    module to import International Aid Transparency Initiative data / module
+    to compute measures of interaction contrast (biological interaction) /
+    module to compute Interaction Effects in Linear and Generalized Linear
+    Models / module that computes models 2 and 3 of the intra-class
+
+http://fmwww.bc.edu/RePEc/bocode/m/
+    module to implement interpoint distance distribution analysis / module to
+    unabbreviate Global Macro Lists / module to compute the macroF evaluation
+    criterion for multi-class outcomes / module to perform Dickey-Fuller test
+    on panel data / module to create dot plot for summarizing pooled estimates
+
+http://fmwww.bc.edu/RePEc/bocode/p/
+    module to calculate confidence limits of a regression coefficient from the
+    p-value / module to perform Page's L trend test for ordered alternatives /
+    module to create paired datasets from individual-per-row data / module for
+    plots of paired observations / module to import network data in Pajek's
+
+http://fmwww.bc.edu/RePEc/bocode/s/
+    module to compute Sequence Analysis Distance Measures / module to provide
+    commands and mata functions devoted to unit level small area estimation /
+    module to compute sample size for an intra-class correlation (ICC) /
+    module to draw a random sample with probabilities proportional to size /
+
+
+. ssc install povdeco
+checking povdeco consistency and verifying not already installed...
+all files already exist and are up to date.
+</pre>
+<p>Además, es frecuente que otros autores ofrezcan sus programas con más o menos sofisticación y mejor o peor presentación.</p>
+<p><strong><a href="https://www.stata-journal.com/">Stata Journal</a></strong>. Se trata de una revista de StataCorp, indexada en el Journal Citation Reports, donde se publican estrategias de uso de <code>Stata</code> y se proponen nuevos comandos y se ponen a disposición de los usuarios. El <a href="https://www.stata-journal.com/sjpdf.html?articlenum=st0151">artículo</a> de <span class="citation" data-cites="Jann2008">Jann (2008)</span> representa un ejemplo típico: introduce el paquete <code>oaxaca</code>, proporcionando unas nociones estadísticas mínimas y explicando el funcionamiento del mismo, ilustrado con ejemplos.</p>
+<figure>
+<img src="sjcover.png" style="width:15.0%" alt="Stata Journal" /><figcaption aria-hidden="true"><em>Stata Journal</em></figcaption>
+</figure>
+<p><strong><a href="https://www.statalist.org/">Statalist</a></strong>. Inicialmente, fue una lista de correo. En la actualidad, se trata de un foro de usuarios orientado, fundamentalmente, a resolver dudas. Antes de preguntar es importante asegurarse de que el tema no ha sido discutido con anterioridad y, en nuestra duda, incluir un <em>minimum working example</em> en el que se acote el problema.</p>
+<figure>
+<img src="statalist.png" style="width:75.0%" alt="Ejemplo de hilo en Statalist" /><figcaption aria-hidden="true">Ejemplo de hilo en Statalist</figcaption>
+</figure>
+<h1 id="referencias">Referencias</h1>
+
+<div id="refs" class="references csl-bib-body hanging-indent" data-line-spacing="2" role="doc-bibliography">
+<div id="ref-Acock2018" class="csl-entry" role="doc-biblioentry">
+Acock, A. C. (2018). <em>A gentle introduction to <span>S</span>tata</em> (6th ed.). Stata Press.
+</div>
+<div id="ref-Escobar2012" class="csl-entry" role="doc-biblioentry">
+Escobar, M., Fernández-Macías, E., &amp; Bernardi, F. (2012). <em>An<span>á</span>lisis de datos con <span>S</span>tata</em> (2nd ed.). Centro de Investigaciones Soci<span>ó</span>logicas.
+</div>
+<div id="ref-Jann2008" class="csl-entry" role="doc-biblioentry">
+Jann, B. (2008). A <span>S</span>tata implementation of the <span>B</span>linder-<span>O</span>axaca decomposition. <em>Stata Journal</em>, <em>8</em>(4), 456–479.
+</div>
+<div id="ref-Kohler2012" class="csl-entry" role="doc-biblioentry">
+Kohler, U., &amp; Kreuter, F. (2012). <em>Data analysis using <span>S</span>tata</em> (3rd ed.). Stata Press.
+</div>
+<div id="ref-Long2009" class="csl-entry" role="doc-biblioentry">
+Long, J. S. (2009). <em>The workflow of data analysis using <span>S</span>tata</em>. Stata Press.
+</div>
+</div>
+</body>
+</html>

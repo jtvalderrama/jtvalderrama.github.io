@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <meta name="author" content="José A. Valderrama" />
+  <title>Ejercicios</title>
+  <style>
+    html {
+      line-height: 1.5;
+      font-family: Georgia, serif;
+      font-size: 20px;
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      word-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 1em;
+      }
+    }
+    @media print {
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, 'Lucida Console', Consolas, monospace;
+      font-size: 85%;
+      margin: 0;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      background-color: #1a1a1a;
+      border: none;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    span.underline{text-decoration: underline;}
+    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+<style>
+/* CSS for Markstat 2.0 using Pandoc 2.0 */
+body{padding:14px 28px;}
+body, table {font-family: Helvetica, Arial, Sans-serif; font-size: 14px; width: 95%; max-width: unset;}
+h1, h2, h3, h4 {font-weight: normal; color: #3366cc}
+h1 {font-size: 200%;}
+h2 {font-size: 150%;}
+h3 {font-size: 120%;}
+h4 {font-size: 100%; font-weight:bold}
+img.center {display:block; margin-left:auto; margin-right:auto}
+.small{font-size:8pt;}
+a {color: black;}
+a:visited {color: #808080;}
+a.plain {text-decoration:none;}
+a.plain:hover {text-decoration:underline;}
+.em {font-weight:bold;}
+pre, code {font-family: "lucida console", monospace;}
+pre.stata {font-size:13px; line-height:13px;}
+pre {padding:8px; border:1px solid #c0c0c0; border-radius:8px; background-color:#fdfdfd;}
+code {color:#3366cc; background-color:#fafafa;}
+pre code { color:black; background-color:white}
+/* Added for Pandoc */
+figure > img, div.figure > img {display:block; margin:auto}
+figcaption, p.caption {text-align:center; font-weight:bold; color:#3366cc;}
+h1.title {text-align:center; margin-bottom:0}
+p.author, h2.author {font-style:italic; text-align:center;margin-top:12px;margin-bottom:-25px}
+p.date, h3.date {text-align:center;margin-top:4px; margin-bottom:0}
+/* Tables*/
+table { margin:auto; border-collapse:collapse; }
+table caption { margin-bottom:1ex;}
+th, td { padding:4px 6px;}
+thead tr:first-child th {border-top:1px solid black; padding-top:6px}
+thead tr:last-child  th {padding-bottom:6px}
+tbody tr:first-child td {border-top:1px solid black; padding-top:6px}
+tbody tr:last-child  td {padding-bottom:6px;}
+table tbody:last-child tr:last-child td {border-bottom:1px solid black;}
+</style>
+</head>
+<body>
+<header id="title-block-header">
+<h1 class="title">Ejercicios</h1>
+<p class="author">José A. Valderrama</p>
+</header>
+<hr />
+<p style="text-align: center;">
+<a href="https://jtvalderrama.github.io/curso_stata.html"><span style="color:red"><font size="4">Inicio</font></span></a>      <a href="https://jtvalderrama.github.io/stata1.html"><span style="color:red"><font size="4">Sesión 1</font></span></a>      <a href="https://jtvalderrama.github.io/stata2.html"><span style="color:red"><font size="4">Sesión 2</font></span></a>      <a href="https://jtvalderrama.github.io/stata3.html"><span style="color:red"><font size="4">Sesión 3</font></span></a>      <a href="https://jtvalderrama.github.io/stata4.html"><span style="color:red"><font size="4">Sesión 4</font></span></a>      <a href="https://jtvalderrama.github.io/stata5.html"><span style="color:red"><font size="4">Sesión 5</font></span></a>      <a href="https://jtvalderrama.github.io/stata_ejercicios.html"><span style="color:red"><font size="4">Ejercicios</font></span></a>
+</p>
+<hr />
+<p><strong>Evaluación:</strong> Para superar el curso, los estudiantes deberán entregar la solución a la hoja de problemas que puede descargarse en este enlace. Los ejercicios pueden entregarse proporcionando al profesor un archivo <code>.do</code> o un log (e.g., un archivo <code>.smcl</code>), aunque otras opciones son admisibles (por ejemplo, los usuarios más avanzados pueden preferir archivos <code>.html</code> o <code>.pdf</code> generados con Markdown o TeX).</p>
+<hr style="border-top: dotted 1px;" />
+<p><strong><span style="color:blue"><font size="3">Ejercicio 1</font></span></strong></p>
+<p>El Latinobarómetro es una encuesta anual que se realiza en la mayor parte de los países de América Latina y el Caribe y que recoge información sobre la percepción de los ciudadanos de la democracia, la economía y la sociedad. Visita la <a href="https://www.latinobarometro.org/latContents.jsp">página web de la encuesta</a> y realiza las siguientes tareas:</p>
+<p><strong><span style="color:red">a)</span></strong> Descarga la base de datos del año 2018 en el formato que prefieras (el archivo <code>.dta</code> contiene algunos errores, por lo que puede ser preferible importar los archivos descargados en otro formato).</p>
+<p><strong><span style="color:red">b)</span></strong> Crea una variable que recoja la edad del entrevistado en 3 intervalos (menores 30, entre 30 y 64 años y 65 y más años). Renombra las variable empleando algún término que te permita identificar mejor la variable (e.g., la variable que recoge el sexo puedes denominarla <code>sexo</code>) Etiqueta la variable y sus valores.</p>
+<p><strong><span style="color:red">c)</span></strong> Explora la variable <em>Escala izquierda-derecha</em> y recodifica aquellas respuestas distintas a la escala 0-10 (Ninguno, no sabe, no contesta) como valores perdidos.</p>
+<p><strong><span style="color:red">d)</span></strong> Guarda un archivo con nombre <code>latbar2018.dta</code> con variables que contengan el país de la entrevista, año de la entrevista, sexo, edad, educación en tres grupos y escala izquierda-derecha (solo las personas con valores 0-10). Excluye de la muestra a España, la población de 65 y más años y todas las personas con valores perdidos en cualquiera de las seis variables.</p>
+<p><br/><br/></p>
+<p><strong><span style="color:blue"><font size="3">Ejercicio 2</font></span></strong></p>
+<p><strong><span style="color:red">a)</span></strong> Descarga de la misma página los datos del Latinobarómetro correspondientes a 1998 y 2008, con similares valores y filtros que la base de datos de 2018.</p>
+<p><strong><span style="color:red">b)</span></strong> Une los tres archivos empleando la instrucción <code>append</code> y guarda el archivo resultante como <code>latbar19982018.dta</code>.</p>
+<p><strong><span style="color:red">c)</span></strong> Visita la web del Fondo Monetario Internacional y descarga del <a href="https://www.imf.org/external/pubs/ft/weo/2020/01/weodata/weoselco.aspx?g=205&amp;sg=All+countries+%2f+Emerging+market+and+developing+economies+%2f+Latin+America+and+the+Caribbean">World Economic Outlook Database April 2020</a> un archivo que contenga la tasa de desempleo de 1998 a 2018 de todos los países del continente. Obtendrás un archivo <code>.xls</code>. Investiga cómo crear un archivo en formato <code>.dta</code> a partir del mismo. Guarda el archivo con el nombre <code>weo.dta</code>.</p>
+<p><strong><span style="color:red">d)</span></strong> Con la instrucción <code>merge</code>, fusiona el archivo <code>latbar19982018.dta</code> con el archivo <code>weo.dta</code> usando como variables enlace el país y el año. Comprueba qué países aparecen en ambas bases de datos y cuáles no y quédate únicamente con los primeros. Con el comando <code>collapse</code>, crea una base de datos resumida que contenga la posición ideológica media por año y país. Reorganiza la base de datos con el comando <code>reshape</code> de forma que contenga una columna con la posición ideológica media para cada año y genera una nueva variable que incluya el cambio porcentual de la posición ideológica media entre 1998 y 2018.</p>
+<p><br/><br/></p>
+<p><strong><span style="color:blue"><font size="3">Ejercicio 3</font></span></strong></p>
+<p><strong><span style="color:red">a)</span></strong> A partir de la base de datos <code>latbar19982018.dta</code>, elabora una tabla que nos indique la distribución porcentual de la educación por sexo (qué porcentaje de hombres y mujeres, respectivamente, tienen niveles educativos bajo, medio y superior) y la distribución porcentual del sexo por nivel educativo (qué porcentajes de personas con estudios bajos, medios o superiores son hombres y mujeres).</p>
+<p><strong><span style="color:red">b</span></strong> Elabora una tabla donde muestres la posición ideológica media por sexo y nivel educativo.</p>
+<p><strong><span style="color:red">c)</span></strong> Realiza un análisis de varianza de la posición ideológica por año, para determinar si la posición ideológica es diferente en cada uno de los tres años de la muestra.</p>
+<p><strong><span style="color:red">d)</span></strong> Realiza un análisis de regresión en el que explores la relación entre la posición ideológica (variable dependiente) y el sexo, edad, edad al cuadrado y nivel educativo.</p>
+<p><br/><br/></p>
+<p><strong><span style="color:blue"><font size="3">Ejercicio 4</font></span></strong></p>
+<p><strong><span style="color:red">a)</span></strong> A partir de la base de datos <code>latbar19982018.dta</code>, elabora un histograma de la posición ideológica de los encuestados.</p>
+<p><strong><span style="color:red">b)</span></strong> Elabora un gráfico de barras horizontales en el que muestres la posición ideológica media por nivel educativo.</p>
+<p><strong><span style="color:red">c)</span></strong> Crea un gráfico de líneas en el que muestres la evolución por sexo de la posición ideológica media desde 1998 a 2018.</p>
+<p><strong><span style="color:red">d)</span></strong> Realiza un gráfico de dispersión en el que explores si existe relación entre el porcentaje de personas del país con un nivel educativo alto y el porcentaje de personas con posiciones ideológicas de izquierda (definida como un valor en la escala ideológica de 0 a 3) en un año determinado.</p>
+<p><br/><br/></p>
+<p><strong><span style="color:blue"><font size="3">Ejercicio 5</font></span></strong></p>
+<p>Realiza las cuatro regresiones de la posición ideológica sobre los siguientes grupos de variables:<br />
+(1) sexo,<br />
+(2) sexo, edad y edad al cuadrado,<br />
+(3) sexo, edad, edad al cuadrado y educación,<br />
+(4) sexo, edad, edad al cuadrado, educación y año de la encuesta,<br />
+</p>
+<p>Con ayuda de <code>esttab</code> o <code>putexcel</code>, crea una tabla en Microsoft Word (o un procesador de textos similar) con la tabla de regresión.</p>
+
+</body>
+</html>

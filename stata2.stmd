@@ -1,0 +1,346 @@
+---
+title: Sesión 2. Manipulación de datos y archivos
+author: José A. Valderrama
+bibliography: curso_stata.bib
+csl: apa.csl
+---
+_ _ _
+
+<p style="text-align: center;">[<span style="color:red"><font size="4">Inicio</font></span>](https://jtvalderrama.github.io/stata_index.html) &nbsp;&nbsp;&nbsp;&nbsp; [<span style="color:red"><font size="4">Sesión 1</font></span>](https://jtvalderrama.github.io/stata1.html)    &nbsp;&nbsp;&nbsp;&nbsp;   [<span style="color:red"><font size="4">Sesión 2</font></span>](https://jtvalderrama.github.io/curso_stata.html)    &nbsp;&nbsp;&nbsp;&nbsp;   [<span style="color:red"><font size="4">Sesión 3</font></span>](https://jtvalderrama.github.io/stata3.html)    &nbsp;&nbsp;&nbsp;&nbsp;   [<span style="color:red"><font size="4">Sesión 4</font></span>](https://jtvalderrama.github.io/stata4.html)    &nbsp;&nbsp;&nbsp;&nbsp;   [<span style="color:red"><font size="4">Sesión 5</font></span>](https://jtvalderrama.github.io/stata5.html) &nbsp;&nbsp;&nbsp;&nbsp;   [<span style="color:red"><font size="4">Ejercicios</font></span>](https://jtvalderrama.github.io/stata_ejercicios.html) </p>
+
+_ _ _
+
+# 1. Operaciones de fusión horizontal de archivos
+
+Una de las operaciones más utilizadas en `Stata` para manipular archivos es la instrucción `merge`, que permite fusionar dos archivos a partir de ciertas variables comunes. Ejemplos típicos son la fusión de distintas bases de datos con características de los inviduos o una base de datos con características de los invidividuos que queremos fusionar con una bases de datos con características de los hogares.
+
+Para ilustrar estos comandos, vamos a emplear los archivos de la ECV 2018, en concreto, el archivo básico de personas (`ecv18r.dta`), el archivo básico de hogares (`ecv18d.dta`), el archivo detallado de personas (`ecv18p.dta`) y el archivo detallado de hogares (`ecv18h.dta`), que se encuentran en la carpeta `sesión2`. Lo primer de todo, por lo tanto, es seleccionar el directorio de trabajo
+
+```{s}
+cd "D:\Dropbox\curso_stata\sesión2"
+```
+
+Dos posibles referencias que cubren el contenido de esta sesión son @Escobar2012 y @Kohler2012.
+
+## 1.1. Fusiones de bases de datos de una observación a otra observación
+
+Antes de nada, debemos tener en cuenta que en las bases de datos hay variables que actúan como identificadores y que nos permiten relacionar los diferentes archivos. En ocasiones, la identificación de una unidad (hogar, persona, empresa, muestra, etc.) viene dada por una variable y, en otras, por la combinación de varias variables.
+
+En primer lugar, vamos a fusionar el archivo básico de hogares (`ecv18d.dta`) con el archivo detallado de hogares (`ecv18h.dta`). El primero contiene variables muy básicas del hogar (e.g., localización), mientras que el segundo incluye las respuestas al cuestionario detallado de la ECV a los hogares sobre distintas dimensiones (renta, condiciones de la vivienda, etc.). La variable de enlace en este caso es el identificador del hogar (`hid`). Esta variable aparece como `db030` en el primer archivo y como `hb030`, en el segundo. En ambos casos, las hemos renombrado empleando un nombre común, `hid`.
+
+Procedemos en tres pasos:
+
+**Paso 1.** Abrimos una de las bases de datos (`master file`)
+
+**Paso 2.** Ejecutamos la instrucción `merge` para fusionar la primera base con la segunda (`using file`)
+
+  <code>merge 1:1 <i>varlist</i> using <i>filename</i> [, <i>options</i>]</code>
+
+**Paso 3.** Comprobamos que la operación se ha realizado correctamente (recurriendo a la variable creada, automáticamente, `_merge`). Esta variable puede tomar tres valores: el valor 3 indica que la observación se encuentra en las dos bases de datos (`match`); el valor 1, que solo se encuentra en la base de datos `master` y el valor 2, que únicamente la encontramos en la base de datos `using`. Dependiendo de nuestros objetivos, podemos quedarnos solo con las observaciones que se encuentran en ambos archivos y borrar el resto de observaciones.
+
+Así, en nuestro ejemplo, abrimos la base de datos
+
+```{s}
+//  Abrimos la base de datos
+
+use "ecv18d.dta", clear
+
+//  Realizamos la fusión
+
+merge 1:1 hid using "ecv18h.dta"
+
+//  Comprobamos que se ha realizado correctamente
+
+tabulate _merge
+```
+
+Observamos que las observaciones se encuentran en ambas bases de datos simultáneamente.
+
+A continuación, fusionamos la base de datos con información básica de personas (`ecv18r.dta`) con la base de datos con información detallada (`ecv18p.dta`). De acuerdo a la documentación de la encuestas y nuestro etiquetado, la variable de enlace es el identificador personal (`pid`), que corresponde a las variables de identificador del hogar en cada archivo (`rb030` y `pb030`, respectivamente). Esta variable, según la documentación está formada porque
+
+$$ \text{pid} = 100 \cdot \text{hid} + \text{nº de 0 a 10 indicando el número de la persona en el hogar}$$
+
+Procedemos como sigue:
+
+```{s}
+//  Abrimos la base de datos
+
+use "ecv18r.dta", clear
+
+//  Realizamos la fusión
+
+merge 1:1 pid using "ecv18p.dta"
+
+//  Comprobamos que se ha realizado correctamente
+
+tabulate _merge
+```
+
+En este caso, observamos que hay observaciones que solo aparecen en la base `master`. ¿Existe un error? No, lo que ocurre es que la base de datos con información básica incluye a todas las personas, mientras que la que comprende información detallada, solo a los mayores de 16 años. No obstante, la variable `_merge` nos permite distinguir errores de otras circunstancias.
+
+# 1.2. Fusiones de bases de datos de varias observaciones a una observación (o viceversa)
+
+En ocasiones, precisamos fusionar una base de datos a un cierto nivel (e.g., personas) con otra base de datos con información a nivel superior (e.g., hogares o regiones). Para realizar este tipo de operación empleamos
+
+  <code>merge m:1 <i>varlist</i> using <i>filename</i> [, <i>options</i>]</code>
+
+En nuestro caso, vamos a fusionar la base de datos de personas con información básica (`ecv18r.dta`) con la base de datos de los hogares con información básica (`ecv18d.dta`). La variable de enlace, común en ambas bases, es el identificador del hogar (`hid`). Según la documentación, el identificador personal está compuesto del identificador laboral más el número de orden de la persona dentro del hogar. En los ficheros de personas, hemos creado un identificador del hogar empleando `generate int hid = pid/100`, por lo que tenemos dicha variable. La fusión, en este caso, es perfecta, pero, en muchas ocasiones, hay problemas de no respuesta, errores de codificación, etc. y es habitual que nos tengamos que quedar solo con aquellos datos que enlazan perfectamente (`_merge == 3`).
+
+```{s}
+//  Abrimos la base de datos
+
+use "ecv18r.dta", clear
+
+//  Realizamos la fusión
+
+merge m:1 hid using "ecv18d.dta"
+
+//  Comprobamos que se ha realizado correctamente
+
+tabulate _merge
+```
+
+Podemos, fácilmente, fusionar todas las bases de datos en un único fichero (y, si queremos, ordenar la base de datos posteriormente). Debemos eliminar antes de cada fusión la variable `_merge` (o no crearla al realizar la fusión).
+
+```{s}
+//  Fusionamos los archivos de personas
+
+use "ecv18r.dta", clear
+merge 1:1 pid using "ecv18p.dta", nogenerate
+
+//  Fusionamos con los archivos de hogares
+
+merge m:1 hid using "ecv18d.dta", nogenerate
+merge m:1 hid using "ecv18h.dta", nogenerate
+```
+**Importante:** Nunca debe emplearse la fusión `merge m:m`. Es preferible emplear la función `joinby` (`help joinby`).
+
+# 2. Operaciones de fusión vertical de archivos
+
+El comando `append` nos permite unir archivos que contienen las mismas variables pero referidas a distintas unidades de análisis. Por ejemplo, podemos fusionar la base de datos de la ECV del año 2018 (`ecv18`) con otras de años anteriores, como la base de datos del año 2017 (`ecv17`) y 2016 (`ecv16`). El procedimiento es el siguiente:
+
+**Paso 1.** Abrimos uno de los archivos.
+
+**Paso 2.** Con el comando, `append` agregamos el resto de archivos.
+
+  <code><u>ap</u>pend using <i>filename</i> [<i>filename</i> <i>...</i>] [, <i>options</i>]</code>
+
+En nuestro caso, podemos proceder Así
+
+```{s}
+//  Abrimos el archivo de la ECV de 2016
+
+use "ecv16.dta", clear
+
+//  Agregamos los años 2017 y 2018
+
+append using "ecv17.dta" "ecv18.dta"
+
+//  Podemos comprobar cómo tenemos información de los tres años
+
+tabulate ano
+```
+
+# 3. Crear una base de datos con estadísticos descriptivos
+
+Esta tarea, si bien se puede realizar combinando otros comandos (`egen`, `merge` y `append`) es mucho más sencilla a través de la potente instrucción `collapse`:
+
+  <code>collapse <i>clist</i> [<i>if</i>] [<i>in</i>] [<i>weight</i>] [, <i>options</i>]</code>
+
+donde <i>`clist`</i> viene dado por
+
+  <code>[(<i>stat</i>)] <i>varlist</i> [ [(<i>stat</i>)] ... ]</code>
+
+  <code>[(<i>stat</i>)] <i>target_var</i>=<i>varname</i> [<i>target_var</i>=<i>varname</i> <i>...</i>] [ [(<i>stat</i>)] <i>...</i>]</code>
+
+El comando admite el cálculo de un amplio conjunto de estadísticos descriptivos (`stat`) y permite usar ponderaciones:
+
+    mean         means (default)
+    median       medians
+    p1           1st percentile
+    p2           2nd percentile
+    ...          3rd-49th percentiles
+    p50          50th percentile (same as median)
+    ...          51st-97th percentiles
+    p98          98th percentile
+    p99          99th percentile
+    sd           standard deviations
+    semean       standard error of the mean (sd/sqrt(n))
+    sebinomial   standard error of the mean, binomial (sqrt(p(1-p)/n))
+    sepoisson    standard error of the mean, Poisson (sqrt(mean/n))
+    sum          sums
+    rawsum       sums, ignoring optionally specified weight except observations with a weight of zero are excluded
+    count        number of nonmissing observations
+    percent      percentage of nonmissing observations
+    max          maximums
+    min          minimums
+    iqr          interquartile range
+    first        first value
+    last         last value
+    firstnm      first nonmissing value
+    lastnm       last nonmissing value
+
+Por ejemplo, vamos a crear un archivo que contenga el salario medio por sexo y año.
+
+```{s}
+//  Seleccionamos los trabajadores asalariados únicamente
+
+generate rentaasa = rentamonasag + rentanomonasag
+generate nmesesasa = nmesesasatc + 0.5*nmesesasatp
+keep if rentaasa > 0 & rentaasa < .
+keep if nmesesasa > 0 & nmesesasa < .
+
+//  Creamos el salario bruto mensual de los trabajadores
+
+generate salario = rentaasa/nmesesasa
+label variable salario "Salario bruto mensual"
+
+//  Generamos una base de datos con el salario medio por Comunidad Autónoma y año
+
+collapse (mean) salariomed = salario, by(ano sexo)
+```
+
+# 4. Cambiar la disposición de los datos
+
+En muchas ocasiones, especialmente cuando trabajamos con datos de panel, resulta tremendamente útil cambiar la disposición de los datos que tenemos. Por ejemplo, en nuestra base de datos tenemos el salario medio por sexo y año. El formato (llamado `long`) es el siguiente:
+
+```{s}
+sort sexo ano
+list sexo ano salariomed
+```
+Para calcular cuál es la evolución del salario medio por sexo, para ello, sería más fácil disponer de tres variables que recojan el salario, una para cada año (formato `wide`). El comando `reshape` funciona de la siguiente forma:
+
+  <code>reshape wide <i>stub</i>, i(<i>i</i>) j(<j>j</j>)</code>
+
+En nuestro caso,
+
+```{s}
+//  Cambiamos la disposición de long a wide
+
+reshape wide salariomed, i(sexo) j(ano)
+
+//  Calculamos el crecimiento del salario de 2016 a 2018
+
+generate cambio1618 = 100*(salariomed2018 - salariomed2016)/salariomed2016
+label var cambio1618 "Cambio porcentual del salario (2016-2018)"
+
+//  Podemos ver cómo se ha creado la nueva variable
+
+list sexo salariomed2016 salariomed2018 cambio1618
+```
+
+Podemos volver al formato `long` de forma análoga:
+
+  <code>reshape long <i>stub</i>, i(<i>i</i>) j(<j>j</j>)</code>
+
+Así,
+
+```{s}
+//  Cambiamos la disposición de long a wide
+
+reshape long salariomed, i(sexo) j(ano)
+```
+
+# 5. Nociones básicas de programación: `preserve`, `restore` y el uso de macros y bucles
+
+En esta sección, vamos a revisar una serie de instrucciones que se utilizan fundamentalmente en programación (e.g., en la elaboración de archivos `.do`). Aunque algunos también pueden emplearse de forma interactiva, en otros, esta estrategia carece de sentido, ya que las macros creadas desaparecen cuando se termina de ejecutar el programa. Aquí únicamente haremos una primera aproximación. Para más detalles, puede consultarse, por ejemplo, @Baum2016.
+
+## 5.1. El uso de `preserve` y `restore`
+
+En ocasiones, es necesario volver a una versión previa de los datos después de realizar operaciones. Para ello podemos valernos de dos comandos muy útiles, `preserve` y `restore`. Al introducir `preserve` indicamos a `Stata` que, cuando introduzcamos el comando `restore`, debe volver a los datos justo antes de la introducción de este comando. Estas instrucciones son particularmente de interés cuando tenemos que realizar operaciones en las que eliminemos observaciones o variables. Así, por ejemplo, con la base de datos anterior, podemos eliminar una de las variables y, posteriormente, volver a la base de datos original.
+
+```{s}
+describe
+
+preserve
+
+//  Eliminamos la variable sexo
+
+drop sexo
+
+describe
+
+restore
+
+describe
+```
+
+## 5.2. El uso de macros: `local`, `global`, `tempname`, `tempvar` y `tempfile`
+
+`global` asigna a una macro global (se conserva hasta que se cierre `Stata`) cadenas de caracteres. Se emplea habitualmente para crear listas de variables (e.g., regresores como variables independientes a introducir en una regresión). Para referirnos a estas macros, debemos utilizar `$`.
+
+`local` asigna a una macro local (se conserva hasta que se ejecuta el archivo `.do`) cadenas de caracteres y tiene un funcionamiento similar a `global`. Para invocar una macro creada, debemos hacerlo entre los caracteres `` ` `` y `'`.
+
+`tempvar` crea varaibles temporales en una base de datos que desaparecen al concluir el programa o el archivo `.do`.
+
+`tempname` cumple la misma función, pero con matrices o escalares.
+
+`tempfile` funciona de forma análoga para nombres de archivos.
+
+Así, por ejemplo, podemos crear una macro global que incluya la variable `sexo`, podemos llamarla `var1` y calcular los estadísticos descriptivos de `var1`.
+
+```{s}
+global var1 "sexo"
+
+summarize $var1
+```
+
+## 5.3 El uso de bucles
+
+El tercer elemento clave en términos de programación son los bucles, que, a través de macros locales, nos permiten realizar operaciones de forma repetida y, de esa forma, programar de forma eficiente. Los principales bucles que podemos emplear son los siguientes:
+
+  <code>foreach <i>lname</i> in <i>any_list</i> {</code>
+
+  <code>        <i>commands referring to `lname'</i></code>
+
+  <code>}</code>
+
+  <code>foreach <i>lname</i> of <u>loc</u>al <i>lmacname</i> {</code>
+
+  <code>        <i>commands referring to `lname'</i></code>
+
+  <code>}</code>
+
+  <code>foreach <i>lname</i> of <u>glo</u>bal <i>gmacname</i> {</code>
+
+  <code>        <i>commands referring to `lname'</i></code>
+
+  <code>}</code>
+
+  <code>foreach <i>lname</i> of <u>var</u>list <i>varlist</i> {</code>
+
+  <code>        <i>commands referring to `lname'</i></code>
+
+  <code>}</code>
+
+  <code>foreach <i>lname</i> of <u>new</u>list <i>newvarlist</i> {</code>
+
+  <code>        <i>commands referring to `lname'</i></code>
+
+  <code>}</code>
+
+  <code>foreach <i>lname</i> of <u>num</u>list <i>numlist</i> {</code>
+
+  <code>        <i>commands referring to `lname'</i></code>
+
+  <code>}</code>
+
+  <code>forvalues <i>lname</i> = <i>range</i> {</code>
+
+  <code>        <i>commands referring to `lname'</i></code>
+
+  <code>}</code>
+
+Podemos calcular a modo de ejemplo la media del salario para cada uno de los 3 años en la muestra:
+
+```{s}
+forvalues i=2016(1)2018{
+  summarize salariomed if ano == `i'
+}
+```
+
+## Referencias
+
+```{s/}
+quietly: cd "D:\Dropbox\curso_stata\jtvalderrama.github.io"
+```

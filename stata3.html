@@ -1,0 +1,1249 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <meta name="author" content="José A. Valderrama" />
+  <title>Sesión 3. Tablas de contingencia y análisis multivariante</title>
+  <style>
+    html {
+      line-height: 1.5;
+      font-family: Georgia, serif;
+      font-size: 20px;
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      word-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 1em;
+      }
+    }
+    @media print {
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, 'Lucida Console', Consolas, monospace;
+      font-size: 85%;
+      margin: 0;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      background-color: #1a1a1a;
+      border: none;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    span.underline{text-decoration: underline;}
+    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    div.csl-bib-body { }
+    div.csl-entry {
+      clear: both;
+    }
+    .hanging div.csl-entry {
+      margin-left:2em;
+      text-indent:-2em;
+    }
+    div.csl-left-margin {
+      min-width:2em;
+      float:left;
+    }
+    div.csl-right-inline {
+      margin-left:2em;
+      padding-left:1em;
+    }
+    div.csl-indent {
+      margin-left: 2em;
+    }
+  </style>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+<style>
+/* CSS for Markstat 2.0 using Pandoc 2.0 */
+body{padding:14px 28px;}
+body, table {font-family: Helvetica, Arial, Sans-serif; font-size: 14px; width: 95%; max-width: unset;}
+h1, h2, h3, h4 {font-weight: normal; color: #3366cc}
+h1 {font-size: 200%;}
+h2 {font-size: 150%;}
+h3 {font-size: 120%;}
+h4 {font-size: 100%; font-weight:bold}
+img.center {display:block; margin-left:auto; margin-right:auto}
+.small{font-size:8pt;}
+a {color: black;}
+a:visited {color: #808080;}
+a.plain {text-decoration:none;}
+a.plain:hover {text-decoration:underline;}
+.em {font-weight:bold;}
+pre, code {font-family: "lucida console", monospace;}
+pre.stata {font-size:13px; line-height:13px;}
+pre {padding:8px; border:1px solid #c0c0c0; border-radius:8px; background-color:#fdfdfd;}
+code {color:#3366cc; background-color:#fafafa;}
+pre code { color:black; background-color:white}
+/* Added for Pandoc */
+figure > img, div.figure > img {display:block; margin:auto}
+figcaption, p.caption {text-align:center; font-weight:bold; color:#3366cc;}
+h1.title {text-align:center; margin-bottom:0}
+p.author, h2.author {font-style:italic; text-align:center;margin-top:12px;margin-bottom:-25px}
+p.date, h3.date {text-align:center;margin-top:4px; margin-bottom:0}
+/* Tables*/
+table { margin:auto; border-collapse:collapse; }
+table caption { margin-bottom:1ex;}
+th, td { padding:4px 6px;}
+thead tr:first-child th {border-top:1px solid black; padding-top:6px}
+thead tr:last-child  th {padding-bottom:6px}
+tbody tr:first-child td {border-top:1px solid black; padding-top:6px}
+tbody tr:last-child  td {padding-bottom:6px;}
+table tbody:last-child tr:last-child td {border-bottom:1px solid black;}
+</style>
+</head>
+<body>
+<header id="title-block-header">
+<h1 class="title">Sesión 3. Tablas de contingencia y análisis multivariante</h1>
+<p class="author">José A. Valderrama</p>
+</header>
+<hr />
+<p style="text-align: center;">
+<a href="https://jtvalderrama.github.io/curso_stata.html"><span style="color:red"><font size="4">Inicio</font></span></a>      <a href="https://jtvalderrama.github.io/stata1.html"><span style="color:red"><font size="4">Sesión 1</font></span></a>      <a href="https://jtvalderrama.github.io/stata2.html"><span style="color:red"><font size="4">Sesión 2</font></span></a>      <a href="https://jtvalderrama.github.io/stata3.html"><span style="color:red"><font size="4">Sesión 3</font></span></a>      <a href="https://jtvalderrama.github.io/stata4.html"><span style="color:red"><font size="4">Sesión 4</font></span></a>      <a href="https://jtvalderrama.github.io/stata5.html"><span style="color:red"><font size="4">Sesión 5</font></span></a>      <a href="https://jtvalderrama.github.io/stata_ejercicios.html"><span style="color:red"><font size="4">Ejercicios</font></span></a>
+</p>
+<hr />
+<h1 id="tablas-de-contingencia">1. Tablas de contingencia</h1>
+<p><code>Stata</code> es un software muy apropiado para elaborar tablas de contingencia simples y complejas. Para ilustrar el empleo de estos comandos, utilizaremos la base de datos <code>ecv18t</code>, que se encuentra en la carpeta <code>sesión3</code> e incluye una serie de variables que permiten analizar algunos aspectos del mercado de trabajo. Podemos encontrar explicaciones detalladas, por ejemplo, en el libro de <span class="citation" data-cites="Escobar2012">Escobar et al. (2012)</span> o el de <span class="citation" data-cites="Kohler2012">Kohler &amp; Kreuter (2012)</span>.</p>
+<h2 id="tablas-de-frecuencia-con-una-o-dos-variables-tabulate">Tablas de frecuencia con una o dos variables (<code>tabulate</code>)</h2>
+<p>Es uno de los comandos más utilizados de <code>Stata</code>, esencial para explorar las bases de datos. La sintaxis es la siguiente:</p>
+<p>Tabla de una variable (<em>one-way table</em>)</p>
+<p><code><u>tab</u>ulate <i>varname</i> [<i>if</i>] [<i>in</i>] [<i>weight</i>] [, <i>tabulate1_options</i>]</code></p>
+<p>Tabla de dos variables (<em>two-way table</em>)</p>
+<p><code><u>tab</u>ulate <i>varname1</i> <i>varname2</i> [<i>if</i>] [<i>in</i>] [<i>weight</i>] [, <i>options</i>]</code></p>
+<p>Las opciones para crear las tablas son numerosas: número de observaciones, frecuencias de celdas, filas o columnas, etc.</p>
+<p>En nuestra base de datos, por ejemplo, podemos crear una tabla con la distribución de la educación en la población.</p>
+<pre class='stata'>. //  Fijamos el directorio de trabajo
+. 
+. cd "D:\Dropbox\curso_stata\sesión3"
+D:\Dropbox\curso_stata\sesión3
+
+. 
+. //  Abrimos el archivo
+. 
+. use "ecv18t.dta", clear
+(ECV 2018 (mercado de trabajo))
+
+. 
+. //  Tabla de frecuencias absolutas
+. 
+. tabulate educg
+
+ Educación (agrupada) │      Freq.     Percent        Cum.
+──────────────────────┼───────────────────────────────────
+ Nivel educativo bajo │      7,841       38.64       38.64
+Nivel educativo medio │      5,429       26.75       65.40
+ Nivel educativo alto │      7,022       34.60      100.00
+──────────────────────┼───────────────────────────────────
+                Total │     20,292      100.00
+</pre>
+<p>Asimismo, podemos crear una tabla que recoja la distribución de la educación por sexo.</p>
+<pre class='stata'>. //  Tabla de frecuencias absolutas
+. 
+. tabulate educg sexo
+
+                      │         Sexo
+ Educación (agrupada) │    Hombre      Mujer │     Total
+──────────────────────┼──────────────────────┼──────────
+ Nivel educativo bajo │     4,109      3,732 │     7,841 
+Nivel educativo medio │     2,710      2,719 │     5,429 
+ Nivel educativo alto │     3,162      3,860 │     7,022 
+──────────────────────┼──────────────────────┼──────────
+                Total │     9,981     10,311 │    20,292 
+
+. 
+. //  Distribución por sexo por nivel educativo (porcentaje por filas).
+. 
+. tabulate educg sexo, row nofreq
+
+                      │         Sexo
+ Educación (agrupada) │    Hombre      Mujer │     Total
+──────────────────────┼──────────────────────┼──────────
+ Nivel educativo bajo │     52.40      47.60 │    100.00 
+Nivel educativo medio │     49.92      50.08 │    100.00 
+ Nivel educativo alto │     45.03      54.97 │    100.00 
+──────────────────────┼──────────────────────┼──────────
+                Total │     49.19      50.81 │    100.00 
+
+. 
+. //  Distribución del nivel educativo por sexo (porcentaje por columnas).
+. 
+. tabulate educg sexo, col nofreq
+
+                      │         Sexo
+ Educación (agrupada) │    Hombre      Mujer │     Total
+──────────────────────┼──────────────────────┼──────────
+ Nivel educativo bajo │     41.17      36.19 │     38.64 
+Nivel educativo medio │     27.15      26.37 │     26.75 
+ Nivel educativo alto │     31.68      37.44 │     34.60 
+──────────────────────┼──────────────────────┼──────────
+                Total │    100.00     100.00 │    100.00 
+
+. 
+. //  Porcentaje de observaciones en cada celda.
+. 
+. tabulate educg sexo, cell nofreq
+
+                      │         Sexo
+ Educación (agrupada) │    Hombre      Mujer │     Total
+──────────────────────┼──────────────────────┼──────────
+ Nivel educativo bajo │     20.25      18.39 │     38.64 
+Nivel educativo medio │     13.36      13.40 │     26.75 
+ Nivel educativo alto │     15.58      19.02 │     34.60 
+──────────────────────┼──────────────────────┼──────────
+                Total │     49.19      50.81 │    100.00 
+</pre>
+<p>Adicionalmente, <code>Stata</code> nos permite realizar algunos tests estadísticos para contrastar si las dos variables se distribuyen de forma independiente, como el test de la <span class="math inline">\(\chi^2\)</span> de Pearson (opción <code>chi2</code>), entre otros muchos.</p>
+<h2 id="tablas-con-estadísticos-descriptivos">Tablas con estadísticos descriptivos</h2>
+<p>Podemos crear tablas de una o dos variables con los estadísticos descriptivos de otras variables mediante la instrucción <code>tabulate, summarize()</code>.</p>
+<p><code><u>tab</u>ulate <i>varname1</i> [<i>varname2</i>] [<i>if</i>] [<i>in</i>] [<i>weight</i>] [, options]</code></p>
+<p>Por ejemplo, podemos calcular los estadísticos descriptivos del salario promedio por nivel educativo o por nivel educativo y sexo.</p>
+<pre class='stata'>. //  Tabla con estadísticos descriptivos para valores de una o más variables
+. 
+. tabulate educg, summarize(salario)
+
+  Educación │  Summary of Salario bruto mensual
+ (agrupada) │        Mean   Std. dev.       Freq.
+────────────┼────────────────────────────────────
+  Nivel edu │   1429.6244   954.13983       3,751
+  Nivel edu │    1770.063     1851.12       2,911
+  Nivel edu │   2556.1645   2084.1949       5,082
+────────────┼────────────────────────────────────
+      Total │   2001.4988   1808.3896      11,744
+
+. 
+. tabulate educg sexo, summarize(salario)
+
+    Means, Standard Deviations and Frequencies of Salario bruto mensual
+
+ Educación │        Sexo
+(agrupada) │    Hombre      Mujer │     Total
+───────────┼──────────────────────┼──────────
+ Nivel edu │ 1555.3305  1246.9435 │ 1429.6244
+           │ 983.26205  878.97375 │ 954.13983
+           │      2222       1529 │      3751
+───────────┼──────────────────────┼──────────
+ Nivel edu │ 1979.7629   1544.048 │  1770.063
+           │ 1528.6274  2122.5805 │   1851.12
+           │      1510       1401 │      2911
+───────────┼──────────────────────┼──────────
+ Nivel edu │ 2869.5636  2296.2395 │ 2556.1645
+           │ 2527.3422  1581.6394 │ 2084.1949
+           │      2304       2778 │      5082
+───────────┼──────────────────────┼──────────
+     Total │ 2163.1645  1830.5433 │ 2001.4988
+           │  1926.792  1657.1965 │ 1808.3896
+           │      6036       5708 │     11744
+</pre>
+<p>Además, disponemos del comando <code>table</code> para construir tablas con estadísticos descriptivos de forma más flexible.</p>
+<p><code>table <i>rowvar</i> [<i>colvar</i> [<i>supercolvar</i>]] [<i>if</i>] [<i>in</i>] [<i>weight</i>] [, <i>options</i>]</code></p>
+<p>El salario promedio por educación, sexo y tipo de contrato se calcularía como sigue:</p>
+<pre class='stata'>. table educg sexo contrato, statistic(mean salario)
+
+────────────────────────┬─────────────────────────────────────────────────────────────────────────────────────────────
+                        │                                        Tipo de contrato                                     
+                        │  Contrato fijo de duración indefinida   Contrato temporal de duración determinada      Total
+────────────────────────┼─────────────────────────────────────────────────────────────────────────────────────────────
+Educación (agrupada)    │                                                                                             
+  Nivel educativo bajo  │                                                                                             
+    Sexo                │                                                                                             
+      Hombre            │                              1791.071                                    1145.353   1567.713
+      Mujer             │                              1403.295                                    1039.947   1263.776
+      Total             │                               1640.77                                    1100.317   1445.553
+  Nivel educativo medio │                                                                                             
+    Sexo                │                                                                                             
+      Hombre            │                              2259.453                                    1258.596    1991.56
+      Mujer             │                              1716.245                                    1157.733   1548.938
+      Total             │                              2004.423                                    1207.284   1778.839
+  Nivel educativo alto  │                                                                                             
+    Sexo                │                                                                                             
+      Hombre            │                              3187.971                                    1594.592   2893.743
+      Mujer             │                              2517.448                                    1644.344   2305.495
+      Total             │                              2832.299                                    1625.201   2570.911
+  Total                 │                                                                                             
+    Sexo                │                                                                                             
+      Hombre            │                              2497.736                                    1293.175   2178.593
+      Mujer             │                              2066.546                                    1314.728   1845.606
+      Total             │                              2292.833                                    1304.191    2017.02
+────────────────────────┴─────────────────────────────────────────────────────────────────────────────────────────────
+</pre>
+<h1 id="análisis-de-varianza-anova">2. Análisis de varianza (ANOVA)</h1>
+<p>Como es sabido, este tipo de análisis se emplea para contrastar si la media de una variable en dos o más poblaciones es diferente. En <code>Stata</code>, se implementa con facilidad con el comando <code>anova</code>:</p>
+<p><code>anova <i>varname</i> [<i>termlist</i>] [<i>if</i>] [<i>in</i>] [<i>weight</i>] [, <i>options</i>]</code></p>
+<p>Para contrastar si el salario promedio es diferente por nivel educativo, emplearíamos la siguiente instrucción:</p>
+<pre class='stata'>. anova salario educg
+
+                         Number of obs =     11,744    R-squared     =  0.0767
+                         Root MSE      =    1737.79    Adj R-squared =  0.0766
+
+                  Source │ Partial SS         df         MS        F    Prob>F
+              ───────────┼────────────────────────────────────────────────────
+                   Model │  2.946e+09          2   1.473e+09    487.79  0.0000
+                         │
+                   educg │  2.946e+09          2   1.473e+09    487.79  0.0000
+                         │
+                Residual │  3.546e+10     11,741   3019901.9  
+              ───────────┼────────────────────────────────────────────────────
+                   Total │  3.840e+10     11,743     3270273  
+</pre>
+<p>Podemos ver que, efectivamente, se rechaza la hipótesis nula de igualdad de medias. Sobre la implementación del ANOVA, podemos recurrir, nuevamente, a <span class="citation" data-cites="Escobar2012">Escobar et al. (2012)</span> y <span class="citation" data-cites="Kohler2012">Kohler &amp; Kreuter (2012)</span>.</p>
+<h1 id="análisis-de-regresión">3. Análisis de regresión</h1>
+<p>Sin duda, es la técnica de análisis multivariantes más popular. En <code>Stata</code>, las regresiones lineales se implementan a través del comando <code>regress</code>:</p>
+<p><code><u>reg</u>ress <i>depvar</i> [<i>indepvars</i>] [<i>if</i>] [<i>in</i>] [<i>weight</i>] [, <i>options</i>]</code></p>
+<p>El abanico de opciones que nos ofrece un comando como <code>regress</code> es enorme. Algunos ejemplos de manuales muy recomendables son <span class="citation" data-cites="Adkins2010">Adkins &amp; Hill (2010)</span>, <span class="citation" data-cites="Baum2006">Baum (2006)</span> y <span class="citation" data-cites="Cameron2010">Cameron &amp; Trivedi (2010)</span>. Un buen libro que conecta teoría y práctica es el de <span class="citation" data-cites="Wooldridge2019">Wooldridge (2019)</span>.</p>
+<p>Vamos a realizar un ejercicio simple, consistente en una regresión a la <span class="citation" data-cites="Mincer1958">Mincer (1958)</span>, consistente en tratar de explicar/predecir el salario de una persona en función de su sexo, edad, edad al cuadrado y escolaridad. El modelo a estimar sería el siguiente:</p>
+<p><span class="math display">\[  \log \text{salario}_i = \beta_0 + \beta_1 X_i + \epsilon_i \]</span></p>
+<p>En primer lugar, vamos a crear una nueva variable, la edad al cuadrado.</p>
+<pre class='stata'>. generate edad2 = edad^2
+
+. label variable edad2 "Edad al cuadrado"
+</pre>
+<p>Habitualmente, se emplea el salario en logaritmos, porque sabemos que la distribución del logaritmo del salario es aproximadamente normal y facilita la interpretación (el coeficiente de cada regresor indica aproximadamente la variaciación porcentual de la variable en logaritmos cuando se produce un incremento de una unidad en el regresor).</p>
+<p>Calculamos, en primer lugar, una regresión del logaritmo del salario sobre la edad y la edad al cuadrado.</p>
+<pre class='stata'>. regress logsalario edad edad2
+
+      Source │       SS           df       MS      Number of obs   =    11,599
+─────────────┼──────────────────────────────────   F(2, 11596)     =    561.47
+       Model │  708.930894         2  354.465447   Prob > F        =    0.0000
+    Residual │   7320.7821    11,596  .631319602   R-squared       =    0.0883
+─────────────┼──────────────────────────────────   Adj R-squared   =    0.0881
+       Total │    8029.713    11,598  .692336006   Root MSE        =    .79456
+
+─────────────┬────────────────────────────────────────────────────────────────
+  logsalario │ Coefficient  Std. err.      t    P>|t|     [95% conf. interval]
+─────────────┼────────────────────────────────────────────────────────────────
+        edad │   .0855968   .0049066    17.45   0.000      .075979    .0952147
+       edad2 │  -.0007608   .0000568   -13.41   0.000    -.0008721   -.0006496
+       _cons │   5.137219   .1016253    50.55   0.000     4.938016    5.336422
+─────────────┴────────────────────────────────────────────────────────────────
+</pre>
+<p><code>Stata</code> es capaz de acomodar fácilmente variables categóricas en los análisis econométricos. En el comando <code>regress</code>, en particular, es especialmente sencillo. Recordemos que para incluir variables categóricas en un análisis, empleamos variables ficticias o <em>dummies</em>, variables que toman el valor 1 si la observación toma un determinado valor de la variable y 0 en otro caso. Para evitar la multicolinealidad perfecta, para cada variable categórica, incluimos una variable <em>dummy</em> para todas las categorías excepto una, que actúa como referencia. <code>Stata</code> implementa esta estrategia automáticamente. Por defecto, selecciona como referencia la primera categoría, pero podemos modificar esta opción. Por ejemplo, con la variable <code>sexo</code>, tendríamos:</p>
+<pre class='stata'>. //  Con la categoría por defecto (hombre)
+. 
+. regress logsalario edad edad2 i.sexo
+
+      Source │       SS           df       MS      Number of obs   =    11,599
+─────────────┼──────────────────────────────────   F(3, 11595)     =    425.49
+       Model │  796.314217         3  265.438072   Prob > F        =    0.0000
+    Residual │  7233.39878    11,595  .623837756   R-squared       =    0.0992
+─────────────┼──────────────────────────────────   Adj R-squared   =    0.0989
+       Total │    8029.713    11,598  .692336006   Root MSE        =    .78983
+
+─────────────┬────────────────────────────────────────────────────────────────
+  logsalario │ Coefficient  Std. err.      t    P>|t|     [95% conf. interval]
+─────────────┼────────────────────────────────────────────────────────────────
+        edad │   .0870787   .0048791    17.85   0.000     .0775149    .0966426
+       edad2 │  -.0007772   .0000564   -13.77   0.000    -.0008878   -.0006666
+             │
+        sexo │
+      Mujer  │  -.1737265   .0146787   -11.84   0.000    -.2024992   -.1449538
+       _cons │   5.190086     .10112    51.33   0.000     4.991874    5.388299
+─────────────┴────────────────────────────────────────────────────────────────
+
+. 
+. //  Modificando la categoría por defecto (mujer)
+. 
+. regress logsalario edad edad2 ib2.sexo
+
+      Source │       SS           df       MS      Number of obs   =    11,599
+─────────────┼──────────────────────────────────   F(3, 11595)     =    425.49
+       Model │  796.314217         3  265.438072   Prob > F        =    0.0000
+    Residual │  7233.39878    11,595  .623837756   R-squared       =    0.0992
+─────────────┼──────────────────────────────────   Adj R-squared   =    0.0989
+       Total │    8029.713    11,598  .692336006   Root MSE        =    .78983
+
+─────────────┬────────────────────────────────────────────────────────────────
+  logsalario │ Coefficient  Std. err.      t    P>|t|     [95% conf. interval]
+─────────────┼────────────────────────────────────────────────────────────────
+        edad │   .0870787   .0048791    17.85   0.000     .0775149    .0966426
+       edad2 │  -.0007772   .0000564   -13.77   0.000    -.0008878   -.0006666
+             │
+        sexo │
+     Hombre  │   .1737265   .0146787    11.84   0.000     .1449538    .2024992
+             │
+       _cons │    5.01636   .1015361    49.40   0.000     4.817332    5.215388
+─────────────┴────────────────────────────────────────────────────────────────
+
+. 
+. //  Modificando la categoría de referencia (la más frecuente)
+. 
+. regress logsalario edad edad2 ib(freq).sexo
+
+      Source │       SS           df       MS      Number of obs   =    11,599
+─────────────┼──────────────────────────────────   F(3, 11595)     =    425.49
+       Model │  796.314217         3  265.438072   Prob > F        =    0.0000
+    Residual │  7233.39878    11,595  .623837756   R-squared       =    0.0992
+─────────────┼──────────────────────────────────   Adj R-squared   =    0.0989
+       Total │    8029.713    11,598  .692336006   Root MSE        =    .78983
+
+─────────────┬────────────────────────────────────────────────────────────────
+  logsalario │ Coefficient  Std. err.      t    P>|t|     [95% conf. interval]
+─────────────┼────────────────────────────────────────────────────────────────
+        edad │   .0870787   .0048791    17.85   0.000     .0775149    .0966426
+       edad2 │  -.0007772   .0000564   -13.77   0.000    -.0008878   -.0006666
+             │
+        sexo │
+      Mujer  │  -.1737265   .0146787   -11.84   0.000    -.2024992   -.1449538
+       _cons │   5.190086     .10112    51.33   0.000     4.991874    5.388299
+─────────────┴────────────────────────────────────────────────────────────────
+</pre>
+<p>En ocasiones, no obstante, puede convenir realizar la creación de variables ficticias manualmente, especialmente con comandos que no soportan <code>i.varname</code> algo a lo que <code>Stata</code> puede ayudarnos con la instrucción siguiente:</p>
+<pre class='stata'>. tabulate educg, generate(educdummy)
+
+ Educación (agrupada) │      Freq.     Percent        Cum.
+──────────────────────┼───────────────────────────────────
+ Nivel educativo bajo │      7,841       38.64       38.64
+Nivel educativo medio │      5,429       26.75       65.40
+ Nivel educativo alto │      7,022       34.60      100.00
+──────────────────────┼───────────────────────────────────
+                Total │     20,292      100.00
+
+. 
+. regress logsalario i.sexo edad edad2 educdummy2 educdummy3
+
+      Source │       SS           df       MS      Number of obs   =    11,599
+─────────────┼──────────────────────────────────   F(5, 11593)     =    577.13
+       Model │  1600.34458         5  320.068916   Prob > F        =    0.0000
+    Residual │  6429.36841    11,593  .554590565   R-squared       =    0.1993
+─────────────┼──────────────────────────────────   Adj R-squared   =    0.1990
+       Total │    8029.713    11,598  .692336006   Root MSE        =    .74471
+
+─────────────┬────────────────────────────────────────────────────────────────
+  logsalario │ Coefficient  Std. err.      t    P>|t|     [95% conf. interval]
+─────────────┼────────────────────────────────────────────────────────────────
+        sexo │
+      Mujer  │  -.2365705     .01394   -16.97   0.000    -.2638953   -.2092458
+        edad │   .0721823   .0046198    15.62   0.000     .0631268    .0812378
+       edad2 │  -.0005808   .0000535   -10.86   0.000    -.0006856   -.0004759
+  educdummy2 │    .240602   .0185962    12.94   0.000     .2041503    .2770537
+  educdummy3 │    .613554   .0163944    37.42   0.000     .5814181    .6456898
+       _cons │   5.145524   .0958254    53.70   0.000      4.95769    5.333357
+─────────────┴────────────────────────────────────────────────────────────────
+
+. 
+. regress logsalario i.sexo edad edad2 ib1.educg
+
+      Source │       SS           df       MS      Number of obs   =    11,599
+─────────────┼──────────────────────────────────   F(5, 11593)     =    577.13
+       Model │  1600.34458         5  320.068916   Prob > F        =    0.0000
+    Residual │  6429.36841    11,593  .554590565   R-squared       =    0.1993
+─────────────┼──────────────────────────────────   Adj R-squared   =    0.1990
+       Total │    8029.713    11,598  .692336006   Root MSE        =    .74471
+
+───────────────────────┬────────────────────────────────────────────────────────────────
+            logsalario │ Coefficient  Std. err.      t    P>|t|     [95% conf. interval]
+───────────────────────┼────────────────────────────────────────────────────────────────
+                  sexo │
+                Mujer  │  -.2365705     .01394   -16.97   0.000    -.2638953   -.2092458
+                  edad │   .0721823   .0046198    15.62   0.000     .0631268    .0812378
+                 edad2 │  -.0005808   .0000535   -10.86   0.000    -.0006856   -.0004759
+                       │
+                 educg │
+Nivel educativo medio  │    .240602   .0185962    12.94   0.000     .2041503    .2770537
+ Nivel educativo alto  │    .613554   .0163944    37.42   0.000     .5814181    .6456898
+                       │
+                 _cons │   5.145524   .0958254    53.70   0.000      4.95769    5.333357
+───────────────────────┴────────────────────────────────────────────────────────────────
+
+. 
+</pre>
+<p>Lo mismo ocurre con las interacciones entre variables, que podemos calcular manualmente o empleando las capacidades de <code>Stata</code>. Para el cálculo de las mismas, podemos emplear los caracteres <code>#</code> o <code>##</code>. El primero de ellos (<code>#</code>) incluye en la ecuación únicamente las interacciones, mientras que <code>##</code> incluye las variables por separado y su interacción.</p>
+<pre class='stata'>. regress logsalario i.sexo c.edad c.edad#c.edad i.educg i.sexo#c.edad i.sexo#i.educg
+
+      Source │       SS           df       MS      Number of obs   =    11,599
+─────────────┼──────────────────────────────────   F(8, 11590)     =    364.72
+       Model │  1614.92975         8  201.866218   Prob > F        =    0.0000
+    Residual │  6414.78325    11,590   .55347569   R-squared       =    0.2011
+─────────────┼──────────────────────────────────   Adj R-squared   =    0.2006
+       Total │    8029.713    11,598  .692336006   Root MSE        =    .74396
+
+─────────────────────────────┬────────────────────────────────────────────────────────────────
+                  logsalario │ Coefficient  Std. err.      t    P>|t|     [95% conf. interval]
+─────────────────────────────┼────────────────────────────────────────────────────────────────
+                        sexo │
+                      Mujer  │  -.0864934    .062616    -1.38   0.167    -.2092312    .0362445
+                        edad │   .0735382   .0046441    15.83   0.000      .064435    .0826414
+                             │
+               c.edad#c.edad │  -.0005724   .0000535   -10.71   0.000    -.0006772   -.0004676
+                             │
+                       educg │
+      Nivel educativo medio  │   .2543874   .0250038    10.17   0.000     .2053758    .3033991
+       Nivel educativo alto  │   .5659028   .0223213    25.35   0.000     .5221494    .6096563
+                             │
+                 sexo#c.edad │
+                      Mujer  │  -.0041906   .0012553    -3.34   0.001    -.0066513     -.00173
+                             │
+                  sexo#educg │
+Mujer#Nivel educativo medio  │  -.0232393    .037422    -0.62   0.535    -.0965927    .0501142
+ Mujer#Nivel educativo alto  │   .0929502   .0328386     2.83   0.005      .028581    .1573195
+                             │
+                       _cons │   5.083543    .099395    51.14   0.000     4.888712    5.278374
+─────────────────────────────┴────────────────────────────────────────────────────────────────
+</pre>
+<pre class='stata'>. regress logsalario c.edad##c.edad i.sexo#c.edad i.sexo##i.educg
+
+      Source │       SS           df       MS      Number of obs   =    11,599
+─────────────┼──────────────────────────────────   F(8, 11590)     =    364.72
+       Model │  1614.92975         8  201.866218   Prob > F        =    0.0000
+    Residual │  6414.78325    11,590   .55347569   R-squared       =    0.2011
+─────────────┼──────────────────────────────────   Adj R-squared   =    0.2006
+       Total │    8029.713    11,598  .692336006   Root MSE        =    .74396
+
+─────────────────────────────┬────────────────────────────────────────────────────────────────
+                  logsalario │ Coefficient  Std. err.      t    P>|t|     [95% conf. interval]
+─────────────────────────────┼────────────────────────────────────────────────────────────────
+                        edad │   .0735382   .0046441    15.83   0.000      .064435    .0826414
+                             │
+               c.edad#c.edad │  -.0005724   .0000535   -10.71   0.000    -.0006772   -.0004676
+                             │
+                 sexo#c.edad │
+                      Mujer  │  -.0041906   .0012553    -3.34   0.001    -.0066513     -.00173
+                             │
+                        sexo │
+                      Mujer  │  -.0864934    .062616    -1.38   0.167    -.2092312    .0362445
+                             │
+                       educg │
+      Nivel educativo medio  │   .2543874   .0250038    10.17   0.000     .2053758    .3033991
+       Nivel educativo alto  │   .5659028   .0223213    25.35   0.000     .5221494    .6096563
+                             │
+                  sexo#educg │
+Mujer#Nivel educativo medio  │  -.0232393    .037422    -0.62   0.535    -.0965927    .0501142
+ Mujer#Nivel educativo alto  │   .0929502   .0328386     2.83   0.005      .028581    .1573195
+                             │
+                       _cons │   5.083543    .099395    51.14   0.000     4.888712    5.278374
+─────────────────────────────┴────────────────────────────────────────────────────────────────
+</pre>
+<h1 id="otros-modelos-econométricos-de-uso-común">4. Otros modelos econométricos de uso común</h1>
+<p><code>Stata</code> es un paquete estadístico que puede emplearse para implementar una impresionante variedad de modelos. En muchas ocasiones, aunque es muy conveniente conocer los fundamentos estadísticos de nuestros análisis, podemos realizar los ejercicios econométricos sin necesidad de un conocimiento profundo de estadística. Los modelos estimados por máxima verosimilitud, por ejemplo, requieren operaciones matemáticas de cierta dificultad y, de hecho, la resolución de estos modelos se hace por iteración (en este caso, se deriva una función de máxima verosimilitud y se busca su máximo mediante un procedimiento iterativo, sin encontrar una solución cerrada). Ejemplos de este tipo de modelos ampliamente utilizados en todo tipo de disciplinas son los modelos <em>logit</em> o <em>probit</em>, donde la variable de interés es de tipo binario. En la práctica, codificamos dicha variable en dos categorías, 0 y 1.</p>
+<p>En este ejemplo, vamos a analizar cuál es la influencia del sexo, la edad, la edad al cuadrado y el nivel educativo en la probabilidad de que una persona se encuentre empleada. Para ello, en nuestra base de datos, hemos creado la variable <code>empleo</code>, que es una variable que toma el valor 1 si la persona se encuentra ocupada en el momento de la encuesta y 0 en otro caso. La implementación de un modelo <em>logit</em> o un modelo <em>probit</em> es muy sencilla:</p>
+<pre class='stata'>. //  Estimación del modelo logit
+. 
+. logit empleo i.sexo c.edad c.edad#c.edad
+
+Iteration 0:   log likelihood =   -13385.8  
+Iteration 1:   log likelihood = -11536.258  
+Iteration 2:   log likelihood =  -11525.64  
+Iteration 3:   log likelihood = -11525.637  
+Iteration 4:   log likelihood = -11525.637  
+
+Logistic regression                                    Number of obs =  20,292
+                                                       LR chi2(3)    = 3720.33
+                                                       Prob > chi2   =  0.0000
+Log likelihood = -11525.637                            Pseudo R2     =  0.1390
+
+──────────────┬────────────────────────────────────────────────────────────────
+       empleo │ Coefficient  Std. err.      z    P>|z|     [95% conf. interval]
+──────────────┼────────────────────────────────────────────────────────────────
+         sexo │
+       Mujer  │  -.6262264   .0324629   -19.29   0.000    -.6898526   -.5626003
+         edad │    .470378     .00884    53.21   0.000     .4530519    .4877041
+              │
+c.edad#c.edad │  -.0054409   .0001038   -52.41   0.000    -.0056443   -.0052374
+              │
+        _cons │  -8.332817   .1732183   -48.11   0.000    -8.672319   -7.993316
+──────────────┴────────────────────────────────────────────────────────────────
+
+. 
+. //  Estimación del modelo probit
+. 
+. probit empleo i.sexo c.edad c.edad#c.edad
+
+Iteration 0:   log likelihood =   -13385.8  
+Iteration 1:   log likelihood = -11523.923  
+Iteration 2:   log likelihood = -11522.197  
+Iteration 3:   log likelihood = -11522.197  
+
+Probit regression                                      Number of obs =  20,292
+                                                       LR chi2(3)    = 3727.21
+                                                       Prob > chi2   =  0.0000
+Log likelihood = -11522.197                            Pseudo R2     =  0.1392
+
+──────────────┬────────────────────────────────────────────────────────────────
+       empleo │ Coefficient  Std. err.      z    P>|z|     [95% conf. interval]
+──────────────┼────────────────────────────────────────────────────────────────
+         sexo │
+       Mujer  │  -.3754802   .0192187   -19.54   0.000    -.4131482   -.3378121
+         edad │   .2868713    .005185    55.33   0.000     .2767088    .2970338
+              │
+c.edad#c.edad │  -.0033169    .000061   -54.35   0.000    -.0034366   -.0031973
+              │
+        _cons │  -5.091976   .1023362   -49.76   0.000    -5.292551   -4.891401
+──────────────┴────────────────────────────────────────────────────────────────
+</pre>
+<p>Es muy posible que recordemos que los coeficientes estimados de muchos modelos no lineales no son directamente interpretables. Por eso, habitualmente, presentamos, por ejemplo, los efectos marginales. <code>Stata</code> permite abordar esta tarea a través del uso del comando <code>margins</code> después de la estimación del modelo correspondiente:</p>
+<p><code>margins [<i>marginlist</i>] [<i>if</i>] [<i>in</i>] [<i>weight</i>] [, <i>response_options</i> <i>options</i>]</code></p>
+<p>En este tipo de modelos, los efectos marginales (el efecto de un incremento de unidad en un regresor en la variable dependiente) es diferente para cada observación. Una opción habitual es calcular los efectos marginales en para una observación que tomase como valores el promedio de cada variable.</p>
+<pre class='stata'>. //  Estimación del modelo logit
+. 
+. logit empleo i.sexo c.edad c.edad#c.edad
+
+Iteration 0:   log likelihood =   -13385.8  
+Iteration 1:   log likelihood = -11536.258  
+Iteration 2:   log likelihood =  -11525.64  
+Iteration 3:   log likelihood = -11525.637  
+Iteration 4:   log likelihood = -11525.637  
+
+Logistic regression                                    Number of obs =  20,292
+                                                       LR chi2(3)    = 3720.33
+                                                       Prob > chi2   =  0.0000
+Log likelihood = -11525.637                            Pseudo R2     =  0.1390
+
+──────────────┬────────────────────────────────────────────────────────────────
+       empleo │ Coefficient  Std. err.      z    P>|z|     [95% conf. interval]
+──────────────┼────────────────────────────────────────────────────────────────
+         sexo │
+       Mujer  │  -.6262264   .0324629   -19.29   0.000    -.6898526   -.5626003
+         edad │    .470378     .00884    53.21   0.000     .4530519    .4877041
+              │
+c.edad#c.edad │  -.0054409   .0001038   -52.41   0.000    -.0056443   -.0052374
+              │
+        _cons │  -8.332817   .1732183   -48.11   0.000    -8.672319   -7.993316
+──────────────┴────────────────────────────────────────────────────────────────
+
+. 
+. //  Efectos marginales
+. 
+. margins, dydx(edad sexo) atmeans
+
+Conditional marginal effects                            Number of obs = 20,292
+Model VCE: OIM
+
+Expression: Pr(empleo), predict()
+dy/dx wrt:  2.sexo edad
+At: 1.sexo = .4918687 (mean)
+    2.sexo = .5081313 (mean)
+    edad   = 43.66652 (mean)
+
+─────────────┬────────────────────────────────────────────────────────────────
+             │            Delta-method
+             │      dy/dx   std. err.      z    P>|z|     [95% conf. interval]
+─────────────┼────────────────────────────────────────────────────────────────
+        sexo │
+      Mujer  │  -.0924193   .0048088   -19.22   0.000    -.1018444   -.0829942
+        edad │  -.0007077   .0001803    -3.92   0.000    -.0010611   -.0003543
+─────────────┴────────────────────────────────────────────────────────────────
+Note: dy/dx for factor levels is the discrete change from the base level.
+</pre>
+<p>Otra opción habitual es calcular efectos marginales para cada observación y presentar la media de los mismos:</p>
+<pre class='stata'>. //  Estimación del modelo probit
+. 
+. probit empleo i.sexo c.edad c.edad#c.edad
+
+Iteration 0:   log likelihood =   -13385.8  
+Iteration 1:   log likelihood = -11523.923  
+Iteration 2:   log likelihood = -11522.197  
+Iteration 3:   log likelihood = -11522.197  
+
+Probit regression                                      Number of obs =  20,292
+                                                       LR chi2(3)    = 3727.21
+                                                       Prob > chi2   =  0.0000
+Log likelihood = -11522.197                            Pseudo R2     =  0.1392
+
+──────────────┬────────────────────────────────────────────────────────────────
+       empleo │ Coefficient  Std. err.      z    P>|z|     [95% conf. interval]
+──────────────┼────────────────────────────────────────────────────────────────
+         sexo │
+       Mujer  │  -.3754802   .0192187   -19.54   0.000    -.4131482   -.3378121
+         edad │   .2868713    .005185    55.33   0.000     .2767088    .2970338
+              │
+c.edad#c.edad │  -.0033169    .000061   -54.35   0.000    -.0034366   -.0031973
+              │
+        _cons │  -5.091976   .1023362   -49.76   0.000    -5.292551   -4.891401
+──────────────┴────────────────────────────────────────────────────────────────
+
+. 
+. //  Efectos marginales
+. 
+. margins, dydx(edad sexo)
+
+Average marginal effects                                Number of obs = 20,292
+Model VCE: OIM
+
+Expression: Pr(empleo), predict()
+dy/dx wrt:  2.sexo edad
+
+─────────────┬────────────────────────────────────────────────────────────────
+             │            Delta-method
+             │      dy/dx   std. err.      z    P>|z|     [95% conf. interval]
+─────────────┼────────────────────────────────────────────────────────────────
+        sexo │
+      Mujer  │   -.121321   .0061259   -19.80   0.000    -.1333275   -.1093145
+        edad │  -.0022312   .0002354    -9.48   0.000    -.0026926   -.0017697
+─────────────┴────────────────────────────────────────────────────────────────
+Note: dy/dx for factor levels is the discrete change from the base level.
+</pre>
+<p>Podemos plantear un tercer ejemplo con un modelo <em>tobit</em>, empleado en ocasiones para variables que se encuentran censuradas. Por ejemplo, las aportaciones a planes de pensiones privados son una variable censurada en 0 (no puede ser negativa).</p>
+<pre class='stata'>. codebook aportacionesg
+
+─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+aportacionesg                                                                                    Aportaciones a planes privados de pensiones individuales (brutas)
+─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+
+                  Type: Numeric (float)
+
+                 Range: [0,24000]                     Units: .01
+         Unique values: 220                       Missing .: 0/20,292
+
+                  Mean: 118.997
+             Std. dev.: 673.086
+
+           Percentiles:     10%       25%       50%       75%       90%
+                              0         0         0         0         0
+</pre>
+<p>En nuestro caso, la estimación del modelo será la siguiente (como en el caso anterior, los efectos marginales no coinciden con los coeficientes):</p>
+<pre class='stata'>. //  Estimación del modelo tobit
+. 
+. tobit aportacionesg i.sexo c.edad c.edad#c.edad i.educg, ll(0)
+
+Refining starting values:
+
+Grid node 0:   log likelihood =  -36961.92
+
+Fitting full model:
+
+Iteration 0:   log likelihood =  -36961.92  
+Iteration 1:   log likelihood = -25308.935  
+Iteration 2:   log likelihood = -18951.519  
+Iteration 3:   log likelihood = -18316.994  
+Iteration 4:   log likelihood = -17927.012  
+Iteration 5:   log likelihood = -17870.282  
+Iteration 6:   log likelihood = -17863.636  
+Iteration 7:   log likelihood = -17863.537  
+Iteration 8:   log likelihood = -17863.536  
+
+Tobit regression                                   Number of obs     =  20,292
+                                                          Uncensored =   1,555
+Limits: Lower =    0                                   Left-censored =  18,737
+        Upper = +inf                                  Right-censored =       0
+
+                                                   LR chi2(5)        = 1395.55
+                                                   Prob > chi2       =  0.0000
+Log likelihood = -17863.536                        Pseudo R2         =  0.0376
+
+───────────────────────┬────────────────────────────────────────────────────────────────
+         aportacionesg │ Coefficient  Std. err.      t    P>|t|     [95% conf. interval]
+───────────────────────┼────────────────────────────────────────────────────────────────
+                  sexo │
+                Mujer  │  -498.8577   94.75765    -5.26   0.000    -684.5903    -313.125
+                  edad │   544.6665   48.05135    11.34   0.000     450.4819     638.851
+                       │
+         c.edad#c.edad │  -4.479355   .4949347    -9.05   0.000    -5.449467   -3.509243
+                       │
+                 educg │
+Nivel educativo medio  │   984.3963   135.6884     7.25   0.000      718.436    1250.357
+ Nivel educativo alto  │   2495.093   121.1946    20.59   0.000     2257.541    2732.644
+                       │
+                 _cons │  -21310.23   1189.248   -17.92   0.000    -23641.25   -18979.21
+───────────────────────┼────────────────────────────────────────────────────────────────
+   var(e.aportacionesg)│   1.18e+07   497933.3                      1.08e+07    1.28e+07
+───────────────────────┴────────────────────────────────────────────────────────────────
+
+. 
+. //  Efectos marginales
+. 
+. margins, dydx(sexo edad educg) predict(ystar(0,.))
+
+Average marginal effects                                Number of obs = 20,292
+Model VCE: OIM
+
+Expression: E(aportacionesg*|aportacionesg>0), predict(ystar(0,.))
+dy/dx wrt:  2.sexo edad 2.educg 3.educg
+
+───────────────────────┬────────────────────────────────────────────────────────────────
+                       │            Delta-method
+                       │      dy/dx   std. err.      z    P>|z|     [95% conf. interval]
+───────────────────────┼────────────────────────────────────────────────────────────────
+                  sexo │
+                Mujer  │  -37.55856    7.17795    -5.23   0.000    -51.62708   -23.49004
+                  edad │   6.238559   .4234984    14.73   0.000     5.408518    7.068601
+                       │
+                 educg │
+Nivel educativo medio  │   49.01989   7.330332     6.69   0.000     34.65271    63.38708
+ Nivel educativo alto  │   192.9667   10.00985    19.28   0.000     173.3477    212.5856
+───────────────────────┴────────────────────────────────────────────────────────────────
+Note: dy/dx for factor levels is the discrete change from the base level.
+</pre>
+<p>Otro ejemplo sencillo sería un <em>logit</em> ordenado, donde la variable dependiente es categórica, pero ordinal. Por ejemplo, en nuestra base de datos, tenemos la variable <code>salud</code>. Podemos explorar el efecto del sexo, la edad y el nivel educativo en el nivel de salud autopercibido.</p>
+<pre class='stata'>. //  Exploramos la variable salud
+. 
+. tab salud
+
+     Estado │
+ general de │
+      salud │      Freq.     Percent        Cum.
+────────────┼───────────────────────────────────
+  Muy bueno │      5,177       25.51       25.51
+      Bueno │     11,426       56.31       81.82
+    Regular │      2,885       14.22       96.04
+       Malo │        643        3.17       99.21
+   Muy malo │        161        0.79      100.00
+────────────┼───────────────────────────────────
+      Total │     20,292      100.00
+
+. tab salud, nolabel
+
+     Estado │
+ general de │
+      salud │      Freq.     Percent        Cum.
+────────────┼───────────────────────────────────
+          1 │      5,177       25.51       25.51
+          2 │     11,426       56.31       81.82
+          3 │      2,885       14.22       96.04
+          4 │        643        3.17       99.21
+          5 │        161        0.79      100.00
+────────────┼───────────────────────────────────
+      Total │     20,292      100.00
+
+. 
+. //  Estimación del modelo logit ordenado
+. 
+. ologit salud i.sexo c.edad c.edad#c.edad i.educg
+
+Iteration 0:   log likelihood = -22260.137  
+Iteration 1:   log likelihood = -20489.407  
+Iteration 2:   log likelihood = -20436.713  
+Iteration 3:   log likelihood = -20436.618  
+Iteration 4:   log likelihood = -20436.618  
+
+Ordered logistic regression                            Number of obs =  20,292
+                                                       LR chi2(5)    = 3647.04
+                                                       Prob > chi2   =  0.0000
+Log likelihood = -20436.618                            Pseudo R2     =  0.0819
+
+───────────────────────┬────────────────────────────────────────────────────────────────
+                 salud │ Coefficient  Std. err.      z    P>|z|     [95% conf. interval]
+───────────────────────┼────────────────────────────────────────────────────────────────
+                  sexo │
+                Mujer  │   .1641013   .0278271     5.90   0.000     .1095612    .2186414
+                  edad │   .0761111   .0073223    10.39   0.000     .0617597    .0904624
+                       │
+         c.edad#c.edad │  -.0002204    .000087    -2.53   0.011    -.0003909   -.0000498
+                       │
+                 educg │
+Nivel educativo medio  │  -.4981022    .035834   -13.90   0.000    -.5683356   -.4278688
+ Nivel educativo alto  │  -.8882005   .0339326   -26.18   0.000    -.9547071   -.8216938
+───────────────────────┼────────────────────────────────────────────────────────────────
+                 /cut1 │   1.253581   .1448187                       .969742    1.537421
+                 /cut2 │   4.234112   .1474867                      3.945043    4.523181
+                 /cut3 │    6.02135   .1502783                       5.72681     6.31589
+                 /cut4 │   7.686682     .16584                      7.361642    8.011723
+───────────────────────┴────────────────────────────────────────────────────────────────
+
+. 
+. //  Efectos marginales
+. 
+. margins, dydx(sexo edad educg)
+
+Average marginal effects                                Number of obs = 20,292
+Model VCE: OIM
+
+dy/dx wrt: 2.sexo edad 2.educg 3.educg
+
+1._predict: Pr(salud==1), predict(pr outcome(1))
+2._predict: Pr(salud==2), predict(pr outcome(2))
+3._predict: Pr(salud==3), predict(pr outcome(3))
+4._predict: Pr(salud==4), predict(pr outcome(4))
+5._predict: Pr(salud==5), predict(pr outcome(5))
+
+─────────────┬────────────────────────────────────────────────────────────────
+             │            Delta-method
+             │      dy/dx   std. err.      z    P>|z|     [95% conf. interval]
+─────────────┼────────────────────────────────────────────────────────────────
+1.sexo       │  (base outcome)
+─────────────┼────────────────────────────────────────────────────────────────
+2.sexo       │
+    _predict │
+          1  │  -.0271248      .0046    -5.90   0.000    -.0361406    -.018109
+          2  │   .0048701   .0008921     5.46   0.000     .0031215    .0066186
+          3  │   .0161653   .0027451     5.89   0.000      .010785    .0215456
+          4  │   .0048092    .000832     5.78   0.000     .0031786    .0064398
+          5  │   .0012803    .000238     5.38   0.000     .0008138    .0017468
+─────────────┼────────────────────────────────────────────────────────────────
+edad         │
+    _predict │
+          1  │  -.0097156   .0001787   -54.37   0.000    -.0100658   -.0093653
+          2  │   .0023436   .0002435     9.62   0.000     .0018662    .0028209
+          3  │   .0053864    .000166    32.44   0.000      .005061    .0057118
+          4  │   .0015694   .0000829    18.93   0.000     .0014069     .001732
+          5  │   .0004162   .0000364    11.43   0.000     .0003449    .0004876
+─────────────┼────────────────────────────────────────────────────────────────
+1.educg      │  (base outcome)
+─────────────┼────────────────────────────────────────────────────────────────
+2.educg      │
+    _predict │
+          1  │   .0757867   .0055962    13.54   0.000     .0648183    .0867552
+          2  │  -.0008902   .0013859    -0.64   0.521    -.0036065    .0018261
+          3  │  -.0543804   .0039026   -13.93   0.000    -.0620293   -.0467315
+          4  │  -.0162191    .001246   -13.02   0.000    -.0186612    -.013777
+          5  │   -.004297   .0004393    -9.78   0.000     -.005158   -.0034361
+─────────────┼────────────────────────────────────────────────────────────────
+3.educg      │
+    _predict │
+          1  │   .1468749   .0055928    26.26   0.000     .1359131    .1578366
+          2  │  -.0265237   .0023665   -11.21   0.000    -.0311619   -.0218855
+          3  │  -.0890979    .003535   -25.20   0.000    -.0960264   -.0821694
+          4  │  -.0247866   .0012741   -19.45   0.000    -.0272838   -.0222895
+          5  │  -.0064666   .0005513   -11.73   0.000    -.0075471   -.0053862
+─────────────┴────────────────────────────────────────────────────────────────
+Note: dy/dx for factor levels is the discrete change from the base level.
+</pre>
+<p><code>Stata</code> es especialmente adecuado para manejar datos con diseños muestrales complejos y datos de panel. Para los primeros, <code>Stata</code> cuenta con los comandos de la familia <code>svy</code>, que nos permiten tener en cuenta la existencia de ponderaciones, estratos y muestreo en varias etapas. Básicamente, debemos fijar las características del muestreo de forma previa y, posteriormente, emplear el comando adecuado. No todos los comandos tienen versión compatible con diseños muestrales complejos. Por ejemplo, nuestra encuesta utiliza como estratos las CCAA. Dentro de estos estratos, selecciona aleatoriamente unidades primarias de muestreo consistentes en secciones censales. Posteriormente, entrevista todos los hogares dentro de cada sección y todas las personas dentro de cada hogar. Cada persona tiene un peso probabilístico, que viene dado por la probabilidad de que una persona de sus características sea seleccionada.</p>
+<p>En primar lugar, fijamos el tipo de muestreo en <code>Stata</code>:</p>
+<p><code>svyset [<i>psu</i>] [<i>weight</i>] [, <i>design_options</i> <i>options</i>]</code></p>
+<p><code>svyset</code> es una de las pocas instrucciones que resulta más fácil de implementar a través de las ventanas. Una buena estrategia es emplear el menú de ventanas, generar la instrucción y copiarla en nuestro archivo <code>do</code>.</p>
+<pre class='stata'>. svyset psu [pweight=peso], strata(region) vce(linearized) singleunit(missing)
+
+Sampling weights: peso
+             VCE: linearized
+     Single unit: missing
+        Strata 1: region
+ Sampling unit 1: psu
+           FPC 1: &lt;zero>
+</pre>
+<p>Ahora, utilizamos la contraparte para este tipo de datos de <code>Stata</code>, <code>svy: regress</code>:</p>
+<pre class='stata'>. svy: regress logsalario c.edad c.edad#c.edad i.sexo#c.edad i.sexo##i.educg
+(running regress on estimation sample)
+
+Survey: Linear regression
+
+Number of strata =    19                          Number of obs   =     11,599
+Number of PSUs   = 2,133                          Population size = 17,156,324
+                                                  Design df       =      2,114
+                                                  F(8, 2107)      =     147.65
+                                                  Prob > F        =     0.0000
+                                                  R-squared       =     0.2038
+
+─────────────────────────────┬────────────────────────────────────────────────────────────────
+                             │             Linearized
+                  logsalario │ Coefficient  std. err.      t    P>|t|     [95% conf. interval]
+─────────────────────────────┼────────────────────────────────────────────────────────────────
+                        edad │    .071094   .0068759    10.34   0.000     .0576099    .0845782
+                             │
+               c.edad#c.edad │  -.0005521   .0000774    -7.14   0.000    -.0007038   -.0004004
+                             │
+                 sexo#c.edad │
+                      Mujer  │  -.0035596   .0016238    -2.19   0.028     -.006744   -.0003752
+                             │
+                        sexo │
+                      Mujer  │  -.0951359   .0826891    -1.15   0.250    -.2572964    .0670247
+                             │
+                       educg │
+      Nivel educativo medio  │   .2449096   .0334514     7.32   0.000     .1793085    .3105106
+       Nivel educativo alto  │   .5647163   .0316199    17.86   0.000      .502707    .6267256
+                             │
+                  sexo#educg │
+Mujer#Nivel educativo medio  │   -.068334   .0537433    -1.27   0.204    -.1737293    .0370613
+ Mujer#Nivel educativo alto  │   .1002394   .0428483     2.34   0.019     .0162103    .1842686
+                             │
+                       _cons │   5.140099   .1488365    34.54   0.000     4.848217     5.43198
+─────────────────────────────┴────────────────────────────────────────────────────────────────
+</pre>
+<p>Además, muchos comandos en <code>Stata</code> admiten el empleo de ponderaciones. En el caso de los encuestas, estas reflejan el inverso de la probabilidad de cada observación ser seleccionada y deben introducirse como <code>pweight</code> (pesos probabilísticos). Hay muchas especificades asociadas al empleo de ponderaciones y no todos los comandos admiten el empleo de pesos.</p>
+<p>El manejo de datos de panel merecería un curso específico. No obstante, la lógica es similar a la instrucción anterior: a través de <code>xtset</code>, <code>Stata</code> permite especificar cuáles son las unidades del panel (<em><code>panelvar</code></em>) y cuál es la variable temporal (<em><code>timevar</code></em>) y, posteriormente, ejecutar comandos especialmente diseñados para implementar modelos con este tipo de datos (por ejemplo, modelos de efectos fijos).</p>
+<p><code>xtset <i>panelvar</i> <i>timevar</i> [, <i>tsoptions</i>]</code></p>
+<p>Al margen de los libros mencionados con anterioridad, especialmente <span class="citation" data-cites="Cameron2010">Cameron &amp; Trivedi (2010)</span>, podemos destacar el libro de <span class="citation" data-cites="Long2014">Long &amp; Freese (2014)</span> para variables categóricas, los manuales de Skrondal y Rabe-Hesketh <span class="citation" data-cites="Skrondal2012a Skrondal2012b">(2012a, 2012b)</span> para modelos de panel y multinivel y <span class="citation" data-cites="Cleves2016">Cleves et al. (2016)</span> para modelos de supervivencia.</p>
+<h1 id="otras-técnicas-de-análisis-multivariante">5. Otras técnicas de análisis multivariante</h1>
+<p><code>Stata</code> es capaz de implementar un elevado rango de técnicas de análisis de multivariantes, ya sea a través de los paquetes que incluye de serie el programa o mediante comandos diseñados por algunos usuarios (hablaremos de esto posteriormente).</p>
+<p>A modo de ilustración, vamos a construir un índice de bienestar de los hogares españoles a partir de indicadores de bienes que posee el hogar a través de un análisis de componentes principales y de un análisis de correspondencias múltiple. Son técnicas que se emplean para reducir la dimensionalidad de los datos, entre otras aplicaciones. Para ello, partimos del archivo <code>ecv2018w.dta</code> en nuestro directorio <code>sesión3</code>.</p>
+<p>La instrucción para el análisis de componentes principales es</p>
+<p><code>pca <i>varlist</i> [<i>if</i>] [<i>in</i>] [<i>weight</i>] [, <i>options</i>]</code></p>
+<p>Para calcular las componentes para cada observación emplearíamos</p>
+<p><code>predict [<i>type</i>] {<i>stub</i>* | <i>newvarlist</i>} [<i>if</i>] [<i>in</i>] [, <i>statistic</i> <i>options</i>]</code></p>
+<p>La instrucción para el análisis de correspondencias múltiple es</p>
+<p><code>mca <i>varlist</i> [<i>if</i>] [<i>in</i>] [<i>weight</i>] [, <i>options</i>]</code></p>
+<p>Para calculas las componentes, usamos</p>
+<p><code>predict [<i>type</i>] <i>newvar</i> [<i>if</i>] [<i>in</i>] [, <i>statistic</i> <u>norm</u>alize(<i>norm</i>) <u>dim</u>ensions(<i>#)</i>]</code></p>
+<p><code>predict [<i>type</i>] {<i>stub</i>* | <i>newvarlist</i>} [<i>if</i>] [<i>in</i>] [, <i>statistic</i> <u>norm</u>alize(<i>norm</i>) <u>dim</u>ensions(<i>numlist</i>)]</code></p>
+<pre class='stata'>. //  Abrimos el archivo
+. 
+. use "ecv18w.dta", clear
+(ECV 2018 (índice de bienestar))
+
+. 
+. //  Análisis de componentes principales
+. 
+. pca htelef htv hpc hlavadora hcoche
+
+Principal components/correlation                 Number of obs    =     33,710
+                                                 Number of comp.  =          5
+                                                 Trace            =          5
+    Rotation: (unrotated = principal)            Rho              =     1.0000
+
+    ─────────────┬────────────────────────────────────────────────────────────
+       Component │   Eigenvalue   Difference         Proportion   Cumulative
+    ─────────────┼────────────────────────────────────────────────────────────
+           Comp1 │      1.47187      .414747             0.2944       0.2944
+           Comp2 │      1.05712      .103425             0.2114       0.5058
+           Comp3 │      .953694      .053114             0.1907       0.6965
+           Comp4 │       .90058      .283837             0.1801       0.8767
+           Comp5 │      .616743            .             0.1233       1.0000
+    ─────────────┴────────────────────────────────────────────────────────────
+
+Principal components (eigenvectors) 
+
+    ──────────────────────────────────────────────────────────────────────────────
+        Variable │    Comp1     Comp2     Comp3     Comp4     Comp5 │ Unexplained 
+    ─────────────+──────────────────────────────────────────────────+─────────────
+          htelef │   0.3090    0.1566    0.8789    0.3280   -0.0017 │           0 
+             htv │   0.1488    0.7171   -0.3870    0.5548    0.0770 │           0 
+             hpc │   0.6264   -0.2952   -0.1663    0.0001    0.7020 │           0 
+       hlavadora │   0.2887    0.5734    0.0809   -0.7625    0.0029 │           0 
+          hcoche │   0.6377   -0.2128   -0.2088    0.0566   -0.7080 │           0 
+    ──────────────────────────────────────────────────────────────────────────────
+
+. 
+. //  Calculamos las 2 primeras componentes principales
+. 
+. predict pc1 pc2
+(score assumed)
+(3 components skipped)
+
+Scoring coefficients 
+    sum of squares(column-loading) = 1
+
+    ────────────────────────────────────────────────────────────────
+        Variable │    Comp1     Comp2     Comp3     Comp4     Comp5 
+    ─────────────+──────────────────────────────────────────────────
+          htelef │   0.3090    0.1566    0.8789    0.3280   -0.0017 
+             htv │   0.1488    0.7171   -0.3870    0.5548    0.0770 
+             hpc │   0.6264   -0.2952   -0.1663    0.0001    0.7020 
+       hlavadora │   0.2887    0.5734    0.0809   -0.7625    0.0029 
+          hcoche │   0.6377   -0.2128   -0.2088    0.0566   -0.7080 
+    ────────────────────────────────────────────────────────────────
+
+. 
+. //  Análisis de correspondencias múltiple
+. 
+. mca htelef htv hpc hlavadora hcoche
+
+Multiple/joint correspondence analysis         Number of obs     =     33,710
+                                               Total inertia     =  .01924168
+    Method: Burt/adjusted inertias             Number of axes    =          2
+
+                │   Principal               Cumul.
+      Dimension │     inertia   Percent    percent
+    ────────────┼─────────────────────────────────
+          Dim 1 │     .013916     72.32      72.32
+          Dim 2 │    .0002039      1.06      73.38
+    ────────────┼─────────────────────────────────
+          Total │    .0192417    100.00
+
+Statistics for column categories in standard normalization
+
+                 │          Overall          │        Dimension_1        │        Dimension_2        
+      Categories │    Mass  Quality   %inert │   Coord   Sqcorr  Contrib │   Coord   Sqcorr  Contrib 
+    ─────────────+───────────────────────────+───────────────────────────+───────────────────────────
+    htelef       │                           │                           │                           
+              No │   0.001    1.109    0.062 │   8.878    1.105    0.095 │   4.499    0.004    0.024 
+              Sí │   0.199    1.109    0.000 │  -0.054    1.105    0.001 │  -0.027    0.004    0.000 
+    ─────────────+───────────────────────────+───────────────────────────+───────────────────────────
+    htv          │                           │                           │                           
+              No │   0.001    0.762    0.028 │   5.306    0.568    0.022 │  25.576    0.193    0.512 
+              Sí │   0.199    0.762    0.000 │  -0.021    0.568    0.000 │  -0.101    0.193    0.002 
+    ─────────────+───────────────────────────+───────────────────────────+───────────────────────────
+    hpc          │                           │                           │                           
+              No │   0.047    0.684    0.319 │   2.543    0.682    0.301 │  -1.198    0.002    0.067 
+              Sí │   0.153    0.684    0.097 │  -0.772    0.682    0.091 │   0.364    0.002    0.020 
+    ─────────────+───────────────────────────+───────────────────────────+───────────────────────────
+    hlavadora    │                           │                           │                           
+              No │   0.001    0.966    0.066 │  11.181    0.914    0.083 │  22.206    0.053    0.328 
+              Sí │   0.199    0.966    0.000 │  -0.037    0.914    0.000 │  -0.074    0.053    0.001 
+    ─────────────+───────────────────────────+───────────────────────────+───────────────────────────
+    hcoche       │                           │                           │                           
+              No │   0.031    0.689    0.360 │   3.309    0.688    0.343 │  -1.104    0.001    0.038 
+              Sí │   0.169    0.689    0.067 │  -0.614    0.688    0.064 │   0.205    0.001    0.007 
+    ─────────────────────────────────────────────────────────────────────────────────────────────────
+
+
+. 
+. //  Calculamos las 2 primeras componentes principales
+. 
+. predict mc1 mc2
+(option rowscores assumed)
+
+. 
+. //  Podemos calcular la correlación con la renta del hogar
+. 
+. correlate hrenta1 pc1
+(obs=33,710)
+
+             │  hrenta1      pc1
+─────────────┼──────────────────
+     hrenta1 │   1.0000
+         pc1 │   0.3369   1.0000
+
+
+. correlate hrenta1 mc1
+(obs=33,734)
+
+             │  hrenta1      mc1
+─────────────┼──────────────────
+     hrenta1 │   1.0000
+         mc1 │  -0.3368   1.0000
+
+
+. 
+. //  Podemos cambiar el signo de la componente (solo indica una dirección)
+. 
+. replace mc1 = -mc1
+(33,734 real changes made)
+
+. correlate hrenta1 mc1
+(obs=33,734)
+
+             │  hrenta1      mc1
+─────────────┼──────────────────
+     hrenta1 │   1.0000
+         mc1 │   0.3368   1.0000
+</pre>
+<h1 id="references">References</h1>
+
+<div id="refs" class="references csl-bib-body hanging-indent" data-line-spacing="2" role="doc-bibliography">
+<div id="ref-Adkins2010" class="csl-entry" role="doc-biblioentry">
+Adkins, L. C., &amp; Hill, R. C. (2010). <em>Using <span>S</span>tata for <span>P</span>rinciples of <span>E</span>conometrics</em> (4th ed.). John Wiley &amp; Sons, Inc.
+</div>
+<div id="ref-Baum2006" class="csl-entry" role="doc-biblioentry">
+Baum, C. F. (2006). <em>An introduction to modern <span>E</span>conometrics using <span>S</span>tata</em>. Stata Press.
+</div>
+<div id="ref-Cameron2010" class="csl-entry" role="doc-biblioentry">
+Cameron, A. C., &amp; Trivedi, P. K. (2010). <em>Microeconometrics using <span>S</span>tata</em> (2nd ed.). Stata Press.
+</div>
+<div id="ref-Cleves2016" class="csl-entry" role="doc-biblioentry">
+Cleves, M., Gould, W. W., &amp; Marchenko, Y. V. (2016). <em>An introduction to survival analysis using <span>S</span>tata</em>. Stata Press.
+</div>
+<div id="ref-Escobar2012" class="csl-entry" role="doc-biblioentry">
+Escobar, M., Fernández-Macías, E., &amp; Bernardi, F. (2012). <em>An<span>á</span>lisis de datos con <span>S</span>tata</em> (2nd ed.). Centro de Investigaciones Soci<span>ó</span>logicas.
+</div>
+<div id="ref-Kohler2012" class="csl-entry" role="doc-biblioentry">
+Kohler, U., &amp; Kreuter, F. (2012). <em>Data analysis using <span>S</span>tata</em> (3rd ed.). Stata Press.
+</div>
+<div id="ref-Long2014" class="csl-entry" role="doc-biblioentry">
+Long, J. S., &amp; Freese, J. (2014). <em>Regression models for categorical dependent variables using <span>S</span>tata</em> (3rd ed.). Stata Press.
+</div>
+<div id="ref-Mincer1958" class="csl-entry" role="doc-biblioentry">
+Mincer, J. (1958). Investment in human capital and personal income distribution. <em>Journal of Political Economy</em>, <em>66</em>(4), 281–302.
+</div>
+<div id="ref-Skrondal2012a" class="csl-entry" role="doc-biblioentry">
+Skrondal, A., &amp; Rabe-Heskerth, S. (2012a). <em>Multilevel and longitudinal modeling using <span>S</span>tata. Volume <span>I</span>: <span>C</span>ontinuous responses</em> (3rd ed.). Stata Press.
+</div>
+<div id="ref-Skrondal2012b" class="csl-entry" role="doc-biblioentry">
+Skrondal, A., &amp; Rabe-Heskerth, S. (2012b). <em>Multilevel and longitudinal modeling using <span>S</span>tata. Volume <span>II</span>: <span>C</span>ategorical responses, counts, and survival</em> (3rd ed.). Stata Press.
+</div>
+<div id="ref-Wooldridge2019" class="csl-entry" role="doc-biblioentry">
+Wooldridge, J. M. (2019). <em><span>I</span>ntroductory <span>E</span>conometrics: <span>A</span> modern approach</em> (7th ed.). Cengage Learning.
+</div>
+</div>
+</body>
+</html>

@@ -1,0 +1,337 @@
+---
+title: Sesión 3. Tablas de contingencia y análisis multivariante
+author: José A. Valderrama
+bibliography: curso_stata.bib
+csl: apa.csl
+---
+_ _ _
+
+<p style="text-align: center;">[<span style="color:red"><font size="4">Inicio</font></span>](https://jtvalderrama.github.io/curso_stata.html) &nbsp;&nbsp;&nbsp;&nbsp; [<span style="color:red"><font size="4">Sesión 1</font></span>](https://jtvalderrama.github.io/stata1.html)    &nbsp;&nbsp;&nbsp;&nbsp;   [<span style="color:red"><font size="4">Sesión 2</font></span>](https://jtvalderrama.github.io/stata2.html)    &nbsp;&nbsp;&nbsp;&nbsp;   [<span style="color:red"><font size="4">Sesión 3</font></span>](https://jtvalderrama.github.io/stata3.html)    &nbsp;&nbsp;&nbsp;&nbsp;   [<span style="color:red"><font size="4">Sesión 4</font></span>](https://jtvalderrama.github.io/stata4.html)    &nbsp;&nbsp;&nbsp;&nbsp;   [<span style="color:red"><font size="4">Sesión 5</font></span>](https://jtvalderrama.github.io/stata5.html) &nbsp;&nbsp;&nbsp;&nbsp;   [<span style="color:red"><font size="4">Ejercicios</font></span>](https://jtvalderrama.github.io/stata_ejercicios.html) </p>
+
+_ _ _
+
+# 1. Tablas de contingencia
+
+`Stata` es un software muy apropiado para elaborar tablas de contingencia simples y complejas. Para ilustrar el empleo de estos comandos, utilizaremos la base de datos `ecv18t`, que se encuentra en la carpeta `sesión3` e incluye una serie de variables que permiten analizar algunos aspectos del mercado de trabajo. Podemos encontrar explicaciones detalladas, por ejemplo, en el libro de @Escobar2012 o el de @Kohler2012.
+
+## Tablas de frecuencia con una o dos variables (`tabulate`)
+
+Es uno de los comandos más utilizados de `Stata`, esencial para explorar las bases de datos. La sintaxis es la siguiente:
+
+Tabla de una variable (*one-way table*)
+
+  <code><u>tab</u>ulate <i>varname</i> [<i>if</i>] [<i>in</i>] [<i>weight</i>] [, <i>tabulate1_options</i>]</code>
+
+Tabla de dos variables (*two-way table*)
+
+  <code><u>tab</u>ulate <i>varname1</i> <i>varname2</i> [<i>if</i>] [<i>in</i>] [<i>weight</i>] [, <i>options</i>]</code>
+
+Las opciones para crear las tablas son numerosas: número de observaciones, frecuencias de celdas, filas o columnas, etc.
+
+En nuestra base de datos, por ejemplo, podemos crear una tabla con la distribución de la educación en la población.
+
+```{s}
+//  Fijamos el directorio de trabajo
+
+cd "D:\Dropbox\curso_stata\sesión3"
+
+//  Abrimos el archivo
+
+use "ecv18t.dta", clear
+
+//  Tabla de frecuencias absolutas
+
+tabulate educg
+```
+
+Asimismo, podemos crear una tabla que recoja la distribución de la educación por sexo.
+
+```{s}
+//  Tabla de frecuencias absolutas
+
+tabulate educg sexo
+
+//  Distribución por sexo por nivel educativo (porcentaje por filas).
+
+tabulate educg sexo, row nofreq
+
+//  Distribución del nivel educativo por sexo (porcentaje por columnas).
+
+tabulate educg sexo, col nofreq
+
+//  Porcentaje de observaciones en cada celda.
+
+tabulate educg sexo, cell nofreq
+```
+
+Adicionalmente, `Stata` nos permite realizar algunos tests estadísticos para contrastar si las dos variables se distribuyen de forma independiente, como el test de la $\chi^2$ de Pearson (opción `chi2`), entre otros muchos.
+
+## Tablas con estadísticos descriptivos
+
+Podemos crear tablas de una o dos variables con los estadísticos descriptivos de otras variables mediante la instrucción `tabulate, summarize()`.
+
+  <code><u>tab</u>ulate <i>varname1</i> [<i>varname2</i>] [<i>if</i>] [<i>in</i>] [<i>weight</i>] [, options]</code>
+
+Por ejemplo, podemos calcular los estadísticos descriptivos del salario promedio por nivel educativo o por nivel educativo y sexo.
+
+```{s}
+//  Tabla con estadísticos descriptivos para valores de una o más variables
+
+tabulate educg, summarize(salario)
+
+tabulate educg sexo, summarize(salario)
+```
+
+Además, disponemos del comando `table` para construir tablas con estadísticos descriptivos de forma más flexible.
+
+  <code>table <i>rowvar</i> [<i>colvar</i> [<i>supercolvar</i>]] [<i>if</i>] [<i>in</i>] [<i>weight</i>] [, <i>options</i>]</code>
+
+El salario promedio por educación, sexo y tipo de contrato se calcularía como sigue:
+
+```{s}
+table educg sexo contrato, contents(mean salario)
+```
+
+# 2. Análisis de varianza (ANOVA)
+
+Como es sabido, este tipo de análisis se emplea para contrastar si la media de una variable en dos o más poblaciones es diferente. En `Stata`, se implementa con facilidad con el comando `anova`:
+
+  <code>anova <i>varname</i> [<i>termlist</i>] [<i>if</i>] [<i>in</i>] [<i>weight</i>] [, <i>options</i>]</code>
+
+Para contrastar si el salario promedio es diferente por nivel educativo, emplearíamos la siguiente instrucción:
+
+```{s}
+anova salario educg
+```
+
+Podemos ver que, efectivamente, se rechaza la hipótesis nula de igualdad de medias. Sobre la implementación del ANOVA, podemos recurrir, nuevamente, a @Escobar2012 y @Kohler2012.
+
+# 3. Análisis de regresión
+
+Sin duda, es la técnica de análisis multivariantes más popular. En `Stata`, las regresiones lineales se implementan a través del comando `regress`:
+
+  <code>regress <i>depvar</i> [<i>indepvars</i>] [<i>if</i>] [<i>in</i>] [<i>weight</i>] [, <i>options</i>]</code>
+
+El abanico de opciones que nos ofrece un comando como `regress` es enorme. Algunos ejemplos de manuales muy recomendables son @Adkins2010, @Baum2006 y @Cameron2010. Un buen libro que conecta teoría y práctica es el de @Wooldridge2019.
+
+Vamos a realizar un ejercicio simple, consistente en una regresión a la @Mincer1958, consistente en tratar de explicar/predecir el salario de una persona en función de su sexo, edad, edad al cuadrado y escolaridad. El modelo a estimar sería el siguiente:
+
+$$  \log \text{salario}_i = \beta_0 + \beta_1 X_i + \epsilon_i $$
+
+En primer lugar, vamos a crear una nueva variable, la edad al cuadrado.
+
+```{s}
+generate edad2 = edad^2
+label variable edad2 "Edad al cuadrado"
+```
+
+Habitualmente, se emplea el salario en logaritmos, porque sabemos que la distribución del logaritmo del salario es aproximadamente normal y facilita la interpretación (el coeficiente de cada regresor indica aproximadamente la variaciación porcentual de la variable en logaritmos cuando se produce un incremento de una unidad en el regresor).
+
+Calculamos, en primer lugar, una regresión del logaritmo del salario sobre la edad y la edad al cuadrado.
+
+```{s}
+regress logsalario edad edad2
+```
+
+`Stata` es capaz de acomodar fácilmente variables categóricas en los análisis econométricos. En el comando `regress`, en particular, es especialmente sencillo. Recordemos que para incluir variables categóricas en un análisis, empleamos variables ficticias o *dummies*, variables que toman el valor 1 si la observación toma un determinado valor de la variable y 0 en otro caso. Para evitar la multicolinealidad perfecta, para cada variable categórica, incluimos una variable *dummy* para todas las categorías excepto una, que actúa como referencia. `Stata` implementa esta estrategia automáticamente. Por defecto, selecciona como referencia la primera categoría, pero podemos modificar esta opción. Por ejemplo, con la variable `sexo`, tendríamos:
+
+```{s}
+//  Con la categoría por defecto (hombre)
+
+regress logsalario edad edad2 i.sexo
+
+//  Modificando la categoría por defecto (mujer)
+
+regress logsalario edad edad2 ib2.sexo
+
+//  Modificando la categoría de referencia (la más frecuente)
+
+regress logsalario edad edad2 ib(freq).sexo
+```
+
+En ocasiones, no obstante, puede convenir realizar la creación de variables ficticias manualmente, especialmente con comandos que no soportan `i.varname` algo a lo que `Stata` puede ayudarnos con la instrucción siguiente:
+
+```{s}
+tabulate educg, generate(educdummy)
+
+regress logsalario i.sexo edad edad2 educdummy2 educdummy3
+
+regress logsalario i.sexo edad edad2 ib1.educg
+
+```
+
+Lo mismo ocurre con las interacciones entre variables, que podemos calcular manualmente o empleando las capacidades de `Stata`. Para el cálculo de las mismas, podemos emplear los caracteres `#` o `##`. El primero de ellos (`#`) incluye en la ecuación únicamente las interacciones, mientras que `##` incluye las variables por separado y su interacción.
+
+```{s}
+regress logsalario i.sexo c.edad c.edad#c.edad i.educg i.sexo#c.edad i.sexo#educg
+```
+
+```{s}
+regress logsalario c.edad##c.edad i.sexo#c.edad i.sexo##educg
+```
+
+# 4. Otros modelos econométricos de uso común
+
+`Stata` es un paquete estadístico que puede emplearse para implementar una impresionante variedad de modelos. En muchas ocasiones, aunque es muy conveniente conocer los fundamentos estadísticos de nuestros análisis, podemos realizar los ejercicios econométricos sin necesidad de un conocimiento profundo de estadística. Los modelos estimados por máxima verosimilitud, por ejemplo, requieren operaciones matemáticas de cierta dificultad y, de hecho, la resolución de estos modelos se hace por iteración (en este caso, se deriva una función de máxima verosimilitud y se busca su máximo mediante un procedimiento iterativo, sin encontrar una solución cerrada). Ejemplos de este tipo de modelos ampliamente utilizados en todo tipo de disciplinas son los modelos *logit* o *probit*, donde la variable de interés es de tipo binario. En la práctica, codificamos dicha variable en dos categorías, 0 y 1.
+
+En este ejemplo, vamos a analizar cuál es la influencia del sexo, la edad, la edad al cuadrado y el nivel educativo en la probabilidad de que una persona se encuentre empleada. Para ello, en nuestra base de datos, hemos creado la variable `empleo`, que es una variable que toma el valor 1 si la persona se encuentra ocupada en el momento de la encuesta y 0 en otro caso. La implementación de un modelo *logit*  o un modelo *probit* es muy sencilla:
+
+```{s}
+//  Estimación del modelo logit
+
+logit empleo i.sexo c.edad c.edad#c.edad
+
+//  Estimación del modelo probit
+
+probit empleo i.sexo c.edad c.edad#c.edad
+```
+
+Es muy posible que recordemos que los coeficientes estimados de muchos modelos no lineales no son directamente interpretables. Por eso, habitualmente, presentamos, por ejemplo, los efectos marginales. `Stata` permite abordar esta tarea a través del uso del comando `margins` después de la estimación del modelo correspondiente:
+
+  <code>margins [<i>marginlist</i>] [<i>if</i>] [<i>in</i>] [<i>weight</i>] [, <i>response_options</i> <i>options</i>]</code>
+
+En este tipo de modelos, los efectos marginales (el efecto de un incremento de unidad en un regresor en la variable dependiente) es diferente para cada observación. Una opción habitual es calcular los efectos marginales en para una observación que tomase como valores el promedio de cada variable.
+
+```{s}
+//  Estimación del modelo logit
+
+logit empleo i.sexo c.edad c.edad#c.edad
+
+//  Efectos marginales
+
+margins, dydx(edad sexo) atmeans
+```
+
+Otra opción habitual es calcular efectos marginales para cada observación y presentar la media de los mismos:
+
+```{s}
+//  Estimación del modelo probit
+
+probit empleo i.sexo c.edad c.edad#c.edad
+
+//  Efectos marginales
+
+margins, dydx(edad sexo)
+```
+
+Podemos plantear un tercer ejemplo con un modelo *tobit*, empleado en ocasiones para variables que se encuentran censuradas. Por ejemplo, las aportaciones a planes de pensiones privados son una variable censurada en 0 (no puede ser negativa).
+
+```{s}
+codebook aportacionesg
+```
+
+En nuestro caso, la estimación del modelo será la siguiente (como en el caso anterior, los efectos marginales no coinciden con los coeficientes):
+
+```{s}
+//  Estimación del modelo tobit
+
+tobit aportacionesg i.sexo c.edad c.edad#c.edad i.educg, ll(0)
+
+//  Efectos marginales
+
+margins, dydx(sexo edad educg) predict(ystar(0,.))
+```
+
+Otro ejemplo sencillo sería un *logit* ordenado, donde la variable dependiente es categórica, pero ordinal. Por ejemplo, en nuestra base de datos, tenemos la variable `salud`. Podemos explorar el efecto del sexo, la edad y el nivel educativo en el nivel de salud autopercibido.
+
+```{s}
+//  Exploramos la variable salud
+
+tab salud
+tab salud, nolabel
+
+//  Estimación del modelo logit ordenado
+
+ologit salud i.sexo c.edad c.edad#c.edad i.educg
+
+//  Efectos marginales
+
+margins, dydx(sexo edad educg)
+```
+
+`Stata` es especialmente adecuado para manejar datos con diseños muestrales complejos y datos de panel. Para los primeros, `Stata` cuenta con los comandos de la familia `svy`, que nos permiten tener en cuenta la existencia de ponderaciones, estratos y muestreo en varias etapas. Básicamente, debemos fijar las características del muestreo de forma previa y, posteriormente, emplear el comando adecuado. No todos los comandos tienen versión compatible con diseños muestrales complejos. Por ejemplo, nuestra encuesta utiliza como estratos las CCAA. Dentro de estos estratos, selecciona aleatoriamente unidades primarias de muestreo consistentes en secciones censales. Posteriormente, entrevista todos los hogares dentro de cada sección y todas las personas dentro de cada hogar. Cada persona tiene un peso probabístico, que viene dado por la probabilidad de que una persona de sus características sea seleccionada.
+
+En primar lugar, fijamos el tipo de muestreo en `Stata`:
+
+  <code>svyset [<i>psu</i>] [<i>weight</i>] [, <i>design_options</i> <i>options</i>]</code>
+
+`svyset` es una de las pocas instrucciones que resulta más fácil de implementar a través de las ventanas. Una buena estrategia es emplear el menú de ventanas, generar la instrucción y copiarla en nuestro archivo `do`.
+
+```{s}
+svyset psu [pweight=peso], strata(region) vce(linearized) singleunit(missing)
+```
+
+Ahora, utilizamos la contraparte para este tipo de datos de `Stata`, `svy: regress`:
+
+```{s}
+svy: regress logsalario c.edad c.edad#c.edad i.sexo#c.edad i.sexo##educg
+```
+
+Además, muchos comandos en `Stata` admiten el empleo de ponderaciones. En el caso de los encuestas, estas reflejan el inverso de la probabilidad de cada observación ser seleccionada y deben introducirse como `pweight` (pesos probabilísticos). Hay muchas especificades asociadas al empleo de ponderaciones y no todos los comandos admiten el empleo de pesos.
+
+El manejo de datos de panel merecería un curso específico. No obstante, la lógica es similar a la instrucción anterior: a través de `xtset`, `Stata` permite especificar cuáles son las unidades del panel (*`panelvar`*) y cuál es la variable temporal (*`timevar`*) y, posteriormente, ejecutar comandos especialmente diseñados para implementar modelos con este tipo de datos (por ejemplo, modelos de efectos fijos).
+
+  <code>xtset <i>panelvar</i> <i>timevar</i> [, <i>tsoptions</i>]</code>
+
+Al margen de los libros mencionados con anterioridad, especialmente @Cameron2010, podemos destacar el libro de @Long2014 para variables categóricas, los manuales de Skrondal y Rabe-Hesketh [-@Skrondal2012a;-@Skrondal2012b] para modelos de panel y multinivel y @Cleves2016 para modelos de supervivencia.
+
+# 5. Otras técnicas de análisis multivariante
+
+`Stata` es capaz de implementar un elevado rango de técnicas de análisis de multivariantes, ya sea a través de los paquetes que incluye de serie el programa o mediante comandos diseñados por algunos usuarios (hablaremos de esto posteriormente).
+
+A modo de ilustración, vamos a construir un índice de bienestar de los hogares españoles a partir de indicadores de bienes que posee el hogar a través de un análisis de componentes principales y de un análisis de correspondencias múltiple. Son técnicas que se emplean para reducir la dimensionalidad de los datos, entre otras aplicaciones. Para ello, partimos del archivo `ecv2018w.dta` en nuestro directorio `sesión3`.
+
+La instrucción para el análisis de componentes principales es
+
+  <code>pca <i>varlist</i> [<i>if</i>] [<i>in</i>] [<i>weight</i>] [, <i>options</i>]</code>
+
+Para calcular las componentes para cada observación emplearíamos
+
+  <code>predict [<i>type</i>] {<i>stub</i>* | <i>newvarlist</i>} [<i>if</i>] [<i>in</i>] [, <i>statistic</i> <i>options</i>]</code>
+
+La instrucción para el análisis de correspondencias múltiple es
+
+  <code>mca <i>varlist</i> [<i>if</i>] [<i>in</i>] [<i>weight</i>] [, <i>options</i>]</code>
+
+Para calculas las componentes, usamos
+
+  <code>predict [<i>type</i>] <i>newvar</i> [<i>if</i>] [<i>in</i>] [, <i>statistic</i> <u>norm</u>alize(<i>norm</i>) <u>dim</u>ensions(<i>#)</i>]</code>
+
+  <code>predict [<i>type</i>] {<i>stub</i>* | <i>newvarlist</i>} [<i>if</i>] [<i>in</i>] [, <i>statistic</i> <u>norm</u>alize(<i>norm</i>) <u>dim</u>ensions(<i>numlist</i>)]</code>
+
+```{s}
+//  Abrimos el archivo
+
+use "ecv18w.dta", clear
+
+//  Análisis de componentes principales
+
+pca htelef htv hpc hlavadora hcoche
+
+//  Calculamos las 2 primeras componentes principales
+
+predict pc1 pc2
+
+//  Análisis de correspondencias múltiple
+
+mca htelef htv hpc hlavadora hcoche
+
+//  Calculamos las 2 primeras componentes principales
+
+predict mc1 mc2
+
+//  Podemos calcular la correlación con la renta del hogar
+
+correlate hrenta1 pc1
+correlate hrenta1 mc1
+
+//  Podemos cambiar el signo de la componente (solo indica una dirección)
+
+replace mc1 = -mc1
+correlate hrenta1 mc1
+```
+# References
+
+```{s/}
+quietly: cd "D:\Dropbox\curso_stata\jtvalderrama.github.io"
+```
