@@ -11,23 +11,17 @@ _ _ _
 
 # 1. ¿Qué es Stata?
 
-* Stata es un programa de análisis estadístico que permite manejar bases de datos de gran tamaño. Resulta especialmente apropiado para tareas relacionadas con la Microeconometría aplicada. Es especialmente bueno con datos de encuestas.
-* Procede de Bioestadística, pero es de amplio empleo en Ciencias Sociales (especialmente, en Economía y Ciencia Política) y Psicología.
-* La curva de aprendizaje es poco pronunciada. El sistema de ventanas no es demasiado bueno, pero, salvo algunos casos, es preferible usar comandos.
-* Programación aceptable y bastante flexible.
-* Reproducibilidad.
-* [Licencia](https://www.stata.com/order/dl/) razonablemente asequible (*versus* SPSS o SAS).
-* Muchísimos recursos de aprendizaje y extensión (paquetes, *Stata Journal*) y, si no existe, puedes preguntar ([Statalist](https://www.statalist.org/) o [Stack Overflow](https://stackoverflow.com/)).
-* Una parte importante de los libros de estadística proporcionan la sintaxis de `Stata` para ilustrar ejemplos y resolver ejercicios.
-* Buena integración con otros programas y lenguajes (Word, Excel, Markdown, Python, PDF, GitHub o LaTeX). Esta página, por ejemplo, esta elaborada con el paquete `markstat`.
+Es un programa estadístico que permite combinar,
+  manipular y analizar datos usando métodos estadísticos y gráficos.
 
-Una alternativa muy razonable es `R`: potente, flexible, gratuito, con una comunidad de usuarios impresionante, un lenguaje de programación muy potente y muchas cosas más... pero con una curva de aprendizaje muchísimo más pronunciada.
+# 2. ¿Porqué Stata?
 
-![Porcentaje de uso de distintos softwares en los materiales suplementarios de revistas de la AEA](software.png){width=40%}
+Versatilidad y popularidad frente a sus principales competidores, 
+ `SPSS` y `SAS`; aunque cada vez es más extendido otras alternativas gratuitas como `R`.
+  
+## 2.1. Gráficos para publicación
 
-# 2. Objetivos del curso
-
-El curso consta de 10 horas, por lo que la finalidad es proporcionar a los asistentes un panorama de lo que `Stata` puede hacer y orientarles en la búsqueda de recursos apropiados para que puedan aprender de forma autónoma de acuerdo con sus intereses. Todos los materiales del curso pueden descargarse en el siguiente [enlace](https://drive.google.com/drive/folders/1EE9fOnmFQfY-7pImpfMrsgYFo_7MaD6_?usp=sharing).
+![Porcentaje de uso de distintos softwares en los materiales suplementarios de revistas de la AEA](Fig_Effect_MPL_all.pdf){width=40%}
 
 # 3. Conceptos básicos
 

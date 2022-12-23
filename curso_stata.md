@@ -103,6 +103,6 @@ Los materiales del curso pueden descargarse en este [enlace](https://drive.googl
 Para superar el curso, los estudiantes deberán entregar la solución a la hoja de problemas que puede descargarse en este [enlace](https://drive.google.com/file/d/1tsgvLeIRF3yPGc7pcpT4aZkgi4xUemO2/view?usp=sharing). Los ejercicios pueden entregarse proporcionando al profesor un archivo `.do` o un archivo log (e.g., `smcl`), aunque otras opciones son admisibles (por ejemplo, los usuarios más avanzados pueden preferir archivos `.html` o `.pdf` generados con Markdown o TeX).
 :::
 ::::::::::::::
-```{s/}
-quietly: cd "C:\Users\jvald\Dropbox\MISCURSOS\Analisis de Datos con Stata"
-```
+
+{{1}}
+
