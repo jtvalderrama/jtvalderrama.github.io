@@ -1,9 +1,9 @@
 {smcl}
 {com}{sf}{ul off}{txt}{.-}
       name:  {res}<unnamed>
-       {txt}log:  {res}D:\Dropbox\curso_stata\jtvalderrama.github.io\stata1.smcl
+       {txt}log:  {res}C:\Users\jvald\Dropbox\MISCURSOS\Analisis de Datos con Stata\jtvalderrama.github.io\stata1.smcl
   {txt}log type:  {res}smcl
- {txt}opened on:  {res}25 Mar 2022, 09:10:07
+ {txt}opened on:  {res}23 Dec 2022, 01:43:39
 {txt}
 {com}. //_1
 . clear all
@@ -22,15 +22,15 @@
 . clear all
 {res}{txt}
 {com}. //_3
-. cd "D:\Dropbox\curso_stata\sesión1"
-{res}D:\Dropbox\curso_stata\sesión1
+. cd "C:\Users\jvald\Dropbox\MISCURSOS\Analisis de Datos con Stata\MATERIALES\sesion1"
+{res}C:\Users\jvald\Dropbox\MISCURSOS\Analisis de Datos con Stata\MATERIALES\sesion1
 {txt}
 {com}. pwd
-{res}D:\Dropbox\curso_stata\sesión1
+{res}C:\Users\jvald\Dropbox\MISCURSOS\Analisis de Datos con Stata\MATERIALES\sesion1
 {txt}
 {com}. //_4
-. import delimited using "esudb18r.csv", clear delimiter(",")
-{res}{text}(37 vars, 33,734 obs)
+. import delimited using "NOTAS.csv", clear varnames(1)
+{res}{text}(6 vars, 38 obs)
 
 {com}. //_5
 . browse
@@ -40,598 +40,135 @@
 {txt}
 {com}. //_7
 . save "ecv18r.dta", replace
-{txt}{p 0 4 2}
-file {bf}
-ecv18r.dta{rm}
-saved
-{p_end}
+{txt}file ecv18r.dta saved
 
 {com}. //_8
 . use "ecv18r.dta", clear
 {txt}
 {com}. //_9
-. codebook rb210
+. codebook 
 
 {txt}{hline}
-{res}rb210{right:RB210}
+{res}id{right:(unlabeled)}
 {txt}{hline}
 
-{col 19}Type: Numeric ({res}byte{txt})
+{col 19}type:  numeric ({res}byte{txt})
 
-{col 18}Range: [{res}1{txt},{res}4{txt}]{col 55}Units: {res}1
-{col 10}{txt}Unique values: {res}4{col 51}{txt}Missing .: {res}1{txt}/{res}33,734
+{col 18}range:  [{res}1{txt},{res}38{txt}]{col 55}units:  {res}1
+{col 10}{txt}unique values:  {res}38{col 51}{txt}missing .:  {res}0{txt}/{res}38
 
-{txt}{col 13}Tabulation: Freq.  Value
-{col 20}{res}    13,021{col 32}1
-{col 20}     2,990{col 32}2
-{col 20}     6,183{col 32}3
-{col 20}    11,539{col 32}4
-{col 20}         1{col 32}.
+{txt}{col 19}mean:{res}{col 26}    19.5
+{txt}{col 15}std. dev:{res}{col 26} 11.1131
+
+{txt}{col 12}percentiles:{col 32}10%{col 42}25%{col 52}50%{col 62}75%{col 72}90%
+{res}{col 27}       4{col 37}      10{col 47}    19.5{col 57}      29{col 67}      35
+
+{txt}{hline}
+{res}ex1{right:Ex1}
+{txt}{hline}
+
+{col 19}type:  string ({res}str5{txt})
+
+{col 10}unique values:  {res}5{col 51}{txt}missing "":  {res}0{txt}/{res}38
+
+{txt}{col 13}tabulation:  Freq.  Value
+{col 21}{res}         3{col 33}"10,00"
+{col 21}         5{col 33}"15,00"
+{col 21}        10{col 33}"16,00"
+{col 21}         5{col 33}"18,00"
+{col 21}        15{col 33}"20,00"
+
+{txt}{hline}
+{res}ex2{right:Ex2}
+{txt}{hline}
+
+{col 19}type:  string ({res}str5{txt})
+
+{col 10}unique values:  {res}14{col 51}{txt}missing "":  {res}0{txt}/{res}38
+
+{txt}{col 15}examples:  {res}"12,00"
+{col 26}"14,00"
+{col 26}"15,00"
+{col 26}"19,00"
+
+{txt}{hline}
+{res}ex3{right:Ex3}
+{txt}{hline}
+
+{col 19}type:  string ({res}str5{txt})
+
+{col 10}unique values:  {res}10{col 51}{txt}missing "":  {res}0{txt}/{res}38
+
+{txt}{col 15}examples:  {res}"14,00"
+{col 26}"16,00"
+{col 26}"17,00"
+{col 26}"18,00"
+
+{txt}{hline}
+{res}ex4{right:Ex4}
+{txt}{hline}
+
+{col 19}type:  string ({res}str5{txt})
+
+{col 10}unique values:  {res}15{col 51}{txt}missing "":  {res}0{txt}/{res}38
+
+{txt}{col 15}examples:  {res}"12,00"
+{col 26}"15,00"
+{col 26}"19,00"
+{col 26}"7,00"
+
+{txt}{hline}
+{res}ex5{right:Ex5}
+{txt}{hline}
+
+{col 19}type:  string ({res}str5{txt})
+
+{col 10}unique values:  {res}7{col 51}{txt}missing "":  {res}0{txt}/{res}38
+
+{txt}{col 13}tabulation:  Freq.  Value
+{col 21}{res}         5{col 33}"10,00"
+{col 21}        10{col 33}"11,00"
+{col 21}         3{col 33}"15,00"
+{col 21}         5{col 33}"16,00"
+{col 21}         5{col 33}"18,00"
+{col 21}         5{col 33}"19,00"
+{col 21}         5{col 33}"20,00"
 {txt}
 {com}. //_10
-. tabulate rb210
+. sum
 
-      {txt}RB210 {c |}      Freq.     Percent        Cum.
-{hline 12}{c +}{hline 35}
-          1 {c |}{res}     13,021       38.60       38.60
-{txt}          2 {c |}{res}      2,990        8.86       47.46
-{txt}          3 {c |}{res}      6,183       18.33       65.79
-{txt}          4 {c |}{res}     11,539       34.21      100.00
-{txt}{hline 12}{c +}{hline 35}
-      Total {c |}{res}     33,733      100.00
+{txt}    Variable {c |}        Obs        Mean    Std. Dev.       Min        Max
+{hline 13}{c +}{hline 57}
+{space 10}id {c |}{res}         38        19.5    11.11306          1         38
+{txt}{space 9}ex1 {c |}{res}          0
+{txt}{space 9}ex2 {c |}{res}          0
+{txt}{space 9}ex3 {c |}{res}          0
+{txt}{space 9}ex4 {c |}{res}          0
+{txt}{hline 13}{c +}{hline 57}
+{space 9}ex5 {c |}{res}          0
 {txt}
 {com}. //_11
 . tabulate rb210 if rb090 == 2
+{err}variable {bf}rb210{sf} not found
+{txt}{search r(111), local:r(111);}
 
-      {txt}RB210 {c |}      Freq.     Percent        Cum.
-{hline 12}{c +}{hline 35}
-          1 {c |}{res}      6,023       34.48       34.48
-{txt}          2 {c |}{res}      1,550        8.87       43.35
-{txt}          3 {c |}{res}      2,562       14.67       58.02
-{txt}          4 {c |}{res}      7,333       41.98      100.00
-{txt}{hline 12}{c +}{hline 35}
-      Total {c |}{res}     17,468      100.00
-{txt}
-{com}. //_12
-. list rb090 in 1/10
-{txt}
-     {c TLC}{hline 7}{c TRC}
-     {c |} {res}rb090 {txt}{c |}
-     {c LT}{hline 7}{c RT}
-  1. {c |} {res}    1 {txt}{c |}
-  2. {c |} {res}    2 {txt}{c |}
-  3. {c |} {res}    2 {txt}{c |}
-  4. {c |} {res}    2 {txt}{c |}
-  5. {c |} {res}    2 {txt}{c |}
-     {c LT}{hline 7}{c RT}
-  6. {c |} {res}    2 {txt}{c |}
-  7. {c |} {res}    2 {txt}{c |}
-  8. {c |} {res}    1 {txt}{c |}
-  9. {c |} {res}    2 {txt}{c |}
- 10. {c |} {res}    2 {txt}{c |}
-     {c BLC}{hline 7}{c BRC}
+end of do-file
 
-{com}. //_13
-. drop rb070
-{txt}
-{com}. //_14
-. keep if rb090 == 2
-{txt}(16,266 observations deleted)
+{com}. 
+{txt}end of do-file
 
-{com}. //_15
-. use "ecv18r.dta", clear
+{com}. do "C:\Users\jvald\AppData\Local\Temp\STD38ec_000000.tmp"
 {txt}
-{com}. //_16
-. label data "ECV-Datos básicos de la persona"
+{com}. cd "C:\Users\jvald\Dropbox\MISCURSOS\Analisis de Datos con Stata\jtvalderrama.github.io"
+{res}C:\Users\jvald\Dropbox\MISCURSOS\Analisis de Datos con Stata\jtvalderrama.github.io
 {txt}
-{com}. //_17
-. label var rb090 "Sexo"
+{com}. 
+{txt}end of do-file
+
+{com}. do "C:\Users\jvald\AppData\Local\Temp\STD38ec_000000.tmp"
 {txt}
-{com}. //_18
-. label define sexo_lab 1 "Hombre" 2 "Mujer"
-{txt}
-{com}. label values rb090 sexo_lab
-{txt}
-{com}. //_19
-. rename rb090 sexo
+{com}. markstat using "curso_stata.stmd", strict mathjax bibliography
 {res}{txt}
-{com}. //_20
-. generate edad = 2018 - rb080
-{txt}
-{com}. 
-. // Etiquetamos la variable
-. 
-. label var edad "Edad"
-{txt}
-{com}. 
-. //  Observamos los estadísticos descriptivos de la nueva variable
-. 
-. summarize edad
-
-{txt}    Variable {c |}        Obs        Mean    Std. dev.       Min        Max
-{hline 13}{c +}{hline 57}
-{space 8}edad {c |}{res}     33,734     44.8642    23.21889          0         86
-{txt}
-{com}. //_21
-. generate gedad = 1 if edad <= 29
-{txt}(24,224 missing values generated)
-
-{com}. replace gedad = 2 if edad >= 30 & edad <= 49
-{txt}(8,779 real changes made)
-
-{com}. replace gedad = 3 if edad >= 50 & edad <= 64
-{txt}(7,886 real changes made)
-
-{com}. replace gedad = 4 if edad >= 65
-{txt}(7,559 real changes made)
-
-{com}. 
-. // Etiqueamos la variable y sus valores
-. 
-. label var gedad "Grupo de edad"
-{txt}
-{com}. label define gedad_lab 1 "Menor que 30 años" 2 "De 30 a 49 años" 3 "De 50 a 64 años" 4 "65 y más años"
-{txt}
-{com}. label values gedad gedad_lab
-{txt}
-{com}. 
-. tabulate gedad
-
-    {txt}Grupo de edad {c |}      Freq.     Percent        Cum.
-{hline 18}{c +}{hline 35}
-Menor que 30 años {c |}{res}      9,510       28.19       28.19
-{txt}  De 30 a 49 años {c |}{res}      8,779       26.02       54.22
-{txt}  De 50 a 64 años {c |}{res}      7,886       23.38       77.59
-{txt}    65 y más años {c |}{res}      7,559       22.41      100.00
-{txt}{hline 18}{c +}{hline 35}
-            Total {c |}{res}     33,734      100.00
-{txt}
-{com}. //_22
-. recode gedad (1 2 = 1) (3 4 = 2)
-{txt}(24224 changes made to {bf:gedad})
-
-{com}. 
-. // Etiquetamos la nueva variable y sus valores
-. 
-. label drop gedad_lab
-{txt}
-{com}. label define gedad_lab 1 "Menor de 50 años" 2 "50 y más años"
-{txt}
-{com}. label values gedad gedad_lab
-{txt}
-{com}. 
-. tabulate gedad
-
-   {txt}Grupo de edad {c |}      Freq.     Percent        Cum.
-{hline 17}{c +}{hline 35}
-Menor de 50 años {c |}{res}     18,289       54.22       54.22
-{txt}   50 y más años {c |}{res}     15,445       45.78      100.00
-{txt}{hline 17}{c +}{hline 35}
-           Total {c |}{res}     33,734      100.00
-{txt}
-{com}. //_23
-. egen edadm = mean(edad)
-{txt}
-{com}. //_24q
-. quietly{c -(}
-{txt}
-{com}. //_25
-. browse p78a_u
-{txt}
-{com}. tabulate p78a_u
-
-     {txt}P78a_U {c |}      Freq.     Percent        Cum.
-{hline 12}{c +}{hline 35}
-         -2 {c |}{res}     22,051       78.31       78.31
-{txt}         -1 {c |}{res}          2        0.01       78.31
-{txt}          1 {c |}{res}      1,388        4.93       83.24
-{txt}          2 {c |}{res}      2,248        7.98       91.23
-{txt}          3 {c |}{res}      1,968        6.99       98.21
-{txt}          4 {c |}{res}         44        0.16       98.37
-{txt}          5 {c |}{res}        252        0.89       99.26
-{txt}          6 {c |}{res}        176        0.63       99.89
-{txt}          7 {c |}{res}          3        0.01       99.90
-{txt}          8 {c |}{res}         25        0.09       99.99
-{txt}          9 {c |}{res}          3        0.01      100.00
-{txt}{hline 12}{c +}{hline 35}
-      Total {c |}{res}     28,160      100.00
-{txt}
-{com}. //_26
-. recode p78a_u (-2 -1 = .)
-{txt}(22053 changes made to {bf:p78a_u})
-
-{com}. //_27
-. net search poverty
-{txt}(contacting http://www.stata.com)
-
-{s6hlp}
-50 packages found (Stata Journal and STB listed first)
-------------------------------------------------------
-
-@net:describe st0492, from(http://www.stata-journal.com/software/sj17-3)!st0492 from http://www.stata-journal.com/software/sj17-3@
-    SJ17-3 st0492. Estimate the entire parametric class of Alkire-Foster
-    multidimensional poverty measures / Estimate the entire parametric class
-    of Alkire- / Foster multidimensional poverty measures / by Daniele
-    Pacifico, OECD, Paris, France / Felix Poege, Max Planck Institute for /
-
-@net:describe st0424, from(http://www.stata-journal.com/software/sj16-1)!st0424 from http://www.stata-journal.com/software/sj16-1@
-    SJ16-1 st0424. Difference-in-differences estimation /
-    Difference-in-differences estimation / by Juan M. villa, Brooks World
-    Poverty / Institute, University of Manchester, / Manchester, UK / Support:
-    juan.villalora@@manchester.ac.uk / After installation, type help ^diff^
-
-@net:describe sg117, from(http://www.stata.com/stb/stb51)!sg117 from http://www.stata.com/stb/stb51@
-    STB-51 sg115.  Robust std errs for Foster-Greer-Thorbecke poverty ind. /
-    STB insert by / Dean Jolliffe, Center for Economic Research and Graduate
-    Education, / Czech Republic; / Anastassia Semykina, Center for Economic
-    Research and Graduate Education, / Czech Republic. / Support:
-
-@net:describe sg108, from(http://www.stata.com/stb/stb48)!sg108 from http://www.stata.com/stb/stb48@
-    STB-48 sg108.  Computing poverty indices. / STB insert by Philippe Van
-    Kerm, GREBE, University of Namur, Belgium. / Support:
-    philippe.vankerm@@fundp.ac.be / After installation, see help ^poverty^.
-
-@net:describe shapley, from(http://staskolenikov.net/stata)!shapley from http://staskolenikov.net/stata@
-    shapley -- module to perform Shapley decomposition / Author: Stas
-    Kolenikov, skolenik@@yahoo.com / This program performs, in some rather
-    general form, Shapley value / decomposition. The goal is to analyze
-    indices that do not possess / natural decomposition properties. The early
-
-@net:describe adecomp, from(http://fmwww.bc.edu/RePEc/bocode/a)!adecomp from http://fmwww.bc.edu/RePEc/bocode/a@
-    'ADECOMP': module to estimate Shapley Decomposition by Components of a
-    Welfare Measure / adecomp implements the Shapley decomposition of changes
-    in a / welfare indicator as proposed by Azevedo, Sanfelice and Nguyen /
-    (2012). Following Barros et al. (2006), this method takes / advantage of
-
-@net:describe apoverty, from(http://fmwww.bc.edu/RePEc/bocode/a)!apoverty from http://fmwww.bc.edu/RePEc/bocode/a@
-    'APOVERTY': module to compute poverty measures / apoverty computes a
-    series of poverty measures based on the / (income) distribution described
-    by varname. It is a revised and / upgraded version of poverty published by
-    Philippe Van Kerm.  / KW: poverty / KW: headcount / KW: Sen index / KW:
-
-@net:describe bcstats, from(http://fmwww.bc.edu/RePEc/bocode/b)!bcstats from http://fmwww.bc.edu/RePEc/bocode/b@
-    'BCSTATS': module to analyze back check (field audit) data and compare it
-    to the original survey data / bcstats compares back check (i.e., field
-    audit, reinterview) / data and original survey data, producing a data set
-    of / comparisons. It completes enumerator checks for type 1 and type / 2
-
-@net:describe bmp2dta, from(http://fmwww.bc.edu/RePEc/bocode/b)!bmp2dta from http://fmwww.bc.edu/RePEc/bocode/b@
-    'BMP2DTA': module to convert bitmap files to Stata datasets / Since the
-    advent of satellite imagery, researchers have turned / images into data
-    and processed it. This program makes the first / step easier in Stata, by
-    turning a Windows 24-bit bitmap file / into a Stata dataset with variables
-
-@net:describe cfby, from(http://fmwww.bc.edu/RePEc/bocode/c)!cfby from http://fmwww.bc.edu/RePEc/bocode/c@
-    'CFBY': module to compare datasets and produce discrepancy rates / cfby
-    compares the variables in varlist from the dataset in / memory to the
-    variables in varlist from the using dataset and / displays the discrepancy
-    rates by a common variable.  It is / useful if you are doing data entry
-
-@net:describe cfout, from(http://fmwww.bc.edu/RePEc/bocode/c)!cfout from http://fmwww.bc.edu/RePEc/bocode/c@
-    'CFOUT': module to compare two datasets, saving a list of differences /
-    cfout compares the dataset in memory (the master dataset) to a / using
-    dataset. It uses unique ID variables to match observations. / cfout
-    optionally saves the list of differences to file.  / KW: data management /
-
-@net:describe changemean, from(http://fmwww.bc.edu/RePEc/bocode/c)!changemean from http://fmwww.bc.edu/RePEc/bocode/c@
-    'CHANGEMEAN': module to compute Income and Inequality Contribution on
-    Poverty Variation / changemean decompose the poverty gap among two or more
-    subgroups / by income and inequality.  / KW: poverty gap / KW: inequality
-    / KW: income distribution / Requires: Stata version 8.0 /
-
-@net:describe diff, from(http://fmwww.bc.edu/RePEc/bocode/d)!diff from http://fmwww.bc.edu/RePEc/bocode/d@
-    'DIFF': module to perform Differences in Differences estimation / diff
-    performs several differences in differences (diff-in-diff) / estimations
-    of the treatment effect of a given outcome variable / from a pooled base
-    line and follow up dataset: Single / Diff-in-Diff, Diff-in-Diff
-
-@net:describe drdecomp, from(http://fmwww.bc.edu/RePEc/bocode/d)!drdecomp from http://fmwww.bc.edu/RePEc/bocode/d@
-    'DRDECOMP': module to estimate Shapley value of growth and distribution
-    components of changes in poverty indicators / drdecomp implements the
-    shapley value of the Datt and Ravallion / (1992) decomposition of changes
-    in a welfare indicator into / growth and distribution, however, following
-
-@net:describe dstat, from(http://fmwww.bc.edu/RePEc/bocode/d)!dstat from http://fmwww.bc.edu/RePEc/bocode/d@
-    'DSTAT': module to compute summary statistics and distribution functions
-    including standard errors and optional covariate balancing / dstat unites
-    a variety of methods to describe (univariate) / statistical distributions.
-    Covered are density estimation, / histograms, cumulative distribution
-
-@net:describe egen_inequal, from(http://fmwww.bc.edu/RePEc/bocode/e)!egen_inequal from http://fmwww.bc.edu/RePEc/bocode/e@
-    'EGEN_INEQUAL': module providing extensions to generate inequality and
-    poverty measures / The set of programs in this package uses egen to create
-    newvar of / the optionally specified storage type equal to one of the /
-    standard inequality and Foster-Greer-Thorbecke (FGT) poverty / measures.
-
-@net:describe fgt_ci, from(http://fmwww.bc.edu/RePEc/bocode/f)!fgt_ci from http://fmwww.bc.edu/RePEc/bocode/f@
-    'FGT_CI': module to calculate and decompose Foster–Greer–Thorbecke
-    (and standard) concentration indices / This command combines two of the
-    most widely used measures in / the inequality and poverty literatures: the
-    concentration / index (CI) and the Foster–Greer–Thorbecke (FGT)
-
-@net:describe fpro, from(http://fmwww.bc.edu/RePEc/bocode/f)!fpro from http://fmwww.bc.edu/RePEc/bocode/f@
-    'FPRO': module to compute Financial Protection Indicators for Health
-    Expenditures / The package contains two commands (fpcata and fpimpov) to /
-    compute indicators of financial protection for health / expenditures.
-    fpcata computes the incidence of 'catastrophic' / health spending (the %
-
-@net:describe getcensus, from(http://fmwww.bc.edu/RePEc/bocode/g)!getcensus from http://fmwww.bc.edu/RePEc/bocode/g@
-    'GETCENSUS': module to load American Community Survey data from the U.S.
-    Census Bureau API into Stata / getcensus is a Stata package for loading
-    American Community / Survey (ACS) data from the U.S. Census Bureau API
-    into Stata. It / also allows users to search the API data dictionaries for
-
-@net:describe glcurve, from(http://fmwww.bc.edu/RePEc/bocode/g)!glcurve from http://fmwww.bc.edu/RePEc/bocode/g@
-    'GLCURVE': module to derive generalised Lorenz curve ordinates / Given
-    variable varname, call it x with c.d.f. F(x), glcurve / either draws its
-    Generalised Lorenz curve or generates two new / variables containing the
-    Generalised Lorenz ordinates for x, i.e. / GL(p) at each p = F(x) (or
-
-@net:describe glcurve5, from(http://fmwww.bc.edu/RePEc/bocode/g)!glcurve5 from http://fmwww.bc.edu/RePEc/bocode/g@
-    'GLCURVE5': module to derive generalised Lorenz curve ordinates with unit
-    record data (Stata 5 or 6) / Given a variable varname, call it x with
-    c.d.f. F(x), glcurve7 / draws its Generalised Lorenz curve and/or
-    generates two new / variables containing the Generalised Lorenz ordinates
-
-@net:describe glcurve7, from(http://fmwww.bc.edu/RePEc/bocode/g)!glcurve7 from http://fmwww.bc.edu/RePEc/bocode/g@
-    'GLCURVE7': module to derive generalised Lorenz curve ordinates with unit
-    record data (version 7) / Given a variable varname, call it x with c.d.f.
-    F(x), glcurve7 / draws its Generalised Lorenz curve and/or generates two
-    new / variables containing the Generalised Lorenz ordinates for x, i.e. /
-
-@net:describe hoishapely, from(http://fmwww.bc.edu/RePEc/bocode/h)!hoishapely from http://fmwww.bc.edu/RePEc/bocode/h@
-    'HOISHAPELY': module to perform Shapley Decomposition of the Human
-    Opportunity Index / hoishapley computes the Shapley decomposition of the
-    Human / Opportunity Index (HOI), it includes the estimation of the basic /
-    statistics like Coverage of Basic Opportunities (C), the / Dissimilarity
-
-@net:describe hoishapley, from(http://fmwww.bc.edu/RePEc/bocode/h)!hoishapley from http://fmwww.bc.edu/RePEc/bocode/h@
-    'HOISHAPLEY': module to perform Shapley Decomposition of the Human
-    Opportunity Index / hoishapley computes the Shapley decomposition of the
-    Human / Opportunity Index (HOI), it includes the estimation of the basic /
-    statistics like Coverage of Basic Opportunities (C), the / Dissimilarity
-
-@net:describe ipabcstats, from(http://fmwww.bc.edu/RePEc/bocode/i)!ipabcstats from http://fmwww.bc.edu/RePEc/bocode/i@
-    'IPABCSTATS': module to compare survey and back check data, producing an
-    Excel output of comparisons and error rates / ipabcstats compares back
-    check data and survey data, producing / a data set of comparisons.  It
-    completes enumerator checks for / type 1 and type 2 variables and
-
-@net:describe isopoverty, from(http://fmwww.bc.edu/RePEc/bocode/i)!isopoverty from http://fmwww.bc.edu/RePEc/bocode/i@
-    'ISOPOVERTY': module to generate data for Inequality-Poverty and
-    Iso-Poverty curves / isopoverty generates data that can be used to plot
-    the / Inequality-Poverty, Growth-Poverty and the Iso-Poverty curves. /
-    stepgrw or stepinq have to be stated otherwise the programme does / not
-
-@net:describe kanom, from(http://fmwww.bc.edu/RePEc/bocode/k)!kanom from http://fmwww.bc.edu/RePEc/bocode/k@
-    'KANOM': module to estimate Krippendorff's alpha for nominal variables /
-    kanom computes points estimates and 95 percent confidence / intervals for
-    Krippendorff's reliability coefficient alpha, for / nominal variables and
-    two measurements. It also tests the null / hypotheses that alpha is not
-
-@net:describe mergeall, from(http://fmwww.bc.edu/RePEc/bocode/m)!mergeall from http://fmwww.bc.edu/RePEc/bocode/m@
-    'MERGEALL': module to merge multiple files / mergeall merges all of the
-    files in a folder without loss of / data due to variable storage types or
-    duplicate unique / identifiers.  / KW: data management / KW: merge /
-    Requires: Stata version 10.1 / Distribution-Date: 20110708 / Author: Ryan
-
-@net:describe mpi, from(http://fmwww.bc.edu/RePEc/bocode/m)!mpi from http://fmwww.bc.edu/RePEc/bocode/m@
-    'MPI': module to compute the Alkire-Foster multidimensional poverty
-    measures and their decomposition by deprivation indicators and population
-    sub-groups / MPI estimates the Adjusted Multidimensional Headcount Ratio /
-    developed by Alkire and Foster (2011), also known as the /
-
-@net:describe mpovline, from(http://fmwww.bc.edu/RePEc/bocode/m)!mpovline from http://fmwww.bc.edu/RePEc/bocode/m@
-    'MPOVLINE': module to calculate FGT0, FGT1 and FGT2 by intervals of
-    multiple thresholds / mpovline calculates FGT0, FGT1 and FGT2 by intervals
-    of multiple / lines. This ado can be used to calculate headcount for the
-    poor, / vulnerable and middle class lines as proposed by Ferreira et al /
-
-@net:describe orth_out, from(http://fmwww.bc.edu/RePEc/bocode/o)!orth_out from http://fmwww.bc.edu/RePEc/bocode/o@
-    'ORTH_OUT': module to automate and export summary stats/orthogonality
-    tables / orth_out produces summary stats tables and orthogonality tables.
-    / orth_out is useful in testing balance of means across variables / in
-    multiple groups, particularly the balance of baseline / characteristics
-
-@net:describe outdetect, from(http://fmwww.bc.edu/RePEc/bocode/o)!outdetect from http://fmwww.bc.edu/RePEc/bocode/o@
-    'OUTDETECT': module to perform outlier detection and diagnostics for
-    welfare analysts / outdetect identifies outliers (extreme values) in the /
-    distribution of a variable, and assesses their impact on a / selection of
-    popular inequality and poverty measures. The / procedure by which outliers
-
-@net:describe pobrezaecu, from(http://fmwww.bc.edu/RePEc/bocode/p)!pobrezaecu from http://fmwww.bc.edu/RePEc/bocode/p@
-    'POBREZAECU': module to predict poverty in Ecuador / pobrezaECU predicts
-    income poverty in Ecuador, a year ahead, / from the quarterly household
-    survey called ENEMDU.  / KW: poverty / KW: Ecuador / KW: prediction /
-    Requires: Stata version 12 / Distribution-Date: 20180512 / Author:  Daniel
-
-@net:describe povcalnet, from(http://fmwww.bc.edu/RePEc/bocode/p)!povcalnet from http://fmwww.bc.edu/RePEc/bocode/p@
-    'POVCALNET': module to access World Bank Global Poverty and Inequality
-    measures / The povcalnet commands allows Stata users to compute poverty /
-    and inequality indicators for more than 160 countries and / regions in the
-    World Bank's database of household surveys. It has / the same
-
-@net:describe povdeco, from(http://fmwww.bc.edu/RePEc/bocode/p)!povdeco from http://fmwww.bc.edu/RePEc/bocode/p@
-    'POVDECO': module to calculate poverty indices with decomposition by
-    subgroup / povdeco estimates three poverty indices from the Foster, /
-    Greer and Thorbecke (1984) class, FGT(a), plus related / statistics (such
-    as mean income amongst the poor). FGT(0) is / the headcount ratio (the
-
-@net:describe poverty, from(http://fmwww.bc.edu/RePEc/bocode/p)!poverty from http://fmwww.bc.edu/RePEc/bocode/p@
-    'POVERTY': module to calculate poverty measures / poverty computes a
-    series of poverty measures based on the / (income) distribution described
-    by varname. The poverty measures / that can be computed by poverty are:
-    headcount ratio, / aggregate poverty gap, poverty gap ratio, income gap
-
-@net:describe povguide, from(http://fmwww.bc.edu/RePEc/bocode/p)!povguide from http://fmwww.bc.edu/RePEc/bocode/p@
-    'POVGUIDE': module to generate the U.S. Poverty Guideline value for a
-    given family size and year / This generates the official Poverty Guideline
-    value as / established by the United States Department of Health and Human
-    / Services. This is one of two official poverty levels, the other / being
-
-@net:describe povimp, from(http://fmwww.bc.edu/RePEc/bocode/p)!povimp from http://fmwww.bc.edu/RePEc/bocode/p@
-    'POVIMP': module to provide poverty estimates in the absence of actual
-    consumption data / povimp provides poverty estimates in the absence of
-    actual / consumption data.  / KW: poverty / KW: imputation / KW:
-    consumption / KW: inequality / Requires: Stata version 12 /
-
-@net:describe povtime, from(http://fmwww.bc.edu/RePEc/bocode/p)!povtime from http://fmwww.bc.edu/RePEc/bocode/p@
-    'POVTIME': module to compute aggregate intertemporal poverty measures
-    (poverty in a panel accounting for time) / povtime computes aggregate
-    intertemporal poverty measures / (poverty accounting for time) in a
-    balanced panel of individuals. / The program computes the family of
-
-@net:describe prosperity, from(http://fmwww.bc.edu/RePEc/bocode/p)!prosperity from http://fmwww.bc.edu/RePEc/bocode/p@
-    'PROSPERITY': module to compute Shared Prosperity Convergence Index / The
-    command prosperity calculates the Shared Prosperity / Convergence Index
-    -SPCI-. This is the new indicator that the / World Bank uses to measure
-    the progress in the growth and / inequality reduction.  The base indicator
-
-@net:describe quantiles, from(http://fmwww.bc.edu/RePEc/bocode/q)!quantiles from http://fmwww.bc.edu/RePEc/bocode/q@
-    'QUANTILES': module to categorize by quantiles / quantiles creates a new
-    variable (newvar) that categorizes / varname by its quantiles. It differs
-    from xtile because the / categories are defined by the ideal size of the
-    quantile rather / than by the cutpoints, therefore yielding less unequaly
-
-@net:describe rddsga, from(http://fmwww.bc.edu/RePEc/bocode/r)!rddsga from http://fmwww.bc.edu/RePEc/bocode/r@
-    'RDDSGA': module to conduct subgroup analysis for regression discontinuity
-    designs / rddsga allows to conduct a binary subgroup analysis in RDD /
-    settings based on inverse propensity score weights (IPSW).  / Observations
-    in each subgroup are weighted by the inverse of / their conditional
-
-@net:describe readreplace, from(http://fmwww.bc.edu/RePEc/bocode/r)!readreplace from http://fmwww.bc.edu/RePEc/bocode/r@
-    'READREPLACE': module to make replacements that are specified in an
-    external dataset / eadreplace modifies the dataset currently in memory by
-    making / replacements that are specified in an external dataset, the /
-    replacements file.  / KW: data management / KW: data entry / KW: replace /
-
-@net:describe sae, from(http://fmwww.bc.edu/RePEc/bocode/s)!sae from http://fmwww.bc.edu/RePEc/bocode/s@
-    'SAE': module to provide commands and mata functions devoted to unit level
-    small area estimation / sae is a Stata family of functions for small area
-    estimation, / using the methodology from Elbers, Lanjouw, and Lanjouw
-    (2003). / The package introduces new mata functions and a plugin used to /
-
-@net:describe skdecomp, from(http://fmwww.bc.edu/RePEc/bocode/s)!skdecomp from http://fmwww.bc.edu/RePEc/bocode/s@
-    'SKDECOMP': module to estimate Shapley value of growth, price, and
-    distribution components on changes in poverty indicators / skdecomp
-    implements the shapley value of Kolenikov and / Shorrocks (2003)
-    decomposition of changes in a welfare indicator / into growth,
-
-@net:describe specialexp, from(http://fmwww.bc.edu/RePEc/bocode/s)!specialexp from http://fmwww.bc.edu/RePEc/bocode/s@
-    'SPECIALEXP': module to obtain expression that evaluates to specified
-    string / specialexp returns an expression that evaluates to a specified /
-    string, including strings that cannot be enclosed in double / quotes.  /
-    KW: expressions / KW: quotes / KW: Mata / Requires: Stata version 9 /
-
-@net:describe tex3pt, from(http://fmwww.bc.edu/RePEc/bocode/t)!tex3pt from http://fmwww.bc.edu/RePEc/bocode/t@
-    'TEX3PT': module to produce LaTeX documents from estout with
-    threeparttable / tex3pt takes .tex output from esttab and writes it into a
-    LaTeX / file using threeparttable. This greatly improves the level of /
-    compatibility between LaTeX and esttab.  Since this program uses / the
-
-@net:describe veracrypt, from(http://fmwww.bc.edu/RePEc/bocode/v)!veracrypt from http://fmwww.bc.edu/RePEc/bocode/v@
-    'VERACRYPT': module to mount or dismount a VeraCrypt volume / veracrypt
-    mounts or dismounts a VeraCrypt volume.  / KW: veracrypt / KW: data
-    management / Requires: Stata version 9 / Distribution-Date: 20160926 /
-    Author:  Patrick McNeal, Abdul Latif Jameel Poverty Action Lab, MIT /
-
-@net:describe st0543, from(http://www.stata-journal.com/software/sj18-4)!st0543 from http://www.stata-journal.com/software/sj18-4@
-    SJ18-4 st0543. Fit dynamic random-effects probit... / Fit dynamic
-    random-effects probit models with / unobserved heterogeneity / by Raffaele
-    Grotti, / Department of Political and Social Sciences / European
-    University Institute / San Domenico di Fiesole, Italy / Giorgio Cutuli,
-
-@net:describe xtpdyn, from(http://fmwww.bc.edu/RePEc/bocode/x)!xtpdyn from http://fmwww.bc.edu/RePEc/bocode/x@
-    'XTPDYN': module to estimate dynamic random effects probit model with
-    unobserved heterogeneity / xtpdyn fits dynamic random-effects probit
-    models (meprobit and / xtprobit) with unobserved heterogeneity. It
-    implements Wooldridge / simple solution to the initial condition problem
-
-
-11 references found in tables of contents
------------------------------------------
-
-@net:from http://www.stata-journal.com/software/sj17-3/!http://www.stata-journal.com/software/sj17-3/@
-    Stata Journal volume 17, issue 3 / Update: A set of utilities for managing
-    / missing values / Update: Design plots for graphical summary / of a
-    response given factors / Update: One-, two-, and three-way bar charts /
-    for tables / Provide graph schemes sensitive to color / vision deficiency
-
-@net:from http://www.stata.com/stb/stb51/!http://www.stata.com/stb/stb51/@
-    STB-51 September 1999 / Update to defv / Update to labedit / Update to
-    varxplor / Update of cut to Stata 6 / Calculating the product of
-    observations / Alternative ranking procedures / 3D surface plots / A
-    simple contour plot / Distribution function plots / Quantile plots,
-
-@net:from http://www.stata.com/stb/stb48/!http://www.stata.com/stb/stb48/@
-    STB-48 March 1999 / Drawing Venn diagrams / Diagnostic plots for
-    Singh-Maddala and Dagum distrib / Analysis of income distributions /
-    Creation of bivariate random lognormal variables / Fitting Singh-Maddala
-    and Dagum distrib. by max. like. / Generalized Lorenz curves and related
-
-@net:from http://fmwww.bc.edu/RePEc/bocode/a/!http://fmwww.bc.edu/RePEc/bocode/a/@
-    module to estimate models with two fixed effects / module to compute
-    unbiased IV regression / module for scatter plot with linear and/or
-    quadratic fit, automatically annotated / module to perform Arellano-Bond
-    test for autocorrelation / module to implement the Alpha-Beta-Gamma Method
-
-@net:from http://fmwww.bc.edu/RePEc/bocode/c/!http://fmwww.bc.edu/RePEc/bocode/c/@
-    module to implement machine learning classification in Stata / module to
-    implement machine learning classification in Stata / module to generate
-    calendar / module to estimate proportions and means after survey data have
-    been calibrated to population totals / module for inverse regression and
-
-@net:from http://fmwww.bc.edu/RePEc/bocode/d/!http://fmwww.bc.edu/RePEc/bocode/d/@
-    module to create network visualizations using D3.js to view in browser /
-    module to produce terrible dad jokes / module to provide utilities for
-    directed acyclic graphs / module to fit a Generalized Beta (Type 2)
-    distribution to grouped data via ML / module to fit a Dagum distribution
-
-@net:from http://fmwww.bc.edu/RePEc/bocode/e/!http://fmwww.bc.edu/RePEc/bocode/e/@
-    module to estimate endogenous attribute attendance models / module to
-    perform extreme bound analysis / module to perform Entropy reweighting to
-    create balanced samples / module to perform entropy balancing / module to
-    perform entropy reweighting to create balanced samples for continuous
-
-@net:from http://fmwww.bc.edu/RePEc/bocode/i/!http://fmwww.bc.edu/RePEc/bocode/i/@
-    module to import International Aid Transparency Initiative data / module
-    to compute measures of interaction contrast (biological interaction) /
-    module to compute Interaction Effects in Linear and Generalized Linear
-    Models / module that computes models 2 and 3 of the intra-class
-
-@net:from http://fmwww.bc.edu/RePEc/bocode/m/!http://fmwww.bc.edu/RePEc/bocode/m/@
-    module to implement interpoint distance distribution analysis / module to
-    unabbreviate Global Macro Lists / module to compute the macroF evaluation
-    criterion for multi-class outcomes / module to perform Dickey-Fuller test
-    on panel data / module to create dot plot for summarizing pooled estimates
-
-@net:from http://fmwww.bc.edu/RePEc/bocode/p/!http://fmwww.bc.edu/RePEc/bocode/p/@
-    module to calculate confidence limits of a regression coefficient from the
-    p-value / module to perform Page's L trend test for ordered alternatives /
-    module to create paired datasets from individual-per-row data / module for
-    plots of paired observations / module to import network data in Pajek's
-
-@net:from http://fmwww.bc.edu/RePEc/bocode/s/!http://fmwww.bc.edu/RePEc/bocode/s/@
-    module to compute Sequence Analysis Distance Measures / module to provide
-    commands and mata functions devoted to unit level small area estimation /
-    module to compute sample size for an intra-class correlation (ICC) /
-    module to draw a random sample with probabilities proportional to size /
-
+{com}. capture log close
 {smcl}
-
-{com}. ssc install povdeco
-{txt}checking {hilite:povdeco} consistency and verifying not already installed...
-all files already exist and are up to date.
-
-{com}. //_28q
-. quietly: cd "D:\Dropbox\curso_stata\jtvalderrama.github.io"
-{txt}
-{com}. //_^
-. log close
-      {txt}name:  {res}<unnamed>
-       {txt}log:  {res}D:\Dropbox\curso_stata\jtvalderrama.github.io\stata1.smcl
-  {txt}log type:  {res}smcl
- {txt}closed on:  {res}25 Mar 2022, 09:10:37
-{txt}{.-}
-{smcl}
-{txt}{sf}{ul off}
+{com}{sf}{ul off}

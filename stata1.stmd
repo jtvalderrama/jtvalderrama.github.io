@@ -161,7 +161,7 @@ En segundo lugar, habitualmente, indicamos cuál es el directorio de trabajo.
 En mi caso,
 
 ```{s}
-cd "D:\Dropbox\curso_stata\sesión1"
+cd "C:\Users\jvald\Dropbox\MISCURSOS\Analisis de Datos con Stata\MATERIALES\sesion1"
 pwd
 ```
 Vamos a utilizar los datos de la *Encuesta de Condiciones de Vida* que lleva a cabo el Instituto Nacional de Estadística. La base de datos y la documentación de la encuesta puede encontrarse [aquí](https://www.ine.es/dyngs/INEbase/es/operacion.htm?c=Estadistica_C&cid=1254736176807&menu=resultados&secc=1254736195153&idp=1254735976608#!tabs-1254736195153).
@@ -173,7 +173,7 @@ Los archivos se encuentran en formato `.csv`. Son archivos de texto delimitados 
 En mi caso,
 
 ```{s}
-import delimited using "esudb18r.csv", clear delimiter(",")
+import delimited using "NOTAS.csv", clear varnames(1)
 ````
 Existen otros muchos formatos, y podemos conocer cómo acceder a ellos simplemente a través de la ayuda `help import`.
 
@@ -185,7 +185,6 @@ browse
 
 Veremos que algunas variables se encuentran en formato numérico y otras, como cadenas de caracteres, pese a ser números.
 
-![Variables importadas de la ECV 2018](browse.png){width=75%}
 
 Podemos solventar eso con el comando `destring` que convierte todas las variables en formato texto a formato numérico sin perder información (si hay pérdida de información, no lo hace). Existe, asimismo, un comando para realizar la operación contraria (`help tostring`).
 
@@ -286,12 +285,12 @@ Ordenar la base de datos por una o varias variables
 Así, por ejemplo, podemos explorar la variable que recoge la situación laboral de los españoles (`rb210`).
 
 ```{s}
-codebook rb210
+codebook 
 ```
 Fácilmente, podemos ver la distribución de la misma.
 
 ```{s}
-tabulate rb210
+sum
 ```
 Además, podemos ver dicha distribución para un grupo concreto. Por ejemplo, estudiar cuál es la situación laboral de las mujeres (la variable sexo es `rb090`).
 
@@ -300,9 +299,6 @@ tabulate rb210 if rb090 == 2
 ```
 Un comando para inspeccionar directamente los datos es `list`. Por ejemplo, podemos inspeccionar los 10 primeros valores de la variable sexo (`rb090`):
 
-```{s}
-list rb090 in 1/10
-```
 
 ## 4.3. Eliminar variables y observaciones
 
@@ -322,21 +318,8 @@ Para eliminar variables y observaciones de la base de datos podemos emplear tant
 
 Así, por ejemplo, podemos eliminar el mes de nacimiento de la persona
 
-```{s}
-drop rb070
-```
-
-O quedarnos únicamente con las mujeres
-
-```{s}
-keep if rb090 == 2
-```
 
 Volvemos a la base de datos original.
-
-```{s}
-use "ecv18r.dta", clear
-```
 
 ## 4.4. Etiquetado de datos, variables y valores
 
@@ -499,10 +482,6 @@ Nos fijamos en la variable `p78a_u`, que, de acuerdo con la documentación, reco
 
 Podemos ver que, en puridad, los valores -2 y -1 son valores perdidos. Se refieren a que la pregunta no es aplicable (porque el entrevistado no tenía limitaciones) o bien no contestó. Si queremos saber el tipo ayuda que recibe una persona con limitaciones diarias, los porcentajes ofrecidos por la tabulación de esta variable no son muy útiles.
 
-```{s}
-browse p78a_u
-tabulate p78a_u
-```
 
 Una buena opción es, antes de nada, recodificar estos valores como perdidos, por ejemplo,
 
@@ -546,5 +525,5 @@ Además, es frecuente que otros autores ofrezcan sus programas con más o menos 
 # Referencias
 
 ```{s/}
-quietly: cd "D:\Dropbox\curso_stata\jtvalderrama.github.io"
+quietly: cd "C:\Users\jvald\Dropbox\MISCURSOS\Analisis de Datos con Stata\jtvalderrama.github.io"
 ```

@@ -1,9 +1,9 @@
 {smcl}
 {com}{sf}{ul off}{txt}{.-}
       name:  {res}<unnamed>
-       {txt}log:  {res}C:\Users\jvald\Dropbox\MISCURSOS\Analisis de Datos con Stata\curso_stata.smcl
+       {txt}log:  {res}C:\Users\jvald\Dropbox\MISCURSOS\Analisis de Datos con Stata\jtvalderrama.github.io\curso_stata.smcl
   {txt}log type:  {res}smcl
- {txt}opened on:  {res}22 Dec 2022, 21:51:39
+ {txt}opened on:  {res}23 Dec 2022, 01:44:54
 {txt}
 {com}. //_1q
 . quietly: cd "C:\Users\jvald\Dropbox\MISCURSOS\Analisis de Datos con Stata"
@@ -11,9 +11,9 @@
 {com}. //_^
 . log close
       {txt}name:  {res}<unnamed>
-       {txt}log:  {res}C:\Users\jvald\Dropbox\MISCURSOS\Analisis de Datos con Stata\curso_stata.smcl
+       {txt}log:  {res}C:\Users\jvald\Dropbox\MISCURSOS\Analisis de Datos con Stata\jtvalderrama.github.io\curso_stata.smcl
   {txt}log type:  {res}smcl
- {txt}closed on:  {res}22 Dec 2022, 21:51:39
+ {txt}closed on:  {res}23 Dec 2022, 01:44:54
 {txt}{.-}
 {smcl}
 {txt}{sf}{ul off}
