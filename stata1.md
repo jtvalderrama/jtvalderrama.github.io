@@ -177,7 +177,7 @@ Podemos explorar la base de datos importada con el comando `browse`.
 Veremos que algunas variables se encuentran en formato numérico y otras, como cadenas de caracteres, pese a ser números.
 
 
-Podemos solventar eso con el comando `destring` que convierte todas las variables en formato texto a formato numérico sin perder información (si hay pérdida de información, no lo hace). Existe, asimismo, un comando para realizar la operación contraria (`help tostring`).
+Podemos solventar eso co  n el comando `destring` que convierte todas las variables en formato texto a formato numérico sin perder información (si hay pérdida de información, no lo hace). Existe, asimismo, un comando para realizar la operación contraria (`help tostring`).
 
   <code>destring [<i>varlist</i>] , {generate(<i>newvarlist</i>)|replace} [<i>destring_options</i>]</code>
 
@@ -233,8 +233,8 @@ Tenemos varios comandos que nos permiten hacernos una idea de cuál es el conten
 
 | Operadores aritméticos    | Operadores lógicos         | Operadores relacionales<br>(variables numéricas y alfanuméricas)   |
 |:--------------------------|:---------------------------|:-------------------------------------------------------------------|
-| +   suma                  | &   y                    | >   mayor que                                                      |
-| -   resta                 | \|   o                      | <   menor que                                                      |
+| +   suma                  | &   y                      | >   mayor que                                                      |
+| -   resta                 | \|   o                     | <   menor que                                                      |
 | *   producto              | !   no                     | >=  mayor o igual                                                  |
 | /   cociente              | ~   no                     | <=  menor o igual                                                  |
 | ^   potencia              |                            | ==  igual                                                          |
@@ -271,7 +271,7 @@ Ordenar la base de datos por una o varias variables
 
   <code><u>so</u>rt <i>varlist</i> [<i>in</i>] [, stable]</code>
 
-Así, por ejemplo, podemos explorar la variable que recoge la situación laboral de los españoles (`rb210`).
+Así, por ejemplo, podemos explorar la nota en el primer examen (`ex1`).
 
 
 {{9}}
@@ -281,12 +281,15 @@ Fácilmente, podemos ver la distribución de la misma.
 
 {{10}}
 
-Además, podemos ver dicha distribución para un grupo concreto. Por ejemplo, estudiar cuál es la situación laboral de las mujeres (la variable sexo es `rb090`).
+Además, podemos ver dicha distribución para un grupo concreto. Por ejemplo, para los que tienen más de 10.
 
 
 {{11}}
 
 Un comando para inspeccionar directamente los datos es `list`. Por ejemplo, podemos inspeccionar los 10 primeros valores de la variable sexo (`rb090`):
+
+
+{{12}}
 
 
 ## 4.3. Eliminar variables y observaciones
@@ -305,10 +308,18 @@ Para eliminar variables y observaciones de la base de datos podemos emplear tant
 
   <code>keep if <i>range</i> [if <i>exp</i>]</code>
 
-Así, por ejemplo, podemos eliminar el mes de nacimiento de la persona
+Así, por ejemplo, podemos eliminar el identificador
+
+
+
+{{13}}
 
 
 Volvemos a la base de datos original.
+
+
+{{14}}
+
 
 ## 4.4. Etiquetado de datos, variables y valores
 
@@ -321,7 +332,7 @@ Para etiquetar la base de datos empleamos
 Por ejemplo, podemos llamar a nuestra base de datos "ECV-Datos básicos de la persona"
 
 
-{{12}}
+{{15}}
 
 
 El etiquetado de variables se realiza a través de la instrucción
@@ -331,7 +342,7 @@ El etiquetado de variables se realiza a través de la instrucción
 En nuestro caso, por ejemplo,
 
 
-{{13}}
+{{16}}
 
 
 El etiqueda de las variables requiere, primero, definir una etiqueta para los valores y, posteriormente, asignarla a una variable. Así,
@@ -347,7 +358,7 @@ Asignación de etiqueta
 En nuestro caso, por ejemplo,
 
 
-{{14}}
+{{17}}
 
 
 Además, existen algunas otras instrucciones para, por ejemplo, eliminar etiquetas o comprobar qué etiquetas se han definido.
@@ -363,7 +374,7 @@ En primer lugar, podemos cambiar el nombre de las variables con la instrucción 
 En nuestro caso,
 
 
-{{15}}
+{{18}}
 
 
 Para estas tareas empleamos los comandos `generate` y `replace`. El segundo de ellos es para variables ya existentes.
@@ -372,16 +383,16 @@ Para estas tareas empleamos los comandos `generate` y `replace`. El segundo de e
 
   <code>replace <i>oldvar</i> =<i>exp</i> [<i>if</i>] [<i>in</i>] [, <u>nop</u>romote]</code>
 
-A partir del año de nacimiento, `rb080`, vamos a generar una nueva variable que recoja la edad.
+A partir de las notas parciales se va a generar una nueva variable que recoja el promedio total.
 
 
-{{16}}
+{{19}}
 
 
-Podemos generar una variable que recoja los grupos de edades:
+Podemos generar una variable que recoja los grupos de notas:
 
 
-{{17}}
+{{20}}
 
 
 ### Recodificación de variables
@@ -400,10 +411,10 @@ En términos generales,
 
   <code>recode <i>varlist</i> (<i>rule</i>) [(<i>rule</i>) ...] [, generate(<i>newvar</i>)]</code>
 
-En nuestro caso, podemos recodificar la variable `gedad` en un menor número de categorías.
+En nuestro caso, podemos recodificar la variable `gnota` en un menor número de categorías.
 
 
-{{18}}
+{{21}}
 
 ### Generación extendida de variables
 
@@ -414,7 +425,7 @@ El comando `egen` nos permite realizar muchas operaciones a partir de una o vari
 Por ejemplo, podemos calcular la edad promedio y almacenarla como una nueva variable.
 
 
-{{19}}
+{{22}}
 
 
 ### Los valores perdidos
@@ -431,28 +442,19 @@ En ocasiones, nosotros mismos tenemos que manejar los problemas asociados a los 
     destring _all, replace
 
 
-{{20}}
+{{23}}
 
 
-Nos fijamos en la variable `p78a_u`, que, de acuerdo con la documentación, recoge información sobre la ayuda que recibe el adulto entrevistado si afronta limitaciones en su vida diaria.
-
-![Pregunta p78a_u en la documentación de la ECV](p78a_u.png)
-
-Podemos ver que, en puridad, los valores -2 y -1 son valores perdidos. Se refieren a que la pregunta no es aplicable (porque el entrevistado no tenía limitaciones) o bien no contestó. Si queremos saber el tipo ayuda que recibe una persona con limitaciones diarias, los porcentajes ofrecidos por la tabulación de esta variable no son muy útiles.
+Nos fijamos en la variable `p524a1`, que, de acuerdo con la documentación, 
+recoge información sobre las horas semanales de trabajo en la ocupación principal
 
 
-{{21}}
+{{24}}
 
 
-Una buena opción es, antes de nada, recodificar estos valores como perdidos, por ejemplo,
-
-
-{{22}}
-
-
-Otra opción posible podía haber sido codificar -2 como `.a` y -1 como `.b`.
-
-En algunos casos, esto puede ser mucho más relevante y no corregirlo es problemático. Por ejemplo, algunas bases de datos emplean valores extremos o sin sentido para los casos de no respuesta (e.g., -2, -999, 999999, etc.) en variables numéricas. En estos casos, conviene, antes de nada, recodificar estos valores como perdidos, por ejemplo, pueden codificar la no respuesta en la variable renta con el valor -9999. Si calculamos, por ejemplo, una media sin corregir esto, el valor numérico obtenido es completamente erróneo.
+En algunos casos, esto puede ser mucho más relevante y no corregirlo es problemático. 
+Por ejemplo, algunas bases de datos emplean valores extremos o sin sentido para los casos 
+de no respuesta (e.g., -2, -999, 999999, etc.) en variables numéricas. En estos casos, conviene, antes de nada, recodificar estos valores como perdidos, por ejemplo, pueden codificar la no respuesta en la variable renta con el valor -9999. Si calculamos, por ejemplo, una media sin corregir esto, el valor numérico obtenido es completamente erróneo.
 
 # 5. La comunidad de usuarios
 
@@ -469,7 +471,7 @@ Si sabemos el nombre del paquete, podemos emplearse
 Así, por ejemplo, podemos buscar paquetes que permitan realizar mediciones de pobreza con la siguiente instrucción
 
 
-{{23}}
+{{25}}
 
 
 Además, es frecuente que otros autores ofrezcan sus programas con más o menos sofisticación y mejor o peor presentación.
@@ -485,5 +487,5 @@ Además, es frecuente que otros autores ofrezcan sus programas con más o menos 
 # Referencias
 
 
-{{24}}
+{{26}}
 

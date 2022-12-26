@@ -3,7 +3,7 @@
       name:  {res}<unnamed>
        {txt}log:  {res}C:\Users\jvald\Dropbox\MISCURSOS\Analisis de Datos con Stata\jtvalderrama.github.io\stata1.smcl
   {txt}log type:  {res}smcl
- {txt}opened on:  {res}23 Dec 2022, 01:43:39
+ {txt}opened on:  {res}25 Dec 2022, 22:52:02
 {txt}
 {com}. //_1
 . clear all
@@ -39,117 +39,115 @@
 . quietly{c -(}
 {txt}
 {com}. //_7
-. save "ecv18r.dta", replace
-{txt}file ecv18r.dta saved
+. save "misnotas.dta", replace
+{txt}file misnotas.dta saved
 
 {com}. //_8
-. use "ecv18r.dta", clear
+. use "misnotas.dta", clear
 {txt}
 {com}. //_9
-. codebook 
-
-{txt}{hline}
-{res}id{right:(unlabeled)}
-{txt}{hline}
-
-{col 19}type:  numeric ({res}byte{txt})
-
-{col 18}range:  [{res}1{txt},{res}38{txt}]{col 55}units:  {res}1
-{col 10}{txt}unique values:  {res}38{col 51}{txt}missing .:  {res}0{txt}/{res}38
-
-{txt}{col 19}mean:{res}{col 26}    19.5
-{txt}{col 15}std. dev:{res}{col 26} 11.1131
-
-{txt}{col 12}percentiles:{col 32}10%{col 42}25%{col 52}50%{col 62}75%{col 72}90%
-{res}{col 27}       4{col 37}      10{col 47}    19.5{col 57}      29{col 67}      35
+. codebook ex1
 
 {txt}{hline}
 {res}ex1{right:Ex1}
 {txt}{hline}
 
-{col 19}type:  string ({res}str5{txt})
+{col 19}type:  numeric ({res}byte{txt})
 
-{col 10}unique values:  {res}5{col 51}{txt}missing "":  {res}0{txt}/{res}38
-
-{txt}{col 13}tabulation:  Freq.  Value
-{col 21}{res}         3{col 33}"10,00"
-{col 21}         5{col 33}"15,00"
-{col 21}        10{col 33}"16,00"
-{col 21}         5{col 33}"18,00"
-{col 21}        15{col 33}"20,00"
-
-{txt}{hline}
-{res}ex2{right:Ex2}
-{txt}{hline}
-
-{col 19}type:  string ({res}str5{txt})
-
-{col 10}unique values:  {res}14{col 51}{txt}missing "":  {res}0{txt}/{res}38
-
-{txt}{col 15}examples:  {res}"12,00"
-{col 26}"14,00"
-{col 26}"15,00"
-{col 26}"19,00"
-
-{txt}{hline}
-{res}ex3{right:Ex3}
-{txt}{hline}
-
-{col 19}type:  string ({res}str5{txt})
-
-{col 10}unique values:  {res}10{col 51}{txt}missing "":  {res}0{txt}/{res}38
-
-{txt}{col 15}examples:  {res}"14,00"
-{col 26}"16,00"
-{col 26}"17,00"
-{col 26}"18,00"
-
-{txt}{hline}
-{res}ex4{right:Ex4}
-{txt}{hline}
-
-{col 19}type:  string ({res}str5{txt})
-
-{col 10}unique values:  {res}15{col 51}{txt}missing "":  {res}0{txt}/{res}38
-
-{txt}{col 15}examples:  {res}"12,00"
-{col 26}"15,00"
-{col 26}"19,00"
-{col 26}"7,00"
-
-{txt}{hline}
-{res}ex5{right:Ex5}
-{txt}{hline}
-
-{col 19}type:  string ({res}str5{txt})
-
-{col 10}unique values:  {res}7{col 51}{txt}missing "":  {res}0{txt}/{res}38
+{col 18}range:  [{res}10{txt},{res}20{txt}]{col 55}units:  {res}1
+{col 10}{txt}unique values:  {res}5{col 51}{txt}missing .:  {res}0{txt}/{res}38
 
 {txt}{col 13}tabulation:  Freq.  Value
-{col 21}{res}         5{col 33}"10,00"
-{col 21}        10{col 33}"11,00"
-{col 21}         3{col 33}"15,00"
-{col 21}         5{col 33}"16,00"
-{col 21}         5{col 33}"18,00"
-{col 21}         5{col 33}"19,00"
-{col 21}         5{col 33}"20,00"
+{col 21}{res}         3{col 33}10
+{col 21}         5{col 33}15
+{col 21}        10{col 33}16
+{col 21}         5{col 33}18
+{col 21}        15{col 33}20
 {txt}
 {com}. //_10
-. sum
+. sum ex1
 
 {txt}    Variable {c |}        Obs        Mean    Std. Dev.       Min        Max
 {hline 13}{c +}{hline 57}
-{space 10}id {c |}{res}         38        19.5    11.11306          1         38
-{txt}{space 9}ex1 {c |}{res}          0
-{txt}{space 9}ex2 {c |}{res}          0
-{txt}{space 9}ex3 {c |}{res}          0
-{txt}{space 9}ex4 {c |}{res}          0
-{txt}{hline 13}{c +}{hline 57}
-{space 9}ex5 {c |}{res}          0
+{space 9}ex1 {c |}{res}         38    17.23684    2.917183         10         20
 {txt}
 {com}. //_11
-. tabulate rb210 if rb090 == 2
-{err}variable {bf}rb210{sf} not found
+. tabulate ex1 if ex1 > 10
+
+        {txt}Ex1 {c |}      Freq.     Percent        Cum.
+{hline 12}{c +}{hline 35}
+         15 {c |}{res}          5       14.29       14.29
+{txt}         16 {c |}{res}         10       28.57       42.86
+{txt}         18 {c |}{res}          5       14.29       57.14
+{txt}         20 {c |}{res}         15       42.86      100.00
+{txt}{hline 12}{c +}{hline 35}
+      Total {c |}{res}         35      100.00
+{txt}
+{com}. //_12
+. list ex1 in 1/10
+{txt}
+     {c TLC}{hline 5}{c TRC}
+     {c |} {res}ex1 {txt}{c |}
+     {c LT}{hline 5}{c RT}
+  1. {c |} {res} 16 {txt}{c |}
+  2. {c |} {res} 18 {txt}{c |}
+  3. {c |} {res} 16 {txt}{c |}
+  4. {c |} {res} 16 {txt}{c |}
+  5. {c |} {res} 16 {txt}{c |}
+     {c LT}{hline 5}{c RT}
+  6. {c |} {res} 16 {txt}{c |}
+  7. {c |} {res} 18 {txt}{c |}
+  8. {c |} {res} 20 {txt}{c |}
+  9. {c |} {res} 16 {txt}{c |}
+ 10. {c |} {res} 15 {txt}{c |}
+     {c BLC}{hline 5}{c BRC}
+
+{com}. //_13
+. drop id
+{txt}
+{com}. //_14
+. use "misnotas.dta", clear
+{txt}
+{com}. //_15
+. label data "ECV-Datos básicos de la persona"
+{txt}
+{com}. //_16
+. label var ex1 "Examen 1"
+{txt}
+{com}. //_17
+. label define sexo_lab 1 "Hombre" 2 "Mujer"
+{txt}
+{com}. label values ex1 sexo_lab
+{txt}
+{com}. //_18
+. rename ex1 examen1
+{res}{txt}
+{com}. //_19
+. generate nota = (examen1+ex2+ex3+ex4+ex5)/4
+{txt}
+{com}. 
+. // Etiquetamos la variable
+. 
+. label var nota "Nota del curso"
+{txt}
+{com}. 
+. //  Observamos los estadísticos descriptivos de la nueva variable
+. 
+. summarize nota
+
+{txt}    Variable {c |}        Obs        Mean    Std. Dev.       Min        Max
+{hline 13}{c +}{hline 57}
+{space 8}nota {c |}{res}         38    18.60526    3.527705       12.5       24.5
+{txt}
+{com}. //_20
+. generate gnota = 1 if nota <= 10
+{txt}(38 missing values generated)
+
+{com}. replace gnota = 2 if nota >= 11 & nota <= 15
+{txt}(7 real changes made)
+
+{com}. replace gnota = 3 if edad >= 16 
+{err}edad not found
 {txt}{search r(111), local:r(111);}
 
 end of do-file
@@ -157,18 +155,4 @@ end of do-file
 {com}. 
 {txt}end of do-file
 
-{com}. do "C:\Users\jvald\AppData\Local\Temp\STD38ec_000000.tmp"
-{txt}
-{com}. cd "C:\Users\jvald\Dropbox\MISCURSOS\Analisis de Datos con Stata\jtvalderrama.github.io"
-{res}C:\Users\jvald\Dropbox\MISCURSOS\Analisis de Datos con Stata\jtvalderrama.github.io
-{txt}
 {com}. 
-{txt}end of do-file
-
-{com}. do "C:\Users\jvald\AppData\Local\Temp\STD38ec_000000.tmp"
-{txt}
-{com}. markstat using "curso_stata.stmd", strict mathjax bibliography
-{res}{txt}
-{com}. capture log close
-{smcl}
-{com}{sf}{ul off}

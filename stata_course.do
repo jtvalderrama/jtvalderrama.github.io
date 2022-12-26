@@ -1,7 +1,5 @@
 cd "C:\Users\jvald\Dropbox\MISCURSOS\Analisis de Datos con Stata\jtvalderrama.github.io"
 
-set linesize 255
-
 *markstat using "curso_stata.stmd", strict mathjax bibliography
 
 markstat using "stata1.stmd", strict mathjax bibliography
