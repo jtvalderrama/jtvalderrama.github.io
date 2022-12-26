@@ -5,7 +5,7 @@
   <meta name="generator" content="pandoc" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
   <meta name="author" content="José A. Valderrama" />
-  <title>Sesión 1. Introducción</title>
+  <title>Sesión 1. Introducción a Stata</title>
   <style>
     html {
       line-height: 1.5;
@@ -22,7 +22,7 @@
       padding-top: 50px;
       padding-bottom: 50px;
       hyphens: auto;
-      word-wrap: break-word;
+      overflow-wrap: break-word;
       text-rendering: optimizeLegibility;
       font-kerning: normal;
     }
@@ -30,6 +30,9 @@
       body {
         font-size: 0.9em;
         padding: 1em;
+      }
+      h1 {
+        font-size: 1.8em;
       }
     }
     @media print {
@@ -93,6 +96,7 @@
     pre code {
       padding: 0;
       overflow: visible;
+      overflow-wrap: normal;
     }
     .sourceCode {
      background-color: transparent;
@@ -134,15 +138,26 @@
     #TOC li {
       list-style: none;
     }
+    #TOC ul {
+      padding-left: 1.3em;
+    }
+    #TOC > ul {
+      padding-left: 0;
+    }
     #TOC a:not(:hover) {
       text-decoration: none;
     }
     code{white-space: pre-wrap;}
     span.smallcaps{font-variant: small-caps;}
-    span.underline{text-decoration: underline;}
-    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
     div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
     ul.task-list{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
     div.csl-bib-body { }
     div.csl-entry {
       clear: both;
@@ -163,7 +178,9 @@
       margin-left: 2em;
     }
   </style>
-  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+  <script
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js"
+  type="text/javascript"></script>
   <!--[if lt IE 9]>
     <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
   <![endif]-->
@@ -171,7 +188,7 @@
 /* CSS for Markstat 2.0 using Pandoc 2.0 */
 body{padding:14px 28px;}
 body, table {font-family: Helvetica, Arial, Sans-serif; font-size: 14px; width: 95%; max-width: unset;}
-h1, h2, h3, h4 {font-weight: normal; color: #cc6133}
+h1, h2, h3, h4 {font-weight: normal; color: #3366cc}
 h1 {font-size: 200%;}
 h2 {font-size: 150%;}
 h3 {font-size: 120%;}
@@ -207,53 +224,105 @@ table tbody:last-child tr:last-child td {border-bottom:1px solid black;}
 </head>
 <body>
 <header id="title-block-header">
-<h1 class="title">Sesión 1: Introducción a <code>Stata</code></h1>
+<h1 class="title">Sesión 1. Introducción a <code>Stata</code></h1>
 <p class="author">José A. Valderrama</p>
 </header>
 <hr />
 <p style="text-align: center;">
-<a href="https://jtvalderrama.github.io/curso_stata.html"><span style="color:orangered"><font size="4">Inicio</font></span></a>      <a href="https://jtvalderrama.github.io/stata1.html"><span style="color:orangered"><font size="4">Sesión 1</font></span></a>      <a href="https://jtvalderrama.github.io/stata2.html"><span style="color:orangered"><font size="4">Sesión 2</font></span></a>      <a href="https://jtvalderrama.github.io/stata3.html"><span style="color:orangered"><font size="4">Sesión 3</font></span></a>      <a href="https://jtvalderrama.github.io/stata4.html"><span style="color:orangered"><font size="4">Sesión 4</font></span></a>      <a href="https://jtvalderrama.github.io/stata5.html"><span style="color:orangered"><font size="4">Sesión 5</font></span></a>      <a href="https://jtvalderrama.github.io/stata_ejercicios.html"><span style="color:orangered"><font size="4">Ejercicios</font></span></a>
+<a href="https://jtvalderrama.github.io/curso_stata.html"><span
+style="color:red"><font size="4">Inicio</font></span></a>      <a
+href="https://jtvalderrama.github.io/stata1.html"><span
+style="color:red"><font size="4">Sesión 1</font></span></a>      <a
+href="https://jtvalderrama.github.io/stata2.html"><span
+style="color:red"><font size="4">Sesión 2</font></span></a>      <a
+href="https://jtvalderrama.github.io/stata3.html"><span
+style="color:red"><font size="4">Sesión 3</font></span></a>      <a
+href="https://jtvalderrama.github.io/stata4.html"><span
+style="color:red"><font size="4">Sesión 4</font></span></a>      <a
+href="https://jtvalderrama.github.io/stata5.html"><span
+style="color:red"><font size="4">Sesión 5</font></span></a>      <a
+href="https://jtvalderrama.github.io/stata_ejercicios.html"><span
+style="color:red"><font size="4">Ejercicios</font></span></a>
 </p>
 <hr />
 <h1 id="qué-es-stata">1. ¿Qué es Stata?</h1>
-
-<p>Es un programa estadístico que permite combinar,
-  manipular y analizar datos usando métodos estadísticos y gráficos.</p>
-
-<h1 id="Porque-Stata">2. ¿Porqué Stata?</h1>
-<p>Versatilidad y popularidad frente a sus principales competidores, SPSS y
-  SAS; aunque cada vez es más extendido otras alternativas gratuitas como <code>R</code>.</p>
-  <h2 id="formas-de-trabajo">2.1. Gráficos para publicación</h2>
-
+<p>Es un programa estadístico que permite combinar, manipular y analizar
+datos usando métodos estadísticos y gráficos.</p>
+<h1 id="porqué-stata">2. ¿Porqué Stata?</h1>
+<p>Versatilidad y popularidad frente a sus principales competidores,
+<code>SPSS</code> y <code>SAS</code>; aunque cada vez es más extendido
+otras alternativas gratuitas como <code>R</code>.</p>
+<h2 id="gráficos-para-publicación">2.1. Gráficos para publicación</h2>
+<figure>
+<img src="Fig_Change_Probability.png" style="width:75.0%"
+alt="ITT estimator assuming different order of polynomials" />
+<figcaption aria-hidden="true">ITT estimator assuming different order of
+polynomials</figcaption>
+</figure>
 <h1 id="conceptos-básicos">3. Conceptos básicos</h1>
 <h2 id="formas-de-trabajo">3.1. Formas de trabajo</h2>
 <p>Existen varias formas de trabajar con <code>Stata</code>:</p>
 <ul>
-<li>Emplear comandos de forma interactiva (e.g., como en Excel) <span class="math inline">\(\rightarrow\)</span> <strong>Nada recomendado</strong></li>
-<li>Escribir archivos de comandos <span class="math inline">\(\rightarrow\)</span> <strong>Muy recomendable</strong></li>
-<li>Generar un flujo de trabajo con otros programas, los que podemos exportar los resultados. Nunca copiar y pegar resultados (tedioso y lleva a incurrir en muchos errores) <span class="math inline">\(\rightarrow\)</span> <strong>Extremadamente recomendable</strong></li>
+<li>Emplear comandos de forma interactiva (e.g., como en Excel) <span
+class="math inline">\(\rightarrow\)</span> <strong>Nada
+recomendado</strong></li>
+<li>Escribir archivos de comandos <span
+class="math inline">\(\rightarrow\)</span> <strong>Muy
+recomendable</strong></li>
+<li>Generar un flujo de trabajo con otros programas, los que podemos
+exportar los resultados. Nunca copiar y pegar resultados (tedioso y
+lleva a incurrir en muchos errores) <span
+class="math inline">\(\rightarrow\)</span> <strong>Extremadamente
+recomendable</strong></li>
 </ul>
-<p>Existe un importante número de libros de introducción a Stata, entre los que se pueden destacar los de <span class="citation" data-cites="Acock2018">Acock (2018)</span> y, en español, <span class="citation" data-cites="Escobar2012">Escobar et al. (2012)</span>.</p>
+<p>Existe un importante número de libros de introducción a Stata, entre
+los que se pueden destacar los de <span class="citation"
+data-cites="Acock2018">Acock (2018)</span> y, en español, <span
+class="citation" data-cites="Escobar2012">Escobar et al.
+(2012)</span>.</p>
 <h2 id="tipos-de-archivos-en-stata">3.2. Tipos de archivos en Stata</h2>
 <h3 id="archivos-.dta">Archivos <em>.dta</em></h3>
-<p>Son los archivos de datos de <code>Stata</code>, equivalentes a los archivos <code>.xlsx</code> en Excel o <code>.sav</code> en SPSS. Es el formato al que debemos convertir los datos con los que queramos trabajar.</p>
+<p>Son los archivos de datos de <code>Stata</code>, equivalentes a los
+archivos <code>.xlsx</code> en Excel o <code>.sav</code> en SPSS. Es el
+formato al que debemos convertir los datos con los que queramos
+trabajar.</p>
 <h3 id="archivos-.do">Archivos <em>.do</em></h3>
-<p>Archivos de sintaxis de comandos, equivalentes a los <code>.sps</code> en SPSS. Resultan absolutamente básicos, para ahorrar tiempo (<code>Stata</code> no cuenta con la función <em>deshacer</em>) y garantizar la reproducibilidad. En realidad, son archivos de texto plano, idénticos a los <code>.txt</code>.</p>
-<h3 id="archivos-.smcl-o-.log">Archivos <em>.smcl</em> o <em>.log</em></h3>
-<p>Son archivos de registro, que recogen las operaciones y resultados en nuestro espacio de trabajo, similares a los archivos <code>.log</code> en SPSS. Representan una forma razonable de presentar resultados preliminares a co-autores o una forma de entrega de ejercicios de los estudiantes. Actualmente, gracias a la integración de <code>Stata</code> con otros lenguajes y softwares (pdf o html), existen mejores alternativas.</p>
+<p>Archivos de sintaxis de comandos, equivalentes a los
+<code>.sps</code> en SPSS. Resultan absolutamente básicos, para ahorrar
+tiempo (<code>Stata</code> no cuenta con la función <em>deshacer</em>) y
+garantizar la reproducibilidad. En realidad, son archivos de texto
+plano, idénticos a los <code>.txt</code>.</p>
+<h3 id="archivos-.smcl-o-.log">Archivos <em>.smcl</em> o
+<em>.log</em></h3>
+<p>Son archivos de registro, que recogen las operaciones y resultados en
+nuestro espacio de trabajo, similares a los archivos <code>.log</code>
+en SPSS. Representan una forma razonable de presentar resultados
+preliminares a co-autores o una forma de entrega de ejercicios de los
+estudiantes. Actualmente, gracias a la integración de <code>Stata</code>
+con otros lenguajes y softwares (pdf o html), existen mejores
+alternativas.</p>
 <h3 id="archivos-.gph">Archivos <em>.gph</em></h3>
-<p>Son los archivos nativos para las figuras en <code>Stata</code>. En las últimas versiones, se pueden editar y la flexibilidad se ha incrementado mucho. Además, es posible generar los gráficos directamente en formatos de imagen o pdf.</p>
+<p>Son los archivos nativos para las figuras en <code>Stata</code>. En
+las últimas versiones, se pueden editar y la flexibilidad se ha
+incrementado mucho. Además, es posible generar los gráficos directamente
+en formatos de imagen o pdf.</p>
 <h3 id="archivos-.ado">Archivos <em>.ado</em></h3>
-<p>Son macros de Stata, algo más sofisticados que los archivos <em>.do</em> que contienen comandos programados, rutinas. Hay un impresionante arsenal de estos archivos creados por usuarios.</p>
+<p>Son macros de Stata, algo más sofisticados que los archivos
+<em>.do</em> que contienen comandos programados, rutinas. Hay un
+impresionante arsenal de estos archivos creados por usuarios.</p>
 <h3 id="archivos-.sthlp">Archivos <em>.sthlp</em></h3>
 <p>Los archivos de ayuda de Stata.</p>
 <h3 id="archivos-.stsem">Archivos <em>.stsem</em></h3>
 <p>Diagramas de ecuaciones estructurales.</p>
 <h3 id="archivos-.stpr">Archivos <em>.stpr</em></h3>
-<p>Archivos de proyectos de <code>Stata</code>. Agrupan jerárquicamente los archivos anteriores.</p>
+<p>Archivos de proyectos de <code>Stata</code>. Agrupan jerárquicamente
+los archivos anteriores.</p>
 <h3 id="archivos-.stmd">Archivos <em>.stmd</em></h3>
-<p>Archivos Markdown de <code>Stata</code>, similares a los archivos <em>.do</em>, que se emplean por comandos como <code>markstat</code> para la creación de documentos dinámicos reproducibles.</p>
-<p>En la práctica, los archivos que más vamos a utilizar son los archivos <code>.do</code> y <code>.dta</code>.</p>
+<p>Archivos Markdown de <code>Stata</code>, similares a los archivos
+<em>.do</em>, que se emplean por comandos como <code>markstat</code>
+para la creación de documentos dinámicos reproducibles.</p>
+<p>En la práctica, los archivos que más vamos a utilizar son los
+archivos <code>.do</code> y <code>.dta</code>.</p>
 <h2 id="el-entorno-de-stata">3.2. El entorno de <code>Stata</code></h2>
 <p>El entorno de <code>Stata</code> nos muestra:</p>
 <ul>
@@ -262,47 +331,111 @@ table tbody:last-child tr:last-child td {border-bottom:1px solid black;}
 <li>Ventana de variables.</li>
 <li>Ventana de propiedades de las variables.</li>
 <li>Menús</li>
-<li>Barra de tareas <span class="math inline">\(\rightarrow\)</span> <strong>importantes</strong>: explorador y editor de archivos <code>.do</code></li>
+<li>Barra de tareas <span class="math inline">\(\rightarrow\)</span>
+<strong>importantes</strong>: explorador y editor de archivos
+<code>.do</code></li>
 </ul>
 <figure>
-<img src="interface.png" style="width:75.0%" alt="Entorno de trabajo de Stata" /><figcaption aria-hidden="true">Entorno de trabajo de <code>Stata</code></figcaption>
+<img src="interface.png" style="width:75.0%"
+alt="Entorno de trabajo de Stata" />
+<figcaption aria-hidden="true">Entorno de trabajo de
+<code>Stata</code></figcaption>
 </figure>
-<p>Conviene operar, preferentemente, con el editor de archivos <code>.do</code>.</p>
+<p>Conviene operar, preferentemente, con el editor de archivos
+<code>.do</code>.</p>
 <figure>
-<img src="editor.png" style="width:75.0%" alt="Editor de archivos .do de Stata" /><figcaption aria-hidden="true">Editor de archivos <code>.do</code> de <code>Stata</code></figcaption>
+<img src="editor.png" style="width:75.0%"
+alt="Editor de archivos .do de Stata" />
+<figcaption aria-hidden="true">Editor de archivos <code>.do</code> de
+<code>Stata</code></figcaption>
 </figure>
 <h2 id="recursos-de-ayuda">3.3. Recursos de ayuda</h2>
-<p>La ayuda de <code>Stata</code> es bastante buena y, además, nos permite acceder directamente a los manuales en formato <code>.pdf</code> del programa, que contienen breves explicaciones estadísticas, ejemplos e incluso referencias. Es muy sencillo acudir a la ayuda.</p>
-<p><code><u>h</u>elp [<i>command_or_topic_name</i>] [, <u>non</u>ew name(viewername) <u>mark</u>er(<i>markername</i>)]</code></p>
+<p>La ayuda de <code>Stata</code> es bastante buena y, además, nos
+permite acceder directamente a los manuales en formato <code>.pdf</code>
+del programa, que contienen breves explicaciones estadísticas, ejemplos
+e incluso referencias. Es muy sencillo acudir a la ayuda.</p>
+<p><code><u>h</u>elp [<i>command_or_topic_name</i>] [, <u>non</u>ew
+name(viewername) <u>mark</u>er(<i>markername</i>)]</code></p>
 <p>De forma más genérica, podemos emplear</p>
-<p><code>search <i>word</i> [<i>word</i> …] [, <i>search_options</i>]</code></p>
-<p>En segundo término, las <a href="https://www.stata.com/bookstore/statacheatsheets.pdf"><em>cheatsheets</em></a> de <code>Stata</code> son un magnífico recurso a considerar.</p>
-<p>En tercer lugar, tenemos un sinnúmero de manuales, más o menos especializados. Existen algunos especialmente recomendables, como el de J. Scott Long:</p>
+<p><code>search <i>word</i> [<i>word</i> …] [,
+<i>search_options</i>]</code></p>
+<p>En segundo término, las <a
+href="https://www.stata.com/bookstore/statacheatsheets.pdf"><em>cheatsheets</em></a>
+de <code>Stata</code> son un magnífico recurso a considerar.</p>
+<p>En tercer lugar, tenemos un sinnúmero de manuales, más o menos
+especializados. Existen algunos especialmente recomendables, como el de
+J. Scott Long:</p>
 <figure>
-<img src="book_long.jpg" style="width:15.0%" alt="The workflow of data analysis using Stata" /><figcaption aria-hidden="true"><em>The workflow of data analysis using Stata</em></figcaption>
+<img src="book_long.jpg" style="width:15.0%"
+alt="The workflow of data analysis using Stata" />
+<figcaption aria-hidden="true"><em>The workflow of data analysis using
+Stata</em></figcaption>
 </figure>
-<p>En el área de Economía, por ejemplo, tenemos una fantástica cantidad de recursos especializados</p>
+<p>En el área de Economía, por ejemplo, tenemos una fantástica cantidad
+de recursos especializados</p>
 <figure>
-<img src="books.png" style="width:75.0%" alt="Algunos libros de Econometría con Stata" /><figcaption aria-hidden="true">Algunos libros de Econometría con <code>Stata</code></figcaption>
+<img src="books.png" style="width:75.0%"
+alt="Algunos libros de Econometría con Stata" />
+<figcaption aria-hidden="true">Algunos libros de Econometría con
+<code>Stata</code></figcaption>
 </figure>
-<p>Algunas opciones de manuales introductorios son <span class="citation" data-cites="Acock2018">Acock (2018)</span> y <span class="citation" data-cites="Kohler2012">Kohler &amp; Kreuter (2012)</span>. En español, hay bastantes menos recursos, entre los que destaca <span class="citation" data-cites="Escobar2012">Escobar et al. (2012)</span>.</p>
-<p>El tercer tipo de recursos son los tutoriales <em>online</em>. Hay tres de especial interés:</p>
+<p>Algunas opciones de manuales introductorios son <span
+class="citation" data-cites="Acock2018">Acock (2018)</span> y <span
+class="citation" data-cites="Kohler2012">Kohler &amp; Kreuter
+(2012)</span>. En español, hay bastantes menos recursos, entre los que
+destaca <span class="citation" data-cites="Escobar2012">Escobar et al.
+(2012)</span>.</p>
+<p>El tercer tipo de recursos son los tutoriales <em>online</em>. Hay
+tres de especial interés:</p>
 <ul>
-<li>La web de <a href="https://data.princeton.edu/stata">Germán Rodríguez</a> en la Universidad de Princeton.</li>
-<li>La web del <a href="https://stats.idre.ucla.edu/stata/">Institute for Digital Research and Education de la UCLA</a>. Especialmente útiles es la replicación de los ejemplos de muchos libros (aunque, en la actualidad, los propios manuales ya suelen proporcionar la sintaxis y datos empleados en los ejemplos).</li>
-<li>El curso para manejo de datos de encuestas de hogares de la <a href="https://www.saldru.uct.ac.za/training/online-stata-course-the-analysis-of-south-african-household-survey-data/">Southern Africa Labour and Development Research Unit</a>.</li>
+<li>La web de <a href="https://data.princeton.edu/stata">Germán
+Rodríguez</a> en la Universidad de Princeton.</li>
+<li>La web del <a href="https://stats.idre.ucla.edu/stata/">Institute
+for Digital Research and Education de la UCLA</a>. Especialmente útiles
+es la replicación de los ejemplos de muchos libros (aunque, en la
+actualidad, los propios manuales ya suelen proporcionar la sintaxis y
+datos empleados en los ejemplos).</li>
+<li>El curso para manejo de datos de encuestas de hogares de la <a
+href="https://www.saldru.uct.ac.za/training/online-stata-course-the-analysis-of-south-african-household-survey-data/">Southern
+Africa Labour and Development Research Unit</a>.</li>
 </ul>
-<p>Además, los diferentes tipos de cursos que ofrece <a href="https://www.stata.com/learn/">StataCorp</a> son una opción interesante, en particular, los <a href="https://www.stata.com/netcourse/">NetCourses</a>. Posiblemente, en estos días, podemos encontrar muchos MOOCs interesantes con <code>Stata</code>.</p>
-<h1 id="primeros-pasos-en-stata">4. Primeros pasos en <code>Stata</code></h1>
-<h2 id="introducción-de-datos-en-stata">4.1. Introducción de datos en <code>Stata</code></h2>
-<p>Cada vez es más habitual que muchas instituciones y organismos proporcionen la información en el formato nativo de <code>Stata</code>, los archivos <code>.dta</code>, pero, con todo, no es lo habitual. En muchas ocasiones nos encontramos formatos como <code>.csv</code>, <code>.txt</code>, <code>.raw</code>, etc. Por ello, es necesario saber cómo leer diferentes tipos de archivos en <code>Stata</code>.</p>
-<p>Antes de nada, vamos a crear un nuevo archivo <code>.do</code> donde iremos escribiendo la sintaxis y que podemos llamar <code>curso1.do</code>. Es extremadamente importante y útil documentar los archivos <code>.do</code>. En este sentido, el libro de <span class="citation" data-cites="Long2009">Long (2009)</span> o la guía de <a href="https://medium.com/the-stata-guide/the-stata-workflow-guide-52418ce35006">Asjad Naqvi</a> ofrece excelentes consejos para sistematizar el trabajo. Algunos comandos de utilidad son los siguientes:</p>
+<p>Además, los diferentes tipos de cursos que ofrece <a
+href="https://www.stata.com/learn/">StataCorp</a> son una opción
+interesante, en particular, los <a
+href="https://www.stata.com/netcourse/">NetCourses</a>. Posiblemente, en
+estos días, podemos encontrar muchos MOOCs interesantes con
+<code>Stata</code>.</p>
+<h1 id="primeros-pasos-en-stata">4. Primeros pasos en
+<code>Stata</code></h1>
+<h2 id="introducción-de-datos-en-stata">4.1. Introducción de datos en
+<code>Stata</code></h2>
+<p>Cada vez es más habitual que muchas instituciones y organismos
+proporcionen la información en el formato nativo de <code>Stata</code>,
+los archivos <code>.dta</code>, pero, con todo, no es lo habitual. En
+muchas ocasiones nos encontramos formatos como <code>.csv</code>,
+<code>.txt</code>, <code>.raw</code>, etc. Por ello, es necesario saber
+cómo leer diferentes tipos de archivos en <code>Stata</code>.</p>
+<p>Antes de nada, vamos a crear un nuevo archivo <code>.do</code> donde
+iremos escribiendo la sintaxis y que podemos llamar
+<code>curso1.do</code>. Es extremadamente importante y útil documentar
+los archivos <code>.do</code>. En este sentido, el libro de <span
+class="citation" data-cites="Long2009">Long (2009)</span> o la guía de
+<a
+href="https://medium.com/the-stata-guide/the-stata-workflow-guide-52418ce35006">Asjad
+Naqvi</a> ofrece excelentes consejos para sistematizar el trabajo.
+Algunos comandos de utilidad son los siguientes:</p>
 <ul>
-<li>Podemos incluir comentarios en los archivos <code>.do</code> empleando <code>*</code> o <code>//</code> (el último, también en la misma línea).</li>
-<li>Asimismo, podemos indicar a <code>Stata</code> a no tener en cuenta los saltos de línea empleando <code>///</code> al final de la línea.</li>
-<li>Podemos ordenar a <code>Stata</code> omitir la lectura de todo el contenido incluido entre <code>/*</code> y <code>*/</code>.</li>
+<li>Podemos incluir comentarios en los archivos <code>.do</code>
+empleando <code>*</code> o <code>//</code> (el último, también en la
+misma línea).</li>
+<li>Asimismo, podemos indicar a <code>Stata</code> a no tener en cuenta
+los saltos de línea empleando <code>///</code> al final de la
+línea.</li>
+<li>Podemos ordenar a <code>Stata</code> omitir la lectura de todo el
+contenido incluido entre <code>/*</code> y <code>*/</code>.</li>
 </ul>
-<p>En primer lugar, podemos liberar el especio de trabajo con la instrucción</p>
+<p>En primer lugar, podemos liberar el especio de trabajo con la
+instrucción</p>
 <pre class='stata'>. clear all
 </pre>
 <p>Si queremos incluir comentarios podríamos escribir</p>
@@ -318,49 +451,72 @@ table tbody:last-child tr:last-child td {border-bottom:1px solid black;}
 . 
 . clear all
 </pre>
-<p>En segundo lugar, habitualmente, indicamos cuál es el directorio de trabajo.</p>
-<p><code>cd ["]<i>directory_name</i>["]</code></p>
+<p>En segundo lugar, habitualmente, indicamos cuál es el directorio de
+trabajo.</p>
+<p><code>cd [”]<i>directory_name</i>[”]</code></p>
 <p>En mi caso,</p>
-<pre class='stata'>. cd "D:\Dropbox\curso_stata\sesión1"
-D:\Dropbox\curso_stata\sesión1
+<pre class='stata'>. cd "C:\Users\jvald\Dropbox\MISCURSOS\Analisis de Datos con Stata\MATE
+> RIALES\sesion1"
+C:\Users\jvald\Dropbox\MISCURSOS\Analisis de Datos con Stata\MATERIALES
+> \sesion1
 
 . pwd
-D:\Dropbox\curso_stata\sesión1
+C:\Users\jvald\Dropbox\MISCURSOS\Analisis de Datos con Stata\MATERIALES
+> \sesion1
 </pre>
-<p>Vamos a utilizar los datos de la <em>Encuesta de Condiciones de Vida</em> que lleva a cabo el Instituto Nacional de Estadística. La base de datos y la documentación de la encuesta puede encontrarse <a href="https://www.ine.es/dyngs/INEbase/es/operacion.htm?c=Estadistica_C&amp;cid=1254736176807&amp;menu=resultados&amp;secc=1254736195153&amp;idp=1254735976608#!tabs-1254736195153">aquí</a>.</p>
-<p>Los archivos se encuentran en formato <code>.csv</code>. Son archivos de texto delimitados por un separador, en este caso, una coma (“,”). Vamos a comenzar por un archivo de personas con algunas características básicas (<code>esudb18r.csv</code>).</p>
-<p><code>import <u>delim</u>ited [using] <i>filename</i> [, <i>import_delimited_options</i>]</code></p>
+<p>Vamos a utilizar los datos de la <em>Encuesta de Condiciones de
+Vida</em> que lleva a cabo el Instituto Nacional de Estadística. La base
+de datos y la documentación de la encuesta puede encontrarse <a
+href="https://www.ine.es/dyngs/INEbase/es/operacion.htm?c=Estadistica_C&amp;cid=1254736176807&amp;menu=resultados&amp;secc=1254736195153&amp;idp=1254735976608#!tabs-1254736195153">aquí</a>.</p>
+<p>Los archivos se encuentran en formato <code>.csv</code>. Son archivos
+de texto delimitados por un separador, en este caso, una coma (“,”).
+Vamos a comenzar por un archivo de personas con algunas características
+básicas (<code>esudb18r.csv</code>).</p>
+<p><code>import <u>delim</u>ited [using] <i>filename</i> [,
+<i>import_delimited_options</i>]</code></p>
 <p>En mi caso,</p>
-<pre class='stata'>. import delimited using "esudb18r.csv", clear delimiter(",")
-(encoding automatically selected: ISO-8859-1)
-(37 vars, 33,734 obs)
+<pre class='stata'>. import delimited using "NOTAS.csv", clear varnames(1)
+(6 vars, 38 obs)
 </pre>
-<p>Existen otros muchos formatos, y podemos conocer cómo acceder a ellos simplemente a través de la ayuda <code>help import</code>.</p>
-<p>Podemos explorar la base de datos importada con el comando <code>browse</code>.</p>
+<p>Existen otros muchos formatos, y podemos conocer cómo acceder a ellos
+simplemente a través de la ayuda <code>help import</code>.</p>
+<p>Podemos explorar la base de datos importada con el comando
+<code>browse</code>.</p>
 <pre class='stata'>. browse
 </pre>
-<p>Veremos que algunas variables se encuentran en formato numérico y otras, como cadenas de caracteres, pese a ser números.</p>
-<figure>
-<img src="browse.png" style="width:75.0%" alt="Variables importadas de la ECV 2018" /><figcaption aria-hidden="true">Variables importadas de la ECV 2018</figcaption>
-</figure>
-<p>Podemos solventar eso con el comando <code>destring</code> que convierte todas las variables en formato texto a formato numérico sin perder información (si hay pérdida de información, no lo hace). Existe, asimismo, un comando para realizar la operación contraria (<code>help tostring</code>).</p>
-<p><code>destring [<i>varlist</i>] , {generate(<i>newvarlist</i>)|replace} [<i>destring_options</i>]</code></p>
+<p>Veremos que algunas variables se encuentran en formato numérico y
+otras, como cadenas de caracteres, pese a ser números.</p>
+<p>Podemos solventar eso co n el comando <code>destring</code> que
+convierte todas las variables en formato texto a formato numérico sin
+perder información (si hay pérdida de información, no lo hace). Existe,
+asimismo, un comando para realizar la operación contraria
+(<code>help tostring</code>).</p>
+<p><code>destring [<i>varlist</i>] ,
+{generate(<i>newvarlist</i>)|replace}
+[<i>destring_options</i>]</code></p>
 <p>En nuestro caso, aplicamos el comando como sigue</p>
 <pre><code>destring _all, replace</code></pre>
 
 <p>Podemos guardarlo mediante la instrucción <code>save</code>:</p>
-<p><code><u>sa</u>ve [<i>filename</i>] [, <i>save_options</i>]</code></p>
-<p>En mi caso, procedería como sigue para crear mi primer archivo <code>.dta</code>.</p>
-<pre class='stata'>. save "ecv18r.dta", replace
-file ecv18r.dta saved
+<p><code><u>sa</u>ve [<i>filename</i>] [,
+<i>save_options</i>]</code></p>
+<p>En mi caso, procedería como sigue para crear mi primer archivo
+<code>.dta</code>.</p>
+<pre class='stata'>. save "misnotas.dta", replace
+file misnotas.dta saved
 </pre>
-<p>Para abrir un archivo <code>.dta</code>, la instrucción es muy sencilla.</p>
+<p>Para abrir un archivo <code>.dta</code>, la instrucción es muy
+sencilla.</p>
 <p><code><u>u</u>se <i>filename</i> [, clear <u>nol</u>abel]</code></p>
 <p>En mi caso,</p>
-<pre class='stata'>. use "ecv18r.dta", clear
+<pre class='stata'>. use "misnotas.dta", clear
 </pre>
-<p>Por último, vamos a crear archivos logs. Son apropiados para documentar de manera muy informal los resultados (e.g., para enviarlos a un co-autor o echar un primer vistazo a los análisis estadísticos). Al comienzo de la parte que queremos “grabar,” añadimos</p>
-<p><code>log using <i>filename</i> [, append replace [<u>t</u>ext|<u>s</u>mcl] name(<i>logname</i>) nomsg]</code></p>
+<p>Por último, vamos a crear archivos logs. Son apropiados para
+documentar de manera muy informal los resultados (e.g., para enviarlos a
+un co-autor o echar un primer vistazo a los análisis estadísticos). Al
+comienzo de la parte que queremos “grabar”, añadimos</p>
+<p><code>log using <i>filename</i> [, append replace
+[<u>t</u>ext|<u>s</u>mcl] name(<i>logname</i>) nomsg]</code></p>
 <p>Al final de la parte que deseamos reportar, empleamos</p>
 <p><code>log close [<i>logname</i> | _all]</code></p>
 <p>En nuestro caso, podríamos añadir al principio</p>
@@ -368,9 +524,20 @@ file ecv18r.dta saved
 log using curso1, replace</code></pre>
 <p>Al final,</p>
 <pre><code>log close</code></pre>
-<p>Podemos abrir el archivo y observar que es similar a un archivo de texto enriquecido.</p>
-<h2 id="exploración-de-la-base-de-datos">4.2. Exploración de la base de datos</h2>
-<p>Tenemos varios comandos que nos permiten hacernos una idea de cuál es el contenido de la base de datos, como <code>describe</code>, <code>codebook</code>, <code>browse</code>, <code>list</code>, <code>tabulate</code>, <code>summarize</code> o <code>correlate</code>, entre otros. Además, podemos emplearlos en todo momento con condicionales (<code>if</code>) o limitándonos a ciertas observaciones (<code>in</code>). Para aplicarlos, conviene conocer antes cuáles son los operadores. En este ámbito, el comando <code>sort</code>, que permite ordenar la base de datos en función de una o varias variables, resulta también muy utilizado.</p>
+<p>Podemos abrir el archivo y observar que es similar a un archivo de
+texto enriquecido.</p>
+<h2 id="exploración-de-la-base-de-datos">4.2. Exploración de la base de
+datos</h2>
+<p>Tenemos varios comandos que nos permiten hacernos una idea de cuál es
+el contenido de la base de datos, como <code>describe</code>,
+<code>codebook</code>, <code>browse</code>, <code>list</code>,
+<code>tabulate</code>, <code>summarize</code> o <code>correlate</code>,
+entre otros. Además, podemos emplearlos en todo momento con
+condicionales (<code>if</code>) o limitándonos a ciertas observaciones
+(<code>in</code>). Para aplicarlos, conviene conocer antes cuáles son
+los operadores. En este ámbito, el comando <code>sort</code>, que
+permite ordenar la base de datos en función de una o varias variables,
+resulta también muy utilizado.</p>
 <table>
 <colgroup>
 <col style="width: 21%" />
@@ -381,7 +548,8 @@ log using curso1, replace</code></pre>
 <tr class="header">
 <th style="text-align: left;">Operadores aritméticos</th>
 <th style="text-align: left;">Operadores lógicos</th>
-<th style="text-align: left;">Operadores relacionales<br>(variables numéricas y alfanuméricas)</th>
+<th style="text-align: left;">Operadores relacionales<br>(variables
+numéricas y alfanuméricas)</th>
 </tr>
 </thead>
 <tbody>
@@ -424,186 +592,211 @@ log using curso1, replace</code></pre>
 </table>
 <p>Estos comandos se escriben como se expresa a continuación:</p>
 <p>Descripción de los datos en la memoria</p>
-<p><code><u>d</u>escribe [<i>varlist</i>] [, <i>memory_options</i>]</code></p>
+<p><code><u>d</u>escribe [<i>varlist</i>] [,
+<i>memory_options</i>]</code></p>
 <p>Descripción del contenido de los datos</p>
-<p><code>codebook [<i>varlist</i>] [<i>if</i>] [<i>in</i>] [, <i>options</i>]</code></p>
+<p><code>codebook [<i>varlist</i>] [<i>if</i>] [<i>in</i>] [,
+<i>options</i>]</code></p>
 <p>Explorar los datos en la memoria</p>
-<p><code><u>br</u>owse [<i>varlist</i>] [<i>if</i>] [<i>in</i>] [, <u>nol</u>abel]</code></p>
+<p><code><u>br</u>owse [<i>varlist</i>] [<i>if</i>] [<i>in</i>] [,
+<u>nol</u>abel]</code></p>
 <p>Mostrar valores de las variables</p>
-<p><code><u>l</u>ist [<i>varlist</i>] [<i>if</i>] [<i>in</i>] [, <i>options</i>]</code></p>
+<p><code><u>l</u>ist [<i>varlist</i>] [<i>if</i>] [<i>in</i>] [,
+<i>options</i>]</code></p>
 <p>Estadísticos descriptivos</p>
-<p><code><u>su</u>mmarize [<i>varlist</i>] [<i>if</i>] [<i>in</i>] [<i>weight</i>] [, <i>options</i>]</code></p>
+<p><code><u>su</u>mmarize [<i>varlist</i>] [<i>if</i>] [<i>in</i>]
+[<i>weight</i>] [, <i>options</i>]</code></p>
 <p>Correlación entre variables</p>
-<p><code><u>cor</u>relate [<i>varlist</i>] [<i>if</i>] [<i>in</i>] [<i>weight</i>] [, <i>correlate_options</i>]</code></p>
+<p><code><u>cor</u>relate [<i>varlist</i>] [<i>if</i>] [<i>in</i>]
+[<i>weight</i>] [, <i>correlate_options</i>]</code></p>
 <p>Ordenar la base de datos por una o varias variables</p>
 <p><code><u>so</u>rt <i>varlist</i> [<i>in</i>] [, stable]</code></p>
-<p>Así, por ejemplo, podemos explorar la variable que recoge la situación laboral de los españoles (<code>rb210</code>).</p>
-<pre class='stata'>. codebook rb210
+<p>Así, por ejemplo, podemos explorar la nota en el primer examen
+(<code>ex1</code>).</p>
+<pre class='stata'>. codebook ex1
 
-───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
-rb210                                                                                                                                                                                                                                                     RB210
-───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+───────────────────────────────────────────────────────────────────────
+ex1                                                                 Ex1
+───────────────────────────────────────────────────────────────────────
 
-                  Type: Numeric (byte)
+                  type:  numeric (byte)
 
-                 Range: [1,4]                         Units: 1
-         Unique values: 4                         Missing .: 1/33,734
+                 range:  [10,20]                      units:  1
+         unique values:  5                        missing .:  0/38
 
-            Tabulation: Freq.  Value
-                       13,021  1
-                        2,990  2
-                        6,183  3
-                       11,539  4
-                            1  .
+            tabulation:  Freq.  Value
+                             3  10
+                             5  15
+                            10  16
+                             5  18
+                            15  20
 </pre>
 <p>Fácilmente, podemos ver la distribución de la misma.</p>
-<pre class='stata'>. tabulate rb210
+<pre class='stata'>. sum ex1
 
-      RB210 │      Freq.     Percent        Cum.
-────────────┼───────────────────────────────────
-          1 │     13,021       38.60       38.60
-          2 │      2,990        8.86       47.46
-          3 │      6,183       18.33       65.79
-          4 │     11,539       34.21      100.00
-────────────┼───────────────────────────────────
-      Total │     33,733      100.00
+    Variable │        Obs        Mean    Std. Dev.       Min        Max
+─────────────┼─────────────────────────────────────────────────────────
+         ex1 │         38    17.23684    2.917183         10         20
 </pre>
-<p>Además, podemos ver dicha distribución para un grupo concreto. Por ejemplo, estudiar cuál es la situación laboral de las mujeres (la variable sexo es <code>rb090</code>).</p>
-<pre class='stata'>. tabulate rb210 if rb090 == 2
+<p>Además, podemos ver dicha distribución para un grupo concreto. Por
+ejemplo, para los que tienen más de 10.</p>
+<pre class='stata'>. tabulate ex1 if ex1 > 10
 
-      RB210 │      Freq.     Percent        Cum.
+        Ex1 │      Freq.     Percent        Cum.
 ────────────┼───────────────────────────────────
-          1 │      6,023       34.48       34.48
-          2 │      1,550        8.87       43.35
-          3 │      2,562       14.67       58.02
-          4 │      7,333       41.98      100.00
+         15 │          5       14.29       14.29
+         16 │         10       28.57       42.86
+         18 │          5       14.29       57.14
+         20 │         15       42.86      100.00
 ────────────┼───────────────────────────────────
-      Total │     17,468      100.00
+      Total │         35      100.00
 </pre>
-<p>Un comando para inspeccionar directamente los datos es <code>list</code>. Por ejemplo, podemos inspeccionar los 10 primeros valores de la variable sexo (<code>rb090</code>):</p>
-<pre class='stata'>. list rb090 in 1/10
+<p>Un comando para inspeccionar directamente los datos es
+<code>list</code>. Por ejemplo, podemos inspeccionar los 10 primeros
+valores de la variable sexo (<code>rb090</code>):</p>
+<pre class='stata'>. list ex1 in 1/10
 
-     ┌───────┐
-     │ rb090 │
-     ├───────┤
-  1. │     1 │
-  2. │     2 │
-  3. │     2 │
-  4. │     2 │
-  5. │     2 │
-     ├───────┤
-  6. │     2 │
-  7. │     2 │
-  8. │     1 │
-  9. │     2 │
- 10. │     2 │
-     └───────┘
+     ┌─────┐
+     │ ex1 │
+     ├─────┤
+  1. │  16 │
+  2. │  18 │
+  3. │  16 │
+  4. │  16 │
+  5. │  16 │
+     ├─────┤
+  6. │  16 │
+  7. │  18 │
+  8. │  20 │
+  9. │  16 │
+ 10. │  15 │
+     └─────┘
 </pre>
-<h2 id="eliminar-variables-y-observaciones">4.3. Eliminar variables y observaciones</h2>
-<p>Para eliminar variables y observaciones de la base de datos podemos emplear tanto <code>drop</code> como <code>keep</code>.</p>
+<h2 id="eliminar-variables-y-observaciones">4.3. Eliminar variables y
+observaciones</h2>
+<p>Para eliminar variables y observaciones de la base de datos podemos
+emplear tanto <code>drop</code> como <code>keep</code>.</p>
 <p><code>drop <i>varlist</i></code></p>
 <p><code>drop if <i>exp</i></code></p>
 <p><code>drop in <i>range</i> [if <i>exp</i>]</code></p>
 <p><code>keep <i>varlist</i></code></p>
 <p><code>keep if <i>exp</i></code></p>
-<p><code>keep in <i>range</i> [if <i>exp</i>]</code></p>
-<p>Así, por ejemplo, podemos eliminar el mes de nacimiento de la persona</p>
-<pre class='stata'>. drop rb070
-</pre>
-<p>O quedarnos únicamente con las mujeres</p>
-<pre class='stata'>. keep if rb090 == 2
-(16,266 observations deleted)
+<p><code>keep if <i>range</i> [if <i>exp</i>]</code></p>
+<p>Así, por ejemplo, podemos eliminar el identificador</p>
+<pre class='stata'>. drop id
 </pre>
 <p>Volvemos a la base de datos original.</p>
-<pre class='stata'>. use "ecv18r.dta", clear
+<pre class='stata'>. use "misnotas.dta", clear
 </pre>
-<h2 id="etiquetado-de-datos-variables-y-valores">4.4. Etiquetado de datos, variables y valores</h2>
-<p>Obviamente, resulta muy tedioso operar con estos nombres, por lo que lo habitual es etiquetar las variables y sus valores. También es posible etiquetar la base de datos.</p>
+<h2 id="etiquetado-de-datos-variables-y-valores">4.4. Etiquetado de
+datos, variables y valores</h2>
+<p>Obviamente, resulta muy tedioso operar con estos nombres, por lo que
+lo habitual es etiquetar las variables y sus valores. También es posible
+etiquetar la base de datos.</p>
 <p>Para etiquetar la base de datos empleamos</p>
 <p><code><u>la</u>bel <u>da</u>ta [“<i>label</i>”]</code></p>
-<p>Por ejemplo, podemos llamar a nuestra base de datos “ECV-Datos básicos de la persona”</p>
+<p>Por ejemplo, podemos llamar a nuestra base de datos “ECV-Datos
+básicos de la persona”</p>
 <pre class='stata'>. label data "ECV-Datos básicos de la persona"
 </pre>
 <p>El etiquetado de variables se realiza a través de la instrucción</p>
-<p><code><u>la</u>bel <u>var</u>iable <i>varname</i> [“<i>label</i>”]</code></p>
+<p><code><u>la</u>bel <u>var</u>iable varname
+[“<i>label</i>”]</code></p>
 <p>En nuestro caso, por ejemplo,</p>
-<pre class='stata'>. label var rb090 "Sexo"
+<pre class='stata'>. label var ex1 "Examen 1"
 </pre>
-<p>El etiqueda de las variables requiere, primero, definir una etiqueta para los valores y, posteriormente, asignarla a una variable. Así,</p>
+<p>El etiqueda de las variables requiere, primero, definir una etiqueta
+para los valores y, posteriormente, asignarla a una variable. Así,</p>
 <p>Definición de etiqueta</p>
-<p><code><u>la</u>bel <u>de</u>fine <i>lblname</i> <i>#</i> “<i>label</i>” [<i>#</i> “<i>label</i>” …] [, <u>a</u>dd modify replace nofix]</code></p>
+<p><code><u>la</u>bel <u>de</u>fine <i>lblname</i> <i>#</i>
+“<i>label</i>” [<i>#</i> “<i>label</i>” …] [, <u>a</u>dd modify replace
+nofix]</code></p>
 <p>Asignación de etiqueta</p>
-<p><code><u>la</u>bel <u>val</u>ues <i>varlist</i> <i>lblname</i> [, nofix]</code></p>
+<p><code><u>la</u>bel <u>val</u>ues <i>varlist</i> <i>lblname</i> [,
+nofix]</code></p>
 <p>En nuestro caso, por ejemplo,</p>
 <pre class='stata'>. label define sexo_lab 1 "Hombre" 2 "Mujer"
 
-. label values rb090 sexo_lab
+. label values ex1 sexo_lab
 </pre>
-<p>Además, existen algunas otras instrucciones para, por ejemplo, eliminar etiquetas o comprobar qué etiquetas se han definido.</p>
-<h2 id="creación-y-modificación-de-variables">4.5. Creación y modificación de variables</h2>
-<h3 id="generación-y-modificación-de-variables">Generación y modificación de variables</h3>
-<p>En primer lugar, podemos cambiar el nombre de las variables con la instrucción <code>rename</code>.</p>
+<p>Además, existen algunas otras instrucciones para, por ejemplo,
+eliminar etiquetas o comprobar qué etiquetas se han definido.</p>
+<h2 id="creación-y-modificación-de-variables">4.5. Creación y
+modificación de variables</h2>
+<h3 id="generación-y-modificación-de-variables">Generación y
+modificación de variables</h3>
+<p>En primer lugar, podemos cambiar el nombre de las variables con la
+instrucción <code>rename</code>.</p>
 <p><code><u>ren</u>ame <i>old_varname</i> <i>new_varname</i></code></p>
 <p>En nuestro caso,</p>
-<pre class='stata'>. rename rb090 sexo
+<pre class='stata'>. rename ex1 examen1
 </pre>
-<p>Para estas tareas empleamos los comandos <code>generate</code> y <code>replace</code>. El segundo de ellos es para variables ya existentes.</p>
-<p><code><u>gen</u>erate [<i>type</i>] <i>newvar</i>[:<i>lblname</i>] =<i>exp</i> [<i>if</i>] [<i>in</i>] [, <u>b</u>efore(<i>varname</i>) | <u>a</u>fter(<i>varname</i>)]</code></p>
-<p><code>replace <i>oldvar</i> =<i>exp</i> [<i>if</i>] [<i>in</i>] [, <u>nop</u>romote]</code></p>
-<p>A partir del año de nacimiento, <code>rb080</code>, vamos a generar una nueva variable que recoja la edad.</p>
-<pre class='stata'>. generate edad = 2018 - rb080
+<p>Para estas tareas empleamos los comandos <code>generate</code> y
+<code>replace</code>. El segundo de ellos es para variables ya
+existentes.</p>
+<p><code><u>gen</u>erate [<i>type</i>] <i>newvar</i>[:<i>lblname</i>]
+=<i>exp</i> [<i>if</i>] [<i>in</i>] [, <u>b</u>efore(<i>varname</i>) |
+<u>a</u>fter(<i>varname</i>)]</code></p>
+<p><code>replace <i>oldvar</i> =<i>exp</i> [<i>if</i>] [<i>in</i>] [,
+<u>nop</u>romote]</code></p>
+<p>A partir de las notas parciales se va a generar una nueva variable
+que recoja el promedio total.</p>
+<pre class='stata'>. generate nota = (examen1+ex2+ex3+ex4+ex5)/4
 
 . 
 . // Etiquetamos la variable
 . 
-. label var edad "Edad"
+. label var nota "Nota del curso"
 
 . 
 . //  Observamos los estadísticos descriptivos de la nueva variable
 . 
-. summarize edad
+. summarize nota
 
-    Variable │        Obs        Mean    Std. dev.       Min        Max
+    Variable │        Obs        Mean    Std. Dev.       Min        Max
 ─────────────┼─────────────────────────────────────────────────────────
-        edad │     33,734     44.8642    23.21889          0         86
+        nota │         38    18.60526    3.527705       12.5       24.5
 </pre>
-<p>Podemos generar una variable que recoja los grupos de edades:</p>
-<pre class='stata'>. generate gedad = 1 if edad &lt;= 29
-(24,224 missing values generated)
+<p>Podemos generar una variable que recoja los grupos de notas:</p>
+<pre class='stata'>. generate gnota = 1 if nota &lt;= 10
+(38 missing values generated)
 
-. replace gedad = 2 if edad >= 30 &amp; edad &lt;= 49
-(8,779 real changes made)
+. replace gnota = 2 if nota >= 11 &amp; nota &lt;= 15
+(7 real changes made)
 
-. replace gedad = 3 if edad >= 50 &amp; edad &lt;= 64
-(7,886 real changes made)
-
-. replace gedad = 4 if edad >= 65
-(7,559 real changes made)
+. replace gnota = 3 if nota >= 16 
+(27 real changes made)
 
 . 
 . // Etiqueamos la variable y sus valores
 . 
-. label var gedad "Grupo de edad"
+. label var gnota "Grupo de nota"
 
-. label define gedad_lab 1 "Menor que 30 años" 2 "De 30 a 49 años" 3 "De 50 a 64 años" 4 "65 y más años"
+. label define gnota_lab 1 "Menor que 10" 2 "De 11 a 15" 3 "De 16 y más
+> "
 
-. label values gedad gedad_lab
+. label values gnota gnota_lab
 
 . 
-. tabulate gedad
+. tabulate gnota
 
-    Grupo de edad │      Freq.     Percent        Cum.
-──────────────────┼───────────────────────────────────
-Menor que 30 años │      9,510       28.19       28.19
-  De 30 a 49 años │      8,779       26.02       54.22
-  De 50 a 64 años │      7,886       23.38       77.59
-    65 y más años │      7,559       22.41      100.00
-──────────────────┼───────────────────────────────────
-            Total │     33,734      100.00
+    Grupo de │
+        nota │      Freq.     Percent        Cum.
+─────────────┼───────────────────────────────────
+  De 11 a 15 │          7       20.59       20.59
+ De 16 y más │         27       79.41      100.00
+─────────────┼───────────────────────────────────
+       Total │         34      100.00
 </pre>
 <h3 id="recodificación-de-variables">Recodificación de variables</h3>
-<p>A través del comando <code>recode</code> podemos recodificar variables.</p>
+<p>A través del comando <code>recode</code> podemos recodificar
+variables.</p>
 <table>
+<colgroup>
+<col style="width: 27%" />
+<col style="width: 29%" />
+<col style="width: 43%" />
+</colgroup>
 <thead>
 <tr class="header">
 <th style="text-align: left;">Regla</th>
@@ -630,7 +823,8 @@ Menor que 30 años │      9,510       28.19       28.19
 <tr class="even">
 <td style="text-align: left;">nonmissing = #</td>
 <td style="text-align: left;">nonmissing = 8</td>
-<td style="text-align: left;">Valores distintos de . recodificados a 8</td>
+<td style="text-align: left;">Valores distintos de . recodificados a
+8</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">missing = #</td>
@@ -640,351 +834,1657 @@ Menor que 30 años │      9,510       28.19       28.19
 </tbody>
 </table>
 <p>En términos generales,</p>
-<p><code>recode <i>varlist</i> (<i>rule</i>) [(<i>rule</i>) …] [, generate(<i>newvar</i>)]</code></p>
-<p>En nuestro caso, podemos recodificar la variable <code>gedad</code> en un menor número de categorías.</p>
-<pre class='stata'>. recode gedad (1 2 = 1) (3 4 = 2)
-(24224 changes made to gedad)
+<p><code>recode <i>varlist</i> (<i>rule</i>) [(<i>rule</i>) …] [,
+generate(<i>newvar</i>)]</code></p>
+<p>En nuestro caso, podemos recodificar la variable <code>gnota</code>
+en un menor número de categorías.</p>
+<pre class='stata'>. recode gnota (1  = 1) (2 3 = 2)
+(gnota: 27 changes made)
 
 . 
 . // Etiquetamos la nueva variable y sus valores
 . 
-. label drop gedad_lab
+. label drop gnota_lab
 
-. label define gedad_lab 1 "Menor de 50 años" 2 "50 y más años"
+. label define gnota_lab 1 "Menos de 10" 2 "11 y más"
 
-. label values gedad gedad_lab
+. label values gnota gnota_lab
 
 . 
-. tabulate gedad
+. tabulate gnota
 
-   Grupo de edad │      Freq.     Percent        Cum.
-─────────────────┼───────────────────────────────────
-Menor de 50 años │     18,289       54.22       54.22
-   50 y más años │     15,445       45.78      100.00
-─────────────────┼───────────────────────────────────
-           Total │     33,734      100.00
+   Grupo de │
+       nota │      Freq.     Percent        Cum.
+────────────┼───────────────────────────────────
+   11 y más │         34      100.00      100.00
+────────────┼───────────────────────────────────
+      Total │         34      100.00
 </pre>
-<h3 id="generación-extendida-de-variables">Generación extendida de variables</h3>
-<p>El comando <code>egen</code> nos permite realizar muchas operaciones a partir de una o varias variables (conteo, medias, etc.)</p>
-<p><code>egen [<i>type</i>] <i>newvar</i> = <i>fcn</i>(<i>arguments</i>) [<i>if</i>] [<i>in</i>] [, <i>options</i>]</code></p>
-<p>Por ejemplo, podemos calcular la edad promedio y almacenarla como una nueva variable.</p>
-<pre class='stata'>. egen edadm = mean(edad)
+<h3 id="generación-extendida-de-variables">Generación extendida de
+variables</h3>
+<p>El comando <code>egen</code> nos permite realizar muchas operaciones
+a partir de una o varias variables (conteo, medias, etc.)</p>
+<p><code>egen [<i>type</i>] <i>newvar</i> = <i>fcn</i>(<i>arguments</i>)
+[<i>if</i>] [<i>in</i>)] [, <i>options</i>]</code></p>
+<p>Por ejemplo, podemos calcular la edad promedio y almacenarla como una
+nueva variable.</p>
+<pre class='stata'>. egen notam = mean(nota)
 </pre>
 <h3 id="los-valores-perdidos">Los valores perdidos</h3>
-<p>Una particularidad de los microdatos es la existencia frecuente de valores perdidos, debido a no respuesta, error de codificación o, simplemente, no disponibilidad de la variable para ciertas personas (e.g., salario para una persona que no está ocupada). <code>Stata</code> tiene dos formas de codificar estos valores. La primera de ellas son valores perdidos genéricos (<code>.</code>). La segunda consiste en valores perdidos específicos, que se etiquetan con letras (<code>.a</code>&lt;<code>.b</code>&lt;…&lt;<code>.z</code>). Matemáticamente, <code>Stata</code> considera los valores perdidos como valores más elevados que el resto, es decir,</p>
+<p>Una particularidad de los microdatos es la existencia frecuente de
+valores perdidos, debido a no respuesta, error de codificación o,
+simplemente, no disponibilidad de la variable para ciertas personas
+(e.g., salario para una persona que no está ocupada). <code>Stata</code>
+tiene dos formas de codificar estos valores. La primera de ellas son
+valores perdidos genéricos (<code>.</code>). La segunda consiste en
+valores perdidos específicos, que se etiquetan con letras
+(<code>.a</code>&lt;<code>.b</code>&lt;…&lt;<code>.z</code>).
+Matemáticamente, <code>Stata</code> considera los valores perdidos como
+valores más elevados que el resto, es decir,</p>
 <p><span class="math display">\[
     . &lt; .a &lt; .b &lt; \dots &lt; .z
 \]</span></p>
-<p>En ocasiones, nosotros mismos tenemos que manejar los problemas asociados a los valores perdidos. Para ello, vamos recurrir a otro archivo de la ECV 2018, el fichero detallado de información sobre los individuos (<code>esudb18p.csv</code>) y procedemos de la misma forma que más arriba.</p>
+<p>En ocasiones, nosotros mismos tenemos que manejar los problemas
+asociados a los valores perdidos. Para ello, vamos recurrir a otro
+archivo de la ECV 2018, el fichero detallado de información sobre los
+individuos (<code>esudb18p.csv</code>) y procedemos de la misma forma
+que más arriba.</p>
 <pre><code>import delimited using &quot;esudb18p.csv&quot;, clear delimiter(&quot;,&quot;)
 destring _all, replace</code></pre>
 
-<p>Nos fijamos en la variable <code>p78a_u</code>, que, de acuerdo con la documentación, recoge información sobre la ayuda que recibe el adulto entrevistado si afronta limitaciones en su vida diaria.</p>
-<figure>
-<img src="p78a_u.png" alt="Pregunta p78a_u en la documentación de la ECV" /><figcaption aria-hidden="true">Pregunta p78a_u en la documentación de la ECV</figcaption>
-</figure>
-<p>Podemos ver que, en puridad, los valores -2 y -1 son valores perdidos. Se refieren a que la pregunta no es aplicable (porque el entrevistado no tenía limitaciones) o bien no contestó. Si queremos saber el tipo ayuda que recibe una persona con limitaciones diarias, los porcentajes ofrecidos por la tabulación de esta variable no son muy útiles.</p>
-<pre class='stata'>. browse p78a_u
+<p>Nos fijamos en la variable <code>p524a1</code>, que, de acuerdo con
+la documentación, recoge información sobre las horas semanales de
+trabajo en la ocupación principal</p>
+<pre class='stata'>. tabulate p524a1,m
 
-. tabulate p78a_u
-
-     P78a_U │      Freq.     Percent        Cum.
+�cu�nto fue │
+ su ingreso │
+   total en │
+ el(la) ... │
+  anterior, │
+ incluyendo │
+  las horas │
+     extras │      Freq.     Percent        Cum.
 ────────────┼───────────────────────────────────
-         -2 │     22,051       78.31       78.31
-         -1 │          2        0.01       78.31
-          1 │      1,388        4.93       83.24
-          2 │      2,248        7.98       91.23
-          3 │      1,968        6.99       98.21
-          4 │         44        0.16       98.37
-          5 │        252        0.89       99.26
-          6 │        176        0.63       99.89
-          7 │          3        0.01       99.90
-          8 │         25        0.09       99.99
-          9 │          3        0.01      100.00
+          5 │          2        0.00        0.00
+          7 │          1        0.00        0.00
+         10 │         24        0.03        0.03
+         12 │          5        0.01        0.04
+         13 │          1        0.00        0.04
+         14 │          1        0.00        0.04
+         15 │         36        0.04        0.08
+         16 │          2        0.00        0.08
+         20 │        105        0.12        0.20
+         21 │          1        0.00        0.21
+         24 │          1        0.00        0.21
+         25 │         56        0.06        0.27
+         26 │          2        0.00        0.27
+         27 │          2        0.00        0.28
+         28 │          2        0.00        0.28
+         30 │        160        0.18        0.46
+         32 │          1        0.00        0.46
+         35 │         37        0.04        0.51
+         36 │          2        0.00        0.51
+         38 │          1        0.00        0.51
+         39 │          2        0.00        0.51
+         40 │        173        0.20        0.71
+         42 │          2        0.00        0.71
+         43 │          4        0.00        0.72
+         44 │          1        0.00        0.72
+         45 │         28        0.03        0.75
+         46 │          3        0.00        0.75
+         48 │          3        0.00        0.76
+         50 │        212        0.24        1.00
+         54 │          1        0.00        1.00
+         55 │          4        0.00        1.01
+         56 │          2        0.00        1.01
+         57 │          1        0.00        1.01
+         60 │        307        0.35        1.37
+         63 │          2        0.00        1.37
+         65 │          2        0.00        1.37
+         67 │          1        0.00        1.37
+         68 │          1        0.00        1.37
+         70 │         92        0.11        1.48
+         72 │          6        0.01        1.48
+         74 │          4        0.00        1.49
+         75 │         82        0.09        1.58
+         78 │          3        0.00        1.59
+         80 │        216        0.25        1.84
+         83 │          1        0.00        1.84
+         84 │          5        0.01        1.84
+         85 │          1        0.00        1.84
+         87 │          2        0.00        1.85
+         90 │        246        0.28        2.13
+         91 │          1        0.00        2.13
+         92 │          2        0.00        2.13
+         95 │          3        0.00        2.14
+         96 │          5        0.01        2.14
+        100 │        368        0.42        2.57
+        102 │          2        0.00        2.57
+        103 │          1        0.00        2.57
+        105 │         48        0.06        2.63
+        108 │          6        0.01        2.63
+        109 │          1        0.00        2.63
+        110 │         12        0.01        2.65
+        117 │          2        0.00        2.65
+        120 │        525        0.60        3.25
+        122 │          1        0.00        3.26
+        124 │          2        0.00        3.26
+        125 │         40        0.05        3.30
+        126 │          4        0.00        3.31
+        128 │          2        0.00        3.31
+        129 │          1        0.00        3.31
+        130 │         19        0.02        3.33
+        132 │          2        0.00        3.34
+        133 │          1        0.00        3.34
+        135 │         26        0.03        3.37
+        138 │          4        0.00        3.37
+        140 │         94        0.11        3.48
+        144 │          4        0.00        3.48
+        145 │          1        0.00        3.49
+        150 │        605        0.70        4.18
+        155 │          4        0.00        4.19
+        156 │          2        0.00        4.19
+        160 │        144        0.17        4.36
+        162 │          3        0.00        4.36
+        165 │          8        0.01        4.37
+        168 │          2        0.00        4.37
+        170 │         16        0.02        4.39
+        171 │          1        0.00        4.39
+        173 │          6        0.01        4.40
+        175 │         62        0.07        4.47
+        180 │        510        0.59        5.06
+        182 │          1        0.00        5.06
+        185 │          4        0.00        5.06
+        186 │          1        0.00        5.06
+        187 │          1        0.00        5.06
+        188 │          1        0.00        5.07
+        189 │          1        0.00        5.07
+        190 │          8        0.01        5.08
+        192 │          3        0.00        5.08
+        193 │          1        0.00        5.08
+        195 │         14        0.02        5.10
+        196 │          1        0.00        5.10
+        197 │          1        0.00        5.10
+        198 │          3        0.00        5.10
+        199 │          1        0.00        5.10
+        200 │        568        0.65        5.76
+        202 │          1        0.00        5.76
+        203 │          1        0.00        5.76
+        204 │          3        0.00        5.76
+        205 │          1        0.00        5.76
+        208 │          1        0.00        5.77
+        210 │        245        0.28        6.05
+        215 │          4        0.00        6.05
+        216 │          1        0.00        6.05
+        217 │          4        0.00        6.06
+        218 │          1        0.00        6.06
+        220 │         59        0.07        6.13
+        222 │          1        0.00        6.13
+        225 │         18        0.02        6.15
+        226 │          1        0.00        6.15
+        228 │          3        0.00        6.15
+        230 │         32        0.04        6.19
+        232 │          2        0.00        6.19
+        233 │          3        0.00        6.20
+        234 │          5        0.01        6.20
+        235 │          3        0.00        6.21
+        236 │          1        0.00        6.21
+        237 │          1        0.00        6.21
+        239 │          1        0.00        6.21
+        240 │        507        0.58        6.79
+        245 │         18        0.02        6.81
+        246 │          5        0.01        6.82
+        247 │          1        0.00        6.82
+        248 │          3        0.00        6.82
+        250 │        419        0.48        7.31
+        252 │          1        0.00        7.31
+        253 │          1        0.00        7.31
+        255 │          7        0.01        7.32
+        256 │          2        0.00        7.32
+        258 │          1        0.00        7.32
+        260 │         35        0.04        7.36
+        262 │          1        0.00        7.36
+        265 │          1        0.00        7.36
+        267 │          1        0.00        7.36
+        270 │         63        0.07        7.44
+        272 │          1        0.00        7.44
+        273 │          1        0.00        7.44
+        274 │          1        0.00        7.44
+        275 │          8        0.01        7.45
+        276 │          5        0.01        7.46
+        277 │          1        0.00        7.46
+        280 │        133        0.15        7.61
+        283 │          1        0.00        7.61
+        284 │          1        0.00        7.61
+        285 │          2        0.00        7.61
+        287 │          4        0.00        7.62
+        288 │          1        0.00        7.62
+        290 │         13        0.01        7.64
+        293 │          3        0.00        7.64
+        294 │          1        0.00        7.64
+        295 │          5        0.01        7.65
+        300 │        989        1.14        8.79
+        302 │          3        0.00        8.79
+        303 │          1        0.00        8.79
+        304 │          1        0.00        8.79
+        305 │          2        0.00        8.79
+        306 │          2        0.00        8.80
+        310 │          9        0.01        8.81
+        312 │          2        0.00        8.81
+        313 │          2        0.00        8.81
+        314 │          2        0.00        8.81
+        315 │          7        0.01        8.82
+        317 │          1        0.00        8.82
+        318 │          1        0.00        8.82
+        320 │         58        0.07        8.89
+        321 │          1        0.00        8.89
+        322 │          8        0.01        8.90
+        324 │          1        0.00        8.90
+        325 │          8        0.01        8.91
+        328 │          2        0.00        8.91
+        330 │         24        0.03        8.94
+        333 │          2        0.00        8.94
+        335 │          2        0.00        8.95
+        336 │          1        0.00        8.95
+        340 │         22        0.03        8.97
+        342 │          2        0.00        8.97
+        343 │          1        0.00        8.98
+        345 │         15        0.02        8.99
+        346 │          3        0.00        9.00
+        347 │          2        0.00        9.00
+        348 │          1        0.00        9.00
+        350 │        305        0.35        9.35
+        351 │          1        0.00        9.35
+        352 │          1        0.00        9.35
+        355 │          1        0.00        9.35
+        356 │          3        0.00        9.36
+        360 │        234        0.27        9.63
+        362 │          1        0.00        9.63
+        363 │          1        0.00        9.63
+        364 │          1        0.00        9.63
+        365 │          2        0.00        9.63
+        367 │          3        0.00        9.64
+        368 │          6        0.01        9.64
+        369 │          1        0.00        9.64
+        370 │         16        0.02        9.66
+        372 │          3        0.00        9.67
+        374 │          1        0.00        9.67
+        375 │         13        0.01        9.68
+        377 │          1        0.00        9.68
+        379 │          8        0.01        9.69
+        380 │         38        0.04        9.74
+        384 │          3        0.00        9.74
+        385 │          2        0.00        9.74
+        386 │          1        0.00        9.74
+        389 │          1        0.00        9.74
+        390 │         22        0.03        9.77
+        392 │          1        0.00        9.77
+        393 │          1        0.00        9.77
+        396 │          2        0.00        9.77
+        399 │          2        0.00        9.78
+        400 │        407        0.47       10.25
+        402 │          6        0.01       10.25
+        405 │          1        0.00       10.25
+        406 │          1        0.00       10.26
+        408 │          1        0.00       10.26
+        410 │          6        0.01       10.26
+        414 │          1        0.00       10.26
+        415 │          1        0.00       10.27
+        416 │          1        0.00       10.27
+        417 │          1        0.00       10.27
+        420 │        142        0.16       10.43
+        424 │          1        0.00       10.43
+        425 │          6        0.01       10.44
+        426 │          1        0.00       10.44
+        428 │          1        0.00       10.44
+        429 │          1        0.00       10.44
+        430 │          9        0.01       10.45
+        433 │          2        0.00       10.46
+        435 │          1        0.00       10.46
+        437 │          3        0.00       10.46
+        440 │          7        0.01       10.47
+        444 │          1        0.00       10.47
+        446 │          1        0.00       10.47
+        448 │          1        0.00       10.47
+        450 │        210        0.24       10.71
+        452 │          3        0.00       10.72
+        453 │          1        0.00       10.72
+        455 │          5        0.01       10.72
+        459 │          2        0.00       10.73
+        460 │         48        0.06       10.78
+        462 │          1        0.00       10.78
+        465 │         29        0.03       10.82
+        468 │         12        0.01       10.83
+        470 │          9        0.01       10.84
+        472 │          2        0.00       10.84
+        475 │          9        0.01       10.85
+        480 │        159        0.18       11.04
+        482 │          1        0.00       11.04
+        485 │          1        0.00       11.04
+        490 │         17        0.02       11.06
+        492 │          1        0.00       11.06
+        495 │          3        0.00       11.06
+        498 │          2        0.00       11.06
+        500 │        497        0.57       11.64
+        504 │          2        0.00       11.64
+        506 │          1        0.00       11.64
+        507 │          2        0.00       11.64
+        508 │          1        0.00       11.64
+        510 │         14        0.02       11.66
+        515 │          2        0.00       11.66
+        517 │          2        0.00       11.67
+        518 │          1        0.00       11.67
+        519 │          1        0.00       11.67
+        520 │         23        0.03       11.69
+        524 │          1        0.00       11.70
+        525 │          9        0.01       11.71
+        528 │          4        0.00       11.71
+        530 │          8        0.01       11.72
+        534 │          1        0.00       11.72
+        537 │          1        0.00       11.72
+        540 │         37        0.04       11.76
+        541 │          1        0.00       11.77
+        543 │          1        0.00       11.77
+        545 │          2        0.00       11.77
+        546 │          3        0.00       11.77
+        550 │         58        0.07       11.84
+        551 │          1        0.00       11.84
+        552 │          1        0.00       11.84
+        555 │          1        0.00       11.84
+        558 │          1        0.00       11.84
+        560 │         26        0.03       11.87
+        561 │          1        0.00       11.87
+        565 │          2        0.00       11.88
+        570 │          8        0.01       11.89
+        574 │          2        0.00       11.89
+        575 │         11        0.01       11.90
+        578 │          1        0.00       11.90
+        580 │         16        0.02       11.92
+        582 │          1        0.00       11.92
+        585 │          2        0.00       11.92
+        588 │          1        0.00       11.93
+        589 │          1        0.00       11.93
+        590 │          4        0.00       11.93
+        598 │          1        0.00       11.93
+        600 │        488        0.56       12.49
+        606 │          3        0.00       12.50
+        609 │          1        0.00       12.50
+        610 │          2        0.00       12.50
+        612 │          1        0.00       12.50
+        613 │          1        0.00       12.50
+        619 │          1        0.00       12.50
+        620 │         10        0.01       12.52
+        622 │          2        0.00       12.52
+        625 │          2        0.00       12.52
+        630 │         11        0.01       12.53
+        632 │          3        0.00       12.54
+        634 │          1        0.00       12.54
+        636 │          1        0.00       12.54
+        638 │          1        0.00       12.54
+        640 │         10        0.01       12.55
+        643 │          1        0.00       12.55
+        645 │          2        0.00       12.56
+        648 │          2        0.00       12.56
+        650 │         68        0.08       12.64
+        654 │          1        0.00       12.64
+        660 │         10        0.01       12.65
+        661 │          1        0.00       12.65
+        662 │          1        0.00       12.65
+        663 │          1        0.00       12.65
+        665 │          2        0.00       12.65
+        667 │          2        0.00       12.66
+        670 │          5        0.01       12.66
+        672 │          1        0.00       12.66
+        675 │          5        0.01       12.67
+        678 │          2        0.00       12.67
+        680 │         12        0.01       12.69
+        683 │          2        0.00       12.69
+        687 │          1        0.00       12.69
+        689 │          3        0.00       12.69
+        690 │         12        0.01       12.71
+        692 │          1        0.00       12.71
+        693 │          3        0.00       12.71
+        699 │          1        0.00       12.71
+        700 │        269        0.31       13.02
+        702 │          3        0.00       13.03
+        704 │          2        0.00       13.03
+        705 │          1        0.00       13.03
+        707 │          1        0.00       13.03
+        710 │          4        0.00       13.03
+        713 │          2        0.00       13.04
+        716 │          1        0.00       13.04
+        720 │         45        0.05       13.09
+        724 │          2        0.00       13.09
+        725 │          1        0.00       13.09
+        727 │          1        0.00       13.09
+        730 │          9        0.01       13.11
+        732 │          1        0.00       13.11
+        737 │          1        0.00       13.11
+        740 │          6        0.01       13.11
+        742 │          1        0.00       13.12
+        747 │          1        0.00       13.12
+        750 │        116        0.13       13.25
+        752 │          1        0.00       13.25
+        754 │          1        0.00       13.25
+        756 │          2        0.00       13.25
+        757 │          1        0.00       13.26
+        758 │          4        0.00       13.26
+        759 │          1        0.00       13.26
+        760 │         10        0.01       13.27
+        765 │          1        0.00       13.27
+        766 │          1        0.00       13.28
+        767 │          3        0.00       13.28
+        770 │         10        0.01       13.29
+        774 │          1        0.00       13.29
+        778 │          1        0.00       13.29
+        779 │          3        0.00       13.30
+        780 │         34        0.04       13.34
+        782 │          1        0.00       13.34
+        785 │          1        0.00       13.34
+        790 │          3        0.00       13.34
+        798 │          1        0.00       13.34
+        800 │        328        0.38       13.72
+        804 │          1        0.00       13.72
+        805 │          5        0.01       13.73
+        810 │          4        0.00       13.73
+        815 │          1        0.00       13.73
+        819 │         19        0.02       13.75
+        820 │          9        0.01       13.77
+        821 │          1        0.00       13.77
+        822 │          1        0.00       13.77
+        827 │          2        0.00       13.77
+        829 │          1        0.00       13.77
+        830 │          5        0.01       13.78
+        831 │          1        0.00       13.78
+        834 │          1        0.00       13.78
+        835 │          1        0.00       13.78
+        840 │         26        0.03       13.81
+        844 │          2        0.00       13.81
+        845 │          2        0.00       13.81
+        850 │         94        0.11       13.92
+        852 │          1        0.00       13.92
+        858 │          4        0.00       13.93
+        860 │          5        0.01       13.93
+        862 │          5        0.01       13.94
+        866 │          3        0.00       13.94
+        870 │          2        0.00       13.95
+        875 │          6        0.01       13.95
+        880 │         12        0.01       13.97
+        885 │          2        0.00       13.97
+        890 │          2        0.00       13.97
+        892 │          1        0.00       13.97
+        895 │          1        0.00       13.97
+        896 │          1        0.00       13.97
+        897 │          2        0.00       13.98
+        900 │        254        0.29       14.27
+        902 │          1        0.00       14.27
+        903 │          1        0.00       14.27
+        905 │          1        0.00       14.27
+        908 │          1        0.00       14.27
+        909 │          4        0.00       14.28
+        915 │          1        0.00       14.28
+        919 │          1        0.00       14.28
+        920 │         19        0.02       14.30
+        925 │          1        0.00       14.30
+        930 │      1,010        1.16       15.47
+        931 │          1        0.00       15.47
+        932 │          1        0.00       15.47
+        933 │          2        0.00       15.47
+        934 │          1        0.00       15.47
+        935 │          7        0.01       15.48
+        936 │          2        0.00       15.48
+        938 │          1        0.00       15.49
+        940 │          2        0.00       15.49
+        943 │          1        0.00       15.49
+        945 │          1        0.00       15.49
+        948 │          1        0.00       15.49
+        950 │        259        0.30       15.79
+        954 │          1        0.00       15.79
+        958 │          3        0.00       15.79
+        960 │         68        0.08       15.87
+        961 │          1        0.00       15.87
+        966 │          1        0.00       15.87
+        968 │          1        0.00       15.88
+        970 │          9        0.01       15.89
+        975 │          4        0.00       15.89
+        977 │          1        0.00       15.89
+        980 │         31        0.04       15.93
+        982 │          1        0.00       15.93
+        987 │          1        0.00       15.93
+        990 │          5        0.01       15.94
+        992 │          1        0.00       15.94
+        995 │          1        0.00       15.94
+        996 │          1        0.00       15.94
+       1000 │        625        0.72       16.66
+       1003 │          1        0.00       16.66
+       1005 │          1        0.00       16.66
+       1007 │          1        0.00       16.66
+       1010 │          2        0.00       16.66
+       1011 │          1        0.00       16.67
+       1013 │          4        0.00       16.67
+       1014 │          1        0.00       16.67
+       1016 │          1        0.00       16.67
+       1017 │          8        0.01       16.68
+       1020 │         12        0.01       16.70
+       1023 │          9        0.01       16.71
+       1025 │          1        0.00       16.71
+       1026 │          1        0.00       16.71
+       1027 │          1        0.00       16.71
+       1030 │         13        0.01       16.72
+       1034 │          7        0.01       16.73
+       1035 │          4        0.00       16.74
+       1036 │          1        0.00       16.74
+       1039 │          6        0.01       16.75
+       1040 │         11        0.01       16.76
+       1045 │          1        0.00       16.76
+       1050 │         78        0.09       16.85
+       1051 │          7        0.01       16.86
+       1055 │          1        0.00       16.86
+       1056 │          1        0.00       16.86
+       1057 │          1        0.00       16.86
+       1060 │          7        0.01       16.87
+       1067 │          1        0.00       16.87
+       1068 │          5        0.01       16.88
+       1069 │         14        0.02       16.89
+       1070 │          9        0.01       16.90
+       1071 │          1        0.00       16.90
+       1073 │          2        0.00       16.91
+       1074 │          4        0.00       16.91
+       1075 │          3        0.00       16.91
+       1080 │         22        0.03       16.94
+       1087 │          1        0.00       16.94
+       1090 │          4        0.00       16.94
+       1092 │          3        0.00       16.95
+       1095 │          1        0.00       16.95
+       1096 │          1        0.00       16.95
+       1099 │          1        0.00       16.95
+       1100 │        213        0.25       17.20
+       1102 │          1        0.00       17.20
+       1105 │          1        0.00       17.20
+       1106 │          1        0.00       17.20
+       1108 │          2        0.00       17.20
+       1110 │          1        0.00       17.20
+       1119 │          1        0.00       17.21
+       1120 │         13        0.01       17.22
+       1121 │          2        0.00       17.22
+       1122 │          2        0.00       17.22
+       1123 │          2        0.00       17.23
+       1130 │         14        0.02       17.24
+       1131 │          1        0.00       17.24
+       1136 │          1        0.00       17.25
+       1137 │          1        0.00       17.25
+       1138 │          1        0.00       17.25
+       1140 │          6        0.01       17.25
+       1143 │          1        0.00       17.26
+       1149 │          3        0.00       17.26
+       1150 │         40        0.05       17.31
+       1155 │          3        0.00       17.31
+       1156 │          1        0.00       17.31
+       1160 │          6        0.01       17.32
+       1165 │          1        0.00       17.32
+       1168 │          1        0.00       17.32
+       1169 │          1        0.00       17.32
+       1170 │          9        0.01       17.33
+       1175 │          1        0.00       17.33
+       1178 │          2        0.00       17.33
+       1180 │          5        0.01       17.34
+       1186 │          1        0.00       17.34
+       1189 │          1        0.00       17.34
+       1200 │        911        1.05       18.39
+       1201 │          1        0.00       18.39
+       1202 │          1        0.00       18.39
+       1206 │          1        0.00       18.40
+       1207 │          1        0.00       18.40
+       1208 │          1        0.00       18.40
+       1210 │          2        0.00       18.40
+       1212 │          1        0.00       18.40
+       1214 │          1        0.00       18.40
+       1216 │          1        0.00       18.40
+       1220 │          1        0.00       18.40
+       1225 │          2        0.00       18.41
+       1230 │          7        0.01       18.41
+       1232 │          1        0.00       18.42
+       1235 │          1        0.00       18.42
+       1240 │          5        0.01       18.42
+       1241 │          1        0.00       18.42
+       1243 │          1        0.00       18.42
+       1245 │          1        0.00       18.43
+       1248 │          5        0.01       18.43
+       1250 │         57        0.07       18.50
+       1254 │          1        0.00       18.50
+       1260 │          6        0.01       18.51
+       1264 │          6        0.01       18.51
+       1265 │          1        0.00       18.51
+       1270 │          1        0.00       18.51
+       1272 │          1        0.00       18.52
+       1276 │          1        0.00       18.52
+       1280 │          7        0.01       18.53
+       1287 │          1        0.00       18.53
+       1288 │          1        0.00       18.53
+       1290 │          2        0.00       18.53
+       1299 │          4        0.00       18.53
+       1300 │        289        0.33       18.87
+       1305 │          1        0.00       18.87
+       1320 │          4        0.00       18.87
+       1322 │          1        0.00       18.87
+       1325 │          2        0.00       18.88
+       1327 │          1        0.00       18.88
+       1330 │          5        0.01       18.88
+       1333 │          1        0.00       18.88
+       1340 │          1        0.00       18.89
+       1343 │          1        0.00       18.89
+       1344 │          1        0.00       18.89
+       1350 │         47        0.05       18.94
+       1356 │         13        0.01       18.96
+       1358 │          1        0.00       18.96
+       1359 │          1        0.00       18.96
+       1360 │          4        0.00       18.96
+       1365 │          2        0.00       18.97
+       1366 │          1        0.00       18.97
+       1370 │          4        0.00       18.97
+       1377 │          2        0.00       18.97
+       1379 │         11        0.01       18.99
+       1380 │         13        0.01       19.00
+       1386 │          1        0.00       19.00
+       1390 │          1        0.00       19.00
+       1392 │          1        0.00       19.01
+       1395 │          1        0.00       19.01
+       1397 │          2        0.00       19.01
+       1400 │        224        0.26       19.27
+       1410 │          1        0.00       19.27
+       1412 │          1        0.00       19.27
+       1413 │          1        0.00       19.27
+       1416 │          1        0.00       19.27
+       1420 │          3        0.00       19.28
+       1423 │          1        0.00       19.28
+       1424 │          2        0.00       19.28
+       1430 │          9        0.01       19.29
+       1436 │          1        0.00       19.29
+       1440 │         16        0.02       19.31
+       1445 │          1        0.00       19.31
+       1446 │          1        0.00       19.31
+       1449 │          1        0.00       19.31
+       1450 │         20        0.02       19.34
+       1454 │          1        0.00       19.34
+       1456 │          2        0.00       19.34
+       1457 │          1        0.00       19.34
+       1460 │          3        0.00       19.34
+       1469 │          3        0.00       19.35
+       1470 │          7        0.01       19.35
+       1477 │          1        0.00       19.36
+       1478 │          1        0.00       19.36
+       1480 │          5        0.01       19.36
+       1481 │          1        0.00       19.36
+       1483 │          1        0.00       19.37
+       1485 │          2        0.00       19.37
+       1490 │          1        0.00       19.37
+       1494 │          3        0.00       19.37
+       1495 │          1        0.00       19.37
+       1500 │        835        0.96       20.33
+       1516 │          2        0.00       20.34
+       1520 │          7        0.01       20.35
+       1525 │          1        0.00       20.35
+       1526 │          1        0.00       20.35
+       1530 │          2        0.00       20.35
+       1536 │          2        0.00       20.35
+       1540 │          2        0.00       20.35
+       1543 │          1        0.00       20.36
+       1545 │          1        0.00       20.36
+       1550 │         17        0.02       20.38
+       1558 │          1        0.00       20.38
+       1559 │          3        0.00       20.38
+       1560 │          7        0.01       20.39
+       1562 │          1        0.00       20.39
+       1564 │          1        0.00       20.39
+       1566 │          1        0.00       20.39
+       1568 │          1        0.00       20.39
+       1570 │          2        0.00       20.40
+       1580 │          4        0.00       20.40
+       1582 │          5        0.01       20.41
+       1595 │          2        0.00       20.41
+       1596 │          1        0.00       20.41
+       1600 │        190        0.22       20.63
+       1609 │          4        0.00       20.63
+       1610 │          3        0.00       20.64
+       1620 │          6        0.01       20.64
+       1630 │          3        0.00       20.65
+       1637 │          1        0.00       20.65
+       1639 │          1        0.00       20.65
+       1640 │          2        0.00       20.65
+       1642 │          1        0.00       20.65
+       1643 │          1        0.00       20.65
+       1644 │          1        0.00       20.66
+       1645 │          1        0.00       20.66
+       1650 │         23        0.03       20.68
+       1655 │          4        0.00       20.69
+       1660 │          2        0.00       20.69
+       1666 │          1        0.00       20.69
+       1667 │          2        0.00       20.69
+       1675 │          1        0.00       20.69
+       1677 │          1        0.00       20.70
+       1680 │          9        0.01       20.71
+       1684 │          1        0.00       20.71
+       1688 │          1        0.00       20.71
+       1690 │          1        0.00       20.71
+       1692 │          1        0.00       20.71
+       1695 │          9        0.01       20.72
+       1700 │        176        0.20       20.92
+       1703 │          1        0.00       20.92
+       1708 │          1        0.00       20.93
+       1720 │          5        0.01       20.93
+       1724 │         14        0.02       20.95
+       1725 │          1        0.00       20.95
+       1730 │          4        0.00       20.95
+       1740 │          4        0.00       20.96
+       1742 │          1        0.00       20.96
+       1745 │          2        0.00       20.96
+       1750 │         19        0.02       20.98
+       1755 │          1        0.00       20.98
+       1760 │          2        0.00       20.99
+       1763 │          1        0.00       20.99
+       1768 │          1        0.00       20.99
+       1770 │          1        0.00       20.99
+       1780 │          1        0.00       20.99
+       1790 │          1        0.00       20.99
+       1793 │          1        0.00       20.99
+       1795 │          1        0.00       21.00
+       1800 │        384        0.44       21.44
+       1806 │          1        0.00       21.44
+       1808 │          5        0.01       21.44
+       1810 │          1        0.00       21.45
+       1813 │          1        0.00       21.45
+       1820 │          5        0.01       21.45
+       1821 │          2        0.00       21.45
+       1827 │          1        0.00       21.46
+       1828 │          1        0.00       21.46
+       1830 │          3        0.00       21.46
+       1839 │          6        0.01       21.47
+       1840 │          3        0.00       21.47
+       1843 │          1        0.00       21.47
+       1850 │         16        0.02       21.49
+       1860 │          2        0.00       21.49
+       1880 │          1        0.00       21.49
+       1888 │          1        0.00       21.50
+       1890 │          3        0.00       21.50
+       1900 │         75        0.09       21.58
+       1904 │          1        0.00       21.59
+       1910 │          1        0.00       21.59
+       1911 │          1        0.00       21.59
+       1920 │          3        0.00       21.59
+       1924 │          1        0.00       21.59
+       1925 │          1        0.00       21.59
+       1926 │          1        0.00       21.60
+       1930 │          1        0.00       21.60
+       1931 │          1        0.00       21.60
+       1936 │          2        0.00       21.60
+       1940 │          1        0.00       21.60
+       1944 │          1        0.00       21.60
+       1950 │          6        0.01       21.61
+       1954 │          4        0.00       21.61
+       1958 │          1        0.00       21.61
+       1963 │          1        0.00       21.62
+       1970 │          2        0.00       21.62
+       1971 │          1        0.00       21.62
+       1976 │          1        0.00       21.62
+       1977 │          1        0.00       21.62
+       1978 │          1        0.00       21.62
+       1980 │          5        0.01       21.63
+       1985 │          2        0.00       21.63
+       1990 │          2        0.00       21.63
+       1998 │          2        0.00       21.64
+       2000 │        582        0.67       22.31
+       2007 │          1        0.00       22.31
+       2010 │          2        0.00       22.31
+       2015 │          1        0.00       22.31
+       2016 │          1        0.00       22.31
+       2020 │          4        0.00       22.32
+       2025 │          2        0.00       22.32
+       2034 │          2        0.00       22.32
+       2035 │          1        0.00       22.32
+       2039 │          1        0.00       22.32
+       2043 │          1        0.00       22.32
+       2046 │          1        0.00       22.33
+       2048 │          1        0.00       22.33
+       2050 │          5        0.01       22.33
+       2060 │          1        0.00       22.33
+       2066 │          1        0.00       22.33
+       2068 │          2        0.00       22.34
+       2069 │          4        0.00       22.34
+       2070 │          1        0.00       22.34
+       2078 │          1        0.00       22.34
+       2080 │          5        0.01       22.35
+       2085 │          1        0.00       22.35
+       2088 │          1        0.00       22.35
+       2090 │          1        0.00       22.35
+       2094 │          1        0.00       22.35
+       2097 │          1        0.00       22.36
+       2099 │          1        0.00       22.36
+       2100 │        103        0.12       22.48
+       2103 │          1        0.00       22.48
+       2110 │          1        0.00       22.48
+       2120 │          2        0.00       22.48
+       2130 │          4        0.00       22.48
+       2145 │          1        0.00       22.49
+       2150 │         10        0.01       22.50
+       2159 │          1        0.00       22.50
+       2160 │          6        0.01       22.51
+       2163 │          1        0.00       22.51
+       2165 │          2        0.00       22.51
+       2170 │          2        0.00       22.51
+       2172 │          1        0.00       22.51
+       2176 │          1        0.00       22.51
+       2180 │          4        0.00       22.52
+       2183 │          2        0.00       22.52
+       2190 │          1        0.00       22.52
+       2192 │          1        0.00       22.52
+       2198 │          1        0.00       22.52
+       2200 │        274        0.32       22.84
+       2208 │          2        0.00       22.84
+       2213 │          1        0.00       22.84
+       2220 │          4        0.00       22.85
+       2228 │          1        0.00       22.85
+       2230 │          2        0.00       22.85
+       2232 │          1        0.00       22.85
+       2240 │          5        0.01       22.86
+       2245 │          1        0.00       22.86
+       2250 │         10        0.01       22.87
+       2253 │          1        0.00       22.87
+       2260 │          6        0.01       22.88
+       2264 │          1        0.00       22.88
+       2267 │          1        0.00       22.88
+       2270 │          2        0.00       22.88
+       2273 │          1        0.00       22.88
+       2280 │          2        0.00       22.89
+       2284 │          1        0.00       22.89
+       2288 │          1        0.00       22.89
+       2297 │          1        0.00       22.89
+       2298 │          6        0.01       22.90
+       2299 │          8        0.01       22.91
+       2300 │        191        0.22       23.13
+       2302 │          1        0.00       23.13
+       2310 │          1        0.00       23.13
+       2320 │          5        0.01       23.13
+       2338 │          1        0.00       23.14
+       2340 │          1        0.00       23.14
+       2344 │          1        0.00       23.14
+       2350 │          7        0.01       23.15
+       2360 │          2        0.00       23.15
+       2370 │          1        0.00       23.15
+       2373 │          1        0.00       23.15
+       2374 │          1        0.00       23.15
+       2380 │          3        0.00       23.16
+       2390 │          2        0.00       23.16
+       2396 │          1        0.00       23.16
+       2397 │          1        0.00       23.16
+       2400 │        253        0.29       23.45
+       2410 │          1        0.00       23.45
+       2413 │          1        0.00       23.45
+       2414 │          3        0.00       23.46
+       2418 │          1        0.00       23.46
+       2420 │          1        0.00       23.46
+       2430 │          1        0.00       23.46
+       2435 │          1        0.00       23.46
+       2440 │          1        0.00       23.46
+       2445 │          1        0.00       23.46
+       2450 │          7        0.01       23.47
+       2460 │          2        0.00       23.47
+       2463 │          1        0.00       23.48
+       2470 │          2        0.00       23.48
+       2478 │          1        0.00       23.48
+       2480 │          3        0.00       23.48
+       2481 │          1        0.00       23.48
+       2486 │          4        0.00       23.49
+       2487 │          1        0.00       23.49
+       2500 │        536        0.62       24.11
+       2510 │          1        0.00       24.11
+       2512 │          1        0.00       24.11
+       2514 │          1        0.00       24.11
+       2528 │          5        0.01       24.12
+       2529 │          2        0.00       24.12
+       2530 │          3        0.00       24.12
+       2540 │          1        0.00       24.12
+       2542 │          1        0.00       24.12
+       2550 │          5        0.01       24.13
+       2553 │          1        0.00       24.13
+       2555 │          1        0.00       24.13
+       2560 │          2        0.00       24.13
+       2580 │          4        0.00       24.14
+       2588 │          1        0.00       24.14
+       2598 │          2        0.00       24.14
+       2599 │          1        0.00       24.14
+       2600 │         98        0.11       24.26
+       2610 │          2        0.00       24.26
+       2620 │          2        0.00       24.26
+       2630 │          1        0.00       24.26
+       2640 │          5        0.01       24.27
+       2643 │          4        0.00       24.27
+       2644 │          2        0.00       24.27
+       2645 │          1        0.00       24.28
+       2650 │          2        0.00       24.28
+       2667 │          1        0.00       24.28
+       2677 │          1        0.00       24.28
+       2679 │          1        0.00       24.28
+       2680 │          3        0.00       24.29
+       2700 │         98        0.11       24.40
+       2701 │          1        0.00       24.40
+       2709 │          1        0.00       24.40
+       2710 │          1        0.00       24.40
+       2719 │          1        0.00       24.40
+       2720 │          2        0.00       24.40
+       2725 │          1        0.00       24.41
+       2730 │          1        0.00       24.41
+       2738 │          1        0.00       24.41
+       2740 │          3        0.00       24.41
+       2750 │         12        0.01       24.43
+       2755 │          1        0.00       24.43
+       2758 │          1        0.00       24.43
+       2759 │          1        0.00       24.43
+       2760 │          3        0.00       24.43
+       2775 │          1        0.00       24.43
+       2780 │          2        0.00       24.44
+       2788 │          1        0.00       24.44
+       2790 │          2        0.00       24.44
+       2800 │        201        0.23       24.67
+       2810 │          1        0.00       24.67
+       2815 │          1        0.00       24.67
+       2820 │          1        0.00       24.67
+       2825 │          3        0.00       24.68
+       2836 │          1        0.00       24.68
+       2840 │          1        0.00       24.68
+       2850 │         13        0.01       24.70
+       2860 │          2        0.00       24.70
+       2870 │          1        0.00       24.70
+       2873 │          7        0.01       24.71
+       2874 │          4        0.00       24.71
+       2875 │          2        0.00       24.71
+       2880 │          4        0.00       24.72
+       2888 │          1        0.00       24.72
+       2890 │          2        0.00       24.72
+       2900 │         41        0.05       24.77
+       2930 │          1        0.00       24.77
+       2938 │          1        0.00       24.77
+       2940 │          1        0.00       24.77
+       2950 │          3        0.00       24.78
+       2965 │          1        0.00       24.78
+       2970 │          2        0.00       24.78
+       2972 │          1        0.00       24.78
+       2975 │          1        0.00       24.78
+       2980 │          2        0.00       24.78
+       2983 │          1        0.00       24.79
+       2988 │          2        0.00       24.79
+       2994 │          1        0.00       24.79
+       3000 │        397        0.46       25.25
+       3011 │          1        0.00       25.25
+       3020 │          2        0.00       25.25
+       3024 │          1        0.00       25.25
+       3031 │          1        0.00       25.25
+       3040 │          4        0.00       25.26
+       3050 │          8        0.01       25.27
+       3058 │          1        0.00       25.27
+       3067 │          1        0.00       25.27
+       3070 │          1        0.00       25.27
+       3080 │          1        0.00       25.27
+       3090 │          1        0.00       25.27
+       3097 │          1        0.00       25.27
+       3100 │         36        0.04       25.31
+       3120 │          2        0.00       25.32
+       3122 │          1        0.00       25.32
+       3126 │          1        0.00       25.32
+       3130 │          3        0.00       25.32
+       3150 │          3        0.00       25.33
+       3164 │          1        0.00       25.33
+       3170 │          3        0.00       25.33
+       3174 │          1        0.00       25.33
+       3180 │          1        0.00       25.33
+       3190 │          1        0.00       25.33
+       3196 │          1        0.00       25.33
+       3200 │         96        0.11       25.45
+       3205 │          1        0.00       25.45
+       3210 │          1        0.00       25.45
+       3218 │          4        0.00       25.45
+       3220 │          4        0.00       25.46
+       3230 │          1        0.00       25.46
+       3234 │          1        0.00       25.46
+       3235 │          1        0.00       25.46
+       3243 │          1        0.00       25.46
+       3248 │          1        0.00       25.46
+       3250 │          7        0.01       25.47
+       3260 │          1        0.00       25.47
+       3270 │          1        0.00       25.47
+       3277 │          1        0.00       25.47
+       3290 │          1        0.00       25.48
+       3300 │         55        0.06       25.54
+       3304 │          1        0.00       25.54
+       3325 │          1        0.00       25.54
+       3330 │          1        0.00       25.54
+       3333 │          1        0.00       25.54
+       3344 │          1        0.00       25.54
+       3350 │          1        0.00       25.55
+       3390 │          5        0.01       25.55
+       3400 │         28        0.03       25.58
+       3428 │          1        0.00       25.58
+       3433 │          1        0.00       25.59
+       3448 │          2        0.00       25.59
+       3450 │          1        0.00       25.59
+       3456 │          1        0.00       25.59
+       3500 │        224        0.26       25.85
+       3520 │          1        0.00       25.85
+       3540 │          1        0.00       25.85
+       3565 │          1        0.00       25.85
+       3580 │          1        0.00       25.85
+       3600 │         34        0.04       25.89
+       3610 │          1        0.00       25.89
+       3650 │          2        0.00       25.90
+       3660 │          1        0.00       25.90
+       3672 │          1        0.00       25.90
+       3680 │          1        0.00       25.90
+       3700 │         15        0.02       25.92
+       3720 │          1        0.00       25.92
+       3729 │          1        0.00       25.92
+       3750 │          1        0.00       25.92
+       3800 │         52        0.06       25.98
+       3820 │          1        0.00       25.98
+       3850 │          3        0.00       25.98
+       3880 │          2        0.00       25.99
+       3892 │          1        0.00       25.99
+       3893 │          1        0.00       25.99
+       3896 │          1        0.00       25.99
+       3900 │         11        0.01       26.00
+       3908 │          1        0.00       26.00
+       3955 │          2        0.00       26.01
+       3977 │          1        0.00       26.01
+       3980 │          1        0.00       26.01
+       4000 │        205        0.24       26.24
+       4022 │          4        0.00       26.25
+       4023 │          2        0.00       26.25
+       4048 │          1        0.00       26.25
+       4050 │          2        0.00       26.26
+       4060 │          1        0.00       26.26
+       4100 │         13        0.01       26.27
+       4110 │          1        0.00       26.27
+       4120 │          1        0.00       26.27
+       4200 │         45        0.05       26.33
+       4220 │          1        0.00       26.33
+       4250 │          2        0.00       26.33
+       4270 │          1        0.00       26.33
+       4294 │          1        0.00       26.33
+       4300 │         17        0.02       26.35
+       4320 │          1        0.00       26.35
+       4368 │          1        0.00       26.35
+       4372 │          1        0.00       26.35
+       4400 │          8        0.01       26.36
+       4440 │          1        0.00       26.36
+       4444 │          1        0.00       26.37
+       4470 │          1        0.00       26.37
+       4479 │          1        0.00       26.37
+       4484 │          1        0.00       26.37
+       4500 │         82        0.09       26.46
+       4507 │          1        0.00       26.46
+       4518 │          1        0.00       26.47
+       4520 │          1        0.00       26.47
+       4571 │          1        0.00       26.47
+       4598 │          1        0.00       26.47
+       4600 │         13        0.01       26.48
+       4650 │          1        0.00       26.49
+       4655 │          1        0.00       26.49
+       4658 │          1        0.00       26.49
+       4688 │          1        0.00       26.49
+       4700 │          9        0.01       26.50
+       4750 │          1        0.00       26.50
+       4787 │          1        0.00       26.50
+       4800 │         20        0.02       26.52
+       4831 │          1        0.00       26.53
+       4850 │          1        0.00       26.53
+       4859 │          1        0.00       26.53
+       4885 │          1        0.00       26.53
+       4900 │          3        0.00       26.53
+       4931 │          1        0.00       26.53
+       4980 │          2        0.00       26.54
+       4998 │          1        0.00       26.54
+       5000 │        148        0.17       26.71
+       5020 │          1        0.00       26.71
+       5036 │          1        0.00       26.71
+       5048 │          1        0.00       26.71
+       5050 │          1        0.00       26.71
+       5064 │          1        0.00       26.71
+       5100 │          6        0.01       26.72
+       5150 │          1        0.00       26.72
+       5195 │          1        0.00       26.72
+       5200 │          6        0.01       26.73
+       5250 │          1        0.00       26.73
+       5300 │          6        0.01       26.74
+       5340 │          1        0.00       26.74
+       5366 │          1        0.00       26.74
+       5400 │          2        0.00       26.74
+       5450 │          1        0.00       26.74
+       5500 │         35        0.04       26.78
+       5555 │          1        0.00       26.79
+       5600 │          6        0.01       26.79
+       5605 │          1        0.00       26.79
+       5620 │          1        0.00       26.79
+       5650 │          1        0.00       26.80
+       5700 │          3        0.00       26.80
+       5800 │          9        0.01       26.81
+       5820 │          1        0.00       26.81
+       5835 │          1        0.00       26.81
+       5856 │          1        0.00       26.81
+       6000 │         72        0.08       26.90
+       6027 │          1        0.00       26.90
+       6050 │          1        0.00       26.90
+       6100 │          1        0.00       26.90
+       6106 │          1        0.00       26.90
+       6170 │          1        0.00       26.90
+       6200 │          2        0.00       26.90
+       6280 │          1        0.00       26.90
+       6300 │          1        0.00       26.91
+       6321 │          1        0.00       26.91
+       6400 │          4        0.00       26.91
+       6480 │          3        0.00       26.92
+       6500 │         21        0.02       26.94
+       6650 │          1        0.00       26.94
+       6700 │          2        0.00       26.94
+       6720 │          1        0.00       26.94
+       6750 │          2        0.00       26.95
+       6800 │          5        0.01       26.95
+       6815 │          1        0.00       26.95
+       6950 │          1        0.00       26.95
+       6966 │          1        0.00       26.96
+       7000 │         41        0.05       27.00
+       7100 │          1        0.00       27.00
+       7135 │          1        0.00       27.01
+       7300 │          1        0.00       27.01
+       7400 │          1        0.00       27.01
+       7500 │         16        0.02       27.03
+       7557 │          1        0.00       27.03
+       7800 │          2        0.00       27.03
+       8000 │         52        0.06       27.09
+       8045 │          1        0.00       27.09
+       8102 │          1        0.00       27.09
+       8500 │          8        0.01       27.10
+       8600 │          1        0.00       27.10
+       8700 │          3        0.00       27.11
+       8800 │          5        0.01       27.11
+       8900 │          1        0.00       27.11
+       9000 │         12        0.01       27.13
+       9500 │          5        0.01       27.13
+       9600 │          1        0.00       27.13
+       9700 │          1        0.00       27.13
+       9742 │          1        0.00       27.14
+       9775 │          1        0.00       27.14
+      10000 │         25        0.03       27.17
+      11000 │          3        0.00       27.17
+      11070 │          1        0.00       27.17
+      11186 │          1        0.00       27.17
+      11300 │          1        0.00       27.17
+      11500 │          1        0.00       27.17
+      12000 │         10        0.01       27.18
+      12500 │          3        0.00       27.19
+      12900 │          1        0.00       27.19
+      13000 │          3        0.00       27.19
+      14760 │          1        0.00       27.19
+      14800 │          1        0.00       27.20
+      15000 │          8        0.01       27.20
+      15500 │          1        0.00       27.21
+      16000 │          1        0.00       27.21
+      18000 │          1        0.00       27.21
+      19450 │          1        0.00       27.21
+      20000 │          1        0.00       27.21
+      30000 │          1        0.00       27.21
+          . │     63,185       72.79      100.00
 ────────────┼───────────────────────────────────
-      Total │     28,160      100.00
+      Total │     86,806      100.00
 </pre>
-<p>Una buena opción es, antes de nada, recodificar estos valores como perdidos, por ejemplo,</p>
-<pre class='stata'>. recode p78a_u (-2 -1 = .)
-(22053 changes made to p78a_u)
-</pre>
-<p>Otra opción posible podía haber sido codificar -2 como <code>.a</code> y -1 como <code>.b</code>.</p>
-<p>En algunos casos, esto puede ser mucho más relevante y no corregirlo es problemático. Por ejemplo, algunas bases de datos emplean valores extremos o sin sentido para los casos de no respuesta (e.g., -2, -999, 999999, etc.) en variables numéricas. En estos casos, conviene, antes de nada, recodificar estos valores como perdidos, por ejemplo, pueden codificar la no respuesta en la variable renta con el valor -9999. Si calculamos, por ejemplo, una media sin corregir esto, el valor numérico obtenido es completamente erróneo.</p>
+<p>En algunos casos, esto puede ser mucho más relevante y no corregirlo
+es problemático. Por ejemplo, algunas bases de datos emplean valores
+extremos o sin sentido para los casos de no respuesta (e.g., -2, -999,
+999999, etc.) en variables numéricas. En estos casos, conviene, antes de
+nada, recodificar estos valores como perdidos, por ejemplo, pueden
+codificar la no respuesta en la variable renta con el valor -9999. Si
+calculamos, por ejemplo, una media sin corregir esto, el valor numérico
+obtenido es completamente erróneo.</p>
 <h1 id="la-comunidad-de-usuarios">5. La comunidad de usuarios</h1>
-<p>Una de las ventajas fundamentales del uso de <code>Stata</code>, quizás solo compartida (y superada) por el programa R, es la gran comunidad de usuarios con los que cuenta. Esto se plasma en varias herramientas:</p>
-<p><strong>Los paquetes creados por los usuarios</strong>. Existen una gran cantidad de paquetes que han sido creados por los usuarios de <code>Stata</code>. Normalmente, están adecuadamente documentados. En términos generales, podemos buscar paquetes de <code>Stata</code> con la siguiente instrucción:</p>
+<p>Una de las ventajas fundamentales del uso de <code>Stata</code>,
+quizás solo compartida (y superada) por el programa R, es la gran
+comunidad de usuarios con los que cuenta. Esto se plasma en varias
+herramientas:</p>
+<p><strong>Los paquetes creados por los usuarios</strong>. Existen una
+gran cantidad de paquetes que han sido creados por los usuarios de
+<code>Stata</code>. Normalmente, están adecuadamente documentados. En
+términos generales, podemos buscar paquetes de <code>Stata</code> con la
+siguiente instrucción:</p>
 <p><code>net search <i>word</i> [<i>word</i> …] [, options]</code></p>
 <p>Si sabemos el nombre del paquete, podemos emplearse</p>
 <p><code>ssc install <i>pkgname</i> [, all replace]</code></p>
-<p>Así, por ejemplo, podemos buscar paquetes que permitan realizar mediciones de pobreza con la siguiente instrucción</p>
+<p>Así, por ejemplo, podemos buscar paquetes que permitan realizar
+mediciones de pobreza con la siguiente instrucción</p>
 <pre class='stata'>. net search poverty
 (contacting http://www.stata.com)
 
-50 packages found (Stata Journal and STB listed first)
-──────────────────────────────────────────────────────
+51 packages found (Stata Journal listed first)
+──────────────────────────────────────────────
 
 st0492 from http://www.stata-journal.com/software/sj17-3
-    SJ17-3 st0492. Estimate the entire parametric class of Alkire-Foster
-    multidimensional poverty measures / Estimate the entire parametric class
+    SJ17-3 st0492. Estimate the entire parametric class of Alkire-Foste
+> r
+    multidimensional poverty measures / Estimate the entire parametric 
+> class
     of Alkire- / Foster multidimensional poverty measures / by Daniele
-    Pacifico, OECD, Paris, France / Felix Poege, Max Planck Institute for /
+    Pacifico, OECD, Paris, France / Felix Poege, Max Planck Institute f
+> or /
 
 st0424 from http://www.stata-journal.com/software/sj16-1
     SJ16-1 st0424. Difference-in-differences estimation /
-    Difference-in-differences estimation / by Juan M. villa, Brooks World
-    Poverty / Institute, University of Manchester, / Manchester, UK / Support:
-    juan.villalora@manchester.ac.uk / After installation, type help diff
+    Difference-in-differences estimation / by Juan M. villa, Brooks Wor
+> ld
+    Poverty / Institute, University of Manchester, / Manchester, UK / S
+> upport:
+    juan.villalora@manchester.ac.uk / After installation, type help dif
+> f
 
 sg117 from http://www.stata.com/stb/stb51
-    STB-51 sg115.  Robust std errs for Foster-Greer-Thorbecke poverty ind. /
-    STB insert by / Dean Jolliffe, Center for Economic Research and Graduate
-    Education, / Czech Republic; / Anastassia Semykina, Center for Economic
+    STB-51 sg115.  Robust std errs for Foster-Greer-Thorbecke poverty i
+> nd. /
+    STB insert by / Dean Jolliffe, Center for Economic Research and Gra
+> duate
+    Education, / Czech Republic; / Anastassia Semykina, Center for Econ
+> omic
     Research and Graduate Education, / Czech Republic. / Support:
 
 sg108 from http://www.stata.com/stb/stb48
-    STB-48 sg108.  Computing poverty indices. / STB insert by Philippe Van
+    STB-48 sg108.  Computing poverty indices. / STB insert by Philippe 
+> Van
     Kerm, GREBE, University of Namur, Belgium. / Support:
-    philippe.vankerm@fundp.ac.be / After installation, see help poverty.
+    philippe.vankerm@fundp.ac.be / After installation, see help poverty
+> .
 
 shapley from http://staskolenikov.net/stata
     shapley -- module to perform Shapley decomposition / Author: Stas
-    Kolenikov, skolenik@yahoo.com / This program performs, in some rather
+    Kolenikov, skolenik@yahoo.com / This program performs, in some rath
+> er
     general form, Shapley value / decomposition. The goal is to analyze
-    indices that do not possess / natural decomposition properties. The early
+    indices that do not possess / natural decomposition properties. The
+>  early
 
 adecomp from http://fmwww.bc.edu/RePEc/bocode/a
-    'ADECOMP': module to estimate Shapley Decomposition by Components of a
-    Welfare Measure / adecomp implements the Shapley decomposition of changes
-    in a / welfare indicator as proposed by Azevedo, Sanfelice and Nguyen /
-    (2012). Following Barros et al. (2006), this method takes / advantage of
+    'ADECOMP': module to estimate Shapley Decomposition by Components o
+> f a
+    Welfare Measure / adecomp implements the Shapley decomposition of c
+> hanges
+    in a / welfare indicator as proposed by Azevedo, Sanfelice and Nguy
+> en /
+    (2012). Following Barros et al. (2006), this method takes / advanta
+> ge of
 
 apoverty from http://fmwww.bc.edu/RePEc/bocode/a
-    'APOVERTY': module to compute poverty measures / apoverty computes a
-    series of poverty measures based on the / (income) distribution described
-    by varname. It is a revised and / upgraded version of poverty published by
-    Philippe Van Kerm.  / KW: poverty / KW: headcount / KW: Sen index / KW:
+    'APOVERTY': module to compute poverty measures / apoverty computes 
+> a
+    series of poverty measures based on the / (income) distribution des
+> cribed
+    by varname. It is a revised and / upgraded version of poverty publi
+> shed by
+    Philippe Van Kerm.  / KW: poverty / KW: headcount / KW: Sen index /
+>  KW:
 
 bcstats from http://fmwww.bc.edu/RePEc/bocode/b
-    'BCSTATS': module to analyze back check (field audit) data and compare it
-    to the original survey data / bcstats compares back check (i.e., field
-    audit, reinterview) / data and original survey data, producing a data set
-    of / comparisons. It completes enumerator checks for type 1 and type / 2
+    'BCSTATS': module to analyze back check (field audit) data and comp
+> are it
+    to the original survey data / bcstats compares back check (i.e., fi
+> eld
+    audit, reinterview) / data and original survey data, producing a da
+> ta set
+    of / comparisons. It completes enumerator checks for type 1 and typ
+> e / 2
 
 bmp2dta from http://fmwww.bc.edu/RePEc/bocode/b
-    'BMP2DTA': module to convert bitmap files to Stata datasets / Since the
-    advent of satellite imagery, researchers have turned / images into data
-    and processed it. This program makes the first / step easier in Stata, by
-    turning a Windows 24-bit bitmap file / into a Stata dataset with variables
+    'BMP2DTA': module to convert bitmap files to Stata datasets / Since
+>  the
+    advent of satellite imagery, researchers have turned / images into 
+> data
+    and processed it. This program makes the first / step easier in Sta
+> ta, by
+    turning a Windows 24-bit bitmap file / into a Stata dataset with va
+> riables
 
 cfby from http://fmwww.bc.edu/RePEc/bocode/c
-    'CFBY': module to compare datasets and produce discrepancy rates / cfby
-    compares the variables in varlist from the dataset in / memory to the
-    variables in varlist from the using dataset and / displays the discrepancy
-    rates by a common variable.  It is / useful if you are doing data entry
+    'CFBY': module to compare datasets and produce discrepancy rates / 
+> cfby
+    compares the variables in varlist from the dataset in / memory to t
+> he
+    variables in varlist from the using dataset and / displays the disc
+> repancy
+    rates by a common variable.  It is / useful if you are doing data e
+> ntry
 
 cfout from http://fmwww.bc.edu/RePEc/bocode/c
-    'CFOUT': module to compare two datasets, saving a list of differences /
-    cfout compares the dataset in memory (the master dataset) to a / using
+    'CFOUT': module to compare two datasets, saving a list of differenc
+> es /
+    cfout compares the dataset in memory (the master dataset) to a / us
+> ing
     dataset. It uses unique ID variables to match observations. / cfout
-    optionally saves the list of differences to file.  / KW: data management /
+    optionally saves the list of differences to file.  / KW: data manag
+> ement /
 
 changemean from http://fmwww.bc.edu/RePEc/bocode/c
-    'CHANGEMEAN': module to compute Income and Inequality Contribution on
-    Poverty Variation / changemean decompose the poverty gap among two or more
-    subgroups / by income and inequality.  / KW: poverty gap / KW: inequality
+    'CHANGEMEAN': module to compute Income and Inequality Contribution 
+> on
+    Poverty Variation / changemean decompose the poverty gap among two 
+> or more
+    subgroups / by income and inequality.  / KW: poverty gap / KW: ineq
+> uality
     / KW: income distribution / Requires: Stata version 8.0 /
 
 diff from http://fmwww.bc.edu/RePEc/bocode/d
-    'DIFF': module to perform Differences in Differences estimation / diff
-    performs several differences in differences (diff-in-diff) / estimations
-    of the treatment effect of a given outcome variable / from a pooled base
+    'DIFF': module to perform Differences in Differences estimation / d
+> iff
+    performs several differences in differences (diff-in-diff) / estima
+> tions
+    of the treatment effect of a given outcome variable / from a pooled
+>  base
     line and follow up dataset: Single / Diff-in-Diff, Diff-in-Diff
 
 drdecomp from http://fmwww.bc.edu/RePEc/bocode/d
-    'DRDECOMP': module to estimate Shapley value of growth and distribution
-    components of changes in poverty indicators / drdecomp implements the
-    shapley value of the Datt and Ravallion / (1992) decomposition of changes
-    in a welfare indicator into / growth and distribution, however, following
+    'DRDECOMP': module to estimate Shapley value of growth and distribu
+> tion
+    components of changes in poverty indicators / drdecomp implements t
+> he
+    shapley value of the Datt and Ravallion / (1992) decomposition of c
+> hanges
+    in a welfare indicator into / growth and distribution, however, fol
+> lowing
 
 dstat from http://fmwww.bc.edu/RePEc/bocode/d
-    'DSTAT': module to compute summary statistics and distribution functions
-    including standard errors and optional covariate balancing / dstat unites
-    a variety of methods to describe (univariate) / statistical distributions.
-    Covered are density estimation, / histograms, cumulative distribution
+    'DSTAT': module to compute summary statistics and distribution func
+> tions
+    including standard errors and optional covariate balancing / dstat 
+> unites
+    a variety of methods to describe (univariate) / statistical distrib
+> utions.
+    Covered are density estimation, / histograms, cumulative distributi
+> on
 
 egen_inequal from http://fmwww.bc.edu/RePEc/bocode/e
-    'EGEN_INEQUAL': module providing extensions to generate inequality and
-    poverty measures / The set of programs in this package uses egen to create
-    newvar of / the optionally specified storage type equal to one of the /
-    standard inequality and Foster-Greer-Thorbecke (FGT) poverty / measures.
+    'EGEN_INEQUAL': module providing extensions to generate inequality 
+> and
+    poverty measures / The set of programs in this package uses egen to
+>  create
+    newvar of / the optionally specified storage type equal to one of t
+> he /
+    standard inequality and Foster-Greer-Thorbecke (FGT) poverty / meas
+> ures.
 
 fgt_ci from http://fmwww.bc.edu/RePEc/bocode/f
     'FGT_CI': module to calculate and decompose Foster–Greer–Thorbecke
-    (and standard) concentration indices / This command combines two of the
-    most widely used measures in / the inequality and poverty literatures: the
+    (and standard) concentration indices / This command combines two of
+>  the
+    most widely used measures in / the inequality and poverty literatur
+> es: the
     concentration / index (CI) and the Foster–Greer–Thorbecke (FGT)
 
 fpro from http://fmwww.bc.edu/RePEc/bocode/f
-    'FPRO': module to compute Financial Protection Indicators for Health
-    Expenditures / The package contains two commands (fpcata and fpimpov) to /
-    compute indicators of financial protection for health / expenditures.
-    fpcata computes the incidence of 'catastrophic' / health spending (the %
+    'FPRO': module to compute Financial Protection Indicators for Healt
+> h
+    Expenditures / The package contains two commands (fpcata and fpimpo
+> v) to /
+    compute indicators of financial protection for health / expenditure
+> s.
+    fpcata computes the incidence of 'catastrophic' / health spending (
+> the %
 
 getcensus from http://fmwww.bc.edu/RePEc/bocode/g
-    'GETCENSUS': module to load American Community Survey data from the U.S.
-    Census Bureau API into Stata / getcensus is a Stata package for loading
-    American Community / Survey (ACS) data from the U.S. Census Bureau API
-    into Stata. It / also allows users to search the API data dictionaries for
+    'GETCENSUS': module to load American Community Survey data from the
+>  U.S.
+    Census Bureau API into Stata / getcensus is a Stata package for loa
+> ding
+    American Community / Survey (ACS) data from the U.S. Census Bureau 
+> API
+    into Stata. It / also allows users to search the API data dictionar
+> ies for
 
 glcurve from http://fmwww.bc.edu/RePEc/bocode/g
-    'GLCURVE': module to derive generalised Lorenz curve ordinates / Given
-    variable varname, call it x with c.d.f. F(x), glcurve / either draws its
-    Generalised Lorenz curve or generates two new / variables containing the
-    Generalised Lorenz ordinates for x, i.e. / GL(p) at each p = F(x) (or
+    'GLCURVE': module to derive generalised Lorenz curve ordinates / Gi
+> ven
+    variable varname, call it x with c.d.f. F(x), glcurve / either draw
+> s its
+    Generalised Lorenz curve or generates two new / variables containin
+> g the
+    Generalised Lorenz ordinates for x, i.e. / GL(p) at each p = F(x) (
+> or
 
 glcurve5 from http://fmwww.bc.edu/RePEc/bocode/g
-    'GLCURVE5': module to derive generalised Lorenz curve ordinates with unit
-    record data (Stata 5 or 6) / Given a variable varname, call it x with
+    'GLCURVE5': module to derive generalised Lorenz curve ordinates wit
+> h unit
+    record data (Stata 5 or 6) / Given a variable varname, call it x wi
+> th
     c.d.f. F(x), glcurve7 / draws its Generalised Lorenz curve and/or
-    generates two new / variables containing the Generalised Lorenz ordinates
+    generates two new / variables containing the Generalised Lorenz ord
+> inates
 
 glcurve7 from http://fmwww.bc.edu/RePEc/bocode/g
-    'GLCURVE7': module to derive generalised Lorenz curve ordinates with unit
-    record data (version 7) / Given a variable varname, call it x with c.d.f.
-    F(x), glcurve7 / draws its Generalised Lorenz curve and/or generates two
-    new / variables containing the Generalised Lorenz ordinates for x, i.e. /
+    'GLCURVE7': module to derive generalised Lorenz curve ordinates wit
+> h unit
+    record data (version 7) / Given a variable varname, call it x with 
+> c.d.f.
+    F(x), glcurve7 / draws its Generalised Lorenz curve and/or generate
+> s two
+    new / variables containing the Generalised Lorenz ordinates for x, 
+> i.e. /
 
 hoishapely from http://fmwww.bc.edu/RePEc/bocode/h
     'HOISHAPELY': module to perform Shapley Decomposition of the Human
-    Opportunity Index / hoishapley computes the Shapley decomposition of the
-    Human / Opportunity Index (HOI), it includes the estimation of the basic /
-    statistics like Coverage of Basic Opportunities (C), the / Dissimilarity
+    Opportunity Index / hoishapley computes the Shapley decomposition o
+> f the
+    Human / Opportunity Index (HOI), it includes the estimation of the 
+> basic /
+    statistics like Coverage of Basic Opportunities (C), the / Dissimil
+> arity
 
 hoishapley from http://fmwww.bc.edu/RePEc/bocode/h
     'HOISHAPLEY': module to perform Shapley Decomposition of the Human
-    Opportunity Index / hoishapley computes the Shapley decomposition of the
-    Human / Opportunity Index (HOI), it includes the estimation of the basic /
-    statistics like Coverage of Basic Opportunities (C), the / Dissimilarity
+    Opportunity Index / hoishapley computes the Shapley decomposition o
+> f the
+    Human / Opportunity Index (HOI), it includes the estimation of the 
+> basic /
+    statistics like Coverage of Basic Opportunities (C), the / Dissimil
+> arity
 
 ipabcstats from http://fmwww.bc.edu/RePEc/bocode/i
-    'IPABCSTATS': module to compare survey and back check data, producing an
-    Excel output of comparisons and error rates / ipabcstats compares back
-    check data and survey data, producing / a data set of comparisons.  It
+    'IPABCSTATS': module to compare survey and back check data, produci
+> ng an
+    Excel output of comparisons and error rates / ipabcstats compares b
+> ack
+    check data and survey data, producing / a data set of comparisons. 
+>  It
     completes enumerator checks for / type 1 and type 2 variables and
 
 isopoverty from http://fmwww.bc.edu/RePEc/bocode/i
     'ISOPOVERTY': module to generate data for Inequality-Poverty and
-    Iso-Poverty curves / isopoverty generates data that can be used to plot
-    the / Inequality-Poverty, Growth-Poverty and the Iso-Poverty curves. /
-    stepgrw or stepinq have to be stated otherwise the programme does / not
+    Iso-Poverty curves / isopoverty generates data that can be used to 
+> plot
+    the / Inequality-Poverty, Growth-Poverty and the Iso-Poverty curves
+> . /
+    stepgrw or stepinq have to be stated otherwise the programme does /
+>  not
 
 kanom from http://fmwww.bc.edu/RePEc/bocode/k
-    'KANOM': module to estimate Krippendorff's alpha for nominal variables /
-    kanom computes points estimates and 95 percent confidence / intervals for
-    Krippendorff's reliability coefficient alpha, for / nominal variables and
-    two measurements. It also tests the null / hypotheses that alpha is not
+    'KANOM': module to estimate Krippendorff's alpha for nominal variab
+> les /
+    kanom computes points estimates and 95 percent confidence / interva
+> ls for
+    Krippendorff's reliability coefficient alpha, for / nominal variabl
+> es and
+    two measurements. It also tests the null / hypotheses that alpha is
+>  not
 
 mergeall from http://fmwww.bc.edu/RePEc/bocode/m
-    'MERGEALL': module to merge multiple files / mergeall merges all of the
-    files in a folder without loss of / data due to variable storage types or
-    duplicate unique / identifiers.  / KW: data management / KW: merge /
-    Requires: Stata version 10.1 / Distribution-Date: 20110708 / Author: Ryan
+    'MERGEALL': module to merge multiple files / mergeall merges all of
+>  the
+    files in a folder without loss of / data due to variable storage ty
+> pes or
+    duplicate unique / identifiers.  / KW: data management / KW: merge 
+> /
+    Requires: Stata version 10.1 / Distribution-Date: 20110708 / Author
+> : Ryan
 
 mpi from http://fmwww.bc.edu/RePEc/bocode/m
     'MPI': module to compute the Alkire-Foster multidimensional poverty
-    measures and their decomposition by deprivation indicators and population
-    sub-groups / MPI estimates the Adjusted Multidimensional Headcount Ratio /
+    measures and their decomposition by deprivation indicators and popu
+> lation
+    sub-groups / MPI estimates the Adjusted Multidimensional Headcount 
+> Ratio /
     developed by Alkire and Foster (2011), also known as the /
+
+mpitb from http://fmwww.bc.edu/RePEc/bocode/m
+    'MPITB': module to estimate and analyze multidimensional poverty in
+> dices
+    (MPI) / mpitb is a toolbox that offers several commands to facilita
+> te /
+    specification, estimation, and analysis of multidimensional / pover
+> ty
+    indices (MPI) and supports the popular Alkire-Foster (AF) / framewo
+> rk to
 
 mpovline from http://fmwww.bc.edu/RePEc/bocode/m
     'MPOVLINE': module to calculate FGT0, FGT1 and FGT2 by intervals of
-    multiple thresholds / mpovline calculates FGT0, FGT1 and FGT2 by intervals
-    of multiple / lines. This ado can be used to calculate headcount for the
-    poor, / vulnerable and middle class lines as proposed by Ferreira et al /
+    multiple thresholds / mpovline calculates FGT0, FGT1 and FGT2 by in
+> tervals
+    of multiple / lines. This ado can be used to calculate headcount fo
+> r the
+    poor, / vulnerable and middle class lines as proposed by Ferreira e
+> t al /
 
 orth_out from http://fmwww.bc.edu/RePEc/bocode/o
-    'ORTH_OUT': module to automate and export summary stats/orthogonality
-    tables / orth_out produces summary stats tables and orthogonality tables.
-    / orth_out is useful in testing balance of means across variables / in
-    multiple groups, particularly the balance of baseline / characteristics
+    'ORTH_OUT': module to automate and export summary stats/orthogonali
+> ty
+    tables / orth_out produces summary stats tables and orthogonality t
+> ables.
+    / orth_out is useful in testing balance of means across variables /
+>  in
+    multiple groups, particularly the balance of baseline / characteris
+> tics
 
 outdetect from http://fmwww.bc.edu/RePEc/bocode/o
-    'OUTDETECT': module to perform outlier detection and diagnostics for
-    welfare analysts / outdetect identifies outliers (extreme values) in the /
-    distribution of a variable, and assesses their impact on a / selection of
-    popular inequality and poverty measures. The / procedure by which outliers
+    'OUTDETECT': module to perform outlier detection and diagnostics fo
+> r
+    welfare analysts / outdetect identifies outliers (extreme values) i
+> n the /
+    distribution of a variable, and assesses their impact on a / select
+> ion of
+    popular inequality and poverty measures. The / procedure by which o
+> utliers
 
 pobrezaecu from http://fmwww.bc.edu/RePEc/bocode/p
-    'POBREZAECU': module to predict poverty in Ecuador / pobrezaECU predicts
-    income poverty in Ecuador, a year ahead, / from the quarterly household
-    survey called ENEMDU.  / KW: poverty / KW: Ecuador / KW: prediction /
-    Requires: Stata version 12 / Distribution-Date: 20180512 / Author:  Daniel
+    'POBREZAECU': module to predict poverty in Ecuador / pobrezaECU pre
+> dicts
+    income poverty in Ecuador, a year ahead, / from the quarterly house
+> hold
+    survey called ENEMDU.  / KW: poverty / KW: Ecuador / KW: prediction
+>  /
+    Requires: Stata version 12 / Distribution-Date: 20180512 / Author: 
+>  Daniel
 
 povcalnet from http://fmwww.bc.edu/RePEc/bocode/p
-    'POVCALNET': module to access World Bank Global Poverty and Inequality
-    measures / The povcalnet commands allows Stata users to compute poverty /
-    and inequality indicators for more than 160 countries and / regions in the
+    'POVCALNET': module to access World Bank Global Poverty and Inequal
+> ity
+    measures / The povcalnet commands allows Stata users to compute pov
+> erty /
+    and inequality indicators for more than 160 countries and / regions
+>  in the
     World Bank's database of household surveys. It has / the same
 
 povdeco from http://fmwww.bc.edu/RePEc/bocode/p
-    'POVDECO': module to calculate poverty indices with decomposition by
-    subgroup / povdeco estimates three poverty indices from the Foster, /
-    Greer and Thorbecke (1984) class, FGT(a), plus related / statistics (such
-    as mean income amongst the poor). FGT(0) is / the headcount ratio (the
+    'POVDECO': module to calculate poverty indices with decomposition b
+> y
+    subgroup / povdeco estimates three poverty indices from the Foster,
+>  /
+    Greer and Thorbecke (1984) class, FGT(a), plus related / statistics
+>  (such
+    as mean income amongst the poor). FGT(0) is / the headcount ratio (
+> the
 
 poverty from http://fmwww.bc.edu/RePEc/bocode/p
-    'POVERTY': module to calculate poverty measures / poverty computes a
-    series of poverty measures based on the / (income) distribution described
-    by varname. The poverty measures / that can be computed by poverty are:
-    headcount ratio, / aggregate poverty gap, poverty gap ratio, income gap
+    'POVERTY': module to calculate poverty measures / poverty computes 
+> a
+    series of poverty measures based on the / (income) distribution des
+> cribed
+    by varname. The poverty measures / that can be computed by poverty 
+> are:
+    headcount ratio, / aggregate poverty gap, poverty gap ratio, income
+>  gap
 
 povguide from http://fmwww.bc.edu/RePEc/bocode/p
-    'POVGUIDE': module to generate the U.S. Poverty Guideline value for a
-    given family size and year / This generates the official Poverty Guideline
-    value as / established by the United States Department of Health and Human
-    / Services. This is one of two official poverty levels, the other / being
+    'POVGUIDE': module to generate the U.S. Poverty Guideline value for
+>  a
+    given family size and year / This generates the official Poverty Gu
+> ideline
+    value as / established by the United States Department of Health an
+> d Human
+    / Services. This is one of two official poverty levels, the other /
+>  being
 
 povimp from http://fmwww.bc.edu/RePEc/bocode/p
-    'POVIMP': module to provide poverty estimates in the absence of actual
-    consumption data / povimp provides poverty estimates in the absence of
+    'POVIMP': module to provide poverty estimates in the absence of act
+> ual
+    consumption data / povimp provides poverty estimates in the absence
+>  of
     actual / consumption data.  / KW: poverty / KW: imputation / KW:
     consumption / KW: inequality / Requires: Stata version 12 /
 
 povtime from http://fmwww.bc.edu/RePEc/bocode/p
-    'POVTIME': module to compute aggregate intertemporal poverty measures
-    (poverty in a panel accounting for time) / povtime computes aggregate
+    'POVTIME': module to compute aggregate intertemporal poverty measur
+> es
+    (poverty in a panel accounting for time) / povtime computes aggrega
+> te
     intertemporal poverty measures / (poverty accounting for time) in a
     balanced panel of individuals. / The program computes the family of
 
 prosperity from http://fmwww.bc.edu/RePEc/bocode/p
-    'PROSPERITY': module to compute Shared Prosperity Convergence Index / The
-    command prosperity calculates the Shared Prosperity / Convergence Index
-    -SPCI-. This is the new indicator that the / World Bank uses to measure
-    the progress in the growth and / inequality reduction.  The base indicator
+    'PROSPERITY': module to compute Shared Prosperity Convergence Index
+>  / The
+    command prosperity calculates the Shared Prosperity / Convergence I
+> ndex
+    -SPCI-. This is the new indicator that the / World Bank uses to mea
+> sure
+    the progress in the growth and / inequality reduction.  The base in
+> dicator
 
 quantiles from http://fmwww.bc.edu/RePEc/bocode/q
-    'QUANTILES': module to categorize by quantiles / quantiles creates a new
-    variable (newvar) that categorizes / varname by its quantiles. It differs
-    from xtile because the / categories are defined by the ideal size of the
-    quantile rather / than by the cutpoints, therefore yielding less unequaly
+    'QUANTILES': module to categorize by quantiles / quantiles creates 
+> a new
+    variable (newvar) that categorizes / varname by its quantiles. It d
+> iffers
+    from xtile because the / categories are defined by the ideal size o
+> f the
+    quantile rather / than by the cutpoints, therefore yielding less un
+> equaly
 
 rddsga from http://fmwww.bc.edu/RePEc/bocode/r
-    'RDDSGA': module to conduct subgroup analysis for regression discontinuity
-    designs / rddsga allows to conduct a binary subgroup analysis in RDD /
-    settings based on inverse propensity score weights (IPSW).  / Observations
+    'RDDSGA': module to conduct subgroup analysis for regression discon
+> tinuity
+    designs / rddsga allows to conduct a binary subgroup analysis in RD
+> D /
+    settings based on inverse propensity score weights (IPSW).  / Obser
+> vations
     in each subgroup are weighted by the inverse of / their conditional
 
 readreplace from http://fmwww.bc.edu/RePEc/bocode/r
     'READREPLACE': module to make replacements that are specified in an
-    external dataset / eadreplace modifies the dataset currently in memory by
-    making / replacements that are specified in an external dataset, the /
-    replacements file.  / KW: data management / KW: data entry / KW: replace /
+    external dataset / eadreplace modifies the dataset currently in mem
+> ory by
+    making / replacements that are specified in an external dataset, th
+> e /
+    replacements file.  / KW: data management / KW: data entry / KW: re
+> place /
 
 sae from http://fmwww.bc.edu/RePEc/bocode/s
-    'SAE': module to provide commands and mata functions devoted to unit level
-    small area estimation / sae is a Stata family of functions for small area
-    estimation, / using the methodology from Elbers, Lanjouw, and Lanjouw
-    (2003). / The package introduces new mata functions and a plugin used to /
+    'SAE': module to provide commands and mata functions devoted to uni
+> t level
+    small area estimation / sae is a Stata family of functions for smal
+> l area
+    estimation, / using the methodology from Elbers, Lanjouw, and Lanjo
+> uw
+    (2003). / The package introduces new mata functions and a plugin us
+> ed to /
 
 skdecomp from http://fmwww.bc.edu/RePEc/bocode/s
     'SKDECOMP': module to estimate Shapley value of growth, price, and
@@ -993,136 +2493,215 @@ skdecomp from http://fmwww.bc.edu/RePEc/bocode/s
     decomposition of changes in a welfare indicator / into growth,
 
 specialexp from http://fmwww.bc.edu/RePEc/bocode/s
-    'SPECIALEXP': module to obtain expression that evaluates to specified
-    string / specialexp returns an expression that evaluates to a specified /
-    string, including strings that cannot be enclosed in double / quotes.  /
-    KW: expressions / KW: quotes / KW: Mata / Requires: Stata version 9 /
+    'SPECIALEXP': module to obtain expression that evaluates to specifi
+> ed
+    string / specialexp returns an expression that evaluates to a speci
+> fied /
+    string, including strings that cannot be enclosed in double / quote
+> s.  /
+    KW: expressions / KW: quotes / KW: Mata / Requires: Stata version 9
+>  /
 
 tex3pt from http://fmwww.bc.edu/RePEc/bocode/t
     'TEX3PT': module to produce LaTeX documents from estout with
-    threeparttable / tex3pt takes .tex output from esttab and writes it into a
-    LaTeX / file using threeparttable. This greatly improves the level of /
-    compatibility between LaTeX and esttab.  Since this program uses / the
+    threeparttable / tex3pt takes .tex output from esttab and writes it
+>  into a
+    LaTeX / file using threeparttable. This greatly improves the level 
+> of /
+    compatibility between LaTeX and esttab.  Since this program uses / 
+> the
 
 veracrypt from http://fmwww.bc.edu/RePEc/bocode/v
-    'VERACRYPT': module to mount or dismount a VeraCrypt volume / veracrypt
+    'VERACRYPT': module to mount or dismount a VeraCrypt volume / verac
+> rypt
     mounts or dismounts a VeraCrypt volume.  / KW: veracrypt / KW: data
-    management / Requires: Stata version 9 / Distribution-Date: 20160926 /
-    Author:  Patrick McNeal, Abdul Latif Jameel Poverty Action Lab, MIT /
+    management / Requires: Stata version 9 / Distribution-Date: 2016092
+> 6 /
+    Author:  Patrick McNeal, Abdul Latif Jameel Poverty Action Lab, MIT
+>  /
 
 st0543 from http://www.stata-journal.com/software/sj18-4
     SJ18-4 st0543. Fit dynamic random-effects probit... / Fit dynamic
-    random-effects probit models with / unobserved heterogeneity / by Raffaele
+    random-effects probit models with / unobserved heterogeneity / by R
+> affaele
     Grotti, / Department of Political and Social Sciences / European
-    University Institute / San Domenico di Fiesole, Italy / Giorgio Cutuli,
+    University Institute / San Domenico di Fiesole, Italy / Giorgio Cut
+> uli,
 
 xtpdyn from http://fmwww.bc.edu/RePEc/bocode/x
-    'XTPDYN': module to estimate dynamic random effects probit model with
-    unobserved heterogeneity / xtpdyn fits dynamic random-effects probit
+    'XTPDYN': module to estimate dynamic random effects probit model wi
+> th
+    unobserved heterogeneity / xtpdyn fits dynamic random-effects probi
+> t
     models (meprobit and / xtprobit) with unobserved heterogeneity. It
-    implements Wooldridge / simple solution to the initial condition problem
+    implements Wooldridge / simple solution to the initial condition pr
+> oblem
 
 
 11 references found in tables of contents
 ─────────────────────────────────────────
 
 http://www.stata-journal.com/software/sj17-3/
-    Stata Journal volume 17, issue 3 / Update: A set of utilities for managing
-    / missing values / Update: Design plots for graphical summary / of a
-    response given factors / Update: One-, two-, and three-way bar charts /
-    for tables / Provide graph schemes sensitive to color / vision deficiency
+    Stata Journal volume 17, issue 3 / Update: A set of utilities for m
+> anaging
+    / missing values / Update: Design plots for graphical summary / of 
+> a
+    response given factors / Update: One-, two-, and three-way bar char
+> ts /
+    for tables / Provide graph schemes sensitive to color / vision defi
+> ciency
 
 http://www.stata.com/stb/stb51/
-    STB-51 September 1999 / Update to defv / Update to labedit / Update to
+    STB-51 September 1999 / Update to defv / Update to labedit / Update
+>  to
     varxplor / Update of cut to Stata 6 / Calculating the product of
-    observations / Alternative ranking procedures / 3D surface plots / A
+    observations / Alternative ranking procedures / 3D surface plots / 
+> A
     simple contour plot / Distribution function plots / Quantile plots,
 
 http://www.stata.com/stb/stb48/
     STB-48 March 1999 / Drawing Venn diagrams / Diagnostic plots for
-    Singh-Maddala and Dagum distrib / Analysis of income distributions /
-    Creation of bivariate random lognormal variables / Fitting Singh-Maddala
-    and Dagum distrib. by max. like. / Generalized Lorenz curves and related
+    Singh-Maddala and Dagum distrib / Analysis of income distributions 
+> /
+    Creation of bivariate random lognormal variables / Fitting Singh-Ma
+> ddala
+    and Dagum distrib. by max. like. / Generalized Lorenz curves and re
+> lated
 
 http://fmwww.bc.edu/RePEc/bocode/a/
-    module to estimate models with two fixed effects / module to compute
+    module to estimate models with two fixed effects / module to comput
+> e
     unbiased IV regression / module for scatter plot with linear and/or
-    quadratic fit, automatically annotated / module to perform Arellano-Bond
-    test for autocorrelation / module to implement the Alpha-Beta-Gamma Method
+    quadratic fit, automatically annotated / module to perform Arellano
+> -Bond
+    test for autocorrelation / module to implement the Alpha-Beta-Gamma
+>  Method
 
 http://fmwww.bc.edu/RePEc/bocode/c/
-    module to implement machine learning classification in Stata / module to
-    implement machine learning classification in Stata / module to generate
-    calendar / module to estimate proportions and means after survey data have
-    been calibrated to population totals / module for inverse regression and
+    module to implement machine learning classification in Stata / modu
+> le to
+    implement machine learning classification in Stata / module to gene
+> rate
+    calendar / module to estimate proportions and means after survey da
+> ta have
+    been calibrated to population totals / module for inverse regressio
+> n and
 
 http://fmwww.bc.edu/RePEc/bocode/d/
-    module to create network visualizations using D3.js to view in browser /
-    module to produce terrible dad jokes / module to provide utilities for
+    module to create network visualizations using D3.js to view in brow
+> ser /
+    module to produce terrible dad jokes / module to provide utilities 
+> for
     directed acyclic graphs / module to fit a Generalized Beta (Type 2)
-    distribution to grouped data via ML / module to fit a Dagum distribution
+    distribution to grouped data via ML / module to fit a Dagum distrib
+> ution
 
 http://fmwww.bc.edu/RePEc/bocode/e/
-    module to estimate endogenous attribute attendance models / module to
-    perform extreme bound analysis / module to perform Entropy reweighting to
-    create balanced samples / module to perform entropy balancing / module to
-    perform entropy reweighting to create balanced samples for continuous
+    module to estimate endogenous attribute attendance models / module 
+> to
+    perform extreme bound analysis / module to perform Entropy reweight
+> ing to
+    create balanced samples / module to perform entropy balancing / mod
+> ule to
+    perform entropy reweighting to create balanced samples for continuo
+> us
 
 http://fmwww.bc.edu/RePEc/bocode/i/
-    module to import International Aid Transparency Initiative data / module
-    to compute measures of interaction contrast (biological interaction) /
-    module to compute Interaction Effects in Linear and Generalized Linear
+    module to import International Aid Transparency Initiative data / m
+> odule
+    to compute measures of interaction contrast (biological interaction
+> ) /
+    module to compute Interaction Effects in Linear and Generalized Lin
+> ear
     Models / module that computes models 2 and 3 of the intra-class
 
 http://fmwww.bc.edu/RePEc/bocode/m/
-    module to implement interpoint distance distribution analysis / module to
-    unabbreviate Global Macro Lists / module to compute the macroF evaluation
-    criterion for multi-class outcomes / module to perform Dickey-Fuller test
-    on panel data / module to create dot plot for summarizing pooled estimates
+    module to implement interpoint distance distribution analysis / mod
+> ule to
+    unabbreviate Global Macro Lists / module to compute the macroF eval
+> uation
+    criterion for multi-class outcomes / module to perform Dickey-Fulle
+> r test
+    on panel data / module to create dot plot for summarizing pooled es
+> timates
 
 http://fmwww.bc.edu/RePEc/bocode/p/
-    module to calculate confidence limits of a regression coefficient from the
-    p-value / module to perform Page's L trend test for ordered alternatives /
-    module to create paired datasets from individual-per-row data / module for
-    plots of paired observations / module to import network data in Pajek's
+    module to calculate confidence limits of a regression coefficient f
+> rom the
+    p-value / module to perform Page's L trend test for ordered alterna
+> tives /
+    module to create paired datasets from individual-per-row data / mod
+> ule for
+    plots of paired observations / module to import network data in Paj
+> ek's
 
 http://fmwww.bc.edu/RePEc/bocode/s/
-    module to compute Sequence Analysis Distance Measures / module to provide
-    commands and mata functions devoted to unit level small area estimation /
-    module to compute sample size for an intra-class correlation (ICC) /
-    module to draw a random sample with probabilities proportional to size /
+    module to compute Sequence Analysis Distance Measures / module to p
+> rovide
+    commands and mata functions devoted to unit level small area estima
+> tion /
+    module to compute sample size for an intra-class correlation (ICC) 
+> /
+    module to draw a random sample with probabilities proportional to s
+> ize /
 
 
 . ssc install povdeco
 checking povdeco consistency and verifying not already installed...
 all files already exist and are up to date.
 </pre>
-<p>Además, es frecuente que otros autores ofrezcan sus programas con más o menos sofisticación y mejor o peor presentación.</p>
-<p><strong><a href="https://www.stata-journal.com/">Stata Journal</a></strong>. Se trata de una revista de StataCorp, indexada en el Journal Citation Reports, donde se publican estrategias de uso de <code>Stata</code> y se proponen nuevos comandos y se ponen a disposición de los usuarios. El <a href="https://www.stata-journal.com/sjpdf.html?articlenum=st0151">artículo</a> de <span class="citation" data-cites="Jann2008">Jann (2008)</span> representa un ejemplo típico: introduce el paquete <code>oaxaca</code>, proporcionando unas nociones estadísticas mínimas y explicando el funcionamiento del mismo, ilustrado con ejemplos.</p>
+<p>Además, es frecuente que otros autores ofrezcan sus programas con más
+o menos sofisticación y mejor o peor presentación.</p>
+<p><strong><a href="https://www.stata.com/learn/">Stata
+Journal</a></strong>. Se trata de una revista de StataCorp, indexada en
+el Journal Citation Reports, donde se publican estrategias de uso de
+<code>Stata</code> y se proponen nuevos comandos y se ponen a
+disposición de los usuarios. El <a
+href="https://www.stata-journal.com/sjpdf.html?articlenum=st0151">artículo</a>
+de <span class="citation" data-cites="Jann2008">Jann (2008)</span>
+representa un ejemplo típico: introduce el paquete <code>oaxaca</code>,
+proporcionando unas nociones estadísticas mínimas y explicando el
+funcionamiento del mismo, ilustrado con ejemplos.</p>
 <figure>
-<img src="sjcover.png" style="width:15.0%" alt="Stata Journal" /><figcaption aria-hidden="true"><em>Stata Journal</em></figcaption>
+<img src="sjcover.png" style="width:15.0%" alt="Stata Journal" />
+<figcaption aria-hidden="true">Stata Journal</figcaption>
 </figure>
-<p><strong><a href="https://www.statalist.org/">Statalist</a></strong>. Inicialmente, fue una lista de correo. En la actualidad, se trata de un foro de usuarios orientado, fundamentalmente, a resolver dudas. Antes de preguntar es importante asegurarse de que el tema no ha sido discutido con anterioridad y, en nuestra duda, incluir un <em>minimum working example</em> en el que se acote el problema.</p>
+<p><strong><a href="https://www.statalist.org/">Statalist</a></strong>.
+Inicialmente, fue una lista de correo. En la actualidad, se trata de un
+foro de usuarios orientado, fundamentalmente, a resolver dudas. Antes de
+preguntar es importante asegurarse de que el tema no ha sido discutido
+con anterioridad y, en nuestra duda, incluir un <em>minimum working
+example</em> en el que se acote el problema.</p>
 <figure>
-<img src="statalist.png" style="width:75.0%" alt="Ejemplo de hilo en Statalist" /><figcaption aria-hidden="true">Ejemplo de hilo en Statalist</figcaption>
+<img src="statalist.png" style="width:75.0%"
+alt="Ejemplo de hilo en Statalist" />
+<figcaption aria-hidden="true">Ejemplo de hilo en Statalist</figcaption>
 </figure>
 <h1 id="referencias">Referencias</h1>
 
-<div id="refs" class="references csl-bib-body hanging-indent" data-line-spacing="2" role="doc-bibliography">
+<div id="refs" class="references csl-bib-body hanging-indent"
+data-line-spacing="2" role="doc-bibliography">
 <div id="ref-Acock2018" class="csl-entry" role="doc-biblioentry">
-Acock, A. C. (2018). <em>A gentle introduction to <span>S</span>tata</em> (6th ed.). Stata Press.
+Acock, A. C. (2018). <em>A gentle introduction to
+<span>S</span>tata</em> (6th ed.). Stata Press.
 </div>
 <div id="ref-Escobar2012" class="csl-entry" role="doc-biblioentry">
-Escobar, M., Fernández-Macías, E., &amp; Bernardi, F. (2012). <em>An<span>á</span>lisis de datos con <span>S</span>tata</em> (2nd ed.). Centro de Investigaciones Soci<span>ó</span>logicas.
+Escobar, M., Fernández-Macías, E., &amp; Bernardi, F. (2012).
+<em>An<span>á</span>lisis de datos con <span>S</span>tata</em> (2nd
+ed.). Centro de Investigaciones Soci<span>ó</span>logicas.
 </div>
 <div id="ref-Jann2008" class="csl-entry" role="doc-biblioentry">
-Jann, B. (2008). A <span>S</span>tata implementation of the <span>B</span>linder-<span>O</span>axaca decomposition. <em>Stata Journal</em>, <em>8</em>(4), 456–479.
+Jann, B. (2008). A <span>S</span>tata implementation of the
+<span>B</span>linder-<span>O</span>axaca decomposition. <em>Stata
+Journal</em>, <em>8</em>(4), 456–479.
 </div>
 <div id="ref-Kohler2012" class="csl-entry" role="doc-biblioentry">
-Kohler, U., &amp; Kreuter, F. (2012). <em>Data analysis using <span>S</span>tata</em> (3rd ed.). Stata Press.
+Kohler, U., &amp; Kreuter, F. (2012). <em>Data analysis using
+<span>S</span>tata</em> (3rd ed.). Stata Press.
 </div>
 <div id="ref-Long2009" class="csl-entry" role="doc-biblioentry">
-Long, J. S. (2009). <em>The workflow of data analysis using <span>S</span>tata</em>. Stata Press.
+Long, J. S. (2009). <em>The workflow of data analysis using
+<span>S</span>tata</em>. Stata Press.
 </div>
 </div>
 </body>

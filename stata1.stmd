@@ -21,7 +21,7 @@ Versatilidad y popularidad frente a sus principales competidores,
   
 ## 2.1. Gráficos para publicación
 
-![ITT estimator assuming different order of polynomials](Fig_Change_Probability.png)
+![ITT estimator assuming different order of polynomials](Fig_Change_Probability.png){width=75%}
 
 # 3. Conceptos básicos
 
@@ -414,7 +414,7 @@ Podemos generar una variable que recoja los grupos de notas:
 ```{s}
 generate gnota = 1 if nota <= 10
 replace gnota = 2 if nota >= 11 & nota <= 15
-replace gnota = 3 if edad >= 16 
+replace gnota = 3 if nota >= 16 
 
 // Etiqueamos la variable y sus valores
 
