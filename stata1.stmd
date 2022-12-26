@@ -3,10 +3,12 @@ title: Sesión 1. Introducción a `Stata`
 author: José A. Valderrama
 bibliography: curso_stata.bib
 csl: apa.csl
+geometry: left=20mm
+geomerty: right=20mm
 ---
 _ _ _
 
-<p style="text-align: center;">[<span style="color:red"><font size="4">Inicio</font></span>](https://jtvalderrama.github.io/curso_stata.html) &nbsp;&nbsp;&nbsp;&nbsp; [<span style="color:red"><font size="4">Sesión 1</font></span>](https://jtvalderrama.github.io/stata1.html)    &nbsp;&nbsp;&nbsp;&nbsp;   [<span style="color:red"><font size="4">Sesión 2</font></span>](https://jtvalderrama.github.io/stata2.html)    &nbsp;&nbsp;&nbsp;&nbsp;   [<span style="color:red"><font size="4">Sesión 3</font></span>](https://jtvalderrama.github.io/stata3.html)    &nbsp;&nbsp;&nbsp;&nbsp;   [<span style="color:red"><font size="4">Sesión 4</font></span>](https://jtvalderrama.github.io/stata4.html)    &nbsp;&nbsp;&nbsp;&nbsp;   [<span style="color:red"><font size="4">Sesión 5</font></span>](https://jtvalderrama.github.io/stata5.html) &nbsp;&nbsp;&nbsp;&nbsp;   [<span style="color:red"><font size="4">Ejercicios</font></span>](https://jtvalderrama.github.io/stata_ejercicios.html) </p>
+<p style="text-align: center;">[<span style="color:orangered"><font size="4">Inicio</font></span>](https://jtvalderrama.github.io/curso_stata.html) &nbsp;&nbsp;&nbsp;&nbsp; [<span style="color:orangered"><font size="4">Sesión 1</font></span>](https://jtvalderrama.github.io/stata1.html)    &nbsp;&nbsp;&nbsp;&nbsp;   [<span style="color:orangered"><font size="4">Sesión 2</font></span>](https://jtvalderrama.github.io/stata2.html)    &nbsp;&nbsp;&nbsp;&nbsp;   [<span style="color:orangered"><font size="4">Sesión 3</font></span>](https://jtvalderrama.github.io/stata3.html)    &nbsp;&nbsp;&nbsp;&nbsp;   [<span style="color:orangered"><font size="4">Sesión 4</font></span>](https://jtvalderrama.github.io/stata4.html)    &nbsp;&nbsp;&nbsp;&nbsp;   [<span style="color:orangered"><font size="4">Sesión 5</font></span>](https://jtvalderrama.github.io/stata5.html) &nbsp;&nbsp;&nbsp;&nbsp;   [<span style="color:orangered"><font size="4">Ejercicios</font></span>](https://jtvalderrama.github.io/stata_ejercicios.html) </p>
 _ _ _
 
 # 1. ¿Qué es Stata?
@@ -19,9 +21,16 @@ Es un programa estadístico que permite combinar,
 Versatilidad y popularidad frente a sus principales competidores, 
  `SPSS` y `SAS`; aunque cada vez es más extendido otras alternativas gratuitas como `R`.
   
-## 2.1. Gráficos para publicación
+Gráficos para publicación
 
-![ITT estimator assuming different order of polynomials](Fig_Change_Probability.png){width=75%}
+![ITT estimator assuming different order of polynomials](Fig_Change_Probability.png){width=65%}
+
+Regresión
+
+```{s}
+ use "C:\Users\jvald\Dropbox\MISCURSOS\Analisis de Datos con Stata\MATERIALES\sesion1\sumaria-2021.dta"
+ reg gashog2d ingmo2hd
+```
 
 # 3. Conceptos básicos
 

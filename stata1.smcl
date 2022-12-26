@@ -3,12 +3,31 @@
       name:  {res}<unnamed>
        {txt}log:  {res}C:\Users\jvald\Dropbox\MISCURSOS\Analisis de Datos con Stata\jtvalderrama.github.io\stata1.smcl
   {txt}log type:  {res}smcl
- {txt}opened on:  {res}25 Dec 2022, 23:48:43
+ {txt}opened on:  {res}26 Dec 2022, 01:17:34
 {txt}
 {com}. //_1
-. clear all
+.  use "C:\Users\jvald\Dropbox\MISCURSOS\Analisis de Datos con Stata\MATERIALES\sesion1\sumaria-2021.dta"
+{txt}
+{com}.  reg gashog2d ingmo2hd
+
+{txt}      Source {c |}       SS           df       MS      Number of obs   ={res}    34,245
+{txt}{hline 13}{c +}{hline 34}   F(1, 34243)     = {res} 32793.52
+{txt}       Model {c |} {res} 6.7016e+12         1  6.7016e+12   {txt}Prob > F        ={res}    0.0000
+{txt}    Residual {c |} {res} 6.9978e+12    34,243   204356239   {txt}R-squared       ={res}    0.4892
+{txt}{hline 13}{c +}{hline 34}   Adj R-squared   ={res}    0.4892
+{txt}       Total {c |} {res} 1.3699e+13    34,244   400050578   {txt}Root MSE        =   {res}  14295
+
+{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 1}    gashog2d{col 14}{c |}      Coef.{col 26}   Std. Err.{col 38}      t{col 46}   P>|t|{col 54}     [95% Con{col 67}f. Interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{space 4}ingmo2hd {c |}{col 14}{res}{space 2} .5138716{col 26}{space 2} .0028377{col 37}{space 1}  181.09{col 46}{space 3}0.000{col 54}{space 4} .5083097{col 67}{space 3} .5194336
+{txt}{space 7}_cons {c |}{col 14}{res}{space 2}  13009.4{col 26}{space 2} 103.9351{col 37}{space 1}  125.17{col 46}{space 3}0.000{col 54}{space 4} 12805.68{col 67}{space 3} 13213.11
+{txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
 {res}{txt}
 {com}. //_2
+. clear all
+{res}{txt}
+{com}. //_3
 . clear all // Liberar el espacio de trabajo
 {res}{txt}
 {com}. 
@@ -21,31 +40,31 @@
 . 
 . clear all
 {res}{txt}
-{com}. //_3
+{com}. //_4
 . cd "C:\Users\jvald\Dropbox\MISCURSOS\Analisis de Datos con Stata\MATERIALES\sesion1"
 {res}C:\Users\jvald\Dropbox\MISCURSOS\Analisis de Datos con Stata\MATERIALES\sesion1
 {txt}
 {com}. pwd
 {res}C:\Users\jvald\Dropbox\MISCURSOS\Analisis de Datos con Stata\MATERIALES\sesion1
 {txt}
-{com}. //_4
+{com}. //_5
 . import delimited using "NOTAS.csv", clear varnames(1)
 {res}{text}(6 vars, 38 obs)
 
-{com}. //_5
+{com}. //_6
 . browse
 {txt}
-{com}. //_6q
+{com}. //_7q
 . quietly{c -(}
 {txt}
-{com}. //_7
+{com}. //_8
 . save "misnotas.dta", replace
 {txt}file misnotas.dta saved
 
-{com}. //_8
+{com}. //_9
 . use "misnotas.dta", clear
 {txt}
-{com}. //_9
+{com}. //_10
 . codebook ex1
 
 {txt}{hline}
@@ -64,14 +83,14 @@
 {col 21}         5{col 33}18
 {col 21}        15{col 33}20
 {txt}
-{com}. //_10
+{com}. //_11
 . sum ex1
 
 {txt}    Variable {c |}        Obs        Mean    Std. Dev.       Min        Max
 {hline 13}{c +}{hline 57}
 {space 9}ex1 {c |}{res}         38    17.23684    2.917183         10         20
 {txt}
-{com}. //_11
+{com}. //_12
 . tabulate ex1 if ex1 > 10
 
         {txt}Ex1 {c |}      Freq.     Percent        Cum.
@@ -83,7 +102,7 @@
 {txt}{hline 12}{c +}{hline 35}
       Total {c |}{res}         35      100.00
 {txt}
-{com}. //_12
+{com}. //_13
 . list ex1 in 1/10
 {txt}
      {c TLC}{hline 5}{c TRC}
@@ -102,27 +121,27 @@
  10. {c |} {res} 15 {txt}{c |}
      {c BLC}{hline 5}{c BRC}
 
-{com}. //_13
+{com}. //_14
 . drop id
 {txt}
-{com}. //_14
+{com}. //_15
 . use "misnotas.dta", clear
 {txt}
-{com}. //_15
+{com}. //_16
 . label data "ECV-Datos b√°sicos de la persona"
 {txt}
-{com}. //_16
+{com}. //_17
 . label var ex1 "Examen 1"
 {txt}
-{com}. //_17
+{com}. //_18
 . label define sexo_lab 1 "Hombre" 2 "Mujer"
 {txt}
 {com}. label values ex1 sexo_lab
 {txt}
-{com}. //_18
+{com}. //_19
 . rename ex1 examen1
 {res}{txt}
-{com}. //_19
+{com}. //_20
 . generate nota = (examen1+ex2+ex3+ex4+ex5)/4
 {txt}
 {com}. 
@@ -139,7 +158,7 @@
 {hline 13}{c +}{hline 57}
 {space 8}nota {c |}{res}         38    18.60526    3.527705       12.5       24.5
 {txt}
-{com}. //_20
+{com}. //_21
 . generate gnota = 1 if nota <= 10
 {txt}(38 missing values generated)
 
@@ -169,7 +188,7 @@
 {txt}{hline 13}{c +}{hline 35}
        Total {c |}{res}         34      100.00
 {txt}
-{com}. //_21
+{com}. //_22
 . recode gnota (1  = 1) (2 3 = 2)
 {txt}(gnota: 27 changes made)
 
@@ -192,13 +211,13 @@
 {txt}{hline 12}{c +}{hline 35}
       Total {c |}{res}         34      100.00
 {txt}
-{com}. //_22
+{com}. //_23
 . egen notam = mean(nota)
 {txt}
-{com}. //_23q
+{com}. //_24q
 . quietly{c -(}
 {txt}
-{com}. //_24
+{com}. //_25
 . tabulate p524a1,m
 
 {txt}øcu·nto fue {c |}
@@ -1339,7 +1358,7 @@
 {txt}{hline 12}{c +}{hline 35}
       Total {c |}{res}     86,806      100.00
 {txt}
-{com}. //_25
+{com}. //_26
 . net search poverty
 {txt}(contacting http://www.stata.com)
 
@@ -1728,7 +1747,7 @@
 {txt}checking {hilite:povdeco} consistency and verifying not already installed...
 all files already exist and are up to date.
 
-{com}. //_26q
+{com}. //_27q
 . quietly: cd "C:\Users\jvald\Dropbox\MISCURSOS\Analisis de Datos con Stata\jtvalderrama.github.io"
 {txt}
 {com}. //_^
@@ -1736,7 +1755,7 @@ all files already exist and are up to date.
       {txt}name:  {res}<unnamed>
        {txt}log:  {res}C:\Users\jvald\Dropbox\MISCURSOS\Analisis de Datos con Stata\jtvalderrama.github.io\stata1.smcl
   {txt}log type:  {res}smcl
- {txt}closed on:  {res}25 Dec 2022, 23:48:47
+ {txt}closed on:  {res}26 Dec 2022, 01:17:38
 {txt}{.-}
 {smcl}
 {txt}{sf}{ul off}
