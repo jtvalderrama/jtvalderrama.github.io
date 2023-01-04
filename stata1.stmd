@@ -6,20 +6,18 @@ csl: apa.csl
 geometry: left=20mm
 geomerty: right=20mm
 ---
-_ _ _
+
 
 <p style="text-align: center;">[<span style="color:orangered"><font size="4">Inicio</font></span>](https://jtvalderrama.github.io/curso_stata.html) &nbsp;&nbsp;&nbsp;&nbsp; [<span style="color:orangered"><font size="4">Sesión 1</font></span>](https://jtvalderrama.github.io/stata1.html)    &nbsp;&nbsp;&nbsp;&nbsp;   [<span style="color:orangered"><font size="4">Sesión 2</font></span>](https://jtvalderrama.github.io/stata2.html)    &nbsp;&nbsp;&nbsp;&nbsp;   [<span style="color:orangered"><font size="4">Sesión 3</font></span>](https://jtvalderrama.github.io/stata3.html)    &nbsp;&nbsp;&nbsp;&nbsp;   [<span style="color:orangered"><font size="4">Sesión 4</font></span>](https://jtvalderrama.github.io/stata4.html)    &nbsp;&nbsp;&nbsp;&nbsp;   [<span style="color:orangered"><font size="4">Sesión 5</font></span>](https://jtvalderrama.github.io/stata5.html) &nbsp;&nbsp;&nbsp;&nbsp;   [<span style="color:orangered"><font size="4">Ejercicios</font></span>](https://jtvalderrama.github.io/stata_ejercicios.html) </p>
 _ _ _
 
 # 1. ¿Qué es Stata?
 
-Es un programa estadístico que permite combinar,
-  manipular y analizar datos usando métodos estadísticos y gráficos.
+Es un programa estadístico que permite combinar, manipular y analizar datos usando métodos estadísticos y gráficos.
 
 # 2. ¿Porqué Stata?
 
-Versatilidad y popularidad frente a sus principales competidores, 
- `SPSS` y `SAS`; aunque cada vez es más extendido otras alternativas gratuitas como `R`.
+Versatilidad y popularidad frente a sus principales competidores, `SPSS` y `SAS`; aunque cada vez es más extendido otras alternativas gratuitas como `R`.
   
 Gráficos para publicación
 
@@ -34,57 +32,21 @@ Regresión
 
 # 3. Conceptos básicos
 
-## 3.1. Formas de trabajo
+## 3.1. Tipos de archivos
 
-Existen varias formas de trabajar con `Stata`:
+Entre las principales extensiones se deben mencionar:
 
-* Emplear comandos de forma interactiva (e.g., como en Excel) $\rightarrow$ **Nada recomendado**
-* Escribir archivos de comandos $\rightarrow$ **Muy recomendable**
-* Generar un flujo de trabajo con otros programas, los que podemos exportar los resultados. Nunca copiar y pegar resultados (tedioso y lleva a incurrir  en muchos errores) $\rightarrow$ **Extremadamente recomendable**
+### Archivos tipo *.dta*
 
-Existe un importante número de libros de introducción a Stata, entre los que se pueden destacar los de @Acock2018 y, en español, @Escobar2012.
+Es donde se almacenan los datos con el formato de `Stata`.
 
-## 3.2. Tipos de archivos en Stata
+### Archivos tipo *.do*
 
-### Archivos *.dta*
-
-Son los archivos de datos de `Stata`, equivalentes a los archivos `.xlsx` en Excel o `.sav` en SPSS. Es el formato al que debemos convertir los datos con los que queramos trabajar.
-
-### Archivos *.do*
-
-Archivos de sintaxis de comandos, equivalentes a los `.sps` en SPSS. Resultan absolutamente básicos, para ahorrar tiempo (`Stata` no cuenta con la función *deshacer*) y garantizar la reproducibilidad. En realidad, son archivos de texto plano, idénticos a los `.txt`.
-
-### Archivos *.smcl* o *.log*
-
-Son archivos de registro, que recogen las operaciones y resultados en nuestro espacio de trabajo, similares a los archivos `.log` en SPSS. Representan una forma razonable de presentar resultados preliminares a co-autores o una forma de entrega de ejercicios de los estudiantes. Actualmente, gracias a la integración de `Stata` con otros lenguajes y softwares (pdf o html), existen mejores alternativas.
+Donde se digitan los códigos u órdenes a ser ejecutados por el software. Son archivos de texto plano, cuya principal virtud es garantizar la reproductibilidad de las estimaciones.
 
 ### Archivos *.gph*
 
-Son los archivos nativos para las figuras en `Stata`. En las últimas versiones, se pueden editar y la flexibilidad se ha incrementado mucho.
-Además, es posible generar los gráficos directamente en formatos de imagen o pdf.
-
-### Archivos *.ado*
-
-Son macros de Stata, algo más sofisticados que los archivos *.do* que contienen comandos programados, rutinas. Hay un impresionante arsenal
-de estos archivos creados por usuarios.
-
-### Archivos *.sthlp*
-
-Los archivos de ayuda de Stata.
-
-### Archivos *.stsem*
-
-Diagramas de ecuaciones estructurales.
-
-### Archivos *.stpr*
-
-Archivos de proyectos de `Stata`. Agrupan jerárquicamente los archivos anteriores.
-
-### Archivos *.stmd*
-
-Archivos Markdown de `Stata`, similares a los archivos *.do*, que se emplean por comandos como `markstat` para la creación de documentos dinámicos reproducibles.
-
-En la práctica, los archivos que más vamos a utilizar son los archivos `.do` y `.dta`.
+Son los archivos nativos para las figuras en `Stata`.
 
 ## 3.2. El entorno de `Stata`
 
@@ -97,7 +59,7 @@ El entorno de `Stata` nos muestra:
 * Menús
 * Barra de tareas $\rightarrow$ **importantes**: explorador y editor de archivos `.do`
 
-![Entorno de trabajo de `Stata`](interface.png){width=75%}
+![Entorno de trabajo de `Stata`](interface_stata.png){width=75%}
 
 Conviene operar, preferentemente, con el editor de archivos `.do`.
 
