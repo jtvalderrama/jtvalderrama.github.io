@@ -3,7 +3,7 @@
       name:  {res}<unnamed>
        {txt}log:  {res}C:\Users\jvald\Dropbox\MISCURSOS\Analisis de Datos con Stata\jtvalderrama.github.io\stata1.smcl
   {txt}log type:  {res}smcl
- {txt}opened on:  {res}26 Dec 2022, 01:17:34
+ {txt}opened on:  {res} 4 Jan 2023, 17:05:12
 {txt}
 {com}. //_1
 .  use "C:\Users\jvald\Dropbox\MISCURSOS\Analisis de Datos con Stata\MATERIALES\sesion1\sumaria-2021.dta"
@@ -1755,7 +1755,7 @@ all files already exist and are up to date.
       {txt}name:  {res}<unnamed>
        {txt}log:  {res}C:\Users\jvald\Dropbox\MISCURSOS\Analisis de Datos con Stata\jtvalderrama.github.io\stata1.smcl
   {txt}log type:  {res}smcl
- {txt}closed on:  {res}26 Dec 2022, 01:17:38
+ {txt}closed on:  {res} 4 Jan 2023, 17:05:17
 {txt}{.-}
 {smcl}
 {txt}{sf}{ul off}

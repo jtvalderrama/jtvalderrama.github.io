@@ -50,24 +50,39 @@ Son los archivos nativos para las figuras en `Stata`.
 
 ## 3.2. El entorno de `Stata`
 
-El entorno de `Stata` nos muestra:
+Por defecto, el entorno de `Stata` muestra 5 ventanas al abrir el software:
 
-* Ventana de resultados.
-* Línea de comandos.
-* Ventana de variables.
-* Ventana de propiedades de las variables.
-* Menús
-* Barra de tareas $\rightarrow$ **importantes**: explorador y editor de archivos `.do`
+* Historia. Es una bitácora de todas las órdenes realizadas al software.
+* Resultados. A excepción de los gráficos que se muetran en una ventana emergente, aquí se muestran los resultados y notificaciones.
+* Línea de comandos. Un camino alternativo de ingresar las órdenes. Otros caminos son el menú contextual y el uso del dofile (ver más adelante)
+* Variables. Muestra los campos del archivo de datos abierto.
+* Propiedades. Características generales de las variables y de los datos abiertos.
 
 ![Entorno de trabajo de `Stata`](interface_stata.png){width=75%}
 
-Conviene operar, preferentemente, con el editor de archivos `.do`.
+El uso de `dofiles` es el camino más eficiente para el trabajo. Las órdenes se graban en un archivo de extensión `.do`, archivo que puede ser editado por cualquier editor de texto. Para abrir 
+el editor de `Stata` basta digitar `doedit` en la línea de comandos y la tecla enter. También puede dar un click en el ícono que tiene un documento con un lápiz ubicado en la barra de tareas. El `dofile` 
+puede ser grabado como cualquier archivo y ser abierto invocando primero a la ventana del editor.
 
-![Editor de archivos `.do` de `Stata`](editor.png){width=75%}
+![Editor de scripts `.do` de `Stata`](dofile.png){width=75%}
 
 ## 3.3. Recursos de ayuda
 
 La ayuda de `Stata` es bastante buena y, además, nos permite acceder directamente a los manuales en formato `.pdf` del programa, que contienen breves explicaciones estadísticas, ejemplos e incluso referencias. Es muy sencillo acudir a la ayuda.
+
+El comando para pedir ayuda sobre alguna órden es `help`. Como muchas otras órdenes, `Stata` reconoce los primeros carácteres de las órdenes, en las sintaxis eso es representado por un subrayado 
+en los caracteres que son suficientes ser ingresados para que sean reconocidos. Adicionalmente, es bueno saber que lo que se encuentra en corchetes es opcional y obedece a una orden más precisa. Por ejemplo,
+el comando para estadísticas descriptivas básicas es `summarize`, si en la línea de comandos se digita `help summarize`.
+
+Como parte de la ayuda se muestra documentación en pdf, la sintaxis del comando, la forma de ejecutar la órden usando el menú contextual, la descripción, opciones, ejemplos e incluso videos. En el caso de la sintaxis, la parte subrayada
+de los comandos representa la forma abreviada del comando, `summarize`, por ejemplo es reconocido con los dos primeros caracteres `su`. En la sontaxis también se muestra entre corchetes 
+indicaciones adicionales opcionales del comando; en el caso de `summarize` por ejemplo si solo se ejecuta esa orden se mostrará estadísticas descriptivas de todas las variables presentes
+en los datos que se encuentran abiertos.
+
+![Sintaxis de summarize](help.png){width=75%}
+
+
+help/ subrayado/findit
 
   <code><u>h</u>elp [<i>command_or_topic_name</i>] [, <u>non</u>ew name(viewername) <u>mark</u>er(<i>markername</i>)]</code>
 

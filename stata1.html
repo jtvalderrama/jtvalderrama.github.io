@@ -227,7 +227,6 @@ table tbody:last-child tr:last-child td {border-bottom:1px solid black;}
 <h1 class="title">Sesión 1. Introducción a <code>Stata</code></h1>
 <p class="author">José A. Valderrama</p>
 </header>
-<hr />
 <p style="text-align: center;">
 <a href="https://jtvalderrama.github.io/curso_stata.html"><span
 style="color:orangered"><font size="4">Inicio</font></span></a>      <a
@@ -279,93 +278,52 @@ polynomials</figcaption>
 ─────────────┴────────────────────────────────────────────────────────────────
 </pre>
 <h1 id="conceptos-básicos">3. Conceptos básicos</h1>
-<h2 id="formas-de-trabajo">3.1. Formas de trabajo</h2>
-<p>Existen varias formas de trabajar con <code>Stata</code>:</p>
-<ul>
-<li>Emplear comandos de forma interactiva (e.g., como en Excel) <span
-class="math inline">\(\rightarrow\)</span> <strong>Nada
-recomendado</strong></li>
-<li>Escribir archivos de comandos <span
-class="math inline">\(\rightarrow\)</span> <strong>Muy
-recomendable</strong></li>
-<li>Generar un flujo de trabajo con otros programas, los que podemos
-exportar los resultados. Nunca copiar y pegar resultados (tedioso y
-lleva a incurrir en muchos errores) <span
-class="math inline">\(\rightarrow\)</span> <strong>Extremadamente
-recomendable</strong></li>
-</ul>
-<p>Existe un importante número de libros de introducción a Stata, entre
-los que se pueden destacar los de <span class="citation"
-data-cites="Acock2018">Acock (2018)</span> y, en español, <span
-class="citation" data-cites="Escobar2012">Escobar et al.
-(2012)</span>.</p>
-<h2 id="tipos-de-archivos-en-stata">3.2. Tipos de archivos en Stata</h2>
-<h3 id="archivos-.dta">Archivos <em>.dta</em></h3>
-<p>Son los archivos de datos de <code>Stata</code>, equivalentes a los
-archivos <code>.xlsx</code> en Excel o <code>.sav</code> en SPSS. Es el
-formato al que debemos convertir los datos con los que queramos
-trabajar.</p>
-<h3 id="archivos-.do">Archivos <em>.do</em></h3>
-<p>Archivos de sintaxis de comandos, equivalentes a los
-<code>.sps</code> en SPSS. Resultan absolutamente básicos, para ahorrar
-tiempo (<code>Stata</code> no cuenta con la función <em>deshacer</em>) y
-garantizar la reproducibilidad. En realidad, son archivos de texto
-plano, idénticos a los <code>.txt</code>.</p>
-<h3 id="archivos-.smcl-o-.log">Archivos <em>.smcl</em> o
-<em>.log</em></h3>
-<p>Son archivos de registro, que recogen las operaciones y resultados en
-nuestro espacio de trabajo, similares a los archivos <code>.log</code>
-en SPSS. Representan una forma razonable de presentar resultados
-preliminares a co-autores o una forma de entrega de ejercicios de los
-estudiantes. Actualmente, gracias a la integración de <code>Stata</code>
-con otros lenguajes y softwares (pdf o html), existen mejores
-alternativas.</p>
+<h2 id="tipos-de-archivos">3.1. Tipos de archivos</h2>
+<p>Entre las principales extensiones se deben mencionar:</p>
+<h3 id="archivos-tipo-.dta">Archivos tipo <em>.dta</em></h3>
+<p>Es donde se almacenan los datos con el formato de
+<code>Stata</code>.</p>
+<h3 id="archivos-tipo-.do">Archivos tipo <em>.do</em></h3>
+<p>Donde se digitan los códigos u órdenes a ser ejecutados por el
+software. Son archivos de texto plano, cuya principal virtud es
+garantizar la reproductibilidad de las estimaciones.</p>
 <h3 id="archivos-.gph">Archivos <em>.gph</em></h3>
-<p>Son los archivos nativos para las figuras en <code>Stata</code>. En
-las últimas versiones, se pueden editar y la flexibilidad se ha
-incrementado mucho. Además, es posible generar los gráficos directamente
-en formatos de imagen o pdf.</p>
-<h3 id="archivos-.ado">Archivos <em>.ado</em></h3>
-<p>Son macros de Stata, algo más sofisticados que los archivos
-<em>.do</em> que contienen comandos programados, rutinas. Hay un
-impresionante arsenal de estos archivos creados por usuarios.</p>
-<h3 id="archivos-.sthlp">Archivos <em>.sthlp</em></h3>
-<p>Los archivos de ayuda de Stata.</p>
-<h3 id="archivos-.stsem">Archivos <em>.stsem</em></h3>
-<p>Diagramas de ecuaciones estructurales.</p>
-<h3 id="archivos-.stpr">Archivos <em>.stpr</em></h3>
-<p>Archivos de proyectos de <code>Stata</code>. Agrupan jerárquicamente
-los archivos anteriores.</p>
-<h3 id="archivos-.stmd">Archivos <em>.stmd</em></h3>
-<p>Archivos Markdown de <code>Stata</code>, similares a los archivos
-<em>.do</em>, que se emplean por comandos como <code>markstat</code>
-para la creación de documentos dinámicos reproducibles.</p>
-<p>En la práctica, los archivos que más vamos a utilizar son los
-archivos <code>.do</code> y <code>.dta</code>.</p>
+<p>Son los archivos nativos para las figuras en <code>Stata</code>.</p>
 <h2 id="el-entorno-de-stata">3.2. El entorno de <code>Stata</code></h2>
-<p>El entorno de <code>Stata</code> nos muestra:</p>
+<p>Por defecto, el entorno de <code>Stata</code> muestra 5 ventanas al
+abrir el software:</p>
 <ul>
-<li>Ventana de resultados.</li>
-<li>Línea de comandos.</li>
-<li>Ventana de variables.</li>
-<li>Ventana de propiedades de las variables.</li>
-<li>Menús</li>
-<li>Barra de tareas <span class="math inline">\(\rightarrow\)</span>
-<strong>importantes</strong>: explorador y editor de archivos
-<code>.do</code></li>
+<li>Historia. Es una bitácora de todas las órdenes realizadas al
+software.</li>
+<li>Resultados. A excepción de los gráficos que se muetran en una
+ventana emergente, aquí se muestran los resultados y
+notificaciones.</li>
+<li>Línea de comandos. Un camino alternativo de ingresar las órdenes.
+Otros caminos son el menú contextual y el uso del dofile (ver más
+adelante)</li>
+<li>Variables. Muestra los campos del archivo de datos abierto.</li>
+<li>Propiedades. Características generales de las variables y de los
+datos abiertos.</li>
 </ul>
 <figure>
-<img src="interface.png" style="width:75.0%"
+<img src="interface_stata.png" style="width:75.0%"
 alt="Entorno de trabajo de Stata" />
 <figcaption aria-hidden="true">Entorno de trabajo de
 <code>Stata</code></figcaption>
 </figure>
-<p>Conviene operar, preferentemente, con el editor de archivos
-<code>.do</code>.</p>
+<p>El uso de <code>dofiles</code> es el camino más eficiente para el
+trabajo. Las órdenes se graban en un archivo de extensión
+<code>.do</code>, archivo que puede ser editado por cualquier editor de
+texto. Para abrir el editor de <code>Stata</code> basta digitar
+<code>doedit</code> en la línea de comandos y la tecla enter. También
+puede dar un click en el ícono que tiene un documento con un lápiz
+ubicado en la barra de tareas. El <code>dofile</code> puede ser grabado
+como cualquier archivo y ser abierto invocando primero a la ventana del
+editor.</p>
 <figure>
-<img src="editor.png" style="width:75.0%"
-alt="Editor de archivos .do de Stata" />
-<figcaption aria-hidden="true">Editor de archivos <code>.do</code> de
+<img src="dofile.png" style="width:75.0%"
+alt="Editor de scripts .do de Stata" />
+<figcaption aria-hidden="true">Editor de scripts <code>.do</code> de
 <code>Stata</code></figcaption>
 </figure>
 <h2 id="recursos-de-ayuda">3.3. Recursos de ayuda</h2>
@@ -373,6 +331,20 @@ alt="Editor de archivos .do de Stata" />
 permite acceder directamente a los manuales en formato <code>.pdf</code>
 del programa, que contienen breves explicaciones estadísticas, ejemplos
 e incluso referencias. Es muy sencillo acudir a la ayuda.</p>
+<p>El comando para pedir ayuda sobre alguna órden es <code>help</code>.
+Como muchas otras órdenes, <code>Stata</code> reconoce los primeros
+carácteres de las órdenes, en las sintaxis eso es representado por un
+subrayado en los caracteres que son suficientes ser ingresados para que
+sean reconocidos. Adicionalmente, es bueno saber que lo que se encuentra
+en corchetes es opcional y obedece a una orden más precisa. Por ejemplo,
+el comando para estadísticas descriptivas básicas es
+<code>summarize</code>, si en la línea de comandos se digita
+<code>help summarize</code>.</p>
+<figure>
+<img src="help.png" style="width:75.0%" alt="Sintaxis de summarize" />
+<figcaption aria-hidden="true">Sintaxis de summarize</figcaption>
+</figure>
+<p>help/ subrayado/findit</p>
 <p><code><u>h</u>elp [<i>command_or_topic_name</i>] [, <u>non</u>ew
 name(viewername) <u>mark</u>er(<i>markername</i>)]</code></p>
 <p>De forma más genérica, podemos emplear</p>
