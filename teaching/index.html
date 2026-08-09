@@ -132,8 +132,13 @@
 
 <div class="universal-wrapper">
   
-  <div class="article-style"><p>Un curso que estaré actualizando frecuentemente
-<a href="https://jtvalderrama.github.io/curso_stata" target="_blank" rel="noopener">Stata para el análisis de datos</a>.</p>
+        <div class="article-style" id="courses-container"><p>Cargando cursos...</p></div>
+      <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+      <script>
+              fetch('/teaching/courses.md')
+                          .then(function(response) { return response.text(); })
+                          .then(function(text) { document.getElementById('courses-container').innerHTML = marked.parse(text); });
+      </script>
 
 </div>
   
